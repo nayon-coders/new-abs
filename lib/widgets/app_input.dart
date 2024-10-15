@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../utility/app_color.dart';
+
 class AppInput extends StatelessWidget {
   AppInput({super.key,
     required this.hint,
@@ -14,7 +16,7 @@ class AppInput extends StatelessWidget {
     this.onClick,
     this.onChanged,
     this.maxLine = 1,
-    //this.fillColor=AppColors.fillColor,
+    this.fillColor=AppColors.fillColor,
     this.isValidatorNeed = true
 
   });
@@ -29,7 +31,7 @@ class AppInput extends StatelessWidget {
   final VoidCallback? onClick;
   final Function(String)? onChanged;
   final int maxLine;
- // final Color? fillColor;
+  final Color? fillColor;
   final bool isValidatorNeed;
 
 
@@ -56,7 +58,7 @@ class AppInput extends StatelessWidget {
       decoration: InputDecoration(
         contentPadding:const EdgeInsets.only(left: 15,),
         filled: true,
-        fillColor: Colors.white,
+        fillColor: fillColor,
         hintText: hint,
         hintStyle:const TextStyle(fontWeight: FontWeight.w400,fontSize: 13,color: Colors.black),
 
@@ -65,19 +67,19 @@ class AppInput extends StatelessWidget {
 
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide.none,
+          borderSide:const BorderSide(color: AppColors.borderColor),
         ),
         focusedBorder:OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide.none,
+          borderSide:const BorderSide(color: AppColors.borderColor),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide.none,
+          borderSide:const BorderSide(color: AppColors.borderColor),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide.none,
+          borderSide:const BorderSide(color: AppColors.borderColor),
         ),
       ),
     );
