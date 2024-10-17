@@ -11,31 +11,34 @@ class SuccessScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Center(child: Lottie.asset("assets/animation/success.json",height: 150,width: 150)),
-             const SizedBox(height: 20,),
-             const TitleText(text: "Password Changed!"),
-             const SizedBox(
-                width: 250,
-                child: Text("Your password has been changed successfully.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: AppColors.textGrey),),
-              ),
-             const SizedBox(height: 30,),
-              AppButton(
-                width: double.infinity,
-                  name: "Back to Login",
-                  onClick: ()=>Get.offNamed(RouteName.login))
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Center(child: Lottie.asset("assets/animation/success.json",height: 150,width: 150)),
+               const SizedBox(height: 20,),
+               const TitleText(text: "Password Changed!"),
+               const SizedBox(
+                  width: 250,
+                  child: Text("Your password has been changed successfully.",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: AppColors.textGrey),),
+                ),
+               const SizedBox(height: 30,),
+                AppButton(
+                  width: double.infinity,
+                    name: "Back to Login",
+                    onClick: ()=>Get.offNamed(RouteName.login),
+                ),
 
 
-            ],
+              ],
+            ),
           ),
         ),
       ),

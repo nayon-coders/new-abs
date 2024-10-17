@@ -17,7 +17,8 @@ class AppInput extends StatelessWidget {
     this.onChanged,
     this.maxLine = 1,
     this.fillColor=AppColors.fillColor,
-    this.isValidatorNeed = true
+    this.isValidatorNeed = true,
+    this.circuler =10
 
   });
   final String hint;
@@ -33,6 +34,7 @@ class AppInput extends StatelessWidget {
   final int maxLine;
   final Color? fillColor;
   final bool isValidatorNeed;
+  final double circuler;
 
 
   @override
@@ -42,7 +44,7 @@ class AppInput extends StatelessWidget {
       onChanged: onChanged,
       maxLines: maxLine,
       keyboardType:textType,
-      style: TextStyle(fontWeight: FontWeight.w600,fontSize: 14,color:Colors.grey),
+      style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 14,color:Colors.grey),
       readOnly:readOnly ,
       obscureText:obscureText ,
       controller:controller ,
@@ -66,19 +68,19 @@ class AppInput extends StatelessWidget {
         prefixIcon: prefixIcon,
 
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(circuler),
           borderSide:const BorderSide(color: AppColors.borderColor),
         ),
         focusedBorder:OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(circuler),
           borderSide:const BorderSide(color: AppColors.borderColor),
         ),
         disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(circuler),
           borderSide:const BorderSide(color: AppColors.borderColor),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(circuler),
           borderSide:const BorderSide(color: AppColors.borderColor),
         ),
       ),
