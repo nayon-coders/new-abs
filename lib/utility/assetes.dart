@@ -13,4 +13,5 @@ class Assets{
   static const String todaysale = "assets/images/todaysale.png";
   static const String income = "assets/images/income.png";
   static const String calander = "assets/images/calander.png";
+  static const String profilePic = "assets/images/profilepic.png";
 }

@@ -1,10 +1,15 @@
+import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/utility/assetes.dart';
-import 'package:abs_office_management/view/auth/widget/back_button.dart';
+import 'package:abs_office_management/view/today_sales_management/screen/add_cost.dart';
+import 'package:abs_office_management/view/today_sales_management/screen/add_food_cost.dart';
+import 'package:abs_office_management/view/today_sales_management/screen/add_today_sales.dart';
 import 'package:abs_office_management/view/today_sales_management/widget/edit_button.dart';
 import 'package:abs_office_management/view/today_sales_management/widget/table/app_table.dart';
 import 'package:abs_office_management/view/today_sales_management/widget/table/table_header.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
+import 'package:get/get.dart';
 
 class TodaySalesManagement extends StatelessWidget {
   const TodaySalesManagement({super.key});
@@ -18,7 +23,9 @@ class TodaySalesManagement extends StatelessWidget {
             backgroundColor: AppColors.bgColor,
             appBar: AppBar(
               backgroundColor: AppColors.textWhite,
-              leading: IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_back_ios,color: AppColors.textindico,)),
+              leading: IconButton(
+                  onPressed: ()=>Get.toNamed(RouteName.dashBoard),
+                  icon: const Icon(Icons.arrow_back_ios,color: AppColors.textindico,)),
               title:const Text("Today Sales Management",
                 style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textindico),
               ),
@@ -81,7 +88,7 @@ class TodaySalesManagement extends StatelessWidget {
                                         children: [
                                           EditButton(
                                               bgColor: Color(0xFF1814F3),
-                                              onClick: (){}
+                                              onClick: ()=>Get.to(()=>AddTodaySales()),
                                           ),
                                           EditButton(
                                             icon: Icons.remove_red_eye,
@@ -146,7 +153,7 @@ class TodaySalesManagement extends StatelessWidget {
                                         children: [
                                           EditButton(
                                               bgColor: Color(0xFF1814F3),
-                                              onClick: (){}
+                                              onClick: ()=>Get.to(()=>AddCost())
                                           ),
                                           EditButton(
                                             icon: Icons.remove_red_eye,
@@ -214,7 +221,7 @@ class TodaySalesManagement extends StatelessWidget {
                                         children: [
                                           EditButton(
                                               bgColor: Color(0xFF1814F3),
-                                              onClick: (){}
+                                              onClick: ()=>Get.to(()=>AddFoodCost()),
                                           ),
                                           EditButton(
                                             icon: Icons.delete,
@@ -237,6 +244,34 @@ class TodaySalesManagement extends StatelessWidget {
             ]),
 
 
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
+            floatingActionButton: ExpandableFab(
+              initialOpen: true,
+              distance: 80.0, // FAB-er icon-gulor space adjust korte hobe
+              children: [
+                FloatingActionButton.small(
+                  onPressed: () {
+                    print('Action 1');
+                  },
+                  tooltip: 'Action 1',
+                  child: Icon(Icons.add,color: Colors.amber,),
+                ),
+                FloatingActionButton.small(
+                  onPressed: () {
+                    print('Action 2');
+                  },
+                  tooltip: 'Action 2',
+                  child: Icon(Icons.edit),
+                ),
+                FloatingActionButton.small(
+                  onPressed: () {
+                    print('Action 3');
+                  },
+                  tooltip: 'Action 3',
+                  child: Icon(Icons.delete),
+                ),
+              ],
+            ),
 
 
               ),

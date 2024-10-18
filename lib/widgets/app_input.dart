@@ -18,7 +18,8 @@ class AppInput extends StatelessWidget {
     this.maxLine = 1,
     this.fillColor=AppColors.fillColor,
     this.isValidatorNeed = true,
-    this.circuler =10
+    this.circuler =10,
+    this.hintColor = Colors.grey,
 
   });
   final String hint;
@@ -35,6 +36,7 @@ class AppInput extends StatelessWidget {
   final Color? fillColor;
   final bool isValidatorNeed;
   final double circuler;
+  final Color hintColor;
 
 
   @override
@@ -44,7 +46,7 @@ class AppInput extends StatelessWidget {
       onChanged: onChanged,
       maxLines: maxLine,
       keyboardType:textType,
-      style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 14,color:Colors.grey),
+      style: TextStyle(fontWeight: FontWeight.w600,fontSize: 14,color:hintColor),
       readOnly:readOnly ,
       obscureText:obscureText ,
       controller:controller ,
@@ -62,7 +64,7 @@ class AppInput extends StatelessWidget {
         filled: true,
         fillColor: fillColor,
         hintText: hint,
-        hintStyle:const TextStyle(fontWeight: FontWeight.w400,fontSize: 13,color: Colors.black),
+        hintStyle: TextStyle(fontWeight: FontWeight.w400,fontSize: 13,color: hintColor),
 
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,

@@ -8,6 +8,7 @@ class AppButton extends StatelessWidget {
     required this.name,
     required this.onClick,
     this.bgColor=AppColors.mainColor,
+    this.textColor=AppColors.textWhite,
     this.height=45,
     this.width=300,
     this.isLoading = false
@@ -15,6 +16,7 @@ class AppButton extends StatelessWidget {
   final String name;
   final VoidCallback onClick;
   final Color? bgColor;
+  final Color? textColor;
   final double? height;
   final double? width;
   final bool isLoading;
@@ -31,7 +33,7 @@ class AppButton extends StatelessWidget {
           color:bgColor,
         ),
         child: Center(
-          child: isLoading ? CircularProgressIndicator.adaptive() : Text(name,style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color:AppColors.textWhite ),),
+          child: isLoading ? CircularProgressIndicator.adaptive() : Text(name,style:  TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color:textColor ),),
         ),
       ),
     );
