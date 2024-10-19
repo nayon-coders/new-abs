@@ -214,12 +214,12 @@ class AddTodaySales extends StatelessWidget {
             const SizedBox(height: 20,),
 
             //-------Date Time ----
-            const Text("Date of Birth",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),),
+            const Text("Selected Date",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),),
             const SizedBox(height: 10,),
             AppInput(
               readOnly: true,
               onClick: (){},
-              hint: "DateTime",
+              hint: "Selected Date",
               hintColor: AppColors.textBlue,
               fillColor: AppColors.textWhite,
               controller: _dateTime,

@@ -66,7 +66,7 @@ class AddCost extends StatelessWidget {
                       ),
 
                       const SizedBox(height: 20,),
-                      const Text("Date of Birth",
+                      const Text("Selected Date",
                         style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: AppColors.textBlack),
                       ),
                       const SizedBox(height: 10,),
@@ -74,7 +74,7 @@ class AddCost extends StatelessWidget {
                         readOnly: true,
                           hintColor: AppColors.textBlue,
                           fillColor: AppColors.fillColor,
-                          hint: "Date of Birth",
+                          hint: "Selected Date",
                         controller: _dateTime,
                       ),
 

@@ -1,6 +1,8 @@
 import 'package:abs_office_management/utility/assetes.dart';
 import 'package:abs_office_management/view/dash_board_screen/widget/drawer_menu.dart';
+import 'package:abs_office_management/view/settings/screen/setting_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../utility/app_color.dart';
 
@@ -25,7 +27,7 @@ class CustomDrawer extends StatelessWidget {
           DrawerMenu(icon: Icons.people, name: "Partner controller", onClick: (){}),
           DrawerMenu(icon: Icons.miscellaneous_services, name: "Services", onClick: (){}),
           DrawerMenu(icon: Icons.privacy_tip_outlined, name: "My Privileges", onClick: (){}),
-          DrawerMenu(icon: Icons.settings, name: "Setting", onClick: (){}),
+          DrawerMenu(icon: Icons.settings, name: "Setting", onClick: ()=>Get.to(()=>SettingScreen())),
         ],
       ),
     );

@@ -1,8 +1,10 @@
 import 'package:abs_office_management/utility/assetes.dart';
+import 'package:abs_office_management/view/employee_management/screen/add_employee.dart';
+import 'package:abs_office_management/view/employee_management/screen/single_employee.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../utility/app_color.dart';
+import '../../../utility/app_color.dart';
 
 class EmployeeManagement extends StatelessWidget {
   const EmployeeManagement({super.key});
@@ -20,7 +22,7 @@ class EmployeeManagement extends StatelessWidget {
         ),
         actions: [
           InkWell(
-            onTap: (){},
+            onTap: ()=>Get.to(AddEmployee()),
             child: Container(
               height: 30,
               width: 30,
@@ -35,13 +37,13 @@ class EmployeeManagement extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-        padding: EdgeInsets.all(10),
+        padding:const EdgeInsets.all(10),
         itemCount: 10,
           itemBuilder: (context,index){
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
-                contentPadding: EdgeInsets.only(left: 10,right: 10),
+                contentPadding:const EdgeInsets.only(left: 10,right: 10),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -56,7 +58,7 @@ class EmployeeManagement extends StatelessWidget {
                 title: Text("Employee Name",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: AppColors.textBlack),),
                 subtitle: Text("Manager",style: TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textBlack),),
                 trailing: InkWell(
-                  onTap: (){},
+                  onTap: ()=>Get.to(()=>SingleEmployee()),
                     child: const Text("View Details",style: TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: Color(0xFF1814F3)),)),
 
               ),
