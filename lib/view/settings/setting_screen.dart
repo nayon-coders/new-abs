@@ -12,7 +12,7 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
+    return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         leading: IconButton(onPressed: ()=>Get.toNamed(AppRoute.dashBoard), icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
@@ -71,6 +71,6 @@ class SettingScreen extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    );
   }
 }
