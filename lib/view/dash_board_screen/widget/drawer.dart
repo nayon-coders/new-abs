@@ -1,6 +1,6 @@
 import 'package:abs_office_management/utility/assetes.dart';
 import 'package:abs_office_management/view/dash_board_screen/widget/drawer_menu.dart';
-import 'package:abs_office_management/view/settings/screen/setting_screen.dart';
+import 'package:abs_office_management/view/settings/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

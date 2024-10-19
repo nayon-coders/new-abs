@@ -2,7 +2,8 @@
 
 class Assets{
   static const String logo = "assets/images/logo.png";
-  static const String welcome = "assets/images/welcome.png";
+  static const String welcome = "assets/images/business.png";
+  static const String welcome2 = "assets/images/business2.png";
   static const String employee = "assets/images/employee.png";
   static const String expance = "assets/images/expance.png";
   static const String loss = "assets/images/loss.png";

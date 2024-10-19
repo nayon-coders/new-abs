@@ -33,7 +33,7 @@ class SuccessScreen extends StatelessWidget {
                 AppButton(
                   width: double.infinity,
                     name: "Back to Login",
-                    onClick: ()=>Get.offNamed(RouteName.login),
+                    onClick: ()=>Get.offNamed(AppRoute.login),
                 ),
 
 
