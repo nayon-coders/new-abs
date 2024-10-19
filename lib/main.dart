@@ -11,11 +11,22 @@ void main() async{
   runApp(const MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    // //widgets binding
+    // WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    //   Future.delayed(const Duration(milliseconds: 1),(){
+    //     if(sharedPreferences!.getString("token")!=null){
+    //       Get.toNamed(AppRoute.dashBoard);
+    //     }
+    //   });
+    // });
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       getPages: RoutePage.routes,

@@ -2,7 +2,6 @@ import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/utility/assetes.dart';
 import 'package:abs_office_management/view/auth/login_screen.dart';
-import 'package:abs_office_management/view/dash_board_screen/dash_board_screen.dart';
 import 'package:abs_office_management/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,12 +23,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     super.initState();
     // Future.delayed(const Duration(seconds: 3),()=>Get.toNamed(AppRoute.login));
     //check user is login or not with future delay
-    Future.delayed(const Duration(milliseconds: 100),(){
-      if(sharedPreferences!.getString("token")!=null){
-        Get.toNamed(AppRoute.dashBoard);
-      }
 
-    });
 
   }
 
@@ -93,16 +87,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
               Spacer(),
 
-              InkWell(
-                onTap: ()=>Get.to(()=>DashBoardScreen()),
-                  child:const Text("Continue as a guest",
-                    style: TextStyle(fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.linkColor),
-                  ),
-              ),
-             const SizedBox(height: 40,),
-
+             //  InkWell(
+             //    onTap: ()=>Get.to(()=>DashBoardScreen()),
+             //      child:const Text("Continue as a guest",
+             //        style: TextStyle(fontSize: 14,
+             //            fontWeight: FontWeight.w600,
+             //            color: AppColors.linkColor),
+             //      ),
+             //  ),
+             // const SizedBox(height: 40,),
+             //
 
             ],
           ),

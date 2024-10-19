@@ -25,7 +25,7 @@ class MenuBox extends StatelessWidget {
           children: [
             Image.asset(image,height: 90,width: 90,fit: BoxFit.contain,),
             const SizedBox(height: 10,),
-            Text(name,style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: AppColors.textBlack),),
+            Text(name,style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 14,color: AppColors.textBlack),),
           ],
         ),
       ),
