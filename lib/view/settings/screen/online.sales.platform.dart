@@ -66,9 +66,12 @@ class OnlineSalesPlatform extends GetView<OnlineSalesPlatformController> {
                 ),
               ),
               title: Text(controller.onlineSalesPlatformModel.value.data![index]!.name!, style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
-              trailing: IconButton(
-                icon: controller.isDeleting.value ? CircularProgressIndicator.adaptive(backgroundColor: Colors.red,) : Icon(Icons.delete, color: Colors.red,),
-                onPressed: ()=> controller.deleteOnlineSalesPlatform(controller.onlineSalesPlatformModel.value.data![index]!.id.toString()),
+              trailing: Obx((){
+                  return IconButton(
+                    icon: controller.isDeleting.value ? CircularProgressIndicator.adaptive(backgroundColor: Colors.red,) : Icon(Icons.delete, color: Colors.red,),
+                    onPressed: ()=> controller.deleteOnlineSalesPlatform(controller.onlineSalesPlatformModel.value.data![index]!.id.toString()),
+                  );
+                }
               ),
             ),
           );
