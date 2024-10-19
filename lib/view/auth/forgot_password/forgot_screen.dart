@@ -29,7 +29,7 @@ class ForgotScreen extends StatelessWidget {
               children: [
                 Align(
                   alignment: Alignment.topLeft,
-                    child: LeadingButton(onClick: ()=>Get.offAllNamed(RouteName.login),
+                    child: LeadingButton(onClick: ()=>Get.offAllNamed(AppRoute.login),
                     ),
                 ),
                const SizedBox(height: 30,),

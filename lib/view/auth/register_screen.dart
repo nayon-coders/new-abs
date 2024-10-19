@@ -118,7 +118,7 @@ class RegisterScreen extends StatelessWidget {
                 SizedBox(height: size.height*0.20,),
                 Center(
                   child: InkWell(
-                    onTap: ()=>Get.toNamed(RouteName.login),
+                    onTap: ()=>Get.toNamed(AppRoute.login),
                     child: RichText(
                       text:const TextSpan(
                           text: "Already have an account?",

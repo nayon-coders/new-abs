@@ -43,7 +43,7 @@ class AuthController extends GetxController{
             _pref.setString("role", data["data"]["user"]["type"]);
             _pref.setString("id", data["data"]["user"]["id"].toString());
 
-            Get.offNamed(RouteName.dashBoard);
+            Get.offNamed(AppRoute.dashBoard);
           }else{
             Get.snackbar("Failed", "Sorry! You are not allowed to login here.",backgroundColor: Colors.red,colorText: Colors.white);
           }
@@ -104,7 +104,7 @@ class AuthController extends GetxController{
 
         Get.snackbar("Successful", body["message"],backgroundColor: Colors.green,colorText: Colors.white);
 
-        Get.offNamed(RouteName.login);
+        Get.offNamed(AppRoute.login);
       }else{
         print("admin signup failed");
         Get.snackbar("Failed",body["message"],backgroundColor: Colors.red,colorText: Colors.black);

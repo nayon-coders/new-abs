@@ -4,7 +4,7 @@ import 'package:abs_office_management/view/settings/widget/setting_options.dart'
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../utility/app_color.dart';
+import '../../utility/app_color.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -14,7 +14,7 @@ class SettingScreen extends StatelessWidget {
     return SafeArea(child: Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
-        leading: IconButton(onPressed: ()=>Get.toNamed(RouteName.dashBoard), icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
+        leading: IconButton(onPressed: ()=>Get.toNamed(AppRoute.dashBoard), icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
         title:const Text("Setting ",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
         backgroundColor: AppColors.textWhite,
         surfaceTintColor:Colors.transparent ,
@@ -63,7 +63,7 @@ class SettingScreen extends StatelessWidget {
             const SizedBox(height: 20,),
             ListTile(
               contentPadding:const EdgeInsets.only(left: 10),
-              onTap: ()=>Get.toNamed(RouteName.login),
+              onTap: ()=>Get.toNamed(AppRoute.login),
               leading: const Icon(Icons.logout,color: AppColors.red,),
               title:const Text("Logout",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 14,color: AppColors.red),),
             ),

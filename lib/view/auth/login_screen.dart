@@ -1,5 +1,4 @@
 import 'package:abs_office_management/routes/route_name.dart';
-import 'package:abs_office_management/routes/route_page.dart';
 import 'package:abs_office_management/view/auth/controller/auth_controller.dart';
 import 'package:abs_office_management/view/auth/widget/back_button.dart';
 import 'package:abs_office_management/view/auth/widget/title_text.dart';
@@ -21,36 +20,36 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
-    return SafeArea(
-      child: Scaffold(
-        //backgroundColor: AppColors.bgColor,
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: AppColors.bgColor,
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding:const EdgeInsets.all(20),
           child: Form(
             key: _key,
             child: Column(
-
+            
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
+            
                Align(
                  alignment: Alignment.topLeft,
-                   child: LeadingButton(onClick: ()=>Get.offNamed(RouteName.welcome))),
+                   child: LeadingButton(onClick: ()=>Get.offNamed(AppRoute.welcome))),
                const SizedBox(height: 30,),
-
+            
               const TitleText(text: "Welcome back! Glad to see you, Again!"),
                 const SizedBox(height: 20,),
-
-
-
+            
+            
+            
                 //Email
                 AppInput(
                     hint: "Enter your Email",
                     textType: TextInputType.emailAddress,
                     controller: _email),
                const SizedBox(height: 15,),
-
+            
                 //Enter password
                 AppInput(
                     hint: "Enter your Password",
@@ -59,12 +58,12 @@ class LoginScreen extends StatelessWidget {
                   suffixIcon:const Icon(Icons.visibility,color: AppColors.textBlack,),
                 ),
                const SizedBox(height: 10,),
-
+            
                 //forgot password
                 Align(
                   alignment: Alignment.centerRight,
                     child: InkWell(
-                      onTap: ()=>Get.toNamed(RouteName.forgotEmail),
+                      onTap: ()=>Get.toNamed(AppRoute.forgotEmail),
                         child:const Text("Forgot Password?",
                           style: TextStyle(fontSize: 14,
                               fontWeight: FontWeight.w400,
@@ -72,9 +71,9 @@ class LoginScreen extends StatelessWidget {
                         ),
                     ),
                 ),
-
+            
                 const SizedBox(height: 40,),
-
+            
                 Obx((){
                     return AppButton(
                       isLoading: controller.isLoading.value,
@@ -87,18 +86,18 @@ class LoginScreen extends StatelessWidget {
                               password: _password.text
                           );
                         }
-
+            
                         }
                     );
                   }
                 ),
-
-
-
+            
+            
+            
                 SizedBox(height: size.height*0.30,),
                 Center(
                   child: InkWell(
-                    onTap: ()=>Get.toNamed(RouteName.register),
+                    onTap: ()=>Get.toNamed(AppRoute.register),
                     child: RichText(
                       text:const TextSpan(
                         text: "Don’t have an account?",
@@ -118,9 +117,9 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
         ),
-
-
       ),
+    
+    
     );
   }
 }

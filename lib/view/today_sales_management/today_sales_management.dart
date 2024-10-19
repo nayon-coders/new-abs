@@ -24,7 +24,7 @@ class TodaySalesManagement extends StatelessWidget {
             appBar: AppBar(
               backgroundColor: AppColors.textWhite,
               leading: IconButton(
-                  onPressed: ()=>Get.toNamed(RouteName.dashBoard),
+                  onPressed: ()=>Get.toNamed(AppRoute.dashBoard),
                   icon: const Icon(Icons.arrow_back_ios,color: AppColors.textindico,)),
               title:const Text("Today Sales Management",
                 style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textindico),
