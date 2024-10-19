@@ -1,4 +1,5 @@
 import 'package:abs_office_management/routes/route_name.dart';
+import 'package:abs_office_management/view/settings/screen/tax_and_state.dart';
 import 'package:abs_office_management/view/settings/widget/option_box.dart';
 import 'package:abs_office_management/view/settings/widget/setting_options.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class SettingScreen extends StatelessWidget {
             OptionBox(
                 title: "General Setting",
                 column: [
-                  SettingOptions(name: "Tax & State", icon: Icons.bar_chart, onClick: (){}),
+                  SettingOptions(name: "Tax & State", icon: Icons.bar_chart, onClick: ()=>Get.to(()=>TaxAndState())),
                   const Divider(),
                   SettingOptions(name: "Online sells platform", icon: Icons.online_prediction, onClick: (){}),
                   const Divider(),

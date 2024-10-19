@@ -11,7 +11,7 @@ class SettingOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: (){},
+      onTap: onClick,
       contentPadding: EdgeInsets.zero,
       //contentPadding:const EdgeInsets.only(left: 10,right: 10),
       leading: Icon(icon,color: AppColors.textBlack,),
