@@ -42,6 +42,7 @@ class AuthController extends GetxController{
             _pref.setString("token", data["data"]["token"]);
             _pref.setString("role", data["data"]["user"]["type"]);
             _pref.setString("id", data["data"]["user"]["id"].toString());
+            _pref.setString("business_id", data["data"]["user"]["business_id"].toString());
 
             Get.offNamed(AppRoute.dashBoard);
           }else{

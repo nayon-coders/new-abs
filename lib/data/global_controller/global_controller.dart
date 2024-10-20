@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../model/my_profile_model.dart';
+import '../model/taxStateModel.dart';
+
 
 class GlobalVariables{
   //static instance
-  static Rx<MyProfileModel> gMyProfileModel = MyProfileModel().obs;
+  // static Rx<MyProfileModel> gMyProfileModel = MyProfileModel().obs;
+  static Rx<TaxStateModel> gTaxStateModel = TaxStateModel().obs;
+  static RxBool gIsTaxStatus = false.obs;
 
 }

@@ -44,9 +44,9 @@ class SettingScreen extends StatelessWidget {
             OptionBox(
                 title: "General Setting",
                 column: [
-                  SettingOptions(name: "Tax & State", icon: Icons.bar_chart, onClick: ()=>Get.to(()=>TaxAndState())),
+                  SettingOptions(name: "Tax & State", icon: Icons.bar_chart, onClick: ()=>Get.toNamed(AppRoute.textAndState)),
                   const Divider(),
-                  SettingOptions(name: "Online sells platform", icon: Icons.online_prediction, onClick: (){}),
+                  SettingOptions(name: "Online sells platform", icon: Icons.online_prediction, onClick: ()=> Get.toNamed(AppRoute.onlineSellPlatform)),
                   const Divider(),
                   SettingOptions(name: "Employee Position", icon: Icons.people, onClick: ()=>Get.to(()=>AddEmployeePositionView())),
 
