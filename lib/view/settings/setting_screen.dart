@@ -4,7 +4,6 @@ import 'package:abs_office_management/view/settings/screen/business_setup.dart';
 import 'package:abs_office_management/view/settings/screen/change_password.dart';
 import 'package:abs_office_management/view/settings/screen/creditcard_processing_fee.dart';
 import 'package:abs_office_management/view/settings/screen/privacy_policy.dart';
-import 'package:abs_office_management/view/settings/screen/tax_and_state.dart';
 import 'package:abs_office_management/view/settings/screen/terms_condition.dart';
 import 'package:abs_office_management/view/settings/widget/option_box.dart';
 import 'package:abs_office_management/view/settings/widget/setting_options.dart';
@@ -59,9 +58,9 @@ class SettingScreen extends StatelessWidget {
             OptionBox(
                 title: "Legal",
                 column: [
-                  SettingOptions(name: "Privacy Policy", icon: Icons.privacy_tip, onClick: ()=>Get.to(()=>PrivacyPolicy())),
+                  SettingOptions(name: "Privacy Policy", icon: Icons.privacy_tip, onClick: ()=>Get.to(()=>const PrivacyPolicy())),
                   const Divider(),
-                  SettingOptions(name: "Terms & Conditions", icon: Icons.contact_support, onClick: ()=>Get.to(TermsCondition())),
+                  SettingOptions(name: "Terms & Conditions", icon: Icons.contact_support, onClick: ()=>Get.to(const TermsCondition())),
                   const Divider(),
                   SettingOptions(name: "Support", icon: Icons.wifi_calling_sharp, onClick: (){}),
 
