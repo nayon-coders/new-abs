@@ -15,12 +15,16 @@ class AppConfig{
   static const String VERIFY_OTP ="$BASE_URL/users/verify-reset-cod"; //POST
   static const String SET_NEW_PASSWORD ="$BASE_URL/users/new-password"; //POST
 
+  //Admin Password Update
+  static const String SINGLE_ADMIN_PASS_CHANGE = "$BASE_URL/employee/new-admin/update-password/";//PUT ID
 
-
-  //EMPLOYEE
 
 
   //EMPLOYEE POSITION
+  static const String CREATE_POSITION = "$BASE_URL/position/create"; //POST
+  static const String GET_POSITION = "$BASE_URL/position/all"; //GET
+  static const String UPDATE_POSITION = "$BASE_URL/position/update/"; //PUT
+  static const String DELETE_POSITION = "$BASE_URL/position/delete/"; //DELETE PASS ID
 
 
 
@@ -43,6 +47,16 @@ class AppConfig{
   static const String TAX_AND_STATE_UPDATE = "$BASE_URL/general-setting/update/"; //PUT
   static const String TAX_STATUS_CHECK = "$BASE_URL/general-setting/tax-status"; //PUT
   static const String TAX_STATUS_UPDATE = "$BASE_URL/general-setting/tax-status-change?status="; //PUT
+
+
+  //Contact & Support
+  static const String CONTACT_EMAIL_PHONE = "$BASE_URL/contact-support";
+
+
+  //credit card processing
+  static const String UPDATE_CREDIT_CARD_PROCESSING = "$BASE_URL/processign-fee/update"; //PUT
+  static const String GET_CREDIT_CARD_PROCESSING = "$BASE_URL/processign-fee/"; //GET
+
 
 
 

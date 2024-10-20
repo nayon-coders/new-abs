@@ -53,7 +53,7 @@ class AppInput extends StatelessWidget {
       validator: (v){
         if(isValidatorNeed){
           if(v!.isEmpty){
-            return "This filed must not be empty.";
+            return "Must be required.";
           }
           return null;
         }

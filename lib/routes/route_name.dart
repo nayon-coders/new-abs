@@ -16,6 +16,6 @@ class AppRoute {
   static const String termsAndCondition = "/terms_condition";
   static const String support = "/support";
   static const String businessSetup = "/business_setup";
-  static const String password = "/password";
+  static const String adminPassword = "/password";
 
 }

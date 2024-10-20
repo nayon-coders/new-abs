@@ -15,4 +15,9 @@ class Assets{
   static const String income = "assets/images/income.png";
   static const String calander = "assets/images/calander.png";
   static const String profilePic = "assets/images/profilepic.png";
+  static const String facebook = "assets/images/facebook.png";
+  static const String whatsApp = "assets/images/whatsup.png";
+  static const String twiter = "assets/images/twiter.png";
+  static const String instagram = "assets/images/instagram.png";
+
 }

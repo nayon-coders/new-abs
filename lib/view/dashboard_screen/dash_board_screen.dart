@@ -1,3 +1,4 @@
+import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/utility/assetes.dart';
 import 'package:abs_office_management/view/employee_management/screen/employee_management.dart';
@@ -36,13 +37,16 @@ class DashBoardScreen extends StatelessWidget {
       ),
       centerTitle: true,
       actions: [
-        Container(
-          height: 40,
-          width: 40,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
+        InkWell(
+          onTap: ()=>Get.toNamed(AppRoute.setting),
+          child: Container(
+            height: 40,
+            width: 40,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+            ),
+            child: Center(child: Image.asset(Assets.logo,height: 40,width: 40,fit: BoxFit.cover,)),
           ),
-          child: Center(child: Image.asset(Assets.logo,height: 40,width: 40,fit: BoxFit.cover,)),
         ),
        const SizedBox(width: 10,),
       ],

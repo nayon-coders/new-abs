@@ -2,6 +2,9 @@ import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/view/auth/login_screen.dart';
 import 'package:abs_office_management/view/auth/register_screen.dart';
 import 'package:abs_office_management/view/auth/welcome_screen.dart';
+import 'package:abs_office_management/view/settings/screen/add_employee_position_view.dart';
+import 'package:abs_office_management/view/settings/screen/change_password.dart';
+import 'package:abs_office_management/view/settings/screen/creditcard_processing_fee.dart';
 import 'package:abs_office_management/view/settings/screen/tax_and_state.dart';
 import 'package:abs_office_management/view/settings/setting_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +21,7 @@ class RoutePage{
     GetPage(
         name: AppRoute.welcome,
         page: ()=>const WelcomeScreen(),
-      middlewares: [AuthMiddleware()]
+      //middlewares: [AuthMiddleware()]
     ),
 
     GetPage(
@@ -55,6 +58,23 @@ class RoutePage{
       name: AppRoute.onlineSellPlatform,
       page: ()=>  OnlineSalesPlatform(),
       binding: SettingBinding()
+    ),
+
+    GetPage(
+        name: AppRoute.employeePosition,
+        page: ()=>  AddEmployeePositionView(),
+        binding: SettingBinding()
+    ),
+
+    GetPage(
+        name: AppRoute.creditCard,
+        page: ()=>  CreditcardProcessingFee(),
+        binding: SettingBinding()
+    ),
+    GetPage(
+        name: AppRoute.adminPassword,
+        page: ()=> ChangePassword(),
+        binding: SettingBinding()
     ),
 
   ];

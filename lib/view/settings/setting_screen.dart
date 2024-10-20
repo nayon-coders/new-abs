@@ -2,6 +2,7 @@ import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/view/settings/screen/add_employee_position_view.dart';
 import 'package:abs_office_management/view/settings/screen/business_setup.dart';
 import 'package:abs_office_management/view/settings/screen/change_password.dart';
+import 'package:abs_office_management/view/settings/screen/contact_and_support_screen.dart';
 import 'package:abs_office_management/view/settings/screen/creditcard_processing_fee.dart';
 import 'package:abs_office_management/view/settings/screen/privacy_policy.dart';
 import 'package:abs_office_management/view/settings/screen/terms_condition.dart';
@@ -36,7 +37,7 @@ class SettingScreen extends StatelessWidget {
                 column: [
                   SettingOptions(name: "Business Setup", icon: Icons.add_business_sharp, onClick: ()=>Get.to(()=>BusinessSetup())),
                   const Divider(),
-                  SettingOptions(name: "Change Password", icon: Icons.key, onClick: ()=>Get.to(()=>ChangePassword())),
+                  SettingOptions(name: "Change Password", icon: Icons.key, onClick: ()=>Get.toNamed(AppRoute.adminPassword)),
 
                 ]),
             const SizedBox(height: 20,),
@@ -47,10 +48,10 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   SettingOptions(name: "Online sells platform", icon: Icons.online_prediction, onClick: ()=> Get.toNamed(AppRoute.onlineSellPlatform)),
                   const Divider(),
-                  SettingOptions(name: "Employee Position", icon: Icons.people, onClick: ()=>Get.to(()=>AddEmployeePositionView())),
+                  SettingOptions(name: "Employee Position", icon: Icons.people, onClick: ()=>Get.toNamed(AppRoute.employeePosition)),
 
                   const Divider(),
-                  SettingOptions(name: "Credit card processing fee", icon: Icons.credit_card, onClick: ()=>Get.to(()=>CreditcardProcessingFee())),
+                  SettingOptions(name: "Credit card processing fee", icon: Icons.credit_card, onClick:()=>Get.toNamed(AppRoute.creditCard)),
 
                 ]),
 
@@ -62,7 +63,8 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   SettingOptions(name: "Terms & Conditions", icon: Icons.contact_support, onClick: ()=>Get.to(const TermsCondition())),
                   const Divider(),
-                  SettingOptions(name: "Support", icon: Icons.wifi_calling_sharp, onClick: (){}),
+                  SettingOptions(name: "Contact & Support", icon: Icons.support_agent, onClick: ()=>Get.to(()=>const ContactSupport())),
+
 
                 ]),
 

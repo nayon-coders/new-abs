@@ -25,7 +25,7 @@ class OnlineSalesPlatform extends GetView<OnlineSalesPlatformController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _addOnlineSalesPlatfor(),
-            SizedBox(height: 20,),
+           const SizedBox(height: 20,),
             //list of online sales platform
             Obx(() {
               if(controller.isGetting.value){
@@ -49,6 +49,7 @@ class OnlineSalesPlatform extends GetView<OnlineSalesPlatformController> {
         itemCount: controller.onlineSalesPlatformModel.value.data!.length,
         itemBuilder: (context,index){
           return Container(
+            margin: const EdgeInsets.only(bottom: 15),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10)
@@ -58,18 +59,18 @@ class OnlineSalesPlatform extends GetView<OnlineSalesPlatformController> {
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: Color(0xffFFE0EB),
+                  color: const Color(0xffFFE0EB),
                   borderRadius: BorderRadius.circular(100)
                 ),
                 child: Center(
-                  child: Text(controller.onlineSalesPlatformModel.value.data![index]!.name![0].toUpperCase(),style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
+                  child: Text(controller.onlineSalesPlatformModel.value.data![index].name![0].toUpperCase(),style:const TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
                 ),
               ),
-              title: Text(controller.onlineSalesPlatformModel.value.data![index]!.name!, style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
+              title: Text(controller.onlineSalesPlatformModel.value.data![index].name!, style:const TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
               trailing: Obx((){
                   return IconButton(
-                    icon: controller.isDeleting.value ? CircularProgressIndicator.adaptive(backgroundColor: Colors.red,) : Icon(Icons.delete, color: Colors.red,),
-                    onPressed: ()=> controller.deleteOnlineSalesPlatform(controller.onlineSalesPlatformModel.value.data![index]!.id.toString()),
+                    icon: controller.isDeleting.value ?const CircularProgressIndicator.adaptive(backgroundColor: Colors.red,) : const Icon(Icons.delete, color: Colors.red,),
+                    onPressed: ()=> controller.deleteOnlineSalesPlatform(controller.onlineSalesPlatformModel.value.data![index].id.toString()),
                   );
                 }
               ),
@@ -104,12 +105,12 @@ class OnlineSalesPlatform extends GetView<OnlineSalesPlatformController> {
 
         //text to introduce the page
         const Text("You can manage you online sales platform. List all the online platforms you use.",style: TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textBlack),),
-        SizedBox(height: 20,),
+        const SizedBox(height: 20,),
         //input field
-        Text("Online Sales Platform",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
-        SizedBox(height: 10,),
+        const Text("Online Sales Platform",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
+        const SizedBox(height: 10,),
         AppInput(hint: "Platform Name", fillColor: Colors.white, controller: controller.platformName.value),
-        SizedBox(height: 20,),
+        const SizedBox(height: 20,),
         Obx(() {
             return AppButton(
               width: 140,
