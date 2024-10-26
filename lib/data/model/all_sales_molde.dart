@@ -13,7 +13,7 @@ class AllSalesModel {
   final String? message;
   final int? totalSales;
   final int? totalSalesAmount;
-  final List<Datum>? data;
+  final List<SingleSalesDatum>? data;
 
   AllSalesModel({
     this.success,
@@ -28,7 +28,7 @@ class AllSalesModel {
     message: json["message"],
     totalSales: json["totalSales"],
     totalSalesAmount: json["totalSalesAmount"],
-    data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
+    data: json["data"] == null ? [] : List<SingleSalesDatum>.from(json["data"]!.map((x) => SingleSalesDatum.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -40,7 +40,7 @@ class AllSalesModel {
   };
 }
 
-class Datum {
+class SingleSalesDatum {
   final int? id;
   final String? salesRegister;
   final String? totalCashCollect;
@@ -48,11 +48,11 @@ class Datum {
   final String? soOv;
   final DateTime? date;
   final int? busnId;
-  final int? tax;
+  final dynamic? tax;
   final int? additionalIncome;
   final List<OnlineSale>? onlineSales;
 
-  Datum({
+  SingleSalesDatum({
     this.id,
     this.salesRegister,
     this.totalCashCollect,
@@ -65,7 +65,7 @@ class Datum {
     this.onlineSales,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory SingleSalesDatum.fromJson(Map<String, dynamic> json) => SingleSalesDatum(
     id: json["id"],
     salesRegister: json["salesRegister"],
     totalCashCollect: json["totalCashCollect"],
@@ -95,7 +95,7 @@ class Datum {
 class OnlineSale {
   final int? id;
   final int? salesId;
-  final Name? name;
+  final String? name;
   final String? amount;
 
   OnlineSale({
@@ -108,42 +108,15 @@ class OnlineSale {
   factory OnlineSale.fromJson(Map<String, dynamic> json) => OnlineSale(
     id: json["id"],
     salesId: json["sales_id"],
-    name: nameValues.map[json["name"]]!,
+    name: json["name"],
     amount: json["amount"],
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "sales_id": salesId,
-    "name": nameValues.reverse[name],
+    "name": name,
     "amount": amount,
   };
 }
 
-enum Name {
-  DORDASH,
-  FODD_PANDA,
-  GHRUBHUB,
-  SLICE,
-  UBAR
-}
-
-final nameValues = EnumValues({
-  "Dordash": Name.DORDASH,
-  "FoddPanda": Name.FODD_PANDA,
-  "Ghrubhub ": Name.GHRUBHUB,
-  "Slice ": Name.SLICE,
-  "Ubar": Name.UBAR
-});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
-}

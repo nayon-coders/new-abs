@@ -20,9 +20,11 @@ class AppRoute {
 
 
   static const String salesManageScree = "/sales-cost-management";
+  static const String addTodaySalesScreen = "/today-sales-add";
   static const String lossProfit = "/loss-profit";
   static const String employeeManageScree = "/employee-management";
   static const String salaryManagementScree = "/salary-management";
   static const String partnerManagementScreen = "/partner-management";
+  static const String vieSalesReport = "/view-sales-report";
 
 }

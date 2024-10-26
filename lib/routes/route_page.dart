@@ -16,11 +16,14 @@ import 'package:abs_office_management/view/settings/screen/change_password.dart'
 import 'package:abs_office_management/view/settings/screen/creditcard_processing_fee.dart';
 import 'package:abs_office_management/view/settings/screen/tax_and_state.dart';
 import 'package:abs_office_management/view/settings/setting_screen.dart';
+import 'package:abs_office_management/view/today_sales_management/screen/add_today_sales.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/today_sales_management.dart';
+import 'package:abs_office_management/view/today_sales_management/screen/view_sales_report.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../data/binding/setting.binding.dart';
+import '../data/binding/tax_binding.dart';
 import '../data/middleware/auth_middleware.dart';
 import '../view/auth/forgot_password/forgot_screen.dart';
 import '../view/dashboard_screen/dash_board_screen.dart';
@@ -91,6 +94,16 @@ class RoutePage{
           page: ()=> TodaySalesManagement(),
           binding: SalesBinding()
       ),
+    GetPage(
+          name: AppRoute.addTodaySalesScreen,
+          page: ()=> AddTodaySales(),
+          bindings: [SalesBinding(), TaxBinding()]
+      ),
+    GetPage(
+        name: AppRoute.vieSalesReport,
+        page: ()=> ViewSalesReport(),
+        bindings: [SalesBinding()]
+    ),
     GetPage(
         name: AppRoute.lossProfit,
         page: ()=> LossProfit(),

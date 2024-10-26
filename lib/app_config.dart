@@ -58,6 +58,14 @@ class AppConfig{
   static const String GET_CREDIT_CARD_PROCESSING = "$BASE_URL/processign-fee/"; //GET
 
 
+  //TODAY SALES
+  static const String TODAY_SALES = "$BASE_URL/sales/all"; //GET
+  static const String TODAY_SALES_CREATE = "$BASE_URL/sales/create"; //POST
+  static const String TODAY_SALES_UPDATE = "$BASE_URL/sales/update/"; //PUT
+  static const String TODAY_SALES_DELETE = "$BASE_URL/sales/delete/"; //DELETE
+
+
+
 
 
 }

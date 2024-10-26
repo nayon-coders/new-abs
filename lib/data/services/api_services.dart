@@ -45,26 +45,36 @@ class ApiServices{
 
   //put api
   static Future<http.Response> putApi(String url, dynamic body) async {
-    return await http.put(Uri.parse(url),
+    var data = await http.put(Uri.parse(url),
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
         'Authorization': 'Bearer ${sharedPreferences!.getString("token")}'
       },
+
       body: jsonEncode(body)
     );
+
+    print("PUT API RESPONSE TOKEN: ${sharedPreferences!.getString("token")}");
+    print("PUT API RESPONSE URL: ${url}");
+    print("PUT API RESPONSE BODY: ${data.body}");
+    print("PUT API RESPONSE STATUS CODE: ${data.statusCode}");
+
+    return data;
   }
 
 
   //delete api
   static Future<http.Response> deleteApi(String url) async {
-    return await http.delete(Uri.parse(url),
+    var data = await http.delete(Uri.parse(url),
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
         'Authorization': 'Bearer ${sharedPreferences!.getString("token")}'
       }
     );
+    print("DELETE API RESPONSE TOKEN: ${sharedPreferences!.getString("token")}");
+    print("DELETE API RESPONSE URL: ${url}");
+    print("DELETE API RESPONSE BODY: ${data.body}");
+    print("DELETE API RESPONSE STATUS CODE: ${data.statusCode}");
+    return data;
   }
 
 

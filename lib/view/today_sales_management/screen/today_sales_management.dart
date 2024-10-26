@@ -8,8 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
 
+import 'add_today_sales.dart';
+
 class TodaySalesManagement extends StatelessWidget {
-  const TodaySalesManagement({super.key});
+   TodaySalesManagement({super.key});
+
+  final _key = GlobalKey<ExpandableFabState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class TodaySalesManagement extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: AppColors.textWhite,
           leading: IconButton(
-              onPressed: ()=>Get.toNamed(AppRoute.dashBoard),
+              onPressed: ()=>Get.back(),
               icon: const Icon(Icons.arrow_back_ios,color: AppColors.textindico,)),
           title:const Text("Today Sales Management",
             style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textindico),
@@ -55,38 +60,60 @@ class TodaySalesManagement extends StatelessWidget {
               FoodCostView(), //Food Cost
 
 
-        ]),
+            ]),
 
 
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
-        floatingActionButton: ExpandableFab(
-          initialOpen: true,
-          distance: 80.0, // FAB-er icon-gulor space adjust korte hobe
-          children: [
-            FloatingActionButton.small(
-              onPressed: () {
-                print('Action 1');
-              },
-              tooltip: 'Action 1',
-              child: Icon(Icons.add,color: Colors.amber,),
-            ),
-            FloatingActionButton.small(
-              onPressed: () {
-                print('Action 2');
-              },
-              tooltip: 'Action 2',
-              child: Icon(Icons.edit),
-            ),
-            FloatingActionButton.small(
-              onPressed: () {
-                print('Action 3');
-              },
-              tooltip: 'Action 3',
-              child: Icon(Icons.delete),
-            ),
-          ],
-        ),
 
+          floatingActionButtonLocation: ExpandableFab.location,
+          floatingActionButton: ExpandableFab(
+            key: _key,
+            type: ExpandableFabType.up,
+            overlayStyle: ExpandableFabOverlayStyle(
+              color: Colors.black.withOpacity(0.5),
+              blur: 5,
+            ),
+            onOpen: () {
+              debugPrint('onOpen');
+            },
+            afterOpen: () {
+              debugPrint('afterOpen');
+            },
+            onClose: () {
+              debugPrint('onClose');
+            },
+            afterClose: () {
+              debugPrint('afterClose');
+            },
+            children: [
+              FloatingActionButton.extended(
+                heroTag: null,
+                icon: const Icon(Icons.add),
+                onPressed: (){
+                  print("page name: ${AppRoute.addTodaySalesScreen}");
+                  Get.toNamed(AppRoute.addTodaySalesScreen);
+                },
+                label: Text("Add today sales"),
+              ),
+              FloatingActionButton.extended(
+                heroTag: null,
+                icon: const Icon(Icons.add),
+                onPressed: () {
+                  // Navigator.of(context).push(
+                  //     MaterialrialPageRoute(builder: ((context) => const NextPage())));
+                },
+                label: Text("Add today cost"),
+              ),
+              FloatingActionButton.extended(
+                heroTag: null,
+                icon: const Icon(Icons.add),
+                onPressed: () {
+                  // Navigator.of(context).push(
+                  //     MaterialrialPageRoute(builder: ((context) => const NextPage())));
+                },
+                label: Text("Add Food Cost"),
+              ),
+            ],
+          )
 
           ),
     );
