@@ -34,6 +34,7 @@ class AppConfig{
   static const String ALL_EMPLOYEE = "$BASE_URL/employee/all"; //GET
   static const String CREATE_EMPLOYEE = "$BASE_URL/employee/create"; //POST
   static const String SINGLE_EMPLOYEE = "$BASE_URL/employee/info/"; //GET PASS ID
+  static const String DELETE_EMPLOYEE = "$BASE_URL/employee/delete/"; //DELETE PASS ID
 
 
 
@@ -61,6 +62,14 @@ class AppConfig{
   //credit card processing
   static const String UPDATE_CREDIT_CARD_PROCESSING = "$BASE_URL/processign-fee/update"; //PUT
   static const String GET_CREDIT_CARD_PROCESSING = "$BASE_URL/processign-fee/"; //GET
+
+
+  //TODAY SALES
+  static const String TODAY_SALES = "$BASE_URL/sales/all"; //GET
+  static const String TODAY_SALES_CREATE = "$BASE_URL/sales/create"; //POST
+  static const String TODAY_SALES_UPDATE = "$BASE_URL/sales/update/"; //PUT
+  static const String TODAY_SALES_DELETE = "$BASE_URL/sales/delete/"; //DELETE
+
 
 
 
