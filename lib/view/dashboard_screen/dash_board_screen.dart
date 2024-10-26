@@ -114,7 +114,7 @@ class DashBoardScreen extends StatelessWidget {
                 return MenuBox(
                     name: data["name"],
                     image: data["image"],
-                    onClick:()=>Get.to(data["screen"]),
+                    onClick:()=>Get.toNamed(data["screen"]),
                 );
             })
 
@@ -138,11 +138,11 @@ class DashBoardScreen extends StatelessWidget {
    ///--------dashbox Menu --------
    ///
    List<Map<String,dynamic>> menubox=[
-     {"name": "Today Sales Manage","image": Assets.todaysale,"screen": TodaySalesManagement()},
-     {"name": "Loss & Profit","image": Assets.loss,"screen": LossProfit()},
-     {"name": "Employee Manage","image": Assets.employee,"screen": EmployeeManagement()},
-     {"name": "Salary Manage","image": Assets.salery,"screen": SalaryManagement()},
-     {"name": "Partner Manage","image": Assets.partner,"screen": PartnerManagement()},
+     {"name": "Today Sales Manage","image": Assets.todaysale,"screen": AppRoute.todaySalesManagement},
+     {"name": "Loss & Profit","image": Assets.loss,"screen": AppRoute.lossProfit},
+     {"name": "Employee Manage","image": Assets.employee,"screen": AppRoute.employeeMange},
+     {"name": "Salary Manage","image": Assets.salery,"screen":AppRoute.salaryManagement},
+     {"name": "Partner Manage","image": Assets.partner,"screen": AppRoute.partnerManagement},
 
    ];
 }

@@ -1,14 +1,18 @@
 import 'dart:io';
 import 'dart:math';
+import 'package:abs_office_management/view/employee_management/controller/employee_manage_controller.dart';
+import 'package:abs_office_management/view/settings/controller/employee_position_controller.dart';
 import 'package:abs_office_management/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
 import '../../../widgets/app_input.dart';
+import '../../../widgets/app_shimmer.dart';
 import '../../../widgets/custom_dropdown.dart';
 
-class AddEmployee extends StatelessWidget {
+class AddEmployee extends GetView<EmployeeManageController> {
    AddEmployee({super.key,});
 
   // Employee Role
@@ -19,6 +23,7 @@ class AddEmployee extends StatelessWidget {
     'Manager',
   ];
 
+  final positionController = Get.put(EmployeePositionController());
   //Employee Position
   String? selectEmployeePosition;
 
@@ -45,13 +50,6 @@ class AddEmployee extends StatelessWidget {
     'Monthly',
   ];
 
-  final _name = TextEditingController();
-
-  final _phone = TextEditingController();
-
-  final _email = TextEditingController();
-
-  final _salary = TextEditingController();
 
   final _key = GlobalKey<FormState>();
 
@@ -78,7 +76,7 @@ class AddEmployee extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
 
           child: IconButton(
-              onPressed: ()=>Get.back(),
+              onPressed: ()=>Get.toNamed(AppRoute.employeeMange),
               icon:const Icon(
                 Icons.arrow_back_ios,
                 size: 20,
@@ -109,7 +107,8 @@ class AddEmployee extends StatelessWidget {
                 hint: "Name",
                 fillColor: AppColors.textWhite,
                 textType: TextInputType.name,
-                controller: _name, readOnly: readOnly,),
+                controller: controller.name.value,
+               ),
               const SizedBox(height: 20,),
 
 
@@ -128,8 +127,8 @@ class AddEmployee extends StatelessWidget {
                 textType: TextInputType.emailAddress,
                 hint: "Email",
                 fillColor: AppColors.textWhite,
-                controller: _email,
-                readOnly: readOnly,),
+                controller: controller.email.value,
+              ),
               const SizedBox(
                 height: 20,
               ),
@@ -150,7 +149,8 @@ class AddEmployee extends StatelessWidget {
                 hint: "Phone Number",
                 fillColor: AppColors.textWhite,
                 textType: TextInputType.number,
-                controller: _phone, readOnly: readOnly,),
+                controller: controller.phone.value,
+                ),
               const SizedBox(
                 height: 20,
               ),
@@ -173,6 +173,8 @@ class AddEmployee extends StatelessWidget {
                   hint: "Employee Role",
 
                   onChange: (v) {
+                    controller.type.value.text = v!;
+
                   }),
               const SizedBox(
                 height: 20,
@@ -199,7 +201,9 @@ class AddEmployee extends StatelessWidget {
                   items: employee_Type,
                   hint:"Employee Type",
 
-                  onChange: (v) {}),
+                  onChange: (v) {
+                    controller.employeeType.value.text = v!;
+                  }),
 
 
               const SizedBox(height: 20,),
@@ -216,14 +220,28 @@ class AddEmployee extends StatelessWidget {
                 height: 10,
               ),
 
-              CustomDropDown(
-                  fillColor: AppColors.textWhite,
-                  //items: employeePosition.map((PositionData) => PositionData.name ?? "Unknown").toList(),
-                  items: employeePosition,
-                  hint:"Employee Position",
+              Obx(() {
+                if (positionController.isGetting.value) {
+                  return Center(child: buildLoading());
+                }
 
-                  onChange: (v) {
-                  }),
+                // Error handling or empty state
+                if (positionController.positionModel.value.data == null) {
+                  return const Text("No positions available");
+                }
+                  return  CustomDropDown(
+                      fillColor: AppColors.textWhite,
+                      items:positionController.positionModel.value.data!.map((position){
+                        return  position.name ?? "Unknown";
+                      }).toList(),
+                      //items: employeePosition,
+                      hint:"Employee Position",
+
+                      onChange: (v) {
+                        controller.employeePosition.value.text = v!;
+                      });
+                }
+              ),
 
              const SizedBox(
                 height: 20,
@@ -248,7 +266,9 @@ class AddEmployee extends StatelessWidget {
                   fillColor: AppColors.textWhite,
                   items: salaryType,
                   hint: seletedSalaryType ?? "Employee Salary Type",
-                  onChange: (v) {}),
+                  onChange: (v) {
+                    controller.salaryType.value.text = v!;
+                  }),
              const SizedBox(
                 height: 20,
               ),
@@ -270,36 +290,49 @@ class AddEmployee extends StatelessWidget {
                 fillColor: AppColors.textWhite,
                 textType: TextInputType.number,
                 hint: "\$ 0.000",
-                controller: _salary,  readOnly: readOnly,),
+                controller: controller.salaryRate.value,
+
+              ),
               const SizedBox(height: 20,),
 
 
-              //image update
-              Center(
-                child: InkWell(
-                  onTap: (){},
-                  child: Container(
-                    height: 150,
-                    width: MediaQuery.sizeOf(context).width*0.60,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: AppColors.textWhite,
-                    ),
-                    child:const Icon(
-                      Icons.image_outlined,
-                      color: Colors.black,
-                      size: 40,
-                    ),
-                  ),
-                ),
-
-
-              ),
+              // //image update
+              // Center(
+              //   child: InkWell(
+              //     onTap: (){},
+              //     child: Container(
+              //       height: 150,
+              //       width: MediaQuery.sizeOf(context).width*0.60,
+              //       decoration: BoxDecoration(
+              //         borderRadius: BorderRadius.circular(10),
+              //         color: AppColors.textWhite,
+              //       ),
+              //       child:const Icon(
+              //         Icons.image_outlined,
+              //         color: Colors.black,
+              //         size: 40,
+              //       ),
+              //     ),
+              //   ),
+              //
+              //
+              // ),
 
               const SizedBox(height: 50,),
 
 
-              Center(child: AppButton(name: "Add Employee", onClick: (){})),
+              Center(child: AppButton(
+                isLoading: controller.isLoading.value,
+                  name: "Add Employee",
+                  onClick: (){
+                    var password = Random().nextInt(99999999).toString();
+                    controller.pass.value.text =password;
+                  if(_key.currentState!.validate()){
+                    controller.addEmployee();
+
+                  }
+
+                  })),
               const SizedBox(height: 30,),
             ],
           ),
@@ -307,4 +340,15 @@ class AddEmployee extends StatelessWidget {
       ),
     );
   }
+
+   //loading shimmer
+   Widget buildLoading() {
+     return ListView.builder(
+       shrinkWrap: true,
+       itemCount: 10,
+       itemBuilder: (context,index){
+         return AppShimmerPro.circularShimmer(width: double.infinity, height: 30, borderRadius: 10);
+       },
+     );
+   }
 }

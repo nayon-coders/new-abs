@@ -1,4 +1,5 @@
 import 'package:abs_office_management/routes/route_name.dart';
+import 'package:abs_office_management/view/settings/controller/admin_password_update_controller.dart';
 import 'package:abs_office_management/view/settings/screen/add_employee_position_view.dart';
 import 'package:abs_office_management/view/settings/screen/business_setup.dart';
 import 'package:abs_office_management/view/settings/screen/change_password.dart';
@@ -14,8 +15,8 @@ import 'package:get/get.dart';
 import '../../utility/app_color.dart';
 
 class SettingScreen extends StatelessWidget {
-  const SettingScreen({super.key});
-
+   SettingScreen({super.key});
+  final adminController = Get.put(AdminUpdateController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

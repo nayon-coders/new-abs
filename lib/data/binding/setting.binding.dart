@@ -14,5 +14,6 @@ class SettingBinding extends Bindings {
      Get.lazyPut<EmployeePositionController>(()=>EmployeePositionController());
      Get.lazyPut<CreditcardProcessingFeeController>(()=>CreditcardProcessingFeeController());
      Get.lazyPut<AdminUpdateController>(()=>AdminUpdateController());
+
   }
 }

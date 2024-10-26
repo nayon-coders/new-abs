@@ -1,6 +1,7 @@
 import 'package:abs_office_management/view/settings/controller/creditcard_processing_fee_controller.dart';
 import 'package:abs_office_management/widgets/app_button.dart';
 import 'package:abs_office_management/widgets/app_input.dart';
+import 'package:abs_office_management/widgets/app_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -62,14 +63,14 @@ class CreditcardProcessingFee extends GetView<CreditcardProcessingFeeController>
 
               const SizedBox(height: 30,),
             Obx(() {
-                return RichText(
+                return controller.creditModel.value.data ==null?_buildLoading(): RichText(
                   text: TextSpan(
                       text: "Credit card processing fee: ",
-                      style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color: AppColors.textBlack),
+                      style: const TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color: AppColors.textBlack),
                       children: [
                         TextSpan(
                             text:controller.creditModel.value.data!.fee.toString(),
-                            style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: AppColors.textBlack)
+                            style:const TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: AppColors.textBlack)
                         )
                       ]
                   ),);
@@ -84,4 +85,14 @@ class CreditcardProcessingFee extends GetView<CreditcardProcessingFeeController>
       ),
     );
   }
+   //loading shimmer
+   Widget _buildLoading() {
+     return ListView.builder(
+       shrinkWrap: true,
+       itemCount: 1,
+       itemBuilder: (context,index){
+         return AppShimmerPro.circularShimmer(width: double.infinity, height: 40, borderRadius: 10);
+       },
+     );
+   }
 }
