@@ -16,7 +16,7 @@ class SingleEmployee extends GetView<EmployeeManageController> {
     final employeeId = Get.arguments.toString();
     Future.delayed(Duration.zero,()=>controller.getSingleEmployee(employeeId));
 
-    return SafeArea(child:Scaffold(
+    return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         leading: IconButton(onPressed: ()=>Get.back(), icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
@@ -183,6 +183,6 @@ class SingleEmployee extends GetView<EmployeeManageController> {
           }
         ),
       ),
-    ));
+    );
   }
 }

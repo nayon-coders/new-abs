@@ -12,7 +12,7 @@ class EmployeeManagement extends GetView<EmployeeManageController> {
   @override
   Widget build(BuildContext context) {
 
-    return SafeArea(child: Scaffold(
+    return Scaffold(
 
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
@@ -91,7 +91,7 @@ class EmployeeManagement extends GetView<EmployeeManageController> {
           });
         }
       ),
-    ));
+    );
   }
 
   //loading shimmer

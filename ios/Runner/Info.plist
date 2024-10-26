@@ -45,5 +45,10 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>BMS app requires access to the photo library.</string>
+
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>BMS app requires read and write access to the photo library.</string>
 </dict>
 </plist>
