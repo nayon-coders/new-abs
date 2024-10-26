@@ -42,10 +42,17 @@ class AdminUpdateController extends GetxController{
   onInit(){
     super.onInit();
     getSingleAdmin();
-
-
   }
 
+  @override
+  // TODO: implement onDelete
+  InternalFinalCallback<void> get onDelete => super.onDelete;
+
+  @override
+  onReady(){
+    super.onReady();
+    getSingleAdmin();
+  }
 
 
   //update  password
@@ -70,7 +77,6 @@ class AdminUpdateController extends GetxController{
       print(res.statusCode);
     }
     isUpdate.value = false;
-
   }
 
 
@@ -95,7 +101,6 @@ class AdminUpdateController extends GetxController{
    final  id = _pref.getString("id");
    final stream = http.ByteStream(selectedImage.value!.openRead());
    final length = await selectedImage.value!.length();
-   getSingleAdmin();
 
    if(selectedImage != null){
      final request = http.MultipartRequest(
@@ -122,6 +127,7 @@ class AdminUpdateController extends GetxController{
 
      final res = await http.Response.fromStream(response);
      if(res.statusCode == 200){
+       Get.back();
        Get.snackbar("Successful", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.green);
      }else{
        print("status code :${res.statusCode}");

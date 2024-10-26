@@ -2,30 +2,21 @@ import 'package:abs_office_management/view/employee_management/controller/employ
 import 'package:abs_office_management/view/employee_management/controller/tab_controller.dart';
 import 'package:abs_office_management/view/employee_management/widget/card_menus.dart';
 import 'package:abs_office_management/view/employee_management/widget/working_hours.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../app_config.dart';
+
 import '../../../utility/app_color.dart';
 import '../../../utility/assetes.dart';
-
-
-
 class SingleEmployee extends GetView<EmployeeManageController> {
    SingleEmployee({super.key});
-
-   //Tab Button: Working Hours & Payment History
   final tabController = Get.put(ToggleTabController());
 
   @override
   Widget build(BuildContext context) {
-
-    //Single employee id
     final employeeId = Get.arguments.toString();
     Future.delayed(Duration.zero,()=>controller.getSingleEmployee(employeeId));
 
-
-    return SafeArea(child:Scaffold(
+    return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         leading: IconButton(onPressed: ()=>Get.back(), icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
@@ -35,8 +26,8 @@ class SingleEmployee extends GetView<EmployeeManageController> {
         actions: [
           InkWell(
             onTap: (){},
-              child: const Icon(Icons.delete,color: Colors.red,size: 25,)),
-          const SizedBox(width: 20,),
+              child: Image.asset(Assets.calander,height: 30,width: 30,fit: BoxFit.contain,)),
+          const SizedBox(width: 10,),
         ],
       ),
       body: SingleChildScrollView(
@@ -69,18 +60,7 @@ class SingleEmployee extends GetView<EmployeeManageController> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100),
                             ),
-                            child: Center(
-                              child: controller.singleModel.value.employee!.profilePic != null && controller.singleModel.value.employee!.profilePic!.isNotEmpty
-                                  ? ClipRRect(
-                                    borderRadius: BorderRadius.circular(100),
-                                    child: CachedNetworkImage(
-                                      imageUrl: "${AppConfig.DOMAIN}${controller.singleModel.value.employee!.profilePic!}",
-                                      height: 100, width: 100, fit: BoxFit.cover,
-                                      placeholder: (context, url) => const CircularProgressIndicator(),
-                                      errorWidget: (context, url, error) => const Icon(Icons.error),),
-                                  )
-                                  : Image.asset(Assets.profilePic, height: 100, width: 100, fit: BoxFit.cover),
-                            ),
+                            child: Image.asset(Assets.profilePic,height: 100,width: 100,fit: BoxFit.cover,),
                           ),
 
                           const SizedBox(height: 10,),
@@ -90,7 +70,7 @@ class SingleEmployee extends GetView<EmployeeManageController> {
                           const SizedBox(height: 3,),
                           Text(controller.singleModel.value.employee!.employeePosition.toString()??"",style:const TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textWhite),),
                           const SizedBox(height: 3,),
-                          Text("Work: ${controller.singleModel.value.employee!.salaryType.toString()??""}",style: const TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textWhite),),
+                          Text("Work: ${controller.singleModel.value.employee!.salaryType.toString()??""}",style: TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textWhite),),
                           const SizedBox(height: 3,),
                           Text("Rate: \$${controller.singleModel.value.employee!.salaryRate.toString()??""}",style: const TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textWhite),),
                           const SizedBox(height: 3,),
@@ -203,6 +183,6 @@ class SingleEmployee extends GetView<EmployeeManageController> {
           }
         ),
       ),
-    ));
+    );
   }
 }

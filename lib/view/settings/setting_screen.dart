@@ -19,8 +19,6 @@ import 'controller/admin_password_update_controller.dart';
 class SettingScreen extends StatelessWidget {
    SettingScreen({super.key});
 
-  final AuthController authController = Get.put(AuthController());
-   final businessController = Get.put(AdminUpdateController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +39,7 @@ class SettingScreen extends StatelessWidget {
             OptionBox(
                 title: "Account Setting",
                 column: [
-                  SettingOptions(name: "Business Setup", icon: Icons.add_business_sharp, onClick: ()=>Get.to(()=>BusinessSetup())),
+                  SettingOptions(name: "Business Setup", icon: Icons.add_business_sharp, onClick: ()=>Get.toNamed(AppRoute.businessSetup)),
                   const Divider(),
                   SettingOptions(name: "Change Password", icon: Icons.key, onClick: ()=>Get.toNamed(AppRoute.adminPassword)),
 
