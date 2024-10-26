@@ -14,6 +14,7 @@ import 'package:abs_office_management/view/loss_profit/loss_profit.dart';
 import 'package:abs_office_management/view/partner_management/partner_management.dart';
 import 'package:abs_office_management/view/salery_management/salary_management.dart';
 import 'package:abs_office_management/view/settings/screen/add_employee_position_view.dart';
+import 'package:abs_office_management/view/settings/screen/business_setup.dart';
 import 'package:abs_office_management/view/settings/screen/change_password.dart';
 import 'package:abs_office_management/view/settings/screen/creditcard_processing_fee.dart';
 import 'package:abs_office_management/view/settings/screen/tax_and_state.dart';
@@ -136,6 +137,11 @@ class RoutePage{
         page: ()=> PartnerManagement(),
         binding: PartnerManagementBinding()
     ),
+      GetPage(
+            name: AppRoute.businessSetup,
+            page: ()=> BusinessSetup(),
+            binding: SettingBinding()
+        ),
 
   ];
 }

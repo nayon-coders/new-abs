@@ -111,11 +111,13 @@ class SalesController extends GetxController {
       "date": dateTimeDatabase.value
     };
     var res = await ApiServices.putApi(AppConfig.TODAY_SALES_UPDATE+"${selectedId.value}", data);
-    if(res.statusCode == 201){
+    if(res.statusCode == 200){
       clearData(); //clear all data
       getSales(); // get all sales data
       Get.back();
-
+      Get.snackbar("Success!", "Data updated successfully", backgroundColor: Colors.green, colorText: Colors.white);
+    }else{
+      Get.snackbar("Error!", "Data not updated: Status Code: ${res.statusCode}", backgroundColor: Colors.red, colorText: Colors.white);
     }
     isAdd.value = false;
   }

@@ -1,15 +1,26 @@
 import 'dart:convert';
-
+import 'dart:io';
+import 'package:http/http.dart' as http;
 import 'package:abs_office_management/app_config.dart';
 import 'package:abs_office_management/data/services/api_services.dart';
 import 'package:abs_office_management/data/model/employee_model/get_all_employee_model.dart';
 import 'package:abs_office_management/data/model/employee_model/single_empolyee_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../routes/route_name.dart';
 
+
+
+
 class EmployeeManageController extends GetxController{
+
+  //selected image
+  Rx<File?> selectedImage = Rx<File?>(null);
+  final picker = ImagePicker();
+
   //TextEditing controller
   Rx<TextEditingController> name = TextEditingController().obs;
   Rx<TextEditingController> email = TextEditingController().obs;
@@ -36,36 +47,79 @@ class EmployeeManageController extends GetxController{
 
   }
 
-
-  //Create Employee
-  addEmployee()async{
+  pickImage(ImageSource source)async{
     isLoading.value = true;
-    var body ={
-      "name": name.value.text,
-      "email": email.value.text,
-      "password": pass.value.text,
-      "phone": phone.value.text,
-      "type": type.value.text,
-      "employeeType" : employeeType.value.text,
-      "employeePosition" : employeePosition.value.text,
-      "salaryType": salaryType.value.text,
-      "salaryRate": salaryRate.value.text,
-    };
-    final res = await ApiServices.patchApi(AppConfig.CREATE_EMPLOYEE, body);
-    if(res.statusCode ==200){
-      clearTextEditingController();
-      Get.snackbar("Successful", "${jsonDecode(res.body)["message"]}",colorText: Colors.white,backgroundColor: Colors.green);
-      Get.offNamed(AppRoute.employeeManageScree);
+    final picFile = await picker.pickImage(source: source,imageQuality: 80,preferredCameraDevice: CameraDevice.front);
+    if(picFile != null){
+      selectedImage.value = File(picFile.path);
+      print("--image path : ${selectedImage.value!.path}");
+      print("image selected successful");
     }else{
-      Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.red);
+      print("Image selected failed");
     }
     isLoading.value = false;
+
   }
 
 
 
-  //get All Employee
+  //add employee Employee
+  addEmployee()async{
+    isLoading.value = true;
 
+    SharedPreferences _pref = await SharedPreferences.getInstance();
+    String? token = _pref.getString("token");
+
+    final stream = http.ByteStream(selectedImage.value!.openRead());
+    final length = await selectedImage.value!.length();
+    if(selectedImage.value != null){
+      final request = http.MultipartRequest(
+        "PATCH",
+        Uri.parse(AppConfig.CREATE_EMPLOYEE),
+      );
+      request.headers["Authorization"] = "Bearer $token";
+      request.headers["Content-Type"] = "multipart/form-data ";
+
+      final multipartFile = http.MultipartFile(
+        "profilePic",
+        stream,
+        length,
+        filename: selectedImage.value!.path.split("/").last,
+      );
+
+      final data ={
+        "name": name.value.text,
+        "email": email.value.text,
+        "password": pass.value.text,
+        "phone": phone.value.text,
+        "type": type.value.text,
+        "employeeType" : employeeType.value.text,
+        "employeePosition" : employeePosition.value.text,
+        "salaryType": salaryType.value.text,
+        "salaryRate": salaryRate.value.text,
+
+      };
+      request.files.add(multipartFile);
+      request.fields.addAll(data);
+
+      final response = await request.send();
+      final res = await http.Response.fromStream(response);
+      if(res.statusCode == 200){
+        clearTextEditingController();
+        print("add employee successful");
+        Get.snackbar("Success", "${jsonDecode(res.body)["message"]}");
+        Get.offNamed(AppRoute.employeeManageScree);
+      }else{
+        print("---error body :${jsonDecode(res.body)}");
+        Get.snackbar("failed", "${jsonDecode(res.body)["message"]}");
+        print("Status code:${res.statusCode}");
+      }
+    }
+
+    isLoading.value = false;
+  }
+
+  //Get all Employee List
   allEmployeeList()async{
     isGetting.value = true;
     final res = await ApiServices.getApi(AppConfig.ALL_EMPLOYEE);
@@ -93,6 +147,21 @@ class EmployeeManageController extends GetxController{
       print("Failed :${jsonDecode(res.body)}");
     }
     isGetting.value = false;
+
+  }
+
+
+  //delete Employee
+  //delete employee
+  static Future<bool> deleteEmployee(id)async{
+    try{
+      await ApiServices.deleteApi("${AppConfig.DELETE_EMPLOYEE}$id");
+      Get.snackbar("Successful", "Employee has been delete");
+      return true;
+    }catch(e){
+      debugPrint(".......deleteEmployee error --- ${e} ");
+      return false;
+    }
 
   }
 

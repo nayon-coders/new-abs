@@ -70,8 +70,8 @@ class Employee {
   final String? status;
   final String? totalAmountEarn;
   final String? totalClockIn;
-  final int? totalPayment;
-  final int? duePayment;
+  final double? totalPayment;
+  final double? duePayment;
   final String? address;
   final String? profilePic;
   final String? joiningDate;
@@ -119,8 +119,8 @@ class Employee {
     status: json["status"],
     totalAmountEarn: json["total_amount_earn"],
     totalClockIn: json["total_clock_in"],
-    totalPayment: json["total_payment"],
-    duePayment: json["due_payment"],
+    totalPayment: json["total_payment"] != null ? json["total_payment"].toDouble() : null,
+    duePayment: json["due_payment"] != null ? json["total_payment"].toDouble() : null,
     address: json["address"],
     profilePic: json["profilePic"],
     joiningDate: json["joiningDate"],

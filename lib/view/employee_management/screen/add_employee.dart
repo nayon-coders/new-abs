@@ -1,10 +1,12 @@
-import 'dart:io';
+
 import 'dart:math';
 import 'package:abs_office_management/view/employee_management/controller/employee_manage_controller.dart';
 import 'package:abs_office_management/view/settings/controller/employee_position_controller.dart';
 import 'package:abs_office_management/widgets/app_button.dart';
+import 'package:abs_office_management/widgets/selected_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
@@ -297,42 +299,71 @@ class AddEmployee extends GetView<EmployeeManageController> {
 
 
               // //image update
-              Center(
-                child: InkWell(
-                  onTap: (){},
-                  child: Container(
-                    height: 150,
-                    width: MediaQuery.sizeOf(context).width*0.60,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: AppColors.textWhite,
+              Obx(() {
+                  return Center(
+                    child: InkWell(
+                      onTap: (){
+
+                        //select image camera or gallery
+                        SelectPicker.showImageBottomSheet(
+                            context: context,
+                            onCamera: (){
+                              controller.pickImage(ImageSource.camera);
+                              Get.back();
+                            },
+                            onGallery: (){
+                              controller.pickImage(ImageSource.gallery);
+                            });
+                      },
+                      child: Container(
+                        height: 150,
+                        width: MediaQuery.sizeOf(context).width*0.60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.textWhite,
+                        ),
+
+                        //jodi selectImage null na hoi thahole image show korabe null hole icon show korabe
+                        child:Center(
+                          child: (controller.selectedImage.value != null)
+                              ? Image.file(
+                            controller.selectedImage.value!,
+                            height: 150,
+                            width: MediaQuery.sizeOf(context).width * 0.60,
+                            fit: BoxFit.cover,
+                          )
+                              : const Icon(
+                            Icons.image_outlined,
+                            color: Colors.black,
+                            size: 40,
+                          ),
+                        ),
+                      ),
                     ),
-                    child:const Icon(
-                      Icons.image_outlined,
-                      color: Colors.black,
-                      size: 40,
-                    ),
-                  ),
-                ),
 
 
+                  );
+                }
               ),
 
               const SizedBox(height: 50,),
 
 
-              Center(child: AppButton(
-                isLoading: controller.isLoading.value,
-                  name: "Add Employee",
-                  onClick: (){
-                    var password = Random().nextInt(99999999).toString();
-                    controller.pass.value.text =password;
-                  if(_key.currentState!.validate()){
-                    controller.addEmployee();
+              Obx(() {
+                  return Center(child: AppButton(
+                    isLoading: controller.isLoading.value,
+                      name: "Add Employee",
+                      onClick: (){
+                        var password = Random().nextInt(99999999).toString();
+                        controller.pass.value.text =password;
+                      if(_key.currentState!.validate()){
+                        controller.addEmployee();
 
-                  }
+                      }
 
-                  })),
+                      }));
+                }
+              ),
               const SizedBox(height: 30,),
             ],
           ),
