@@ -23,6 +23,8 @@ class AppRoute {
   static const String addTodaySalesScreen = "/today-sales-add";
   static const String lossProfit = "/loss-profit";
   static const String employeeManageScree = "/employee-management";
+  static const String addEmployeeScreen = "/add_employee";
+  static const String singleEmployeeScreen = "/single_employee";
   static const String salaryManagementScree = "/salary-management";
   static const String partnerManagementScreen = "/partner-management";
   static const String vieSalesReport = "/view-sales-report";

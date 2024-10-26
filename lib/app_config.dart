@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+
 
 class AppConfig{
   //domain name
@@ -17,6 +17,8 @@ class AppConfig{
 
   //Admin Password Update
   static const String SINGLE_ADMIN_PASS_CHANGE = "$BASE_URL/employee/new-admin/update-password/";//PUT ID
+  static const String SINGLE_ADMIN_INFO_UPDATE = "$BASE_URL/employee/new-admin/update/";//PUT ID
+  static const String SINGLE_ADMIN_INFO = "$BASE_URL/employee/me";//GET
 
 
 
@@ -28,7 +30,10 @@ class AppConfig{
 
 
 
-  //EMPLOYEE LEAVE
+  //EMPLOYEE MANAGEMENT
+  static const String ALL_EMPLOYEE = "$BASE_URL/employee/all"; //GET
+  static const String CREATE_EMPLOYEE = "$BASE_URL/employee/create"; //POST
+  static const String SINGLE_EMPLOYEE = "$BASE_URL/employee/info/"; //GET PASS ID
 
 
 

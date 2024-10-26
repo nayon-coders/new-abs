@@ -38,6 +38,24 @@ class ApiServices{
     print("POST API RESPONSE BODY: ${data.body}");
     print("POST API RESPONSE STATUS CODE: ${data.statusCode}");
 
+    return data;
+  }
+
+  //patch
+  static Future<http.Response> patchApi( String url,  Map<String, dynamic> body)async{
+    var data = await http.patch(Uri.parse(url),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${sharedPreferences!.getString("token")}'
+        },
+        body: jsonEncode(body)
+    );
+
+    print("PATCH API RESPONSE TOKEN: ${sharedPreferences!.getString("token")}");
+    print("PATCH API RESPONSE URL: ${url}");
+    print("PATCH API RESPONSE BODY: ${data.body}");
+    print("PATCH API RESPONSE STATUS CODE: ${data.statusCode}");
 
     return data;
   }
