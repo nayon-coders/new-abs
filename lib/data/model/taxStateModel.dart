@@ -34,7 +34,7 @@ class TaxStateModel {
 
 class Data {
   final int? id;
-  final int? tax;
+  final double? tax;
   final String? state;
   final int? busnId;
 

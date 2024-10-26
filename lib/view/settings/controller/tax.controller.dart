@@ -133,5 +133,14 @@ class TaxController extends GetxController{
     stateController.value.clear();
   }
 
+  //calculate tax
+  double calculateTax(double amount){
+    double tax = 0.0;
+    if(taxStateModel.value.data!.tax != null){
+      tax = (amount * taxStateModel.value.data!.tax!)/100;
+    }
+    return tax;
+  }
+
 
 }

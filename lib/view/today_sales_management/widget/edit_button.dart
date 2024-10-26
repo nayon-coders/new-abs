@@ -4,10 +4,13 @@ class EditButton extends StatelessWidget {
   const EditButton({super.key,
     this.bgColor =Colors.black,
     required this.onClick,
+    this.isLoading = false,
     this.icon= Icons.edit});
   final Color? bgColor;
   final VoidCallback onClick;
   final IconData? icon;
+
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,7 @@ class EditButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(100),
           color: bgColor,
         ),
-        child: Icon(icon,color: Colors.white,size: 15,),
+        child: isLoading ? CircularProgressIndicator.adaptive(backgroundColor: Colors.white,) : Icon(icon,color: Colors.white,size: 15,),
       ),
     );
   }
