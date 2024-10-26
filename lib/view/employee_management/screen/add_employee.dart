@@ -76,7 +76,7 @@ class AddEmployee extends GetView<EmployeeManageController> {
           padding: const EdgeInsets.all(10.0),
 
           child: IconButton(
-              onPressed: ()=>Get.toNamed(AppRoute.employeeMange),
+              onPressed: ()=>Get.toNamed(AppRoute.employeeManageScree),
               icon:const Icon(
                 Icons.arrow_back_ios,
                 size: 20,

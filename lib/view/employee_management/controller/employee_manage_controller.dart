@@ -55,7 +55,7 @@ class EmployeeManageController extends GetxController{
     if(res.statusCode ==200){
       clearTextEditingController();
       Get.snackbar("Successful", "${jsonDecode(res.body)["message"]}",colorText: Colors.white,backgroundColor: Colors.green);
-      Get.offNamed(AppRoute.employeeMange);
+      Get.offNamed(AppRoute.employeeManageScree);
     }else{
       Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.red);
     }

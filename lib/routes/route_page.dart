@@ -7,7 +7,9 @@ import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/view/auth/login_screen.dart';
 import 'package:abs_office_management/view/auth/register_screen.dart';
 import 'package:abs_office_management/view/auth/welcome_screen.dart';
+import 'package:abs_office_management/view/employee_management/screen/add_employee.dart';
 import 'package:abs_office_management/view/employee_management/screen/employee_management.dart';
+import 'package:abs_office_management/view/employee_management/screen/single_employee.dart';
 import 'package:abs_office_management/view/loss_profit/loss_profit.dart';
 import 'package:abs_office_management/view/partner_management/partner_management.dart';
 import 'package:abs_office_management/view/salery_management/salary_management.dart';
@@ -99,6 +101,16 @@ class RoutePage{
     GetPage(
         name: AppRoute.employeeManageScree,
         page: ()=> EmployeeManagement(),
+        binding: EmployeeManageBinding()
+    ),
+    GetPage(
+        name: AppRoute.addEmployeeScreen,
+        page: ()=> AddEmployee(),
+        binding: EmployeeManageBinding()
+    ),
+    GetPage(
+        name: AppRoute.singleEmployeeScreen,
+        page: ()=> SingleEmployee(),
         binding: EmployeeManageBinding()
     ),
     GetPage(

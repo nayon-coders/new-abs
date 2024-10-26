@@ -24,7 +24,7 @@ class EmployeeManagement extends GetView<EmployeeManageController> {
         ),
         actions: [
           InkWell(
-            onTap: ()=>Get.toNamed(AppRoute.addEmployee),
+            onTap: ()=>Get.toNamed(AppRoute.addEmployeeScreen),
             child: Container(
               height: 30,
               width: 30,
@@ -80,7 +80,7 @@ class EmployeeManagement extends GetView<EmployeeManageController> {
 
                     trailing: InkWell(
                       onTap: ()=>Get.toNamed(
-                          AppRoute.singleEmployee,
+                          AppRoute.singleEmployeeScreen,
                         arguments: data.id,
                       ),
                         child: const Text("View Details",style: TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: Color(0xFF1814F3)),)),
