@@ -35,7 +35,7 @@ class AppTable extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children:headerChildren,
+              children: headerChildren,
 
             ),
           ),

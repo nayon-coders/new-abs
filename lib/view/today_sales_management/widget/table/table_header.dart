@@ -11,7 +11,7 @@ class TableHeader extends StatelessWidget {
     return SizedBox(
       width: width,
       child: Align(
-        alignment: Alignment.centerLeft,
+        alignment: Alignment.center,
         child: Text("$name",
           textAlign: TextAlign.start,
           style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 14,color:AppColors.textindico),),

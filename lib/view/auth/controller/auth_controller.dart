@@ -120,6 +120,7 @@ class AuthController extends GetxController{
 
 
 
+//logout
 
 
 
