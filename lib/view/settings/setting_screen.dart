@@ -1,4 +1,6 @@
+import 'package:abs_office_management/main.dart';
 import 'package:abs_office_management/routes/route_name.dart';
+import 'package:abs_office_management/view/auth/controller/auth_controller.dart';
 import 'package:abs_office_management/view/settings/screen/add_employee_position_view.dart';
 import 'package:abs_office_management/view/settings/screen/business_setup.dart';
 import 'package:abs_office_management/view/settings/screen/change_password.dart';
@@ -14,7 +16,9 @@ import 'package:get/get.dart';
 import '../../utility/app_color.dart';
 
 class SettingScreen extends StatelessWidget {
-  const SettingScreen({super.key});
+   SettingScreen({super.key});
+
+  //final AuthController authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +75,10 @@ class SettingScreen extends StatelessWidget {
             const SizedBox(height: 20,),
             ListTile(
               contentPadding:const EdgeInsets.only(left: 10),
-              onTap: ()=>Get.toNamed(AppRoute.login),
+              onTap: (){
+                sharedPreferences!.clear();
+                Get.offAllNamed(AppRoute.login);
+              },
               leading: const Icon(Icons.logout,color: AppColors.red,),
               title:const Text("Logout",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 14,color: AppColors.red),),
             ),

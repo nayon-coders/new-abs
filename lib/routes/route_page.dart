@@ -1,12 +1,22 @@
+import 'package:abs_office_management/data/binding/employee_manage_binding.dart';
+import 'package:abs_office_management/data/binding/loss_profit_binding.dart';
+import 'package:abs_office_management/data/binding/partner_management_binding.dart';
+import 'package:abs_office_management/data/binding/salary_manage_binding.dart';
+import 'package:abs_office_management/data/binding/sales_binding.dart';
 import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/view/auth/login_screen.dart';
 import 'package:abs_office_management/view/auth/register_screen.dart';
 import 'package:abs_office_management/view/auth/welcome_screen.dart';
+import 'package:abs_office_management/view/employee_management/screen/employee_management.dart';
+import 'package:abs_office_management/view/loss_profit/loss_profit.dart';
+import 'package:abs_office_management/view/partner_management/partner_management.dart';
+import 'package:abs_office_management/view/salery_management/salary_management.dart';
 import 'package:abs_office_management/view/settings/screen/add_employee_position_view.dart';
 import 'package:abs_office_management/view/settings/screen/change_password.dart';
 import 'package:abs_office_management/view/settings/screen/creditcard_processing_fee.dart';
 import 'package:abs_office_management/view/settings/screen/tax_and_state.dart';
 import 'package:abs_office_management/view/settings/setting_screen.dart';
+import 'package:abs_office_management/view/today_sales_management/screen/today_sales_management.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,7 +31,7 @@ class RoutePage{
     GetPage(
         name: AppRoute.welcome,
         page: ()=>const WelcomeScreen(),
-      //middlewares: [AuthMiddleware()]
+        middlewares: [AuthMiddleware()]
     ),
 
     GetPage(
@@ -75,6 +85,31 @@ class RoutePage{
         name: AppRoute.adminPassword,
         page: ()=> ChangePassword(),
         binding: SettingBinding()
+    ),
+    GetPage(
+          name: AppRoute.salesManageScree,
+          page: ()=> TodaySalesManagement(),
+          binding: SalesBinding()
+      ),
+    GetPage(
+        name: AppRoute.lossProfit,
+        page: ()=> LossProfit(),
+        binding: LossProfitBinding()
+    ),
+    GetPage(
+        name: AppRoute.employeeManageScree,
+        page: ()=> EmployeeManagement(),
+        binding: EmployeeManageBinding()
+    ),
+    GetPage(
+        name: AppRoute.salaryManagementScree,
+        page: ()=> SalaryManagement(),
+        binding: SalaryManageBinding()
+    ),
+    GetPage(
+        name: AppRoute.partnerManagementScreen,
+        page: ()=> PartnerManagement(),
+        binding: PartnerManagementBinding()
     ),
 
   ];

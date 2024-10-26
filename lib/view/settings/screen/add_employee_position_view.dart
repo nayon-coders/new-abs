@@ -20,7 +20,7 @@ class AddEmployeePositionView extends GetView<EmployeePositionController> {
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         title:const Text("Add Employee Position",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
-        leading: IconButton(onPressed: ()=>Get.toNamed(AppRoute.setting), icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
+        leading: IconButton(onPressed: ()=>Get.back(), icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
         backgroundColor: AppColors.textWhite,
         surfaceTintColor: Colors.transparent,
       ),

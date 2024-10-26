@@ -67,8 +67,9 @@ class CreditcardProcessingFee extends GetView<CreditcardProcessingFeeController>
                       text: "Credit card processing fee: ",
                       style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color: AppColors.textBlack),
                       children: [
-                        TextSpan(
-                            text:controller.creditModel.value.data!.fee.toString(),
+
+                        controller.isGetting.value ? TextSpan(text: "---") : TextSpan(
+                            text: controller.creditModel.value.data!.fee.toString(),
                             style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: AppColors.textBlack)
                         )
                       ]

@@ -18,4 +18,11 @@ class AppRoute {
   static const String businessSetup = "/business_setup";
   static const String adminPassword = "/password";
 
+
+  static const String salesManageScree = "/sales-cost-management";
+  static const String lossProfit = "/loss-profit";
+  static const String employeeManageScree = "/employee-management";
+  static const String salaryManagementScree = "/salary-management";
+  static const String partnerManagementScreen = "/partner-management";
+
 }

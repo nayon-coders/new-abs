@@ -5,7 +5,7 @@ import 'package:abs_office_management/view/employee_management/screen/employee_m
 import 'package:abs_office_management/view/loss_profit/loss_profit.dart';
 import 'package:abs_office_management/view/partner_management/partner_management.dart';
 import 'package:abs_office_management/view/salery_management/salary_management.dart';
-import 'package:abs_office_management/view/today_sales_management/today_sales_management.dart';
+import 'package:abs_office_management/view/today_sales_management/screen/today_sales_management.dart';
 import 'package:abs_office_management/widgets/app_input.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -114,7 +114,7 @@ class DashBoardScreen extends StatelessWidget {
                 return MenuBox(
                     name: data["name"],
                     image: data["image"],
-                    onClick:()=>Get.to(data["screen"]),
+                    onClick:()=>Get.toNamed(data["screen"]),
                 );
             })
 
@@ -138,11 +138,11 @@ class DashBoardScreen extends StatelessWidget {
    ///--------dashbox Menu --------
    ///
    List<Map<String,dynamic>> menubox=[
-     {"name": "Today Sales Manage","image": Assets.todaysale,"screen": TodaySalesManagement()},
-     {"name": "Loss & Profit","image": Assets.loss,"screen": LossProfit()},
-     {"name": "Employee Manage","image": Assets.employee,"screen": EmployeeManagement()},
-     {"name": "Salary Manage","image": Assets.salery,"screen": SalaryManagement()},
-     {"name": "Partner Manage","image": Assets.partner,"screen": PartnerManagement()},
+     {"name": "Today Sales Manage","image": Assets.todaysale,"screen": "${AppRoute.salesManageScree}"},
+     {"name": "Loss & Profit","image": Assets.loss,"screen": "${AppRoute.lossProfit}"},
+     {"name": "Employee Manage","image": Assets.employee,"screen": "${AppRoute.employeeManageScree}"},
+     {"name": "Salary Manage","image": Assets.salery,"screen": "${AppRoute.salaryManagementScree}"},
+     {"name": "Partner Manage","image": Assets.partner,"screen": "${AppRoute.partnerManagementScreen}"},
 
    ];
 }

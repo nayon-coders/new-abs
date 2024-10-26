@@ -1,3 +1,4 @@
+import 'package:abs_office_management/view/today_sales_management/controller/sales_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,7 +8,7 @@ import '../widget/table/app_table.dart';
 import '../widget/table/table_header.dart';
 import 'add_today_sales.dart';
 
-class TodaySalesView extends StatelessWidget {
+class TodaySalesView extends GetView<SalesController> {
   const TodaySalesView({super.key});
 
   @override

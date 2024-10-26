@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    // //widgets binding
+    //
+    // // //widgets binding
     // WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
     //   Future.delayed(const Duration(milliseconds: 1),(){
     //     if(sharedPreferences!.getString("token")!=null){
