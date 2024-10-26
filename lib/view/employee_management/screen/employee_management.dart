@@ -1,6 +1,8 @@
+import 'package:abs_office_management/app_config.dart';
 import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/assetes.dart';
 import 'package:abs_office_management/view/employee_management/controller/employee_manage_controller.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../utility/app_color.dart';
@@ -67,8 +69,15 @@ class EmployeeManagement extends GetView<EmployeeManageController> {
                           borderRadius: BorderRadius.circular(100),
                         ),
                         child: Center(
-                          child: data.profilePic != null && data.profilePic!.isNotEmpty
-                              ? Image.network(data.profilePic!, height: 40, width: 40, fit: BoxFit.cover)
+                          child: data.profilePic != null && data.profilePic!.isNotEmpty?ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: CachedNetworkImage(
+                                imageUrl: "${AppConfig.DOMAIN}${data.profilePic!}",
+                                height: 40, width: 40, fit: BoxFit.cover,
+                                placeholder: (context, url) => const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) => const Icon(Icons.error),),
+                          )
+
                               : Image.asset(Assets.profilePic, height: 40, width: 40, fit: BoxFit.cover),
                         ),
                     ),
@@ -100,7 +109,7 @@ class EmployeeManagement extends GetView<EmployeeManageController> {
       shrinkWrap: true,
       itemCount: 10,
       itemBuilder: (context,index){
-        return AppShimmerPro.circularShimmer(width: double.infinity, height: 40, borderRadius: 10);
+        return AppShimmerPro.circularShimmer(width: double.infinity, height: 60, borderRadius: 10);
       },
     );
   }
