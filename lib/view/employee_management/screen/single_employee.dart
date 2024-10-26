@@ -100,7 +100,7 @@ class SingleEmployee extends GetView<EmployeeManageController> {
                 ),
                 const SizedBox(height: 50,),
 
-            ///-----Tab Button Working Hours & Payment History--------
+            ///-----Tab Button: Working Hours & Payment History--------
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,

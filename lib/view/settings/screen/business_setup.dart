@@ -1,7 +1,9 @@
 import 'package:abs_office_management/app_config.dart';
 import 'package:abs_office_management/utility/app_color.dart';
+import 'package:abs_office_management/utility/assetes.dart';
 import 'package:abs_office_management/widgets/app_button.dart';
 import 'package:abs_office_management/widgets/app_input.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -34,17 +36,37 @@ class BusinessSetup extends GetView<AdminUpdateController> {
               child: Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  Container(
-                    height: 120,
-                    width: 120,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                        border: Border.all(color: AppColors.textindico)
-                    ),
-                    child: Center(child: controller.selectedImage != null
-                        ? Image.file(controller.selectedImage!, height: 120, width: 120, fit: BoxFit.cover)
-                        : Image.network("${AppConfig.DOMAIN}/${controller.singelmodel.value.profilePic}" ?? "default_image_url", height: 120, width: 120, fit: BoxFit.cover),),
+                  Obx(() {
+                      return Container(
+                        height: 120,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          border: Border.all(color: AppColors.textindico),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: controller.selectedImage.value != null ? Image.file(controller.selectedImage.value!,height: 120,width: 120,) : controller.singelmodel.value.profilePic!.isNotEmpty
+                              ?CachedNetworkImage(
+                              imageUrl:"${AppConfig.DOMAIN}${controller.singelmodel.value.profilePic}" ,
+                                height: 120,
+                                width: 120,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) => CircularProgressIndicator(),
+
+                          )
+                              : Image.asset(
+                            Assets.profilePic,
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      
+                      );
+                    }
                   ),
+
 
                   //edit button
                   

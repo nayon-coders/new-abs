@@ -297,26 +297,26 @@ class AddEmployee extends GetView<EmployeeManageController> {
 
 
               // //image update
-              // Center(
-              //   child: InkWell(
-              //     onTap: (){},
-              //     child: Container(
-              //       height: 150,
-              //       width: MediaQuery.sizeOf(context).width*0.60,
-              //       decoration: BoxDecoration(
-              //         borderRadius: BorderRadius.circular(10),
-              //         color: AppColors.textWhite,
-              //       ),
-              //       child:const Icon(
-              //         Icons.image_outlined,
-              //         color: Colors.black,
-              //         size: 40,
-              //       ),
-              //     ),
-              //   ),
-              //
-              //
-              // ),
+              Center(
+                child: InkWell(
+                  onTap: (){},
+                  child: Container(
+                    height: 150,
+                    width: MediaQuery.sizeOf(context).width*0.60,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColors.textWhite,
+                    ),
+                    child:const Icon(
+                      Icons.image_outlined,
+                      color: Colors.black,
+                      size: 40,
+                    ),
+                  ),
+                ),
+
+
+              ),
 
               const SizedBox(height: 50,),
 

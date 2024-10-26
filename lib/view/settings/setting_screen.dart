@@ -14,11 +14,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../utility/app_color.dart';
+import 'controller/admin_password_update_controller.dart';
 
 class SettingScreen extends StatelessWidget {
    SettingScreen({super.key});
 
-  //final AuthController authController = Get.put(AuthController());
+  final AuthController authController = Get.put(AuthController());
+   final businessController = Get.put(AdminUpdateController());
 
   @override
   Widget build(BuildContext context) {

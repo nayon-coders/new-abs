@@ -15,7 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AdminUpdateController extends GetxController{
 
   //image section
-  File? selectedImage;
+  Rx<File?> selectedImage = Rx<File?>(null);
   final picker = ImagePicker();
 
   //admin password change text Editing controller
@@ -79,7 +79,10 @@ class AdminUpdateController extends GetxController{
   pickImage(ImageSource source)async{
     final pickFile = await picker.pickImage(source: source,imageQuality: 80,preferredCameraDevice: CameraDevice.front);
     if(pickFile != null){
-      selectedImage = File(pickFile.path);
+      selectedImage.value = File(pickFile.path);
+      print("Selected Image Path: ${selectedImage.value?.path}");
+      print("-----image selected successful");
+      update();
     }else{
       print("No image selected");
     }
@@ -90,8 +93,8 @@ class AdminUpdateController extends GetxController{
    SharedPreferences _pref = await SharedPreferences.getInstance();
    String? token = _pref.getString("token");
    final  id = _pref.getString("id");
-   final stream = http.ByteStream(selectedImage!.openRead());
-   final length = await selectedImage!.length();
+   final stream = http.ByteStream(selectedImage.value!.openRead());
+   final length = await selectedImage.value!.length();
    getSingleAdmin();
 
    if(selectedImage != null){
@@ -105,7 +108,7 @@ class AdminUpdateController extends GetxController{
        "profilePic",
        stream,
        length,
-       filename: selectedImage!.path.split("/").last,
+       filename: selectedImage.value!.path.split("/").last,
      );
      final data ={
        "business_name":businessName.value.text,
@@ -121,10 +124,13 @@ class AdminUpdateController extends GetxController{
      if(res.statusCode == 200){
        Get.snackbar("Successful", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.green);
      }else{
-       Get.snackbar("failed", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.red);
+       print("status code :${res.statusCode}");
+       print("------body :${jsonDecode(res.body)}------");
+       Get.snackbar("failed", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.red,colorText: Colors.white);
      }
-     isLoading.value = false;
+
    }
+    isLoading.value = false;
   }
 
   //Get Single Admin model
