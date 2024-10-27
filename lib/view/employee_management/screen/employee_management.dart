@@ -63,8 +63,8 @@ class EmployeeManagement extends GetView<EmployeeManageController> {
                     ),
                     tileColor: Colors.white,
                     leading: Container(
-                      height: 40,
-                        width: 40,
+                      height: 45,
+                        width: 45,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                         ),
@@ -73,12 +73,12 @@ class EmployeeManagement extends GetView<EmployeeManageController> {
                             borderRadius: BorderRadius.circular(100),
                             child: CachedNetworkImage(
                                 imageUrl: "${AppConfig.DOMAIN}${data.profilePic!}",
-                                height: 40, width: 40, fit: BoxFit.cover,
+                                height: 45, width: 45, fit: BoxFit.cover,
                                 placeholder: (context, url) => const CircularProgressIndicator(),
                                 errorWidget: (context, url, error) => const Icon(Icons.error),),
                           )
 
-                              : Image.asset(Assets.profilePic, height: 40, width: 40, fit: BoxFit.cover),
+                              : Image.asset(Assets.profilePic, height: 45, width: 45, fit: BoxFit.cover),
                         ),
                     ),
 
