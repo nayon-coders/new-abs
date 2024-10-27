@@ -97,10 +97,7 @@ class TodaySalesManagement extends StatelessWidget {
               FloatingActionButton.extended(
                 heroTag: null,
                 icon: const Icon(Icons.add),
-                onPressed: () {
-                  // Navigator.of(context).push(
-                  //     MaterialrialPageRoute(builder: ((context) => const NextPage())));
-                },
+                onPressed: ()=> Get.toNamed(AppRoute.addCosting),
                 label: Text("Add today cost"),
               ),
               FloatingActionButton.extended(

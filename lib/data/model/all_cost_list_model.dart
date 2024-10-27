@@ -1,21 +1,21 @@
 // To parse this JSON data, do
 //
-//     final getAllCostingModel = getAllCostingModelFromJson(jsonString);
+//     final allCostListModel = allCostListModelFromJson(jsonString);
 
 import 'dart:convert';
 
-GetAllCostingModel getAllCostingModelFromJson(String str) => GetAllCostingModel.fromJson(json.decode(str));
+AllCostListModel allCostListModelFromJson(String str) => AllCostListModel.fromJson(json.decode(str));
 
-String getAllCostingModelToJson(GetAllCostingModel data) => json.encode(data.toJson());
+String allCostListModelToJson(AllCostListModel data) => json.encode(data.toJson());
 
-class GetAllCostingModel {
+class AllCostListModel {
   final bool? success;
   final String? message;
   final int? totalCostings;
   final double? totalCostingsAmount;
-  final List<SingleCosting>? data;
+  final List<SingleCostingModel>? data;
 
-  GetAllCostingModel({
+  AllCostListModel({
     this.success,
     this.message,
     this.totalCostings,
@@ -23,12 +23,12 @@ class GetAllCostingModel {
     this.data,
   });
 
-  factory GetAllCostingModel.fromJson(Map<String, dynamic> json) => GetAllCostingModel(
+  factory AllCostListModel.fromJson(Map<String, dynamic> json) => AllCostListModel(
     success: json["success"],
     message: json["message"],
     totalCostings: json["totalCostings"],
     totalCostingsAmount: json["totalCostingsAmount"]?.toDouble(),
-    data: json["data"] == null ? [] : List<SingleCosting>.from(json["data"]!.map((x) => SingleCosting.fromJson(x))),
+    data: json["data"] == null ? [] : List<SingleCostingModel>.from(json["data"]!.map((x) => SingleCostingModel.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -40,14 +40,14 @@ class GetAllCostingModel {
   };
 }
 
-class SingleCosting {
+class SingleCostingModel {
   final int? id;
   final String? costName;
   final String? amount;
   final DateTime? date;
   final int? busnId;
 
-  SingleCosting({
+  SingleCostingModel({
     this.id,
     this.costName,
     this.amount,
@@ -55,7 +55,7 @@ class SingleCosting {
     this.busnId,
   });
 
-  factory SingleCosting.fromJson(Map<String, dynamic> json) => SingleCosting(
+  factory SingleCostingModel.fromJson(Map<String, dynamic> json) => SingleCostingModel(
     id: json["id"],
     costName: json["costName"],
     amount: json["amount"],
