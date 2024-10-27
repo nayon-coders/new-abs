@@ -72,6 +72,16 @@ class AppConfig{
   static const String TODAY_SALES_DELETE = "$BASE_URL/sales/delete/"; //DELETE
 
 
+  //COST LIST
+  static const String COST_LIST = "$BASE_URL/cost-list/all"; //GET
+  static const String COST_CREATE = "$BASE_URL/cost-list/create"; //GET
+  static const String COST_DELETE = "$BASE_URL/cost-list/delete/"; //GET
+
+  //COSTING
+  static const String COSTING = "$BASE_URL/costing/all"; //GET
+  static const String COSTING_CREATE = "$BASE_URL/costing/create"; //POST
+  static const String COSTING_UPDATE = "$BASE_URL/costing/update/"; //PUT
+  static const String COSTING_DELETE = "$BASE_URL/costing/delete/"; //DELETE
 
 
 

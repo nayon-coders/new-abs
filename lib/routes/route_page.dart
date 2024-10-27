@@ -1,3 +1,4 @@
+import 'package:abs_office_management/data/binding/costing_binding.dart';
 import 'package:abs_office_management/data/binding/employee_manage_binding.dart';
 import 'package:abs_office_management/data/binding/loss_profit_binding.dart';
 import 'package:abs_office_management/data/binding/partner_management_binding.dart';
@@ -19,7 +20,9 @@ import 'package:abs_office_management/view/settings/screen/change_password.dart'
 import 'package:abs_office_management/view/settings/screen/creditcard_processing_fee.dart';
 import 'package:abs_office_management/view/settings/screen/tax_and_state.dart';
 import 'package:abs_office_management/view/settings/setting_screen.dart';
+import 'package:abs_office_management/view/today_sales_management/screen/add_cost.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/add_today_sales.dart';
+import 'package:abs_office_management/view/today_sales_management/screen/manage_costing.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/today_sales_management.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/view_sales_report.dart';
 import 'package:flutter/material.dart';
@@ -95,12 +98,12 @@ class RoutePage{
     GetPage(
           name: AppRoute.salesManageScree,
           page: ()=> TodaySalesManagement(),
-          binding: SalesBinding()
+          bindings: [SalesBinding(), CostingBinding()]
       ),
     GetPage(
           name: AppRoute.addTodaySalesScreen,
           page: ()=> AddTodaySales(),
-          bindings: [SalesBinding(), TaxBinding()]
+          bindings: [SalesBinding(), TaxBinding(), ]
       ),
     GetPage(
         name: AppRoute.vieSalesReport,
@@ -142,6 +145,16 @@ class RoutePage{
             page: ()=> BusinessSetup(),
             binding: SettingBinding()
         ),
+      GetPage(
+                name: AppRoute.addCosting,
+                page: ()=> AddCost(),
+                binding: CostingBinding()
+            ),
+      GetPage(
+                name: AppRoute.manageCostingList,
+                page: ()=> ManageCosting(),
+                binding: CostingBinding()
+            ),
 
   ];
 }
