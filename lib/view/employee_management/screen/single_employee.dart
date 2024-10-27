@@ -28,7 +28,9 @@ class SingleEmployee extends GetView<EmployeeManageController> {
         surfaceTintColor: Colors.transparent,
         actions: [
           InkWell(
-            onTap: (){},
+            onTap: (){
+
+            },
             child:Container(
               height: 30,
                 width: 30,
