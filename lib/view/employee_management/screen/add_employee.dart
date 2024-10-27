@@ -398,11 +398,8 @@ class AddEmployee extends GetView<EmployeeManageController> {
                         var password = Random().nextInt(99999999).toString();
                         controller.pass.value.text =password;
                       if(_key.currentState!.validate()){
-                        if(controller.isEditing.value){
-                          controller.editEmployee(controller.id.value);
-                        }else{
+
                           controller.addEmployee();
-                        }
 
 
                       }
