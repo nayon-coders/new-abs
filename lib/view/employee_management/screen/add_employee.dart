@@ -94,6 +94,74 @@ class AddEmployee extends GetView<EmployeeManageController> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // //image update
+              Obx(() {
+                return Center(
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        height: 150,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: AppColors.textWhite,
+                        ),
+
+                        //jodi selectImage null na hoi thahole image show korabe null hole icon show korabe
+                        child:Center(
+                          child: (controller.selectedImage.value != null)
+                              ? ClipRRect(
+                                borderRadius: BorderRadius.circular(100),
+                                child: Image.file(
+                                  controller.selectedImage.value!,
+                                  height: 150,
+                                  width: 150,
+                                  fit: BoxFit.cover,
+                                ),
+                              )                              : const Icon(
+                            Icons.image_outlined,
+                            color: Colors.black,
+                            size: 40,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        right: 1,
+                          bottom: 10,
+                          child: InkWell(
+                            onTap: (){
+
+                              //select image camera or gallery
+                              SelectPicker.showImageBottomSheet(
+                                  context: context,
+                                  onCamera: (){
+                                    controller.pickImage(ImageSource.camera);
+                                    Get.back();
+                                  },
+                                  onGallery: (){
+                                    controller.pickImage(ImageSource.gallery);
+                                    Get.back();
+                                  });
+                            },
+                            child: Container(
+                              height: 30,
+                              width: 30,
+                              decoration:const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.grey
+                              ),
+                              child: const Icon(Icons.camera_alt,color: Colors.white,size: 18,),
+                            ),
+                      ))
+                    ],
+                  ),
+
+
+                );
+              }),
+
+              const SizedBox(height: 20,),
 
               //TextField employee name
               const Text(
@@ -298,53 +366,7 @@ class AddEmployee extends GetView<EmployeeManageController> {
               const SizedBox(height: 20,),
 
 
-              // //image update
-              Obx(() {
-                  return Center(
-                    child: InkWell(
-                      onTap: (){
 
-                        //select image camera or gallery
-                        SelectPicker.showImageBottomSheet(
-                            context: context,
-                            onCamera: (){
-                              controller.pickImage(ImageSource.camera);
-                              Get.back();
-                            },
-                            onGallery: (){
-                              controller.pickImage(ImageSource.gallery);
-                            });
-                      },
-                      child: Container(
-                        height: 150,
-                        width: MediaQuery.sizeOf(context).width*0.60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: AppColors.textWhite,
-                        ),
-
-                        //jodi selectImage null na hoi thahole image show korabe null hole icon show korabe
-                        child:Center(
-                          child: (controller.selectedImage.value != null)
-                              ? Image.file(
-                            controller.selectedImage.value!,
-                            height: 150,
-                            width: MediaQuery.sizeOf(context).width * 0.60,
-                            fit: BoxFit.cover,
-                          )
-                              : const Icon(
-                            Icons.image_outlined,
-                            color: Colors.black,
-                            size: 40,
-                          ),
-                        ),
-                      ),
-                    ),
-
-
-                  );
-                }
-              ),
 
               const SizedBox(height: 50,),
 
@@ -357,7 +379,12 @@ class AddEmployee extends GetView<EmployeeManageController> {
                         var password = Random().nextInt(99999999).toString();
                         controller.pass.value.text =password;
                       if(_key.currentState!.validate()){
-                        controller.addEmployee();
+                        if(controller.isEditing.value){
+                          controller.editEmployee(controller.id.value);
+                        }else{
+                          controller.addEmployee();
+                        }
+
 
                       }
 

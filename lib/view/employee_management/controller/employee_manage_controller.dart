@@ -39,6 +39,10 @@ class EmployeeManageController extends GetxController{
   //Rx bool
   RxBool isGetting = false.obs;
   RxBool isLoading = false.obs;
+  RxBool isDeleting = false.obs;
+  RxBool isEditing = false.obs;
+  RxString id = "".obs;
+
 
   @override
   onInit(){
@@ -106,6 +110,7 @@ class EmployeeManageController extends GetxController{
       final res = await http.Response.fromStream(response);
       if(res.statusCode == 200){
         clearTextEditingController();
+        allEmployeeList();
         print("add employee successful");
         Get.snackbar("Success", "${jsonDecode(res.body)["message"]}");
         Get.offNamed(AppRoute.employeeManageScree);
@@ -151,19 +156,61 @@ class EmployeeManageController extends GetxController{
   }
 
 
-  //delete Employee
-  //delete employee
-  static Future<bool> deleteEmployee(id)async{
-    try{
-      await ApiServices.deleteApi("${AppConfig.DELETE_EMPLOYEE}$id");
-      Get.snackbar("Successful", "Employee has been delete");
-      return true;
-    }catch(e){
-      debugPrint(".......deleteEmployee error --- ${e} ");
-      return false;
+  //Edit Employee
+  editEmployee(data)async{
+    isEditing.value = true;
+    final res = await ApiServices.putApi(AppConfig.EDIT_EMPLOYEE+id.value,
+        {
+          "name": name.value.text,
+          "email": email.value.text,
+          "phone": phone.value.text,
+          "type": type.value.text,
+          "employeeType" : employeeType.value.text,
+          "employeePosition" : employeePosition.value.text,
+          "salaryType": salaryType.value.text,
+          "salaryRate": salaryRate.value.text,
+        });
+    if(res.statusCode == 200){
+      id.value ="";
+      Get.snackbar("Successful", "Employee update successful",backgroundColor: Colors.green);
+    }else{
+      Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}");
     }
+    isEditing.value = false;
+  }
+  editValueSave(data){
+    id.value = data.id.toString();
+    isEditing.value = true;
+    name.value.text = data.name;
+    email.value.text = data.email;
+    phone.value.text = data.phone;
+    type.value.text = data.type;
+    employeeType.value.text = data.employeeType;
+    employeePosition.value.text = data.employeePosition;
+    salaryType.value.text = data.salaryType;
+    salaryRate.value.text = data.salaryRate;
+
+    print("---name---${name.value.text}");
+  }
+
+
+
+  //delete employee
+  deleteEmployee(id)async{
+    isDeleting.value = true;
+    final res = await ApiServices.deleteApi("${AppConfig.DELETE_EMPLOYEE}$id");
+    if(res.statusCode == 200){
+      allEmployeeList();
+      Get.offAllNamed(AppRoute.employeeManageScree);
+      Get.snackbar("Successful", "Delete Successful",backgroundColor: Colors.green);
+
+    }else{
+      Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}");
+    }
+    isDeleting.value = false;
 
   }
+
 
 
   clearTextEditingController(){

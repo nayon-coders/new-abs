@@ -34,6 +34,7 @@ class AppConfig{
   static const String ALL_EMPLOYEE = "$BASE_URL/employee/all"; //GET
   static const String CREATE_EMPLOYEE = "$BASE_URL/employee/create"; //POST
   static const String SINGLE_EMPLOYEE = "$BASE_URL/employee/info/"; //GET PASS ID
+  static const String EDIT_EMPLOYEE = "$BASE_URL/employee/update/"; //PUT ID
   static const String DELETE_EMPLOYEE = "$BASE_URL/employee/delete/"; //DELETE PASS ID
 
 

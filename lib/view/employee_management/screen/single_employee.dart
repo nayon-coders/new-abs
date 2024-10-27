@@ -2,9 +2,12 @@ import 'package:abs_office_management/view/employee_management/controller/employ
 import 'package:abs_office_management/view/employee_management/controller/tab_controller.dart';
 import 'package:abs_office_management/view/employee_management/widget/card_menus.dart';
 import 'package:abs_office_management/view/employee_management/widget/working_hours.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../app_config.dart';
+import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
 import '../../../utility/assetes.dart';
 class SingleEmployee extends GetView<EmployeeManageController> {
@@ -26,8 +29,41 @@ class SingleEmployee extends GetView<EmployeeManageController> {
         actions: [
           InkWell(
             onTap: (){},
-              child: Image.asset(Assets.calander,height: 30,width: 30,fit: BoxFit.contain,)),
-          const SizedBox(width: 10,),
+            child:Container(
+              height: 30,
+                width: 30,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Colors.orange,
+                ),
+                child: const  Icon(Icons.edit,color: Colors.white,size: 18,)),
+          ),
+          const SizedBox(width: 15,),
+          InkWell(
+            onTap: (){
+              Get.defaultDialog(
+                title: "Confirm delete",
+                middleText: "Are you sure you want to delete employee?",
+                textConfirm: "Yes",
+                textCancel: "No",
+                confirmTextColor: Colors.white,
+                onConfirm: () {
+                  controller.deleteEmployee(controller.singleModel.value.employee!.id.toString());
+                },
+                onCancel: () {
+                  Get.toNamed(AppRoute.singleEmployeeScreen);
+                },
+              );
+            },
+              child:Container(
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: Colors.red,
+                  ),
+                  child: const  Icon(Icons.delete,color: Colors.white,size: 18,))),
+          const SizedBox(width: 20,),
         ],
       ),
       body: SingleChildScrollView(
@@ -60,7 +96,18 @@ class SingleEmployee extends GetView<EmployeeManageController> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100),
                             ),
-                            child: Image.asset(Assets.profilePic,height: 100,width: 100,fit: BoxFit.cover,),
+                            child:Center(
+                              child: controller.singleModel.value.employee!.profilePic != null && controller.singleModel.value.employee!.profilePic!.isNotEmpty?ClipRRect(
+                                borderRadius: BorderRadius.circular(100),
+                                child: CachedNetworkImage(
+                                  imageUrl: "${AppConfig.DOMAIN}${controller.singleModel.value.employee!.profilePic!}",
+                                  height: 100, width: 100, fit: BoxFit.cover,
+                                  placeholder: (context, url) => const CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) => const Icon(Icons.error),),
+                              )
+
+                                  : Image.asset(Assets.profilePic, height: 100, width: 100, fit: BoxFit.cover),
+                            ),
                           ),
 
                           const SizedBox(height: 10,),
@@ -70,7 +117,7 @@ class SingleEmployee extends GetView<EmployeeManageController> {
                           const SizedBox(height: 3,),
                           Text(controller.singleModel.value.employee!.employeePosition.toString()??"",style:const TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textWhite),),
                           const SizedBox(height: 3,),
-                          Text("Work: ${controller.singleModel.value.employee!.salaryType.toString()??""}",style: TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textWhite),),
+                          Text("Work: ${controller.singleModel.value.employee!.salaryType.toString()??""}",style:const TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textWhite),),
                           const SizedBox(height: 3,),
                           Text("Rate: \$${controller.singleModel.value.employee!.salaryRate.toString()??""}",style: const TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textWhite),),
                           const SizedBox(height: 3,),
