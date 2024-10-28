@@ -1,5 +1,6 @@
 import 'package:abs_office_management/utility/app_const.dart';
 import 'package:abs_office_management/view/salery_management/controller/salary_management_controller.dart';
+import 'package:abs_office_management/view/salery_management/screen/salray_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -13,7 +14,9 @@ import '../../today_sales_management/widget/edit_button.dart';
 
 class SalaryManagement extends GetView<SalaryManagementController> {
    SalaryManagement({super.key});
-   final dateTimeController = Get.put(DateTimeController());
+   final DateTimeController dateTimeController = Get.put(DateTimeController());
+
+
 
 
 
@@ -86,6 +89,7 @@ class SalaryManagement extends GetView<SalaryManagementController> {
                     itemCount: controller.salaryList.length ?? 0,
                     itemBuilder: (context,index){
                       final data = controller.salaryList![index];
+
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ListTile(
@@ -94,17 +98,24 @@ class SalaryManagement extends GetView<SalaryManagementController> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
                             ),
-                            title: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            leading: Container(
+                              height: 50,
+                              width: 50,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: AppColors.red.withOpacity(0.2),
+                              ),
+                              child: Center(child: Text("${data.employeeName![0]}",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: AppColors.textBlack),)),
+                            ),
+                            title:Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text("${data.employeeName}",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: AppColors.textBlack),),
-                                const SizedBox(height: 6,),
-                                Text(DateFormat("MM-dd-yyyy").format(DateTime.parse(data.date!)),style:const TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color: AppColors.textBlack),),
                               ],
                             ),
+                            subtitle: Text("${dateTimeController.dateFormat1(DateTime.parse("${data.date!}"))}",style:const TextStyle(fontWeight: FontWeight.w400,fontSize: 12,color: AppColors.textGrey),),
                             trailing: SizedBox(
-                              width: 110,
+                              width: 120,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -117,10 +128,10 @@ class SalaryManagement extends GetView<SalaryManagementController> {
                                   ),
                                   EditButton(
                                       icon: Icons.remove_red_eye,
-                                      bgColor: AppColors.mainColor,
+                                      bgColor: Colors.green,
                                       onClick: (){
-                                        //controller.setDataForEditCostingList(data);
-                                        // Get.toNamed(AppRoute.addCosting);
+                                        Get.to(()=>SalrayView(), arguments: data);
+                                       // controller.setSalaryData(data);
                                       }
                                   ),
                                   EditButton(
