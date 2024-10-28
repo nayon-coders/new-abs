@@ -93,7 +93,7 @@ class AppConfig{
 
   //salary Management
   static const String CREATE_PAID_SALARY = "$BASE_URL/salary/create"; //POST
-  static const String ALL_SALARY_LIST= "$BASE_URL/salary/create"; //GET
+  static const String ALL_SALARY_LIST= "$BASE_URL/salary/all"; //GET
   static const String UPDATE_SALARY_LIST= "$BASE_URL/salary/update/"; //PUT ID
 
 
