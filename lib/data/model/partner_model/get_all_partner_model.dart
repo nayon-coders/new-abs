@@ -1,27 +1,27 @@
 // To parse this JSON data, do
 //
-//     final getAllPartner = getAllPartnerFromJson(jsonString);
+//     final getAllPartnerModel = getAllPartnerModelFromJson(jsonString);
 
 import 'dart:convert';
 
-GetAllPartner getAllPartnerFromJson(String str) => GetAllPartner.fromJson(json.decode(str));
+GetAllPartnerModel getAllPartnerModelFromJson(String str) => GetAllPartnerModel.fromJson(json.decode(str));
 
-String getAllPartnerToJson(GetAllPartner data) => json.encode(data.toJson());
+String getAllPartnerModelToJson(GetAllPartnerModel data) => json.encode(data.toJson());
 
-class GetAllPartner {
+class GetAllPartnerModel {
   final bool? success;
   final String? message;
   final int? totalPartners;
   final List<Datum>? data;
 
-  GetAllPartner({
+  GetAllPartnerModel({
     this.success,
     this.message,
     this.totalPartners,
     this.data,
   });
 
-  factory GetAllPartner.fromJson(Map<String, dynamic> json) => GetAllPartner(
+  factory GetAllPartnerModel.fromJson(Map<String, dynamic> json) => GetAllPartnerModel(
     success: json["success"],
     message: json["message"],
     totalPartners: json["totalPartners"],
@@ -41,7 +41,7 @@ class Datum {
   final String? name;
   final String? email;
   final String? phone;
-  final int? percentage;
+  final double? percentage;
   final String? profilePic;
   final int? busnId;
 

@@ -98,5 +98,13 @@ class AppConfig{
   static const String SALARY_DELETE= "$BASE_URL/salary/delete/"; //PUT ID
 
 
+  //Partnership Management
+  static const String CREATE_PARTNER = "$BASE_URL/partnership/create"; //POST
+  static const String GET_ALL_PARTNER = "$BASE_URL/partnership/all"; //GET
+  static const String GET_SINGLE_PARTNER = "$BASE_URL/partnership/"; //GET ID
+  static const String DELETE_PARTNER = "$BASE_URL/partnership/delete/"; //DELETE ID
+  static const String UPDATE_PARTNER = "$BASE_URL/partnership/update"; //DELETE ID
+
+
 
 }

@@ -1,10 +1,12 @@
+import 'package:abs_office_management/view/partner_management/controller/partner_controller.dart';
 import 'package:abs_office_management/view/today_sales_management/widget/edit_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
 import '../../../utility/assetes.dart';
 
-class PartnerManagement extends StatelessWidget {
+class PartnerManagement extends GetView<PartnerController> {
   const PartnerManagement({super.key});
 
   @override
@@ -20,44 +22,56 @@ class PartnerManagement extends StatelessWidget {
           EditButton(
             icon: Icons.add,
               bgColor: Colors.green,
-              onClick: (){}),
+              onClick: ()=>Get.toNamed(AppRoute.addPartnerScreen),
+          ),
          const SizedBox(width: 20,),
         ],
       ),
-      body:ListView.builder(
-          padding:const EdgeInsets.all(10),
-          itemCount: 10,
-          itemBuilder: (context,index){
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                contentPadding:const EdgeInsets.only(left: 10,right: 10),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                tileColor: Colors.white,
-                leading: Container(
-                  height: 45,
-                  width: 45,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
+      body:Obx((){
+        if(controller.isGetting.value){
+          return const Center(child: CircularProgressIndicator.adaptive(),);
+        }else if(controller.getAllPartnerModel.value.data == null || controller.getAllPartnerModel.value.data!.isEmpty){
+          return const Center(child: Text("No partner found"),);
+        }else{
+          return ListView.builder(
+              padding:const EdgeInsets.all(10),
+              itemCount: controller.getAllPartnerModel.value.data!.length,
+              itemBuilder: (context,index){
+                final data = controller.getAllPartnerModel.value.data![index];
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile(
+                    contentPadding:const EdgeInsets.only(left: 10,right: 10),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    tileColor: Colors.white,
+                    leading: Container(
+                      height: 45,
+                      width: 45,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child:Image.asset(Assets.profilePic, height: 45, width: 45, fit: BoxFit.cover),
+                    ),
+
+
+                    title: Text("${data.name}",style:const TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: AppColors.textBlack),),
+
+                    subtitle: Text("${data.percentage }%",style:const TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textBlack),),
+
+                    trailing: InkWell(
+                        onTap: (){},
+                        child: const Text("View Details",style: TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: Color(0xFF1814F3)),)),
+
                   ),
-                  child:Image.asset(Assets.profilePic, height: 45, width: 45, fit: BoxFit.cover),
-                ),
+                );
 
+              });
+        }
 
-                title: Text("Name",style:const TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: AppColors.textBlack),),
-
-                subtitle: Text("Partner ship",style:const TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textBlack),),
-
-                trailing: InkWell(
-                    onTap: (){},
-                    child: const Text("View Details",style: TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: Color(0xFF1814F3)),)),
-
-              ),
-            );
-
-          })
+        }
+      )
     );
   }
 }
