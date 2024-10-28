@@ -42,7 +42,7 @@ class SalesController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getSales();
+    getSales(dateTimeController.month, dateTimeController.year);
   }
 
   @override
@@ -53,9 +53,9 @@ class SalesController extends GetxController {
 
 
   //get all sales data
-  void getSales() async {
+  void getSales(month, year) async {
     isLoading.value = true;
-    var res = await ApiServices.getApi(AppConfig.TODAY_SALES+"?month=10&year=2024");
+    var res = await ApiServices.getApi(AppConfig.TODAY_SALES+"?month=$month&year=$year");
     if(res.statusCode == 200){
       allSalesList.value = AllSalesModel.fromJson(jsonDecode(res.body));
     }
@@ -67,6 +67,7 @@ class SalesController extends GetxController {
 
   //add sales data
   void addSales() async {
+    onlineSalesData.clear();
     isAdd.value = true;
     //online sales data
     for(int i=0; i<platformNameList.length; i++){
@@ -85,10 +86,11 @@ class SalesController extends GetxController {
       "onlineSales": onlineSalesData,
       "date": dateTimeDatabase.value
     };
+    print("data --- ${data}");
     var res = await ApiServices.postApi(AppConfig.TODAY_SALES_CREATE, data);
     if(res.statusCode == 201){
       clearData(); //clear all data
-      getSales(); // get all sales data
+      getSales(dateTimeController.month, dateTimeController.year);
       Get.back(); // close the dialog
 
       Get.snackbar("Success!", "Data added successfully", backgroundColor: Colors.green, colorText: Colors.white);
@@ -113,7 +115,7 @@ class SalesController extends GetxController {
     var res = await ApiServices.putApi(AppConfig.TODAY_SALES_UPDATE+"${selectedId.value}", data);
     if(res.statusCode == 200){
       clearData(); //clear all data
-      getSales(); // get all sales data
+      getSales(dateTimeController.month, dateTimeController.year);
       Get.back();
       Get.snackbar("Success!", "Data updated successfully", backgroundColor: Colors.green, colorText: Colors.white);
     }else{
@@ -127,8 +129,9 @@ class SalesController extends GetxController {
     isDelete.value = true;
     var res = await ApiServices.deleteApi(AppConfig.TODAY_SALES_DELETE+"${id}");
     if(res.statusCode == 200){
+      clearData();
       //allSalesList.removeWhere((element) => element.id == 1);
-      getSales();
+      getSales(dateTimeController.month, dateTimeController.year);
       Get.snackbar("Success!", "Data deleted successfully", backgroundColor: Colors.green, colorText: Colors.white);
     }else{
       Get.snackbar("Error!", "Data not deleted", backgroundColor: Colors.red, colorText: Colors.white);
@@ -139,6 +142,7 @@ class SalesController extends GetxController {
   //edit values in Map
   //set data for edit
   void setDataForEdit(SingleSalesDatum data){
+    onlineSalesData.clear();
     isEdit.value = true;
     additionalIncome.value.text = data.additionalIncome.toString();
     selectedId.value = data.id.toString();
@@ -149,7 +153,6 @@ class SalesController extends GetxController {
     dateTime.value.text = dateTimeController.dateFormat1(data.date!);
     dateTimeDatabase.value = data.date.toString();
     totalTaxAmount.value = data.tax!.toDouble();
-   ;
     //set online sales data
     for(int i=0; i<data.onlineSales!.length; i++){
    //   platformNameList.value.add(OnlinePlatforms(name: data.onlineSales![i].name!.name));
@@ -189,6 +192,18 @@ class SalesController extends GetxController {
     platformNameList.clear();
     amountList.clear();
     totalTaxAmount.value = 0.0;
+    additionalIncome.value.clear();
+  }
+
+
+
+
+  //calculate tax
+  double calculateTax(double amount, double tax){
+    if(tax != null){
+      totalTaxAmount.value = (amount * tax)/100;
+    }
+    return totalTaxAmount.value; //return tax amount
   }
 
 

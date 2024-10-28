@@ -32,5 +32,6 @@ class AppRoute {
   static const String vieSalesReport = "/view-sales-report";
   static const String addCosting = "/add-costing";
   static const String manageCostingList = "/manage-costing";
+  static const String addFoodCost = "/add-food-cost";
 
 }
