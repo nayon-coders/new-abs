@@ -157,42 +157,45 @@ class EmployeeManageController extends GetxController{
 
 
   //Edit Employee
-  editEmployee(data)async{
+   editEmployee(id)async{
     isEditing.value = true;
-    final res = await ApiServices.putApi(AppConfig.EDIT_EMPLOYEE+id.value,
-        {
-          "name": name.value.text,
-          "email": email.value.text,
-          "phone": phone.value.text,
-          "type": type.value.text,
-          "employeeType" : employeeType.value.text,
-          "employeePosition" : employeePosition.value.text,
-          "salaryType": salaryType.value.text,
-          "salaryRate": salaryRate.value.text,
-        });
-    if(res.statusCode == 200){
-      id.value ="";
-      Get.snackbar("Successful", "Employee update successful",backgroundColor: Colors.green);
-    }else{
-      Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}");
+    final url = Uri.parse(AppConfig.EDIT_EMPLOYEE+id);
+    final request = http.MultipartRequest("PUT",url);
+    if(selectedImage.value != null){
+      final imageFile = await http.MultipartFile.fromPath(
+        "profilePic",
+        selectedImage.value!.path,
+        filename: selectedImage.value!.path.split("/").last,
+      );
+
+      final dataFields ={
+        "name": name.value.text,
+        "email": email.value.text,
+        "password": pass.value.text,
+        "phone": phone.value.text,
+        "type": type.value.text,
+        "employeeType" : employeeType.value.text,
+        "employeePosition" : employeePosition.value.text,
+        "salaryType": salaryType.value.text,
+        "salaryRate": salaryRate.value.text,
+
+      };
+      request.files.add(imageFile);
+      request.fields.addAll(dataFields);
+      var response = await request.send();
+      final res = await http.Response.fromStream(response);
+      if(res.statusCode == 200){
+        Get.snackbar("Successful", "Employee update successful");
+      }else{
+        Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}");
+        print(res.statusCode);
+        print(res.body);
+      }
+
     }
     isEditing.value = false;
-  }
-  editValueSave(data){
-    id.value = data.id.toString();
-    isEditing.value = true;
-    name.value.text = data.name;
-    email.value.text = data.email;
-    phone.value.text = data.phone;
-    type.value.text = data.type;
-    employeeType.value.text = data.employeeType;
-    employeePosition.value.text = data.employeePosition;
-    salaryType.value.text = data.salaryType;
-    salaryRate.value.text = data.salaryRate;
 
-    print("---name---${name.value.text}");
-  }
-
+   }
 
 
   //delete employee

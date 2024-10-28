@@ -7,8 +7,6 @@ import 'package:abs_office_management/widgets/selected_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
 import '../../../widgets/app_input.dart';
 import '../../../widgets/app_shimmer.dart';
@@ -66,9 +64,8 @@ class AddEmployee extends GetView<EmployeeManageController> {
         backgroundColor: AppColors.textWhite,
         surfaceTintColor: Colors.transparent,
 
-        title:const Text(
-          "ADD NEW EMPLOYEE",
-          style: TextStyle(
+        title: const Text("ADD NEW EMPLOYEE",
+          style:const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
               color: AppColors.textBlack),
@@ -78,7 +75,7 @@ class AddEmployee extends GetView<EmployeeManageController> {
           padding: const EdgeInsets.all(10.0),
 
           child: IconButton(
-              onPressed: ()=>Get.toNamed(AppRoute.employeeManageScree),
+              onPressed: ()=>Get.back(),
               icon:const Icon(
                 Icons.arrow_back_ios,
                 size: 20,
@@ -96,6 +93,10 @@ class AddEmployee extends GetView<EmployeeManageController> {
             children: [
               // //image update
               Obx(() {
+
+                if(controller.isEditing.value){
+                  return const Center(child: CircularProgressIndicator(),);
+                }
                 return Center(
                   child: Stack(
                     alignment: Alignment.center,
@@ -119,15 +120,16 @@ class AddEmployee extends GetView<EmployeeManageController> {
                                   width: 150,
                                   fit: BoxFit.cover,
                                 ),
-                              )                              : const Icon(
-                            Icons.image_outlined,
-                            color: Colors.black,
-                            size: 40,
+                              )
+                            : const Icon(
+                            Icons.person,
+                            color: Colors.grey,
+                            size: 80,
                           ),
                         ),
                       ),
                       Positioned(
-                        right: 1,
+                        right: 10,
                           bottom: 10,
                           child: InkWell(
                             onTap: (){
@@ -374,16 +376,15 @@ class AddEmployee extends GetView<EmployeeManageController> {
               Obx(() {
                   return Center(child: AppButton(
                     isLoading: controller.isLoading.value,
-                      name: "Add Employee",
+                      name:"Add Employee",
                       onClick: (){
                         var password = Random().nextInt(99999999).toString();
                         controller.pass.value.text =password;
                       if(_key.currentState!.validate()){
-                        if(controller.isEditing.value){
-                          controller.editEmployee(controller.id.value);
-                        }else{
+
                           controller.addEmployee();
-                        }
+
+
 
 
                       }
