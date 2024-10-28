@@ -43,7 +43,7 @@ class TodayCostView extends GetView<CostController> {
               children: [
                 Center(child: Text("No data found")),
                 TextButton(
-                  onPressed: () => controller.getAllCostList(),
+                  onPressed: () => controller.getAllCostList(dateTimeController.month, dateTimeController.year),
                   child: Text("Refresh", style: TextStyle(color: AppColors.textBlue)),
                 ),
               ],

@@ -6,6 +6,7 @@ class DateTimeController extends GetxController {
   // Method to update the selected date
 
   Rx<DateTime> selectedDate = DateTime.now().obs;
+  Rx<DateTime> currentDate = DateTime.now().obs;
 
   pickDate(BuildContext context) async {
     var date = DateTime.now(); // variable to store the selected date
@@ -21,6 +22,26 @@ class DateTimeController extends GetxController {
     }
     return selectedDate.value; // return the selected date
   }
+
+  // Observable variables to hold month and year values
+  var month = DateTime.now().month.obs;
+  var year = DateTime.now().year.obs;
+
+  // Method to get query string based on month and year values
+  String get queryString => "?month=${month.value}&year=${year.value}";
+
+  // Method to set custom month and year values
+  void setDate(DateTime selectedDate) {
+    month.value = selectedDate.month;
+    year.value = selectedDate.year;
+  }
+
+  //current date
+  String currentDate1() {
+    return DateFormat("dd, MMM yyyy").format(DateTime.now());
+  }
+
+
 
   String dateFormat1(DateTime date) {
     return DateFormat("dd, MMM yyyy").format(date);

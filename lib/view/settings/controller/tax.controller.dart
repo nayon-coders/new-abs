@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:abs_office_management/data/services/api_services.dart';
 import 'package:abs_office_management/main.dart';
+import 'package:abs_office_management/routes/route_name.dart';
+import 'package:abs_office_management/view/settings/screen/tax_and_state.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
@@ -45,6 +47,7 @@ class TaxController extends GetxController{
 
   //rx model
    Rx<TaxStateModel> taxStateModel = TaxStateModel().obs;
+   RxDouble taxAmount = 0.0.obs;
 
   //update tax and state
   void updateTaxAndState()async{
@@ -84,7 +87,6 @@ class TaxController extends GetxController{
       //insert into global variable
       GlobalVariables.gTaxStateModel.value = taxStateModel.value;
       isLoading.value = false;
-
     }else{
       Get.snackbar("Error", "Failed to get tax and state", backgroundColor: Colors.red);
       //insert into global variable
@@ -133,14 +135,6 @@ class TaxController extends GetxController{
     stateController.value.clear();
   }
 
-  //calculate tax
-  double calculateTax(double amount){
-    double tax = 0.0;
-    if(taxStateModel.value.data!.tax != null){
-      tax = (amount * taxStateModel.value.data!.tax!)/100;
-    }
-    return tax;
-  }
 
 
 }

@@ -83,6 +83,13 @@ class AppConfig{
   static const String COSTING_UPDATE = "$BASE_URL/costing/update/"; //PUT
   static const String COSTING_DELETE = "$BASE_URL/costing/delete/"; //DELETE
 
+  //FOOD COST BINDING
+  static const String FOOD_COST = "$BASE_URL/food-cost/all"; //GET
+  static const String FOOD_COST_CREATE = "$BASE_URL/food-cost/create"; //GET
+  static const String FOOD_COST_DELETE = "$BASE_URL/food-cost/delete/"; //GET
+  static const String FOOD_COST_UPDATE = "$BASE_URL/food-cost/update/"; //GET
+
+
 
 
 }

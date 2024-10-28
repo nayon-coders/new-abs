@@ -1,6 +1,9 @@
 import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/utility/assetes.dart';
+import 'package:abs_office_management/view/today_sales_management/controller/cost_controller.dart';
+import 'package:abs_office_management/view/today_sales_management/controller/food_cost_controller.dart';
+import 'package:abs_office_management/view/today_sales_management/controller/sales_controller.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/food.cost.view.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/today.cost.view.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/today.sales.list.view.dart';
@@ -8,12 +11,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/date_time_controller.dart';
 import 'add_today_sales.dart';
 
 class TodaySalesManagement extends StatelessWidget {
    TodaySalesManagement({super.key});
 
   final _key = GlobalKey<ExpandableFabState>();
+
+
 
 
   @override
@@ -32,7 +38,7 @@ class TodaySalesManagement extends StatelessWidget {
           ),
           centerTitle: true,
           actions: [
-            Image.asset(Assets.calander,height: 30,width: 30,fit: BoxFit.contain,),
+            SelectMonthWidgets(), // Select Month
             const SizedBox(width: 10,),
           ],
           bottom:  PreferredSize(
@@ -103,10 +109,7 @@ class TodaySalesManagement extends StatelessWidget {
               FloatingActionButton.extended(
                 heroTag: null,
                 icon: const Icon(Icons.add),
-                onPressed: () {
-                  // Navigator.of(context).push(
-                  //     MaterialrialPageRoute(builder: ((context) => const NextPage())));
-                },
+                onPressed: ()=> Get.toNamed(AppRoute.addFoodCost),
                 label: Text("Add Food Cost"),
               ),
             ],
@@ -114,5 +117,34 @@ class TodaySalesManagement extends StatelessWidget {
 
           ),
     );
+  }
+}
+
+class SelectMonthWidgets extends StatelessWidget {
+   SelectMonthWidgets({
+    super.key,
+  });
+
+  final DateTimeController dateTimeController = Get.put(DateTimeController());
+  final SalesController salesController  = Get.find<SalesController>();
+  final CostController costController  = Get.find<CostController>();
+  final FoodCostController foodController  = Get.find<FoodCostController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+        onTap: ()async{
+         var date = await dateTimeController.pickDate(context);
+         var setDate = dateTimeController.setDate(date);
+         print("setDate --- ");
+          //call sales controller
+          salesController.getSales(dateTimeController.month, dateTimeController.year);
+          // call cost controller
+          costController.getAllCostList(dateTimeController.month, dateTimeController.year);
+          //call food cost controller
+          foodController.getAllFoodCost(dateTimeController.month, dateTimeController.year);
+
+        },
+        child: Image.asset(Assets.calander,height: 30,width: 30,fit: BoxFit.contain,));
   }
 }

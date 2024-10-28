@@ -28,10 +28,16 @@ class AddTodaySales extends GetView<SalesController> {
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
-        title: Text("${controller.isEdit.value ? "Edit Sales" : "Add Today Sales"}",
-          style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textindico),
+        title: Obx(() {
+            return Text("${controller.isEdit.value ? "Edit Sales" : "Add Today Sales"}",
+              style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textindico),
+            );
+          }
         ),
-        leading: IconButton(onPressed: ()=>Get.back(), icon:const Icon(Icons.arrow_back_ios,color: AppColors.textindico,)),
+        leading: IconButton(onPressed: (){
+          controller.clearData();
+          Get.back();
+        }, icon:const Icon(Icons.arrow_back_ios,color: AppColors.textindico,)),
         backgroundColor: AppColors.textWhite,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
@@ -65,20 +71,24 @@ class AddTodaySales extends GetView<SalesController> {
                       style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),
                     ),
                    const  SizedBox(height: 10,),
-                    AppInput(
-                      hintColor: AppColors.textBlue,
-                      hint: "0.00",
-                      controller: controller.grossSales.value,
-                      fillColor: AppColors.textWhite,
-                      textType: TextInputType.number,
-                      onChanged: (v){
-                        if(v.isNotEmpty){
-                          controller.calculateCreditSalesAndTotalCashCollect();
-                          controller.totalTaxAmount.value = taxController.calculateTax(double.parse(v!));
-                        }else{
-                          controller.totalTaxAmount.value = 0.0;
-                        }
-                      },
+                    Obx(() {
+                        return AppInput(
+                          hintColor: AppColors.textBlue,
+                          hint: "0.00",
+                          controller: controller.grossSales.value,
+                          fillColor: AppColors.textWhite,
+                          textType: TextInputType.number,
+                          onChanged: (v){
+                            if(v.isNotEmpty){
+                              controller.calculateTax(double.parse(v!), double.parse("${taxController.taxStateModel.value.data!.tax}"));
+                              controller.calculateCreditSalesAndTotalCashCollect();
+
+                            }else{
+                              controller.totalTaxAmount.value = 0.0;
+                            }
+                          },
+                        );
+                      }
                     ),
 
 
@@ -318,27 +328,30 @@ class AddTodaySales extends GetView<SalesController> {
         );
       }else{
         return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Text("Tax",
-                  style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),
-                ),
-                SizedBox(width: 5,),
-                Text("${taxController.taxStateModel.value.data!.tax} % = ${controller.grossSales.value.text.isEmpty ? 0.00: controller.totalTaxAmount.value.toStringAsFixed(2)}",
-                  style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.red),
-                ),
-              ],
-            ),
-            InkWell(
-              onTap: ()=>Get.toNamed(AppRoute.textAndState),
-              child: Text("Edit",
-                style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.linkColor),
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Text("Tax",
+                    style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),
+                  ),
+                  SizedBox(width: 5,),
+                  Obx(() {
+                      return Text("${taxController.taxStateModel.value.data!.tax} % = ${controller.grossSales.value.text.isEmpty ? 0.00: controller.totalTaxAmount.value.toStringAsFixed(2)}",
+                        style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.red),
+                      );
+                    }
+                  ),
+                ],
               ),
-            )
-          ],
-        );
+              InkWell(
+                onTap: ()=>Get.toNamed(AppRoute.textAndState),
+                child: Text("Edit",
+                  style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.linkColor),
+                ),
+              )
+            ],
+          );
       }
 
       }

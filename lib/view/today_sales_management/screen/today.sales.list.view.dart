@@ -5,6 +5,7 @@ import 'package:abs_office_management/widgets/no_data_find.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/date_time_controller.dart';
 import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
 import '../widget/edit_button.dart';
@@ -14,7 +15,9 @@ import '../widget/table/table_header.dart';
 import 'add_today_sales.dart';
 
 class TodaySalesView extends GetView<SalesController> {
-  const TodaySalesView({super.key});
+   TodaySalesView({super.key});
+
+  final DateTimeController dateTimeController = Get.put(DateTimeController());
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,7 @@ class TodaySalesView extends GetView<SalesController> {
           }else if(controller.allSalesList.value.data!.isEmpty){
             return NoDataFoundScreen(
               message: "No data found",
-              onRetry: ()=>controller.getSales(),
+              onRetry: ()=>controller. getSales(dateTimeController.month, dateTimeController.year),
             );
           }else{
             return ListView.separated(

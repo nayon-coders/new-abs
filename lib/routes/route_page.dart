@@ -21,6 +21,7 @@ import 'package:abs_office_management/view/settings/screen/creditcard_processing
 import 'package:abs_office_management/view/settings/screen/tax_and_state.dart';
 import 'package:abs_office_management/view/settings/setting_screen.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/add_cost.dart';
+import 'package:abs_office_management/view/today_sales_management/screen/add_food_cost.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/add_today_sales.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/manage_costing.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/today_sales_management.dart';
@@ -28,6 +29,7 @@ import 'package:abs_office_management/view/today_sales_management/screen/view_sa
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../data/binding/food_cost_binding.dart';
 import '../data/binding/setting.binding.dart';
 import '../data/binding/tax_binding.dart';
 import '../data/middleware/auth_middleware.dart';
@@ -70,7 +72,7 @@ class RoutePage{
     GetPage(
         name: AppRoute.textAndState,
         page: ()=>  TaxAndState(),
-        binding: SettingBinding()
+        binding: TaxBinding()
     ),
 
     GetPage(
@@ -98,12 +100,12 @@ class RoutePage{
     GetPage(
           name: AppRoute.salesManageScree,
           page: ()=> TodaySalesManagement(),
-          bindings: [SalesBinding(), CostingBinding()]
+          bindings: [ SalesBinding(), CostingBinding(), FoodCostBinding() ]
       ),
     GetPage(
           name: AppRoute.addTodaySalesScreen,
           page: ()=> AddTodaySales(),
-          bindings: [SalesBinding(), TaxBinding(), ]
+          bindings: [SalesBinding(), TaxBinding()]
       ),
     GetPage(
         name: AppRoute.vieSalesReport,
@@ -155,6 +157,11 @@ class RoutePage{
                 page: ()=> ManageCosting(),
                 binding: CostingBinding()
             ),
+   GetPage(
+        name: AppRoute.addFoodCost,
+        page: ()=> AddFoodCost(),
+        binding: FoodCostBinding()
+    ),
 
   ];
 }

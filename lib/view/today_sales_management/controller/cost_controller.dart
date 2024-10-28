@@ -17,7 +17,7 @@ class CostController extends GetxController{
   @override
   void onInit() {
     super.onInit();
-    getAllCostList();
+    getAllCostList(dateTimeController.month, dateTimeController.year);
     getCostList();
   }
 
@@ -92,16 +92,16 @@ class CostController extends GetxController{
     var res = await ApiServices.postApi(AppConfig.COSTING_CREATE, data);
     if(res.statusCode == 200){
       clearAll();
-      getAllCostList();
+      getAllCostList(dateTimeController.month, dateTimeController.year);
       Get.back();
       Get.snackbar("Success!", "Cost added successfully", backgroundColor: Colors.green, colorText: Colors.white);
     }
     isAddCost.value = false;
   }
   //get all cost
-  void getAllCostList() async {
+  void getAllCostList(month, year) async {
     isGetting.value = true;
-    var res = await ApiServices.getApi(AppConfig.COSTING+"?month=10&year=2024");
+    var res = await ApiServices.getApi(AppConfig.COSTING+"?month=$month&year=$year");
     if(res.statusCode == 200){
       allCostList.value = AllCostListModel.fromJson(jsonDecode(res.body));
     }
@@ -120,7 +120,7 @@ class CostController extends GetxController{
     var res = await ApiServices.putApi(AppConfig.COSTING_UPDATE+selectedCostId.value, data);
     if(res.statusCode == 200){
       clearAll();
-      getAllCostList();
+      getAllCostList(dateTimeController.month, dateTimeController.year);
       Get.back();
       Get.snackbar("Success!", "Cost updated successfully", backgroundColor: Colors.green, colorText: Colors.white);
     }
@@ -135,7 +135,7 @@ class CostController extends GetxController{
 
     if(res.statusCode == 200){
       Get.back();
-      getAllCostList();
+      getAllCostList(dateTimeController.month, dateTimeController.year);
       Get.snackbar("Success!", "Costing list deleted successfully", backgroundColor: Colors.green, colorText: Colors.white);
     }
     isCostListDelete.value = false;
