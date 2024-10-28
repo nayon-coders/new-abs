@@ -3,7 +3,7 @@ import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/utility/assetes.dart';
 import 'package:abs_office_management/view/employee_management/screen/employee_management.dart';
 import 'package:abs_office_management/view/loss_profit/loss_profit.dart';
-import 'package:abs_office_management/view/partner_management/partner_management.dart';
+import 'package:abs_office_management/view/partner_management/screen/partner_management.dart';
 import 'package:abs_office_management/view/salery_management/screen/salary_management.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/today_sales_management.dart';
 import 'package:abs_office_management/widgets/app_input.dart';

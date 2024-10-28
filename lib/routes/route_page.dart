@@ -12,7 +12,7 @@ import 'package:abs_office_management/view/employee_management/screen/add_employ
 import 'package:abs_office_management/view/employee_management/screen/employee_management.dart';
 import 'package:abs_office_management/view/employee_management/screen/single_employee.dart';
 import 'package:abs_office_management/view/loss_profit/loss_profit.dart';
-import 'package:abs_office_management/view/partner_management/partner_management.dart';
+import 'package:abs_office_management/view/partner_management/screen/partner_management.dart';
 import 'package:abs_office_management/view/salery_management/screen/salary_management.dart';
 import 'package:abs_office_management/view/salery_management/screen/add_paid_salary.dart';
 import 'package:abs_office_management/view/settings/screen/add_employee_position_view.dart';
