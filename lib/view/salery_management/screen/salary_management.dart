@@ -1,3 +1,4 @@
+import 'package:abs_office_management/utility/app_const.dart';
 import 'package:abs_office_management/view/salery_management/controller/salary_management_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
 import '../../../utility/assetes.dart';
 import '../../../widgets/app_shimmer.dart';
+import '../../today_sales_management/widget/edit_button.dart';
 
 class SalaryManagement extends GetView<SalaryManagementController> {
    SalaryManagement({super.key});
@@ -62,11 +64,9 @@ class SalaryManagement extends GetView<SalaryManagementController> {
                 Text(DateFormat("MMM, yyyy").format(dateTimeController.selectedDate.value),style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
                 InkWell(
                   onTap: ()async{
-                    await dateTimeController.pickDate(context);
-                    controller.getAllSalary(
-                      DateFormat("MM").format(dateTimeController.selectedDate.value),
-                      DateFormat("yyyy").format(dateTimeController.selectedDate.value),
-                    );
+                   await dateTimeController.pickDate(context);
+                   controller.getAllSalary(dateTimeController.month, dateTimeController.year);
+
                   },
                     child: Image.asset(Assets.calander,height: 35,width: 35,fit: BoxFit.cover,)),
               ],
@@ -75,61 +75,77 @@ class SalaryManagement extends GetView<SalaryManagementController> {
          const SizedBox(height: 10,),
           Expanded(
             child: Obx(() {
-              if(controller.isGetting.value){
-                return  _buildLoading();
-              }
-              if(controller.salaryModel.value.data == null || controller.salaryModel.value.data!.isEmpty){
-                return const Center(child: Text("No salary data found"));
-              }
+              if(controller.salaryList.isEmpty){
+                if(controller.isGetting.value){
+                  return  _buildLoading();
+                }else{
+                  return const Center(child: Text("No salary data found"));
+                }
+              }else{
                 return ListView.builder(
-                  itemCount: controller.salaryModel.value.data?.length ?? 0,
+                    itemCount: controller.salaryList.length ?? 0,
                     itemBuilder: (context,index){
-                    final data = controller.salaryModel.value.data![index];
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ListTile(
-                        onTap: (){
-                          Get.bottomSheet(
-                            Container(
-                              padding:const EdgeInsets.all(15),
-                              height: 100,
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15)),
-                                color: AppColors.textWhite,
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                      final data = controller.salaryList![index];
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListTile(
+
+                            tileColor: AppColors.textWhite,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            title: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("${data.employeeName}",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: AppColors.textBlack),),
+                                const SizedBox(height: 6,),
+                                Text(DateFormat("MM-dd-yyyy").format(DateTime.parse(data.date!)),style:const TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color: AppColors.textBlack),),
+                              ],
+                            ),
+                            trailing: SizedBox(
+                              width: 110,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  ListTile(
-                                    title:const Text("Total pay salary this month",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: AppColors.textBlack),),
-                                    trailing: Text("\$${controller.totalAmount.value}",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: AppColors.green),),
-                                  )
+                                  EditButton(
+                                      icon: Icons.edit,
+                                      bgColor: Colors.amber,
+                                      onClick: (){
+                                        controller.setSalaryData(data);
+                                      }
+                                  ),
+                                  EditButton(
+                                      icon: Icons.remove_red_eye,
+                                      bgColor: AppColors.mainColor,
+                                      onClick: (){
+                                        //controller.setDataForEditCostingList(data);
+                                        // Get.toNamed(AppRoute.addCosting);
+                                      }
+                                  ),
+                                  EditButton(
+                                      icon: Icons.delete,
+                                      bgColor: AppColors.red,
+                                      onClick: (){
+                                        //alert
+                                        alertDialog(
+                                            title: "Hold On!",
+                                            content: "Are you sure you want to delete this salary?",
+                                            onOk: ()=> controller.deleteSalary(data.id!)
+                                        );
+
+                                      }
+                                  ),
 
                                 ],
                               ),
-                            ),
-                          );
-                        },
-                        tileColor: AppColors.textWhite,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
+                            )
                         ),
-                        title: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("${data.employeeName}",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: AppColors.textBlack),),
-                            const SizedBox(height: 6,),
-                            Text(DateFormat("MM-dd-yyyy").format(DateTime.parse(data.date!)),style:const TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color: AppColors.textBlack),),
-                          ],
-                        ),
-                        trailing: Text("\$${data.amount}",style: const TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: AppColors.green),),
-                      ),
-                    );
+                      );
 
-                });
+                    });
               }
+            }
             ),
           )
 

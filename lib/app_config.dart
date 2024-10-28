@@ -95,6 +95,7 @@ class AppConfig{
   static const String CREATE_PAID_SALARY = "$BASE_URL/salary/create"; //POST
   static const String ALL_SALARY_LIST= "$BASE_URL/salary/all"; //GET
   static const String UPDATE_SALARY_LIST= "$BASE_URL/salary/update/"; //PUT ID
+  static const String SALARY_DELETE= "$BASE_URL/salary/delete/"; //PUT ID
 
 
 

@@ -20,14 +20,26 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
-        leading: IconButton(onPressed: ()=>Get.back(),
+        leading: IconButton(onPressed: (){
+          controller.clearAllData();
+          Get.back();
+        },
           icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,),),
 
-        title:const Text("Paid Salary",
-          style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textBlack),
+        title: Obx(() {
+
+            return Text(
+              controller.isForEdit.value ? "Paid Salary" : "Edit Salary",
+              style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textBlack),
+            );
+
+          }
         ),
 
         backgroundColor: AppColors.textWhite,
@@ -54,7 +66,23 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
                   //select employee
                   const Text("Select employee",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),),
                   const SizedBox(height: 10,),
-                  Obx(() {
+                 controller.isForEdit.value
+                     ? Container(
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      height: 50,
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: AppColors.fillColor,
+                      ),
+                      child: Text(
+                        controller.selectedEmployee.value.name!,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                     ) :  Obx(() {
                       return DropdownButtonHideUnderline(
                         child: DropdownButton2<SingleEmployee>(
                           isExpanded: true,
@@ -74,7 +102,7 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
                               ),
                             ),
                           )).toList(),
-                          value: controller.selectedEmployee.value ?? null,
+                         value: controller.selectedEmployee.value,
                           onChanged: (SingleEmployee? value) {
                             controller.selectedEmployee.value = value!;
                           },
@@ -112,6 +140,7 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
                   CustomDropDown(
                       items: payItem,
                       hint: "Pay By",
+                      value:  controller.selectedPayMethod.value ?? "",
                       onChange: (v){
                         controller.selectedPayMethod.value = v;
                       }
@@ -164,16 +193,28 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
               ),
             ),
             const SizedBox(height: 50,),
-            Center(child: Obx(() {
+            Center(
+              child: Obx(() {
+                print("isForEdit value: ${controller.isForEdit.value}");  // Debugging print
+
                 return AppButton(
-                    isLoading: controller.isAdding.value,
-                    name: "Save",
-                    onClick: (){
+                  isLoading: controller.isAdding.value,
+                  name: "Save",
+                  onClick: () {
+                    print("Button clicked, isForEdit: ${controller.isForEdit.value}");  // Debugging print
+
+                    if (controller.isForEdit.value) {
+                      controller.updateSalary();
+                      print("Update Salary");
+                    } else {
                       controller.addSalary();
+                      print("Add Salary");
                     }
+                  },
                 );
-              }
-            )),
+              }),
+            ),
+
           ],
         ),
       ),
