@@ -157,7 +157,7 @@ class EmployeeManageController extends GetxController{
 
 
   //Edit Employee
-   updateEmployee(id)async{
+   editEmployee(id)async{
     isEditing.value = true;
     final url = Uri.parse(AppConfig.EDIT_EMPLOYEE+id);
     final request = http.MultipartRequest("PUT",url);

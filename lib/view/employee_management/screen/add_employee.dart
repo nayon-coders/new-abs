@@ -4,13 +4,9 @@ import 'package:abs_office_management/view/employee_management/controller/employ
 import 'package:abs_office_management/view/settings/controller/employee_position_controller.dart';
 import 'package:abs_office_management/widgets/app_button.dart';
 import 'package:abs_office_management/widgets/selected_picker.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../../../app_config.dart';
-import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
 import '../../../widgets/app_input.dart';
 import '../../../widgets/app_shimmer.dart';
@@ -68,9 +64,8 @@ class AddEmployee extends GetView<EmployeeManageController> {
         backgroundColor: AppColors.textWhite,
         surfaceTintColor: Colors.transparent,
 
-        title:const Text(
-          "ADD NEW EMPLOYEE",
-          style: TextStyle(
+        title: const Text("ADD NEW EMPLOYEE",
+          style:const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
               color: AppColors.textBlack),
@@ -100,7 +95,7 @@ class AddEmployee extends GetView<EmployeeManageController> {
               Obx(() {
 
                 if(controller.isEditing.value){
-                  return Center(child: CircularProgressIndicator(),);
+                  return const Center(child: CircularProgressIndicator(),);
                 }
                 return Center(
                   child: Stack(
@@ -126,19 +121,7 @@ class AddEmployee extends GetView<EmployeeManageController> {
                                   fit: BoxFit.cover,
                                 ),
                               )
-                            :(controller.singleModel.value.employee != null &&
-                              controller.singleModel.value.employee!.profilePic != null &&
-                              controller.singleModel.value.employee!.profilePic!.isNotEmpty)?ClipRRect(
-                               borderRadius: BorderRadius.circular(100),
-                                child: CachedNetworkImage(
-                                    imageUrl:"${AppConfig.DOMAIN}${controller.singleModel.value.employee!.profilePic}" ,
-                                    height: 150,
-                                    width: 150,
-                                    fit: BoxFit.cover,
-                                    placeholder: (context, url) => const CircularProgressIndicator(),
-
-                                  ),
-                              ): const Icon(
+                            : const Icon(
                             Icons.person,
                             color: Colors.grey,
                             size: 80,
@@ -393,13 +376,15 @@ class AddEmployee extends GetView<EmployeeManageController> {
               Obx(() {
                   return Center(child: AppButton(
                     isLoading: controller.isLoading.value,
-                      name: "Add Employee",
+                      name:"Add Employee",
                       onClick: (){
                         var password = Random().nextInt(99999999).toString();
                         controller.pass.value.text =password;
                       if(_key.currentState!.validate()){
 
                           controller.addEmployee();
+
+
 
 
                       }

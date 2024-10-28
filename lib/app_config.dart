@@ -84,5 +84,11 @@ class AppConfig{
   static const String COSTING_DELETE = "$BASE_URL/costing/delete/"; //DELETE
 
 
+  //salary Management
+  static const String CREATE_PAID_SALARY = "$BASE_URL/salary/create"; //POST
+  static const String ALL_SALARY_LIST= "$BASE_URL/salary/create"; //GET
+  static const String UPDATE_SALARY_LIST= "$BASE_URL/salary/update/"; //PUT ID
+
+
 
 }

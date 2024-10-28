@@ -1,3 +1,4 @@
+import 'package:abs_office_management/view/salery_management/controller/salary_management_controller.dart';
 import 'package:get/get.dart';
 
 import '../../controller/date_time_controller.dart';
@@ -7,5 +8,6 @@ class SalaryManageBinding extends Bindings {
   void dependencies() {
     //Get.lazyPut<SalesController>(() => SalesController());
     Get.lazyPut<DateTimeController>(() => DateTimeController());
+    Get.lazyPut<SalaryManagementController>(() => SalaryManagementController());
   }
 }

@@ -9,7 +9,7 @@ class AddPaidSalary extends StatelessWidget {
    AddPaidSalary({super.key});
 
   final List employeeItem =["employee1","employee2","employee3"];
-  final List payItem =["online","cache","card"];
+   List payItem =["Cash","Check","Online", "Bank Transfer"];
 
   final _amount = TextEditingController();
   final _selectDate = TextEditingController();

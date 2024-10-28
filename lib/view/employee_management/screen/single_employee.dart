@@ -1,5 +1,6 @@
 import 'package:abs_office_management/view/employee_management/controller/employee_manage_controller.dart';
 import 'package:abs_office_management/view/employee_management/controller/tab_controller.dart';
+import 'package:abs_office_management/view/employee_management/screen/add_employee.dart';
 import 'package:abs_office_management/view/employee_management/widget/card_menus.dart';
 import 'package:abs_office_management/view/employee_management/widget/working_hours.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -29,6 +30,12 @@ class SingleEmployee extends GetView<EmployeeManageController> {
         actions: [
           InkWell(
             onTap: (){
+              Get.to(()=>AddEmployee(),
+              arguments: {
+                "isEditing":true,
+                "employeeId":employeeId,
+                "employeeData":controller.singleModel.value.employee,
+              });
 
             },
             child:Container(
