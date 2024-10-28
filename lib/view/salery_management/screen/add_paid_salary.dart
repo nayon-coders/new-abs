@@ -1,5 +1,6 @@
 import 'package:abs_office_management/controller/date_time_controller.dart';
 import 'package:abs_office_management/data/model/employee_model/single_empolyee_model.dart';
+import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/view/salery_management/controller/salary_management_controller.dart';
 import 'package:abs_office_management/widgets/app_button.dart';
@@ -64,7 +65,15 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //select employee
-                  const Text("Select employee",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [ 
+                      const Text("Select employee",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),),
+                      // InkWell(
+                      //     onTap: ()=>Get.toNamed(AppRoute.addEmployeeScreen),
+                      //     child: Text("Add New",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.green),)),
+                    ],
+                  ),
                   const SizedBox(height: 10,),
                  controller.isForEdit.value
                      ? Container(
