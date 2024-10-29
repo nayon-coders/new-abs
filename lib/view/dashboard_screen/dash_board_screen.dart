@@ -8,6 +8,7 @@ import 'package:abs_office_management/view/salery_management/screen/salary_manag
 import 'package:abs_office_management/view/today_sales_management/screen/today_sales_management.dart';
 import 'package:abs_office_management/widgets/app_input.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
 import 'widget/dash_box.dart';
@@ -93,7 +94,7 @@ class DashBoardScreen extends StatelessWidget {
                       image:item["image"],
                       bgColor:item["color"],
                   );
-            }),
+            }).animate().fadeIn(duration:500.ms),
             const SizedBox(height: 20,),
 
            const Text("Menu",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textindico),
@@ -118,7 +119,7 @@ class DashBoardScreen extends StatelessWidget {
                 );
             })
 
-          ],
+          ].animate(interval: 150.ms).fade(duration: 300.ms),
         ),
       ),
     );

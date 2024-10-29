@@ -6,6 +6,7 @@ import 'package:abs_office_management/view/today_sales_management/controller/foo
 import 'package:abs_office_management/view/today_sales_management/widget/table/table_body.dart';
 import 'package:abs_office_management/widgets/app_shimmer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
 import '../../../utility/app_color.dart';
@@ -105,7 +106,7 @@ class FoodCostView extends GetView<FoodCostController> {
 
                       ],
                     ),
-                  );
+                  ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut);
 
                 });
           }
@@ -160,7 +161,7 @@ class FoodCostView extends GetView<FoodCostController> {
                             ],
                           ),
                         ),
-                      );
+                      ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut);
                     },
                   ),
                 ),

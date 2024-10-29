@@ -3,6 +3,7 @@ import 'package:abs_office_management/view/today_sales_management/controller/sal
 import 'package:abs_office_management/widgets/app_shimmer.dart';
 import 'package:abs_office_management/widgets/no_data_find.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/date_time_controller.dart';
@@ -49,16 +50,9 @@ class TodaySalesView extends GetView<SalesController> {
                     margin: EdgeInsets.only(bottom: 10, left: 2, right: 2),
                     padding: EdgeInsets.only(left: 10,right: 10),
                     decoration: BoxDecoration(
-                        color: AppColors.textWhite,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.grey.withOpacity(0.2),
-                              spreadRadius: 1,
-                              blurRadius: 1,
-                              offset: const Offset(0, 1)
-                          )
-                        ]
+                        color: index.isEven ? Colors.grey.shade200 : AppColors.textWhite,
+
+
                     ),
                     child:Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -119,7 +113,7 @@ class TodaySalesView extends GetView<SalesController> {
 
                       ],
                     ),
-                  );
+                  ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut);
 
                 });
           }
