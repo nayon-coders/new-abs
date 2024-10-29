@@ -1,4 +1,5 @@
 import 'package:abs_office_management/controller/image_picker_controller.dart';
+import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_const.dart';
 import 'package:abs_office_management/view/partner_management/controller/partner_controller.dart';
 import 'package:abs_office_management/view/today_sales_management/widget/edit_button.dart';
@@ -21,7 +22,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
   @override
   Widget build(BuildContext context) {
     final id = Get.arguments.toString();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
      controller.singlePartner(id);
     });
 
@@ -36,13 +37,22 @@ class SinglePartnerScreen extends GetView<PartnerController> {
           EditButton(
             icon: Icons.edit,
             bgColor: Colors.yellow,
-            onClick: (){},
+            onClick: (){
+              controller.editValueSave(controller.singlePartnerModel.value.partnerInfo);
+              Get.toNamed(AppRoute.addPartnerScreen);
+            },
           ),
           const SizedBox(width: 10,),
           EditButton(
             icon: Icons.delete,
               bgColor: Colors.red,
-              onClick: (){},
+              onClick: (){
+                alertDialog(
+                    title: "Hold On!",
+                    content: "Are you sure you want to delete this partner?",
+                    onOk: ()=>controller.deletePartner(controller.singlePartnerModel.value.partnerInfo!.id.toString())
+                );
+              },
           ),
           const SizedBox(width: 20,),
         ],
@@ -60,7 +70,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                   child: CircularProgressIndicator.adaptive(),
                 );
               }else if(controller.singlePartnerModel.value.partnerInfo == null){
-                return Text("empty");
+                return const Text("Partner empty");
 
               }else{
                 final partnerInfo = controller.singlePartnerModel.value.partnerInfo!;
@@ -71,7 +81,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                     Container(
                       width: Get.width,
                       height:200,
-                      decoration: BoxDecoration(
+                      decoration:const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(20),
@@ -82,16 +92,16 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Loss & Profit",
+                          const Text("Loss & Profit",
                             style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.textBlack),
                           ),
-                          SizedBox(height: 20,),
+                         const  SizedBox(height: 20,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
+                                padding:const EdgeInsets.all(10),
+                                decoration:const BoxDecoration(
                                   // color: Colors.red.withOpacity(0.2),
                                     border: Border(
                                       right: BorderSide(
@@ -105,20 +115,20 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                                     Text("\$${controller.singlePartnerModel.value.wholeBusiness!.totalProfit!.toStringAsFixed(2)}",
                                       style:const TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: AppColors.mainColor),
                                     ),
-                                    Text("Total Profit",
+                                   const Text("Total Profit",
                                       style:const TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: AppColors.mainColor),
                                     ),
                                   ],
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.all(10),
+                                padding:const EdgeInsets.all(10),
                                 child: Column(
                                   children: [
                                     Text("\$${controller.singlePartnerModel.value.wholeBusiness!.totalLoss!.toStringAsFixed(2)}",
                                       style:const TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: AppColors.red),
                                     ),
-                                    Text("Total Loss",
+                                   const Text("Total Loss",
                                       style:const TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: AppColors.red),
                                     ),
                                   ],
@@ -131,7 +141,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                     ),
                     Container(
                       padding:const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
+                      decoration:const BoxDecoration(
                         color: AppColors.mainColor,
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(20),
@@ -194,7 +204,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                                               width: 110,
                                               fit: BoxFit.cover,
                                               placeholder: (context, url) =>
-                                                  AppShimmerPro.circularShimmer(width: 100, height: 100, borderRadius: 10),
+                                                  AppShimmerPro.circularShimmer(width: 110, height: 110, borderRadius: 10),
                                               errorWidget: (context, url, error) =>const Icon(
                                                 Icons.person,
                                                 color: Colors.white ,
@@ -202,19 +212,20 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                                               ),
                                             );
                                           }else{
-                                            return CachedNetworkImage(
-                                              imageUrl: "assets/images/person.png",
-                                              height: 110,
-                                              width: 110,
-                                              fit: BoxFit.cover,
-                                              placeholder: (context, url) =>
-                                                  CircularProgressIndicator(),
-                                              errorWidget: (context, url, error) =>const Icon(
-                                                Icons.person,
-                                                color: Colors.white ,
-                                                size: 120,
-                                              ),
-                                            );
+                                            return const Icon(Icons.person,size: 120,color: Colors.white ,);
+                                            // CachedNetworkImage(
+                                            //       imageUrl: "assets/images/person.png",
+                                            //       height: 110,
+                                            //       width: 110,
+                                            //       fit: BoxFit.cover,
+                                            //       placeholder: (context, url) =>
+                                            //           const CircularProgressIndicator(),
+                                            //       errorWidget: (context, url, error) =>const Icon(
+                                            //         Icons.person,
+                                            //         color: Colors.white ,
+                                            //         size: 120,
+                                            //       ),
+                                            //     );
                                           }
 
                                           }
@@ -260,7 +271,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                       ),
                     ),
 
-                    SizedBox(height: 20,),
+                    const SizedBox(height: 20,),
                     Obx(() {
                       return imagePickerController.selectedImage.value != null ? Center(
                         child: AppButton(
@@ -273,7 +284,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
 
                             }
                         ),
-                      ) : Center();
+                      ) : const Center();
                     }
                     )
 

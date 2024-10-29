@@ -104,7 +104,7 @@ class AppConfig{
   static const String GET_SINGLE_PARTNER = "$BASE_URL/partnership/"; //GET ID
   static const String DELETE_PARTNER = "$BASE_URL/partnership/delete/"; //DELETE ID
   static const String UPDATE_PARTNER = "$BASE_URL/partnership/update"; //DELETE ID
-
+  static const String EDIT_PARTNER = "$BASE_URL/partnership/update/"; //PUT PASS ID
   static const String PARTNER_PROFILE_UPDATE = "$BASE_URL/partnership/update-image/"; //DELETE ID
 
 

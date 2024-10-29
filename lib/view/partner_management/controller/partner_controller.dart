@@ -10,6 +10,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
+import '../../../routes/route_name.dart';
+
 class PartnerController extends GetxController{
 
   //TextEditing controller
@@ -33,6 +35,8 @@ class PartnerController extends GetxController{
   RxBool isDelete = false.obs;
   RxBool isEditing = false.obs;
   RxBool isUpdateProfile = false.obs;
+
+  RxString id = "".obs;
 
   @override
   onInit(){
@@ -88,8 +92,9 @@ class PartnerController extends GetxController{
   //get Single partner info
   singlePartner(id)async{
     isGetting.value = true;
-    final res = await ApiServices.getApi(AppConfig.GET_SINGLE_PARTNER+id);
+    final res = await ApiServices.getApi(AppConfig.GET_SINGLE_PARTNER+id.toString());
     if(res.statusCode == 200){
+      update();
       print("Successful get single employee");
       singlePartnerModel.value = getSinglePartnerModelFromJson(res.body);
     }else{
@@ -129,6 +134,57 @@ class PartnerController extends GetxController{
     }
 
     isUpdateProfile.value = false;
+  }
+
+
+  //delete partner
+  deletePartner(id)async{
+    isDelete.value = true;
+    final res = await ApiServices.deleteApi(AppConfig.DELETE_PARTNER+id);
+    if(res.statusCode == 200){
+      getPartner();
+      Get.offAllNamed(AppRoute.partnerManagementScreen);
+      Get.snackbar("Successful", "Delete Successful",backgroundColor: Colors.green);
+
+    }else{
+      Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}");
+    }
+    isDelete.value = false;
+    }
+
+    //Edit Partner
+  editPartner(data)async{
+    isEditing.value = true;
+    final body={
+      "name":name.value.text,
+      "email":email.value.text,
+      "password":password.value.text,
+      "phone":phone.value.text,
+      "percentage":percent.value.text,
+    };
+    final res = await ApiServices.putApi(AppConfig.EDIT_PARTNER+id.value, body);
+    if(res.statusCode ==201){
+      id.value = "";
+      clearAllData();
+      singlePartner(id.toString());
+      Get.offNamed(AppRoute.singlePartnerScreen);
+      Get.snackbar("Successful", "Partner Edit successful",backgroundColor: Colors.green);
+    }else{
+      Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.red);
+    }
+    isEditing.value = false;
+
+  }
+
+  editValueSave(data){
+    id.value = data.id.toString();
+    isEditing.value = true;
+    name.value.text = data.name ?? "";
+    email.value.text = data.email ?? "";
+    phone.value.text = data.phone ??"";
+    percent.value.text = data.percentage.toString() ??"";
+
+    print("------name:${name.value.text}");
   }
 
 

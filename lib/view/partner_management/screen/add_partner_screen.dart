@@ -15,7 +15,7 @@ class AddPartnerScreen extends GetView<PartnerController> {
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         leading: IconButton(onPressed: ()=>Get.back(), icon:const Icon(Icons.arrow_back_ios,color: Colors.black,)),
-        title:const  Text("Add Partner",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: AppColors.textBlack),),
+        title:  Text(controller.isEditing.value?"Edit Partner":"Add Partner",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: AppColors.textBlack),),
         backgroundColor: AppColors.textWhite,
         surfaceTintColor: Colors.transparent,
       ),
@@ -63,15 +63,15 @@ class AddPartnerScreen extends GetView<PartnerController> {
               const SizedBox(height: 20,),
 
               //partner password
-              const Text("Password",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500,color: AppColors.textBlack),),
-              const SizedBox(height: 10,),
-              AppInput(
+              controller.isEditing.value?Center(): const Text("Password",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500,color: AppColors.textBlack),),
+              controller.isEditing.value?Center():const SizedBox(height: 10,),
+             controller.isEditing.value?Center(): AppInput(
                 hint: "Password",
                 controller: controller.password.value,
                 textType: TextInputType.visiblePassword,
                 fillColor: AppColors.textWhite,
               ),
-              const SizedBox(height: 20,),
+              controller.isEditing.value?Center(): const SizedBox(height: 20,),
 
               //partner partner percent
               const Text("Partner Percent",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500,color: AppColors.textBlack),),
@@ -86,10 +86,16 @@ class AddPartnerScreen extends GetView<PartnerController> {
 
               Center(child: AppButton(
                 isLoading: controller.isAdding.value,
-                  name: "Save",
+                  name:controller.isEditing.value?"Update": "Save",
+                  bgColor: controller.isEditing.value?Colors.orange:AppColors.mainColor,
                   onClick: (){
                   if(_key.currentState!.validate()){
-                    controller.addPartner();
+                    if(controller.isEditing.value){
+                      controller.editPartner(controller.id.value);
+                    }else{
+                      controller.addPartner();
+                    }
+
                   }
                   }))
 
