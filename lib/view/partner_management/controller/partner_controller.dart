@@ -144,10 +144,10 @@ class PartnerController extends GetxController{
     if(res.statusCode == 200){
       getPartner();
       Get.offAllNamed(AppRoute.partnerManagementScreen);
-      Get.snackbar("Successful", "Delete Successful",backgroundColor: Colors.green);
+      Get.snackbar("Successful", "Delete Successful",backgroundColor: Colors.green,colorText: Colors.white);
 
     }else{
-      Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}");
+      Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.red);
     }
     isDelete.value = false;
     }
@@ -166,9 +166,8 @@ class PartnerController extends GetxController{
     if(res.statusCode ==201){
       id.value = "";
       clearAllData();
-      singlePartner(id.toString());
-      Get.offNamed(AppRoute.singlePartnerScreen);
-      Get.snackbar("Successful", "Partner Edit successful",backgroundColor: Colors.green);
+      Get.back();
+      Get.snackbar("Successful", "Partner Edit successful",backgroundColor: Colors.green,colorText: Colors.white);
     }else{
       Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.red);
     }

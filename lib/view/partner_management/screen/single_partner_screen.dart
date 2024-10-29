@@ -153,7 +153,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
-                          //left side
+                          ///----left side---
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -172,7 +172,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                             ],
                           ),
 
-                          //right side
+                          ///----right side---
                           SizedBox(
                             width: 100,
                             child: Column(

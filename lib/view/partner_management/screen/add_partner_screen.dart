@@ -92,6 +92,8 @@ class AddPartnerScreen extends GetView<PartnerController> {
                   if(_key.currentState!.validate()){
                     if(controller.isEditing.value){
                       controller.editPartner(controller.id.value);
+                      controller.singlePartner(controller.id.toString());
+
                     }else{
                       controller.addPartner();
                     }

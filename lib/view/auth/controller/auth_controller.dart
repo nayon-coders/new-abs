@@ -121,6 +121,15 @@ class AuthController extends GetxController{
 
 
 //logout
+  logout()async{
+    SharedPreferences _pref = await SharedPreferences.getInstance();
+    _pref.remove("token");
+    _pref.remove("role");
+    _pref.remove("id");
+    Get.offAllNamed(AppRoute.login);
+
+  }
+
 
 
 
