@@ -2,11 +2,14 @@ import 'package:abs_office_management/controller/image_picker_controller.dart';
 import 'package:abs_office_management/utility/app_const.dart';
 import 'package:abs_office_management/view/partner_management/controller/partner_controller.dart';
 import 'package:abs_office_management/view/today_sales_management/widget/edit_button.dart';
+import 'package:abs_office_management/widgets/app_button.dart';
+import 'package:abs_office_management/widgets/app_shimmer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../app_config.dart';
 import '../../../utility/app_color.dart';
 
 class SinglePartnerScreen extends GetView<PartnerController> {
@@ -19,7 +22,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
   Widget build(BuildContext context) {
     final id = Get.arguments.toString();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      controller.singlePartner(id);
+     controller.singlePartner(id);
     });
 
     return Scaffold(
@@ -156,79 +159,100 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                               const SizedBox(height: 5,),
                               Text("Profit percentage: ${partnerInfo.percentage}%",style:const TextStyle(fontSize: 12,fontWeight: FontWeight.w500,color: AppColors.textWhite),),
 
-
-
-
                             ],
                           ),
 
                           //right side
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              //Text("Business ID: ",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 12,color: AppColors.textWhite),),
-                              const SizedBox(height: 5,),
-                              Text("ID: ${partnerInfo.id} ",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 12,color: AppColors.textWhite),),
-                              const SizedBox(height: 5,),
-                              Stack(
-                                alignment: Alignment.center,
-                                clipBehavior: Clip.none,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Center(
-                                      child: Obx(() {
-                                        if(imagePickerController.selectedImage.value != null){
-                                          return Image.file(imagePickerController.selectedImage.value!,
-                                            height: 100,
-                                            width: 100,
-                                            fit: BoxFit.cover,
-                                          );
-                                        }else{
-                                          return CachedNetworkImage(
-                                            imageUrl: "assets/images/person.png",
-                                            height: 110,
-                                            width: 110,
-                                            fit: BoxFit.cover,
-                                            placeholder: (context, url) =>
-                                                CircularProgressIndicator(),
-                                            errorWidget: (context, url, error) =>const Icon(
-                                              Icons.person,
-                                              color: Colors.white ,
-                                              size: 120,
-                                            ),
-                                          );
-                                        }
+                          SizedBox(
+                            width: 100,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                //Text("Business ID: ",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 12,color: AppColors.textWhite),),
+                                const SizedBox(height: 5,),
+                                Text("ID: ${partnerInfo.id} ",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 12,color: AppColors.textWhite),),
+                                const SizedBox(height: 5,),
+                                Stack(
+                                  alignment: Alignment.center,
+                                  clipBehavior: Clip.none,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Center(
+                                        child: Obx(() {
+                                          if(imagePickerController.selectedImage.value != null){
+                                            return Image.file(imagePickerController.selectedImage.value!,
+                                              height: 100,
+                                              width: 100,
+                                              fit: BoxFit.cover,
+                                            );
+                                          }else if(partnerInfo.profilePic!.isNotEmpty){
+                                            return CachedNetworkImage(
+                                              imageUrl: "${AppConfig.DOMAIN}${partnerInfo.profilePic}",
+                                              height: 110,
+                                              width: 110,
+                                              fit: BoxFit.cover,
+                                              placeholder: (context, url) =>
+                                                  AppShimmerPro.circularShimmer(width: 100, height: 100, borderRadius: 10),
+                                              errorWidget: (context, url, error) =>const Icon(
+                                                Icons.person,
+                                                color: Colors.white ,
+                                                size: 120,
+                                              ),
+                                            );
+                                          }else{
+                                            return CachedNetworkImage(
+                                              imageUrl: "assets/images/person.png",
+                                              height: 110,
+                                              width: 110,
+                                              fit: BoxFit.cover,
+                                              placeholder: (context, url) =>
+                                                  CircularProgressIndicator(),
+                                              errorWidget: (context, url, error) =>const Icon(
+                                                Icons.person,
+                                                color: Colors.white ,
+                                                size: 120,
+                                              ),
+                                            );
+                                          }
 
-                                        }
+                                          }
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Positioned(
-                                    bottom: 3,
-                                    right: 1,
-                                    child: EditButton(
-                                      //  isLoading: true,
-                                        icon: Icons.camera_alt,
-                                        onClick: ()=> chooseImageSource(
-                                            context: context,
-                                            onCamera: (){
-                                              imagePickerController.pickImage(ImageSource.camera);
-                                              Get.back();
-                                            },
-                                            onGallery: (){
-                                              imagePickerController.pickImage(ImageSource.gallery);
-                                              Get.back();
-                                            },
-                                          )
-                                        ),
-                                  )
-                                ],
-                              ),
+                                    Positioned(
+                                      bottom: 3,
+                                      right: 1,
+                                      child: EditButton(
+                                        //  isLoading: true,
+                                          icon: Icons.camera_alt,
+                                          onClick: (){
+                                            imagePickerController.selectedImage.value = null;
+                                            chooseImageSource(
+                                              context: context,
+                                              onCamera: (){
+
+                                                imagePickerController.pickImage(ImageSource.camera);
+                                                Get.back();
+                                              },
+                                              onGallery: (){
+                                                // imagePickerController.selectedImage.value = null;
+                                                imagePickerController.pickImage(ImageSource.gallery);
+                                                Get.back();
+                                              },
+                                            );
+                                          }
+                                          ),
+                                    )
+                                  ],
+                                ),
 
 
-                            ],
+
+
+                              ],
+                            ),
                           )
 
 
@@ -236,14 +260,33 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                       ),
                     ),
 
+                    SizedBox(height: 20,),
+                    Obx(() {
+                      return imagePickerController.selectedImage.value != null ? Center(
+                        child: AppButton(
+                          isLoading: controller.isUpdateProfile.value,
+                            name: "Upload",
+                            onClick: ()async{
+                             await controller.updatePartnerProfile(partnerInfo.id.toString(), imagePickerController.selectedImage.value!).then((e){
+                                imagePickerController.selectedImage.value = null;
+                             });
+
+                            }
+                        ),
+                      ) : Center();
+                    }
+                    )
+
                   ],
                 );
               }
 
               }
             ),
+
           ],
         ),
+
       ),
     );
   }
