@@ -1,6 +1,8 @@
+import 'package:abs_office_management/app_config.dart';
 import 'package:abs_office_management/view/partner_management/controller/partner_controller.dart';
 import 'package:abs_office_management/view/today_sales_management/widget/edit_button.dart';
 import 'package:abs_office_management/widgets/app_shimmer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../routes/route_name.dart';
@@ -53,7 +55,31 @@ class PartnerManagement extends GetView<PartnerController> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
                       ),
-                      child:Image.asset(Assets.profilePic, height: 45, width: 45, fit: BoxFit.cover),
+                      child: Builder(
+                        builder: (context){
+                          if(data.profilePic!.isNotEmpty){
+                            return  ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child: CachedNetworkImage(
+                                
+                                imageUrl: "${AppConfig.DOMAIN}${data.profilePic}",
+                                height: 45,
+                                width: 45,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) =>
+                                    AppShimmerPro.circularShimmer(width: 45, height: 45, borderRadius: 10),
+                                errorWidget: (context, url, error) =>const Icon(
+                                  Icons.person,
+                                  color: Colors.white ,
+                                  size: 45,
+                                ),
+                              ),
+                            );
+                          }else{
+                            return Image.asset(Assets.profilePic, height: 45, width: 45, fit: BoxFit.cover);
+                          }
+                        },
+                      )
                     ),
 
 
