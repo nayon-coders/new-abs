@@ -108,5 +108,9 @@ class AppConfig{
   static const String PARTNER_PROFILE_UPDATE = "$BASE_URL/partnership/update-image/"; //DELETE ID
 
 
+  static const String LOSS_PROFIT = "$BASE_URL/profit"; //DELETE ID
+  static const String ONLINE_SALES_REPORT = "$BASE_URL/online-platform/group"; //DELETE ID
+
+
 
 }

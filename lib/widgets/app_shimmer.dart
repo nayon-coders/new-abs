@@ -5,13 +5,13 @@ class AppShimmerPro {
 
 
   //text shommer pro
-  static ShimmerPro TextShimmer({required double width, required int maxLine}){
+  static ShimmerPro TextShimmer({required double width, required int maxLine,  Alignment alignment =  Alignment.centerLeft}){
     return   ShimmerPro.text(
       light: ShimmerProLight.darker,
       width: width,
       maxLine: maxLine,
       textSize: 16,
-      alignment: Alignment.centerLeft,
+      alignment: alignment,
       scaffoldBackgroundColor: Colors.white,
     );
   }
