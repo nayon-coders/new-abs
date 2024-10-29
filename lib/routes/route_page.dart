@@ -65,6 +65,7 @@ class RoutePage{
     GetPage(
       name: AppRoute.dashBoard,
       page: ()=>  DashBoardScreen(),
+      bindings: [ LossProfitBinding()]
     ),
 
     GetPage(
@@ -118,7 +119,7 @@ class RoutePage{
     GetPage(
         name: AppRoute.lossProfit,
         page: ()=> LossProfit(),
-        binding: LossProfitBinding()
+        bindings:[LossProfitBinding(), TaxBinding()]
     ),
     GetPage(
         name: AppRoute.employeeManageScree,

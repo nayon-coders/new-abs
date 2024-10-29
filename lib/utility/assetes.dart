@@ -8,6 +8,7 @@ class Assets{
   static const String expance = "assets/images/expance.png";
   static const String loss = "assets/images/loss.png";
   static const String money = "assets/images/money.png";
+  static const String onlineSales = "assets/images/online-sales.png";
   static const String partner = "assets/images/parner.png";
   static const String salery = "assets/images/salery.png";
   static const String sells = "assets/images/sells.png";
@@ -19,5 +20,9 @@ class Assets{
   static const String whatsApp = "assets/images/whatsup.png";
   static const String twiter = "assets/images/twiter.png";
   static const String instagram = "assets/images/instagram.png";
+  static const String tax = "assets/images/tax.png";
+  static const String cost = "assets/images/othercost.png";
+  static const String shotOver = "assets/images/shotover.png";
+  static const String foodCost = "assets/images/foodcost.png";
 
 }

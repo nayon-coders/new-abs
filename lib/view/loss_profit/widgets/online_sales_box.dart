@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../utility/app_color.dart';
 
-class DashBox extends StatelessWidget {
-  const DashBox({super.key,
+class OnlineSalesBox extends StatelessWidget {
+  const OnlineSalesBox({super.key,
     required this.costName,
     required this.costAmount,
     required this.image,
@@ -34,16 +34,19 @@ class DashBox extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              height: 50,
-              width: 50,
+              height: 40,
+              width: 40,
               padding:const EdgeInsets.all(5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
                 color: bgColor,
               ),
-              child: Center(child: Image.asset(image,height: 30,width: 30,fit: BoxFit.cover,)),
+              child: Center(child: Text("${image}",
+                style:const TextStyle(fontSize: 20,fontWeight: FontWeight.w500,color: Colors.black
+                ),
+              )),
             ),
-            const SizedBox(width: 8,),
+            const SizedBox(width: 15,),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -2,6 +2,7 @@ import 'package:abs_office_management/utility/app_const.dart';
 import 'package:abs_office_management/view/today_sales_management/controller/cost_controller.dart';
 import 'package:abs_office_management/view/today_sales_management/widget/table/table_body.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/date_time_controller.dart';
@@ -99,7 +100,7 @@ class TodayCostView extends GetView<CostController> {
 
                       ],
                     ),
-                  );
+                  ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut);
 
                 });
           }

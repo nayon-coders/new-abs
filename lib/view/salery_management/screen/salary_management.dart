@@ -2,6 +2,7 @@ import 'package:abs_office_management/utility/app_const.dart';
 import 'package:abs_office_management/view/salery_management/controller/salary_management_controller.dart';
 import 'package:abs_office_management/view/salery_management/screen/salray_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../controller/date_time_controller.dart';
@@ -88,9 +89,14 @@ class SalaryManagement extends GetView<SalaryManagementController> {
                 return ListView.builder(
                     itemCount: controller.salaryList.length ?? 0,
                     itemBuilder: (context,index){
-                      final data = controller.salaryList![index];
+                      final data = controller.salaryList![index]; 
 
-                      return Padding(
+                      return Container(
+                        margin: const EdgeInsets.only(bottom: 10),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5)
+                        ),
                         padding: const EdgeInsets.all(8.0),
                         child: ListTile(
 
@@ -152,7 +158,7 @@ class SalaryManagement extends GetView<SalaryManagementController> {
                               ),
                             )
                         ),
-                      );
+                      ).animate().fade(duration: 500.ms, curve: Curves.easeInOut);;
 
                     });
               }

@@ -4,6 +4,7 @@ import 'package:abs_office_management/view/today_sales_management/widget/edit_bu
 import 'package:abs_office_management/widgets/app_shimmer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
@@ -41,8 +42,12 @@ class PartnerManagement extends GetView<PartnerController> {
               itemCount: controller.getAllPartnerModel.value.data!.length,
               itemBuilder: (context,index){
                 final data = controller.getAllPartnerModel.value.data![index];
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  margin: const EdgeInsets.only(bottom: 10),
                   child: ListTile(
                     contentPadding:const EdgeInsets.only(left: 10,right: 10),
                     shape: RoundedRectangleBorder(
@@ -95,7 +100,7 @@ class PartnerManagement extends GetView<PartnerController> {
                         child: const Text("View Details",style: TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: Color(0xFF1814F3)),)),
 
                   ),
-                );
+                ).animate().fade(duration: 500.ms, curve: Curves.easeInOut);;
 
               });
         }
