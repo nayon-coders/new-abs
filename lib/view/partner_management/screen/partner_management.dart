@@ -1,5 +1,6 @@
 import 'package:abs_office_management/view/partner_management/controller/partner_controller.dart';
 import 'package:abs_office_management/view/today_sales_management/widget/edit_button.dart';
+import 'package:abs_office_management/widgets/app_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../routes/route_name.dart';
@@ -29,7 +30,7 @@ class PartnerManagement extends GetView<PartnerController> {
       ),
       body:Obx((){
         if(controller.isGetting.value){
-          return const Center(child: CircularProgressIndicator.adaptive(),);
+          return _loadingMethod();
         }else if(controller.getAllPartnerModel.value.data == null || controller.getAllPartnerModel.value.data!.isEmpty){
           return const Center(child: Text("No partner found"),);
         }else{
@@ -61,7 +62,10 @@ class PartnerManagement extends GetView<PartnerController> {
                     subtitle: Text("${data.percentage }%",style:const TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textBlack),),
 
                     trailing: InkWell(
-                        onTap: (){},
+                        onTap: ()=>Get.toNamed(
+                            AppRoute.singlePartnerScreen,
+                          arguments: data.id,
+                        ),
                         child: const Text("View Details",style: TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: Color(0xFF1814F3)),)),
 
                   ),
@@ -73,5 +77,26 @@ class PartnerManagement extends GetView<PartnerController> {
         }
       )
     );
+  }
+  Widget _loadingMethod(){
+    return ListView.builder(
+        itemBuilder: (context,index){
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              AppShimmerPro.circularShimmer(width: 60, height: 60, borderRadius: 100),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AppShimmerPro.circularShimmer(width: 120, height: 10, borderRadius: 10),
+                  AppShimmerPro.circularShimmer(width: 200, height: 15, borderRadius: 10),
+                ],
+              ),
+
+            ],
+          );
+        });
   }
 }

@@ -14,6 +14,7 @@ import 'package:abs_office_management/view/employee_management/screen/single_emp
 import 'package:abs_office_management/view/loss_profit/loss_profit.dart';
 import 'package:abs_office_management/view/partner_management/screen/add_partner_screen.dart';
 import 'package:abs_office_management/view/partner_management/screen/partner_management.dart';
+import 'package:abs_office_management/view/partner_management/screen/single_partner_screen.dart';
 import 'package:abs_office_management/view/salery_management/screen/salary_management.dart';
 import 'package:abs_office_management/view/salery_management/screen/add_paid_salary.dart';
 import 'package:abs_office_management/view/settings/screen/add_employee_position_view.dart';
@@ -155,6 +156,11 @@ class RoutePage{
     GetPage(
         name: AppRoute.addPartnerScreen,
         page: ()=>AddPartnerScreen(),
+      binding: PartnerManagementBinding(),
+    ),
+    GetPage(
+      name: AppRoute.singlePartnerScreen,
+      page: ()=>SinglePartnerScreen(),
       binding: PartnerManagementBinding(),
     ),
 

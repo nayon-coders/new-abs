@@ -1,28 +1,28 @@
 // To parse this JSON data, do
 //
-//     final getSinglePartner = getSinglePartnerFromJson(jsonString);
+//     final getSinglePartnerModel = getSinglePartnerModelFromJson(jsonString);
 
 import 'dart:convert';
 
-GetSinglePartner getSinglePartnerFromJson(String str) => GetSinglePartner.fromJson(json.decode(str));
+GetSinglePartnerModel getSinglePartnerModelFromJson(String str) => GetSinglePartnerModel.fromJson(json.decode(str));
 
-String getSinglePartnerToJson(GetSinglePartner data) => json.encode(data.toJson());
+String getSinglePartnerModelToJson(GetSinglePartnerModel data) => json.encode(data.toJson());
 
-class GetSinglePartner {
+class GetSinglePartnerModel {
   final bool? success;
   final PartnerInfo? partnerInfo;
-  final Map<String, int>? wholeBusiness;
+  final Map<String, double>? wholeBusiness;
 
-  GetSinglePartner({
+  GetSinglePartnerModel({
     this.success,
     this.partnerInfo,
     this.wholeBusiness,
   });
 
-  factory GetSinglePartner.fromJson(Map<String, dynamic> json) => GetSinglePartner(
+  factory GetSinglePartnerModel.fromJson(Map<String, dynamic> json) => GetSinglePartnerModel(
     success: json["success"],
     partnerInfo: json["partnerInfo"] == null ? null : PartnerInfo.fromJson(json["partnerInfo"]),
-    wholeBusiness: Map.from(json["wholeBusiness"]!).map((k, v) => MapEntry<String, int>(k, v)),
+    wholeBusiness: Map.from(json["wholeBusiness"]!).map((k, v) => MapEntry<String, double>(k, v?.toDouble())),
   );
 
   Map<String, dynamic> toJson() => {
@@ -37,12 +37,12 @@ class PartnerInfo {
   final String? name;
   final String? email;
   final String? phone;
-  final int? percentage;
+  final dynamic? percentage;
   final String? profilePic;
   final int? busnId;
   final int? partnerProfit;
-  final int? partnerLoss;
-  final int? partnerNetIncome;
+  final double? partnerLoss;
+  final double? partnerNetIncome;
 
   PartnerInfo({
     this.id,
@@ -62,12 +62,12 @@ class PartnerInfo {
     name: json["name"],
     email: json["email"],
     phone: json["phone"],
-    percentage: json["percentage"],
+    percentage: json["percentage"]?.toDouble(),
     profilePic: json["profilePic"],
     busnId: json["busn_id"],
     partnerProfit: json["partnerProfit"],
-    partnerLoss: json["partnerLoss"],
-    partnerNetIncome: json["partnerNetIncome"],
+    partnerLoss: json["partnerLoss"]?.toDouble(),
+    partnerNetIncome: json["partnerNetIncome"]?.toDouble(),
   );
 
   Map<String, dynamic> toJson() => {

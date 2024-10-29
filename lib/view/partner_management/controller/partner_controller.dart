@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:abs_office_management/data/model/partner_model/get_single_partner_model.dart';
 import 'package:flutter/material.dart';
 import 'package:abs_office_management/app_config.dart';
 import 'package:abs_office_management/data/model/partner_model/get_all_partner_model.dart';
@@ -17,6 +18,7 @@ class PartnerController extends GetxController{
 
   //model
   Rx<GetAllPartnerModel> getAllPartnerModel = GetAllPartnerModel().obs;
+  Rx<GetSinglePartnerModel> singlePartnerModel = GetSinglePartnerModel().obs;
 
 
 
@@ -32,6 +34,7 @@ class PartnerController extends GetxController{
   onInit(){
     super.onInit();
     getPartner();
+
   }
 
 
@@ -76,6 +79,20 @@ class PartnerController extends GetxController{
     }
     isGetting.value = false;
 
+  }
+
+  //get Single partner info
+  singlePartner(id)async{
+    isGetting.value = true;
+    final res = await ApiServices.getApi(AppConfig.GET_SINGLE_PARTNER+id);
+    if(res.statusCode == 200){
+      print("Successful get single employee");
+      singlePartnerModel.value = getSinglePartnerModelFromJson(res.body);
+    }else{
+      print("Failed ${jsonDecode(res.body)["message"]}");
+      print(res.statusCode);
+    }
+    isGetting.value = false;
   }
 
 

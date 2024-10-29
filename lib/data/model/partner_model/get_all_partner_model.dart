@@ -41,7 +41,7 @@ class Datum {
   final String? name;
   final String? email;
   final String? phone;
-  final double? percentage;
+  final dynamic? percentage;
   final String? profilePic;
   final int? busnId;
 
