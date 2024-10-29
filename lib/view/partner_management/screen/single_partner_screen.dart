@@ -1,18 +1,26 @@
+import 'package:abs_office_management/controller/image_picker_controller.dart';
+import 'package:abs_office_management/utility/app_const.dart';
 import 'package:abs_office_management/view/partner_management/controller/partner_controller.dart';
 import 'package:abs_office_management/view/today_sales_management/widget/edit_button.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../utility/app_color.dart';
 
 class SinglePartnerScreen extends GetView<PartnerController> {
-  const SinglePartnerScreen({super.key});
+   SinglePartnerScreen({super.key});
+
+  //image picker controller init
+  final ImagePickerController imagePickerController = Get.put(ImagePickerController());
 
   @override
   Widget build(BuildContext context) {
     final id = Get.arguments.toString();
-    Future.delayed(Duration.zero,()=>controller.singlePartner(id));
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      controller.singlePartner(id);
+    });
 
     return Scaffold(
       backgroundColor: AppColors.bgColor,
@@ -53,98 +61,182 @@ class SinglePartnerScreen extends GetView<PartnerController> {
 
               }else{
                 final partnerInfo = controller.singlePartnerModel.value.partnerInfo!;
-                return Container(
-                  padding:const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: AppColors.mainColor,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-
-                      //left side
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: Get.width,
+                      height:200,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            topLeft: Radius.circular(20)
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Loss & Profit",
+                            style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.textBlack),
+                          ),
+                          SizedBox(height: 20,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  // color: Colors.red.withOpacity(0.2),
+                                    border: Border(
+                                      right: BorderSide(
+                                        color: Colors.green,
+                                        width: 1,
+                                      ),
+                                    )
+                                ),
+                                child: Column(
+                                  children: [
+                                    Text("\$${controller.singlePartnerModel.value.wholeBusiness!.totalProfit!.toStringAsFixed(2)}",
+                                      style:const TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: AppColors.mainColor),
+                                    ),
+                                    Text("Total Profit",
+                                      style:const TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: AppColors.mainColor),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(10),
+                                child: Column(
+                                  children: [
+                                    Text("\$${controller.singlePartnerModel.value.wholeBusiness!.totalLoss!.toStringAsFixed(2)}",
+                                      style:const TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: AppColors.red),
+                                    ),
+                                    Text("Total Loss",
+                                      style:const TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: AppColors.red),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding:const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: AppColors.mainColor,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20)
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Name: ${partnerInfo.name}",style:const  TextStyle(fontWeight: FontWeight.w600,fontSize: 17,color: AppColors.textWhite),),
-                          const  SizedBox(height: 10,),
-                          Text("Phone: ${partnerInfo.phone} ",style:const TextStyle(fontWeight: FontWeight.w500,fontSize: 12,color: AppColors.textWhite),),
-                          const SizedBox(height: 2,),
-                          Text("Email: ${partnerInfo.email}",style:const TextStyle(fontWeight: FontWeight.w500,fontSize: 12,color: AppColors.textWhite),),
-                          const SizedBox(height: 30,),
 
-                          const  Text("Type: Partner ",style: TextStyle(fontSize: 12,fontWeight: FontWeight.w500,color: AppColors.textWhite),),
-                          const SizedBox(height: 5,),
-                          Text("Profit percentage: ${partnerInfo.percentage}%",style:const TextStyle(fontSize: 12,fontWeight: FontWeight.w500,color: AppColors.textWhite),),
+                          //left side
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Name: ${partnerInfo.name}",style:const  TextStyle(fontWeight: FontWeight.w600,fontSize: 17,color: AppColors.textWhite),),
+                              const  SizedBox(height: 10,),
+                              Text("Phone: ${partnerInfo.phone} ",style:const TextStyle(fontWeight: FontWeight.w500,fontSize: 12,color: AppColors.textWhite),),
+                              const SizedBox(height: 2,),
+                              Text("Email: ${partnerInfo.email}",style:const TextStyle(fontWeight: FontWeight.w500,fontSize: 12,color: AppColors.textWhite),),
+                              const SizedBox(height: 30,),
 
-                          const SizedBox(height: 5,),
-                          Container(
-                            padding: const EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
-                            decoration:const BoxDecoration(
-                                color: Colors.white38
-                            ),
-                            child:Text("Profit Amount: ${partnerInfo.partnerProfit} ",
-                              style:const TextStyle(fontSize: 16,fontWeight: FontWeight.w500,color: AppColors.textWhite),
-                            ),
+                              const  Text("Type: Partner ",style: TextStyle(fontSize: 12,fontWeight: FontWeight.w500,color: AppColors.textWhite),),
+                              const SizedBox(height: 5,),
+                              Text("Profit percentage: ${partnerInfo.percentage}%",style:const TextStyle(fontSize: 12,fontWeight: FontWeight.w500,color: AppColors.textWhite),),
+
+
+
+
+                            ],
                           ),
 
+                          //right side
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              //Text("Business ID: ",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 12,color: AppColors.textWhite),),
+                              const SizedBox(height: 5,),
+                              Text("ID: ${partnerInfo.id} ",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 12,color: AppColors.textWhite),),
+                              const SizedBox(height: 5,),
+                              Stack(
+                                alignment: Alignment.center,
+                                clipBehavior: Clip.none,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Center(
+                                      child: Obx(() {
+                                        if(imagePickerController.selectedImage.value != null){
+                                          return Image.file(imagePickerController.selectedImage.value!,
+                                            height: 100,
+                                            width: 100,
+                                            fit: BoxFit.cover,
+                                          );
+                                        }else{
+                                          return CachedNetworkImage(
+                                            imageUrl: "assets/images/person.png",
+                                            height: 110,
+                                            width: 110,
+                                            fit: BoxFit.cover,
+                                            placeholder: (context, url) =>
+                                                CircularProgressIndicator(),
+                                            errorWidget: (context, url, error) =>const Icon(
+                                              Icons.person,
+                                              color: Colors.white ,
+                                              size: 120,
+                                            ),
+                                          );
+                                        }
+
+                                        }
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    bottom: 3,
+                                    right: 1,
+                                    child: EditButton(
+                                      //  isLoading: true,
+                                        icon: Icons.camera_alt,
+                                        onClick: ()=> chooseImageSource(
+                                            context: context,
+                                            onCamera: (){
+                                              imagePickerController.pickImage(ImageSource.camera);
+                                              Get.back();
+                                            },
+                                            onGallery: (){
+                                              imagePickerController.pickImage(ImageSource.gallery);
+                                              Get.back();
+                                            },
+                                          )
+                                        ),
+                                  )
+                                ],
+                              ),
+
+
+                            ],
+                          )
 
 
                         ],
                       ),
+                    ),
 
-                      //right side
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          //Text("Business ID: ",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 12,color: AppColors.textWhite),),
-                          const SizedBox(height: 5,),
-                          Text("ID: ${partnerInfo.id} ",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 12,color: AppColors.textWhite),),
-                          const SizedBox(height: 5,),
-                          Stack(
-                            alignment: Alignment.center,
-                            clipBehavior: Clip.none,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: Center(
-                                  child: CachedNetworkImage(
-                                    imageUrl:"assets/images/person.png",
-                                    height: 110,
-                                    width: 110,
-                                    fit: BoxFit.cover,
-                                    placeholder: (context, url) =>
-                                        CircularProgressIndicator(),
-                                    errorWidget: (context, url, error) =>const Icon(
-                                      Icons.person,
-                                      color: Colors.white ,
-                                      size: 120,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 3,
-                                right: 1,
-                                child: EditButton(
-
-                                  icon: Icons.camera_alt,
-                                    onClick: (){}),
-                              )
-                            ],
-                          ),
-
-
-                        ],
-                      )
-
-
-                    ],
-                  ),
+                  ],
                 );
               }
 
@@ -155,4 +247,6 @@ class SinglePartnerScreen extends GetView<PartnerController> {
       ),
     );
   }
+
+
 }

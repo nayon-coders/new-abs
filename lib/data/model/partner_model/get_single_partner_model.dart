@@ -11,7 +11,7 @@ String getSinglePartnerModelToJson(GetSinglePartnerModel data) => json.encode(da
 class GetSinglePartnerModel {
   final bool? success;
   final PartnerInfo? partnerInfo;
-  final Map<String, double>? wholeBusiness;
+  final WholeBusiness? wholeBusiness;
 
   GetSinglePartnerModel({
     this.success,
@@ -22,13 +22,13 @@ class GetSinglePartnerModel {
   factory GetSinglePartnerModel.fromJson(Map<String, dynamic> json) => GetSinglePartnerModel(
     success: json["success"],
     partnerInfo: json["partnerInfo"] == null ? null : PartnerInfo.fromJson(json["partnerInfo"]),
-    wholeBusiness: Map.from(json["wholeBusiness"]!).map((k, v) => MapEntry<String, double>(k, v?.toDouble())),
+    wholeBusiness: json["wholeBusiness"] == null ? null : WholeBusiness.fromJson(json["wholeBusiness"]),
   );
 
   Map<String, dynamic> toJson() => {
     "success": success,
     "partnerInfo": partnerInfo?.toJson(),
-    "wholeBusiness": Map.from(wholeBusiness!).map((k, v) => MapEntry<String, dynamic>(k, v)),
+    "wholeBusiness": wholeBusiness?.toJson(),
   };
 }
 
@@ -62,7 +62,7 @@ class PartnerInfo {
     name: json["name"],
     email: json["email"],
     phone: json["phone"],
-    percentage: json["percentage"]?.toDouble(),
+    percentage: json["percentage"],
     profilePic: json["profilePic"],
     busnId: json["busn_id"],
     partnerProfit: json["partnerProfit"],
@@ -81,5 +81,73 @@ class PartnerInfo {
     "partnerProfit": partnerProfit,
     "partnerLoss": partnerLoss,
     "partnerNetIncome": partnerNetIncome,
+  };
+}
+
+class WholeBusiness {
+  final dynamic? totalCreditSales;
+  final dynamic totalAdditionalIncome;
+  final dynamic totalSales;
+  final dynamic toatlOnlineSales;
+  final dynamic? totalTax;
+  final dynamic? totalSalary;
+  final dynamic? foodCost;
+  final dynamic? othersCost;
+  final dynamic? shortOver;
+  final dynamic? totalDabit;
+  final dynamic? totalCradit;
+  final dynamic? totalProfit;
+  final dynamic? totalLoss;
+  final dynamic? netIncome;
+
+  WholeBusiness({
+    this.totalCreditSales,
+    this.totalAdditionalIncome,
+    this.totalSales,
+    this.toatlOnlineSales,
+    this.totalTax,
+    this.totalSalary,
+    this.foodCost,
+    this.othersCost,
+    this.shortOver,
+    this.totalDabit,
+    this.totalCradit,
+    this.totalProfit,
+    this.totalLoss,
+    this.netIncome,
+  });
+
+  factory WholeBusiness.fromJson(Map<String, dynamic> json) => WholeBusiness(
+    totalCreditSales: json["totalCreditSales"],
+    totalAdditionalIncome: json["totalAdditionalIncome"],
+    totalSales: json["totalSales"],
+    toatlOnlineSales: json["toatlOnlineSales"],
+    totalTax: json["totalTax"]?.toDouble(),
+    totalSalary: json["totalSalary"],
+    foodCost: json["foodCost"],
+    othersCost: json["othersCost"]?.toDouble(),
+    shortOver: json["shortOver"],
+    totalDabit: json["totalDabit"]?.toDouble(),
+    totalCradit: json["totalCradit"],
+    totalProfit: json["totalProfit"],
+    totalLoss: json["totalLoss"]?.toDouble(),
+    netIncome: json["netIncome"]?.toDouble(),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "totalCreditSales": totalCreditSales,
+    "totalAdditionalIncome": totalAdditionalIncome,
+    "totalSales": totalSales,
+    "toatlOnlineSales": toatlOnlineSales,
+    "totalTax": totalTax,
+    "totalSalary": totalSalary,
+    "foodCost": foodCost,
+    "othersCost": othersCost,
+    "shortOver": shortOver,
+    "totalDabit": totalDabit,
+    "totalCradit": totalCradit,
+    "totalProfit": totalProfit,
+    "totalLoss": totalLoss,
+    "netIncome": netIncome,
   };
 }
