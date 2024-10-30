@@ -17,9 +17,9 @@ class ForgotScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding:const EdgeInsets.all(20),
           child: Form(
             key: _key,
@@ -57,14 +57,14 @@ class ForgotScreen extends StatelessWidget {
                         onClick: ()async{
                         if(_key.currentState!.validate()){
                           await controller.sendOtp(_email.text);
-
+        
                         }
-
+        
                         }
                     );
                   }
                 ),
-
+        
               ],
             ),
           ),

@@ -23,9 +23,9 @@ class CreatePassword extends StatelessWidget {
     final String otp = arg["otp"];
     print("argument otp-------$email----------");
     print("argument otp-------$otp----------");
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding:const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -65,7 +65,7 @@ class CreatePassword extends StatelessWidget {
                     isLoading: controller.isLoading.value,
                     name: "Reset Password",
                     onClick: ()async{
-
+            
                         if(_key.currentState!.validate()){
                           if(_newPassword.text == _confPassword.text){
                             controller.createNewPassword(
@@ -77,13 +77,13 @@ class CreatePassword extends StatelessWidget {
                             Get.snackbar("Failed", "Passwords do not match",backgroundColor: Colors.red);
                           }
                         }
-
-
+            
+            
                     }
                   );
                 }
               ),
-
+            
             ],
           ),
         ),

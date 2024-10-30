@@ -22,9 +22,9 @@ class OtpScreen extends StatelessWidget {
 
     String email = Get.arguments as String;
     print("argument email -------$email------");
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding:const EdgeInsets.all(20),
           child: Form(
             key: _key,
@@ -68,10 +68,10 @@ class OtpScreen extends StatelessWidget {
                     }
                     }
                     ),
-
-
-
-
+            
+            
+            
+            
               ],
             ),
           ),

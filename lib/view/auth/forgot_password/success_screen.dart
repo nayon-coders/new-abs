@@ -11,9 +11,9 @@ class SuccessScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Center(
             child: Column(
@@ -35,8 +35,8 @@ class SuccessScreen extends StatelessWidget {
                     name: "Back to Login",
                     onClick: ()=>Get.offNamed(AppRoute.login),
                 ),
-
-
+            
+            
               ],
             ),
           ),
