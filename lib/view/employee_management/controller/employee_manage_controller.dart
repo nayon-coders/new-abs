@@ -120,17 +120,19 @@ class EmployeeManageController extends GetxController{
         clearTextEditingController();
         allEmployeeList();
         print("add employee successful");
-        Get.snackbar("Success", "${jsonDecode(res.body)["message"]}");
+        Get.snackbar("Success", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.green,colorText: Colors.white);
         Get.offNamed(AppRoute.employeeManageScree);
       }else{
         print("---error body :${jsonDecode(res.body)}");
-        Get.snackbar("failed", "${jsonDecode(res.body)["message"]}");
+        Get.snackbar("failed", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.red,colorText: Colors.white);
         print("Status code:${res.statusCode}");
       }
     }
 
     isLoading.value = false;
   }
+
+
 
   //Get all Employee List
   allEmployeeList()async{
@@ -209,9 +211,9 @@ class EmployeeManageController extends GetxController{
         clearTextEditingController();
         Get.back();
 
-        Get.snackbar("Successful", "Employee update successful", backgroundColor: Colors.green);
+        Get.snackbar("Successful", "Employee update successful", backgroundColor: Colors.green,colorText: Colors.white);
       }else{
-        Get.snackbar("Failed", "Update employee failed! StatusCode: ${response.statusCode}", backgroundColor: Colors.red);
+        Get.snackbar("Failed", "Update employee failed! StatusCode: ${response.statusCode}", backgroundColor: Colors.red,colorText: Colors.white);
         print(response.statusCode);
       }
 
@@ -245,10 +247,10 @@ class EmployeeManageController extends GetxController{
     if(res.statusCode == 200){
       allEmployeeList();
       Get.offAllNamed(AppRoute.employeeManageScree);
-      Get.snackbar("Successful", "Delete Successful",backgroundColor: Colors.green);
+      Get.snackbar("Successful", "Delete Successful",backgroundColor: Colors.green,colorText: Colors.white);
 
     }else{
-      Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}");
+      Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.red,colorText: Colors.white);
     }
     isDeleting.value = false;
 
@@ -269,6 +271,7 @@ class EmployeeManageController extends GetxController{
     salaryRate.value.clear();
     salaryType.value.clear();
     pass.value.clear();
+    profileImage.value = "";
 
   }
 }

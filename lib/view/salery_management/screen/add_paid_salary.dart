@@ -1,6 +1,4 @@
 import 'package:abs_office_management/controller/date_time_controller.dart';
-import 'package:abs_office_management/data/model/employee_model/single_empolyee_model.dart';
-import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/view/salery_management/controller/salary_management_controller.dart';
 import 'package:abs_office_management/widgets/app_button.dart';
@@ -36,8 +34,8 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
         title: Obx(() {
 
             return Text(
-              controller.isForEdit.value ? "Paid Salary" : "Edit Salary",
-              style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textBlack),
+              controller.isForEdit.value ?"Edit Salary":"Paid Salary",
+              style:const TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textBlack),
             );
 
           }
@@ -167,6 +165,7 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
                             fillColor: AppColors.fillColor,
                             hint: "Check Number",
                             hintColor:AppColors.textBlue ,
+                            textType: TextInputType.number,
                             controller: controller.checkNo.value,
                           ),
                         ],

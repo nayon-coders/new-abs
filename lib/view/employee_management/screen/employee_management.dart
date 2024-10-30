@@ -44,48 +44,43 @@ class EmployeeManagement extends GetView<EmployeeManageController> {
       body: Obx(() {
         if (controller.isGetting.value) {
           return _buildLoading();
-        }
-
-        if (controller.employeeListModel.value.data == null || controller.employeeListModel.value.data!.isEmpty) {
+        }else if (controller.employeeListModel.value.data == null || controller.employeeListModel.value.data!.isEmpty) {
           return const Center(child: Text("No employees found."));
-        }
-
+        }else{
           return ListView.builder(
-            padding:const EdgeInsets.all(10),
-            itemCount: controller.employeeListModel.value.data!.length,
+              padding:const EdgeInsets.all(10),
+              itemCount: controller.employeeListModel.value.data!.length,
               itemBuilder: (context,index){
-              final data = controller.employeeListModel.value.data![index];
+                final data = controller.employeeListModel.value.data![index];
                 return Container(
-                  margin: const EdgeInsets.only(bottom: 10),
-                  padding: const EdgeInsets.all(8.0),
+                  margin: const EdgeInsets.only(bottom: 10,left: 10,right: 10),
+                  // padding: const EdgeInsets.all(5.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   child: ListTile(
-                    contentPadding:const EdgeInsets.only(left: 10,right: 10),
+                    contentPadding:const EdgeInsets.only(left: 8,right: 8),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
                     tileColor: Colors.white,
                     leading: Container(
                       height: 45,
-                        width: 45,
-                        decoration: BoxDecoration(
+                      width: 45,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: Center(
+                        child: data.profilePic != null && data.profilePic!.isNotEmpty?ClipRRect(
                           borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Center(
-                          child: data.profilePic != null && data.profilePic!.isNotEmpty?ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
-                            child: CachedNetworkImage(
-                                imageUrl: "${AppConfig.DOMAIN}${data.profilePic!}",
-                                height: 45, width: 45, fit: BoxFit.cover,
-                                placeholder: (context, url) => const CircularProgressIndicator(),
-                                errorWidget: (context, url, error) => const Icon(Icons.error),),
-                          )
-
-                              : Image.asset(Assets.profilePic, height: 45, width: 45, fit: BoxFit.cover),
-                        ),
+                          child: CachedNetworkImage(
+                            imageUrl: "${AppConfig.DOMAIN}${data.profilePic!}",
+                            height: 45, width: 45, fit: BoxFit.cover,
+                            placeholder: (context, url) => const CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => const Icon(Icons.error),),
+                        ): Image.asset(Assets.profilePic, height: 45, width: 45, fit: BoxFit.cover),
+                      ),
                     ),
 
 
@@ -94,16 +89,18 @@ class EmployeeManagement extends GetView<EmployeeManageController> {
                     subtitle: Text(data.employeePosition.toString(),style:const TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textBlack),),
 
                     trailing: InkWell(
-                      onTap: ()=>Get.toNamed(
+                        onTap: ()=>Get.toNamed(
                           AppRoute.singleEmployeeScreen,
-                        arguments: data.id,
-                      ),
+                          arguments: data.id,
+                        ),
                         child: const Text("View Details",style: TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: Color(0xFF1814F3)),)),
 
                   ),
                 ).animate().slideX(duration: 500.ms, curve: Curves.easeInOut);
 
-          });
+              });
+        }
+
         }
       ),
     );

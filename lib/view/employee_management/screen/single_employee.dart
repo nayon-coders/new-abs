@@ -2,18 +2,21 @@ import 'package:abs_office_management/view/employee_management/controller/employ
 import 'package:abs_office_management/view/employee_management/controller/tab_controller.dart';
 import 'package:abs_office_management/view/employee_management/screen/add_employee.dart';
 import 'package:abs_office_management/view/employee_management/widget/card_menus.dart';
+import 'package:abs_office_management/view/employee_management/widget/employee_payment_history.dart';
 import 'package:abs_office_management/view/employee_management/widget/working_hours.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../app_config.dart';
+import '../../../controller/date_time_controller.dart';
 import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
 import '../../../utility/assetes.dart';
 class SingleEmployee extends GetView<EmployeeManageController> {
    SingleEmployee({super.key});
   final tabController = Get.put(ToggleTabController());
+   DateTimeController dateController = Get.put(DateTimeController());
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +78,10 @@ class SingleEmployee extends GetView<EmployeeManageController> {
         child: Obx(() {
           if(controller.isGetting.value){
             return const Center(child: CircularProgressIndicator.adaptive(),);
-          }
-          if(controller.singleModel.value.employee == null){
+          }else if(controller.singleModel.value.employee == null){
             return const Center(child: Text("No data found"),);
 
-          }
+          }else{
             return Column(
               children: [
                 Stack(
@@ -117,7 +119,7 @@ class SingleEmployee extends GetView<EmployeeManageController> {
 
                           const SizedBox(height: 10,),
                           Text(controller.singleModel.value.employee!.name.toString()??"",style:const TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: AppColors.textWhite),),
-                         const SizedBox(height: 3,),
+                          const SizedBox(height: 3,),
                           Text(controller.singleModel.value.employee!.email.toString()??"",style:const TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textWhite),),
                           const SizedBox(height: 3,),
                           Text(controller.singleModel.value.employee!.employeePosition.toString()??"",style:const TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textWhite),),
@@ -140,9 +142,9 @@ class SingleEmployee extends GetView<EmployeeManageController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          CardMenus(workingName: "Salary  Pending", number: "\$2352.90"),
-                          CardMenus(workingName: "Total Paid", number: "\$2352.90"),
-                          CardMenus(workingName: "Working Hours", number: "34:67 h"),
+                          CardMenus(workingName: "Salary  Pending", number: "\$ ${controller.singleModel.value.selectedMontDueAmount}"),
+                          CardMenus(workingName: "Total Paid", number: "\$${controller.singleModel.value.selectedMonthTotalPayment}"),
+                          CardMenus(workingName: "Working Hours", number: "${controller.singleModel.value.selectedMonthTotalWorkTime} h"),
 
                         ],
                       ),
@@ -152,86 +154,105 @@ class SingleEmployee extends GetView<EmployeeManageController> {
                 ),
                 const SizedBox(height: 50,),
 
-            ///-----Tab Button: Working Hours & Payment History--------
+                ///-----Tab Button: Working Hours & Payment History--------
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                  InkWell(
-                    onTap: () {
-                      tabController.toggleTab(true);
-                    },
-                    child: Obx(() => Container(
-                      height: 50,
-                      width: 150,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color:AppColors.mainColor),
-                        color: tabController.isShow.value
-                            ? AppColors.mainColor
-                            : Colors.white,
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Working Hours",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 12,
-                            color: tabController.isShow.value
-                                ? Colors.white
-                                : AppColors.mainColor,
-                          ),
-                        ),
-                      ),
-                  )),
-                ),
-                InkWell(
-                  onTap: () {
-                    tabController.toggleTab(false);
-                  },
-                  child: Obx(() => Container(
-                    height: 50,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color:AppColors.mainColor),
-                      color: tabController.isShow.value
-                          ? Colors.white
-                          : AppColors.mainColor,
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Payment History",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12,
+
+                    //working Hours
+                    InkWell(
+                      onTap: () {
+                        tabController.toggleTab(true);
+                      },
+                      child: Obx(() => Container(
+                        height: 50,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color:AppColors.mainColor),
                           color: tabController.isShow.value
                               ? AppColors.mainColor
                               : Colors.white,
                         ),
-                      ),
+                        child: Center(
+                          child: Text(
+                            "Working Hours",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                              color: tabController.isShow.value
+                                  ? Colors.white
+                                  : AppColors.mainColor,
+                            ),
+                          ),
+                        ),
+                      )),
                     ),
-                  )),
+
+
+
+                    //Payment History
+                    InkWell(
+                      onTap: () {
+                        tabController.toggleTab(false);
+                      },
+                      child: Obx(() => Container(
+                        height: 50,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color:AppColors.mainColor),
+                          color: tabController.isShow.value
+                              ? Colors.white
+                              : AppColors.mainColor,
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Payment History",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                              color: tabController.isShow.value
+                                  ? AppColors.mainColor
+                                  : Colors.white,
+                            ),
+                          ),
+                        ),
+                      )),
+                    ),
+                  ],
                 ),
-              ],
-            ),
 
                 // Working hour list & Payment history
                 const SizedBox(height: 30,),
                 Obx(()=>tabController.isShow.value ?
                 ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 16,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: 16,
                     itemBuilder: (context,index){
-                  return  WorkingHours(dateTime: "12 Jan, 2024", hours: "09:34", onClick: (){});
-                 }):const Center(child: Text("Employee Payment history "),),
-                ),
+
+                      return  WorkingHours(
+                          dateTime: controller.singleModel.value.selectedMonthTotalWorkTime!,
+                          hours: controller.singleModel.value.selectedMonthTotalWorkTime!,
+                          onClick: (){}
+                      );
+
+                    }): EmployeePaymentHistory(
+                          month:controller.singleModel.value.selectedMonthTotalWorkTime!,
+                          totalPaid: controller.singleModel.value.selectedMonthTotalPayment.toString(),
+                          workingHours: controller.singleModel.value.selectedMonthTotalWorkTime!,
+                          totalUnPaid: controller.singleModel.value.selectedMontDueAmount.toString(),
+                          name:controller.singleModel.value.employee!.name.toString()),
+                  ),
 
 
 
               ],
             );
+          }
+
           }
         ),
       ),

@@ -46,7 +46,7 @@ class OnlineSalesBox extends StatelessWidget {
                 ),
               )),
             ),
-            const SizedBox(width: 15,),
+            const SizedBox(width: 12,),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,

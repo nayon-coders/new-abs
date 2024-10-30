@@ -22,8 +22,10 @@ class LossProfit extends GetView<LossProfitController> {
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
+        leading: IconButton(onPressed: ()=>Get.back(), icon:const Icon(Icons.arrow_back_ios)),
         backgroundColor: AppColors.bgColor,
-        title: Text("Loss profit"),
+        surfaceTintColor: Colors.transparent,
+        title: const Text("Loss profit",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
         actions: [
           InkWell(
               onTap: ()async{

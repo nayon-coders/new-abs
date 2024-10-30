@@ -18,12 +18,6 @@ class SalaryManagement extends GetView<SalaryManagementController> {
    final DateTimeController dateTimeController = Get.put(DateTimeController());
 
 
-
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,7 +105,7 @@ class SalaryManagement extends GetView<SalaryManagementController> {
                                 borderRadius: BorderRadius.circular(100),
                                 color: AppColors.red.withOpacity(0.2),
                               ),
-                              child: Center(child: Text("${data.employeeName![0]}",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: AppColors.textBlack),)),
+                              child: Center(child: Text("${data.employeeName![0].toUpperCase()}",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: AppColors.textBlack),)),
                             ),
                             title:Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,

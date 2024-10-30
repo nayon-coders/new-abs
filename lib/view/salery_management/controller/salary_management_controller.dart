@@ -74,7 +74,7 @@ class SalaryManagementController extends GetxController{
       getAllSalary(dateTimeController.month, dateTimeController.year);
 
       Get.back();
-      Get.snackbar("Successful", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.green);
+      Get.snackbar("Successful", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.green,colorText: Colors.white);
     }else{
       Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.red);
       print(jsonDecode(res.body));
@@ -103,7 +103,7 @@ class SalaryManagementController extends GetxController{
     if(res.statusCode == 200){
       Get.back();
       getAllSalary(dateTimeController.month, dateTimeController.year);
-      Get.snackbar("Successful", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.green);
+      Get.snackbar("Successful", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.green,colorText: Colors.white);
 
     }else{
       Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.red);
@@ -126,7 +126,7 @@ class SalaryManagementController extends GetxController{
       clearAllData();
       Get.back();
       getAllSalary(dateTimeController.month, dateTimeController.year);
-      Get.snackbar("Successful", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.green);
+      Get.snackbar("Successful", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.green,colorText: Colors.white);
     }else{
       Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.red);
     }
