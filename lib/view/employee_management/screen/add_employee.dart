@@ -16,7 +16,6 @@ class AddEmployee extends GetView<EmployeeManageController> {
    AddEmployee({super.key,});
 
   // Employee Role
-  String? selectType;
 
   final List<String> employeeType = [
     "Employee",
@@ -25,7 +24,6 @@ class AddEmployee extends GetView<EmployeeManageController> {
 
   final positionController = Get.put(EmployeePositionController());
   //Employee Position
-  String? selectEmployeePosition;
 
   final List<String> employeePosition = [
     'Manager',
@@ -33,7 +31,7 @@ class AddEmployee extends GetView<EmployeeManageController> {
   ];
 
   //Employee Type
-  String? selectEmployeeType;
+
 
   final List<String> employee_Type = [
     'Part-time',
@@ -64,18 +62,35 @@ class AddEmployee extends GetView<EmployeeManageController> {
         backgroundColor: AppColors.textWhite,
         surfaceTintColor: Colors.transparent,
 
-        title: const Text("ADD NEW EMPLOYEE",
-          style:const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: AppColors.textBlack),
+        title:  Builder(
+          builder: (context) {
+            if(controller.isForEdit.value){
+              return Text("EDIT EMPLOYEE",
+                style:const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.textBlack),
+              );
+            }else{
+              return Text("ADD NEW EMPLOYEE",
+                style:const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.textBlack),
+              );
+            }
+
+          }
         ),
 
         leading: Padding(
           padding: const EdgeInsets.all(10.0),
 
           child: IconButton(
-              onPressed: ()=>Get.back(),
+              onPressed: (){
+                controller.clearTextEditingController();
+                Get.back();
+              },
               icon:const Icon(
                 Icons.arrow_back_ios,
                 size: 20,
@@ -243,9 +258,10 @@ class AddEmployee extends GetView<EmployeeManageController> {
                   fillColor: AppColors.textWhite,
                   items: employeeType,
                   hint: "Employee Role",
+                //  value: controller.selectType.value,
 
                   onChange: (v) {
-                    controller.type.value.text = v!;
+                    controller.type.value.text = v!.toString();
 
                   }),
               const SizedBox(
@@ -374,18 +390,19 @@ class AddEmployee extends GetView<EmployeeManageController> {
 
 
               Obx(() {
-                  return Center(child: AppButton(
+                  return Center(
+                      child: AppButton(
                     isLoading: controller.isLoading.value,
-                      name:"Add Employee",
+                      name:"Save",
                       onClick: (){
                         var password = Random().nextInt(99999999).toString();
                         controller.pass.value.text =password;
                       if(_key.currentState!.validate()){
-
+                        if(controller.isForEdit.value){
+                          controller.editEmployee();
+                        }else{
                           controller.addEmployee();
-
-
-
+                        }
 
                       }
 

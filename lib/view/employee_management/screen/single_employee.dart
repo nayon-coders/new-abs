@@ -30,12 +30,8 @@ class SingleEmployee extends GetView<EmployeeManageController> {
         actions: [
           InkWell(
             onTap: (){
-              Get.to(()=>AddEmployee(),
-              arguments: {
-                "isEditing":true,
-                "employeeId":employeeId,
-                "employeeData":controller.singleModel.value.employee,
-              });
+              if(controller.isGetting.value) return;
+              controller.setEditValu(controller.singleModel.value);
 
             },
             child:Container(

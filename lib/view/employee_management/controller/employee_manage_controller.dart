@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:abs_office_management/main.dart';
 import 'package:http/http.dart' as http;
 import 'package:abs_office_management/app_config.dart';
 import 'package:abs_office_management/data/services/api_services.dart';
@@ -35,6 +36,13 @@ class EmployeeManageController extends GetxController{
   //Employee Models
   Rx<EmployeeListModel> employeeListModel = EmployeeListModel().obs;
   Rx<SingleEmployeeModel> singleModel = SingleEmployeeModel().obs;
+
+  RxString profileImage = "".obs;
+  RxString selectEmployeeType = "".obs;
+  RxString selectEmployeePosition = "".obs;
+  RxString selectdId = "".obs;
+  RxBool isForEdit = false.obs;
+  var selectType= null;
 
   //Rx bool
   RxBool isGetting = false.obs;
@@ -157,18 +165,28 @@ class EmployeeManageController extends GetxController{
 
 
   //Edit Employee
-   editEmployee(id)async{
-    isEditing.value = true;
-    final url = Uri.parse(AppConfig.EDIT_EMPLOYEE+id);
+   editEmployee()async{
+     isLoading.value = true;
+    var header = {
+      "Accept" : "application/json",
+      "Authorization" : "Bearer ${sharedPreferences!.getString("token")}"
+    };
+    final url = Uri.parse(AppConfig.EDIT_EMPLOYEE+selectdId.value);
     final request = http.MultipartRequest("PUT",url);
-    if(selectedImage.value != null){
-      final imageFile = await http.MultipartFile.fromPath(
-        "profilePic",
-        selectedImage.value!.path,
-        filename: selectedImage.value!.path.split("/").last,
-      );
+    if(profileImage.value!.isNotEmpty){
+      if(selectedImage.value != null) { 
+        final imageFile = await http.MultipartFile.fromPath(
+          "profilePic",
+          selectedImage.value!.path,
+        );
+        request.files.add(imageFile);
+
+      }
+    }
+
 
       final dataFields ={
+
         "name": name.value.text,
         "email": email.value.text,
         "password": pass.value.text,
@@ -180,22 +198,44 @@ class EmployeeManageController extends GetxController{
         "salaryRate": salaryRate.value.text,
 
       };
-      request.files.add(imageFile);
+    //header added ]
+      request.headers.addAll(header);
       request.fields.addAll(dataFields);
       var response = await request.send();
-      final res = await http.Response.fromStream(response);
-      if(res.statusCode == 200){
-        Get.snackbar("Successful", "Employee update successful");
+
+      print("Response --- ${response.statusCode}");
+      if(response.statusCode == 200){
+        getSingleEmployee(selectdId.value);
+        clearTextEditingController();
+        Get.back();
+
+        Get.snackbar("Successful", "Employee update successful", backgroundColor: Colors.green);
       }else{
-        Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}");
-        print(res.statusCode);
-        print(res.body);
+        Get.snackbar("Failed", "Update employee failed! StatusCode: ${response.statusCode}", backgroundColor: Colors.red);
+        print(response.statusCode);
       }
 
-    }
-    isEditing.value = false;
+    isLoading.value = false;
 
    }
+  //set data for edit
+  setEditValu(SingleEmployeeModel data){
+    isForEdit.value = true;
+    selectdId.value = data.employee!.id.toString();
+    name.value.text = data.employee!.name!.toString();
+    email.value.text = data.employee!.email!.toString();
+    phone.value.text = data.employee!.phone!.toString();
+    type.value.text = data.employee!.type.toString();
+    salaryRate.value.text = data.employee!.salaryRate.toString();
+    salaryType.value.text = data.employee!.salaryType.toString();
+    employeeType.value.text = data.employee!.employeeType.toString();
+    employeePosition.value.text = data.employee!.employeePosition.toString();
+    profileImage.value = data.employee!.profilePic.toString();
+    Get.toNamed(AppRoute.addEmployeeScreen);
+
+
+
+  }
 
 
   //delete employee
@@ -216,7 +256,10 @@ class EmployeeManageController extends GetxController{
 
 
 
+
+
   clearTextEditingController(){
+    isForEdit.value = false;
     name.value.clear();
     email.value.clear();
     phone.value.clear();
