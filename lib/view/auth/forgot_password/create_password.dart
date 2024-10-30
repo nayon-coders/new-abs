@@ -8,12 +8,11 @@ import 'package:abs_office_management/widgets/app_input.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CreatePassword extends StatelessWidget {
+class CreatePassword extends GetView<ForgotController> {
   CreatePassword({super.key});
-  final _newPassword = TextEditingController();
-  final _confPassword = TextEditingController();
+  final newPassword = TextEditingController();
+  final confPassword = TextEditingController();
   final _key = GlobalKey<FormState>();
-  final controller = Get.put(ForgotController());
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +48,13 @@ class CreatePassword extends StatelessWidget {
               const SizedBox(height: 30,),
               AppInput(
                 hint: "New Password",
-                controller: _newPassword,
+                controller: newPassword,
                 textType: TextInputType.visiblePassword,
               ),
              const SizedBox(height: 15,),
               AppInput(
                 hint: "Conform Password",
-                controller: _confPassword,
+                controller: confPassword,
                 textType: TextInputType.visiblePassword,
               ),
               const SizedBox(height: 30,),
@@ -66,17 +65,15 @@ class CreatePassword extends StatelessWidget {
                     name: "Reset Password",
                     onClick: ()async{
 
-                        if(_key.currentState!.validate()){
-                          if(_newPassword.text == _confPassword.text){
+                          if(newPassword.text == confPassword.text){
                             controller.createNewPassword(
                               email,
                               otp,
-                              _newPassword.text,
+                              newPassword.text,
                             );
                           }else{
                             Get.snackbar("Failed", "Passwords do not match",backgroundColor: Colors.red);
                           }
-                        }
 
 
                     }

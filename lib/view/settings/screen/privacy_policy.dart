@@ -131,7 +131,7 @@ class PrivacyPolicy extends StatelessWidget {
         padding:const EdgeInsets.all(20),
         child: HtmlWidget(
           htmlData,
-          textStyle: TextStyle(color: Colors.black, backgroundColor: AppColors.bgColor),
+          textStyle: const TextStyle(color: Colors.black, backgroundColor: AppColors.bgColor),
         ),
 
       ),

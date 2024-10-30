@@ -57,7 +57,7 @@ class AuthController extends GetxController{
         //handel non-200 response
         try{
           final errorData = jsonDecode(res.body);
-          Get.snackbar(" error", "${errorData["error"]}",backgroundColor: Colors.red);
+          Get.snackbar(" Failed", "${errorData["error"]}",backgroundColor: Colors.red);
         }catch(e){
           print("Json parse error in error response:${e}");
 

@@ -6,7 +6,7 @@ import '../../../utility/app_color.dart';
 import '../../../utility/assetes.dart';
 import '../controller/contact_controller.dart';
 
-class ContactSupport extends StatelessWidget {
+class ContactSupport extends GetView<ContactController> {
 
   const ContactSupport({super.key});
 

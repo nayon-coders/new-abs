@@ -105,7 +105,7 @@ class AdminUpdateController extends GetxController{
    if(selectedImage != null){
      final request = http.MultipartRequest(
        "PUT",
-       Uri.parse(AppConfig.SINGLE_ADMIN_INFO_UPDATE+id!),
+       Uri.parse(AppConfig.SINGLE_ADMIN_INFO_UPDATE),
      );
      request.headers["Authorization"] = "Bearer $token";
      request.headers["Content-Type"] = "multipart/form-data";

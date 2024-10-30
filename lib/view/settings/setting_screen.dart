@@ -1,5 +1,6 @@
 import 'package:abs_office_management/main.dart';
 import 'package:abs_office_management/routes/route_name.dart';
+import 'package:abs_office_management/utility/app_const.dart';
 import 'package:abs_office_management/view/auth/controller/auth_controller.dart';
 import 'package:abs_office_management/view/settings/screen/add_employee_position_view.dart';
 import 'package:abs_office_management/view/settings/screen/business_setup.dart';
@@ -75,10 +76,17 @@ class SettingScreen extends StatelessWidget {
             const SizedBox(height: 20,),
             ListTile(
               contentPadding:const EdgeInsets.only(left: 10),
-              onTap: (){
-                sharedPreferences!.clear();
-                Get.offAllNamed(AppRoute.login);
-              },
+              onTap: ()=> alertDialog(
+                    title: "Hold On !",
+                    content: "Are you sure? Do you want to Logout?",
+                    onOk: (){
+                      sharedPreferences!.clear();
+                      Get.snackbar("Successful", "Logout successful",backgroundColor: Colors.green,colorText: Colors.white
+                      );
+                      Get.offAllNamed(AppRoute.login);
+
+                    },
+                ),
               leading: const Icon(Icons.logout,color: AppColors.red,),
               title:const Text("Logout",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 14,color: AppColors.red),),
             ),

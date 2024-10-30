@@ -1,21 +1,17 @@
-import 'package:abs_office_management/view/auth/forgot_password/create_password.dart';
 import 'package:abs_office_management/view/auth/forgot_password/forgot_controller/forgot_controller.dart';
 import 'package:abs_office_management/view/auth/forgot_password/forgot_screen.dart';
-import 'package:abs_office_management/view/auth/forgot_password/success_screen.dart';
 import 'package:abs_office_management/view/auth/widget/back_button.dart';
 import 'package:abs_office_management/view/auth/widget/title_text.dart';
 import 'package:abs_office_management/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
-
 import '../../../utility/app_color.dart';
 
-class OtpScreen extends StatelessWidget {
+class OtpScreen extends GetView<ForgotController> {
    OtpScreen({super.key});
   final _otpController = TextEditingController();
   final _key = GlobalKey<FormState>();
-  final controller = Get.put(ForgotController());
 
   @override
   Widget build(BuildContext context) {

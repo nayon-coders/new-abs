@@ -29,14 +29,14 @@ class ViewSalesReport extends GetView<SalesController> {
               //box
               Container(
                 height: 300,
-                decoration: BoxDecoration(
+                decoration:const BoxDecoration(
                   color: AppColors.mainColor,
                   //  borderRadius: BorderRadius.circular(10),
                 ),
                 child:  Stack(
                   children: [
                     Positioned(
-                      top: 60,
+                      top: 40,
                       left: 20,
                       child: Row(
                         children: [
@@ -44,8 +44,8 @@ class ViewSalesReport extends GetView<SalesController> {
                               onPressed: (){
                                 Get.back();
                               },
-                              icon: Icon(Icons.arrow_back_ios, color: Colors.white, size: 20,)),
-                          Text("View Sales Report",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: AppColors.textWhite),),
+                              icon:const Icon(Icons.arrow_back_ios, color: Colors.white, size: 20,)),
+                         const  Text("View Sales Report",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: AppColors.textWhite),),
                         ],
                       ),
                     ),
@@ -54,8 +54,8 @@ class ViewSalesReport extends GetView<SalesController> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("\$${netSales.toStringAsFixed(2)}",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),),
-                          Text("Total Gross Sale",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Colors.white),),
+                          Text("\$${netSales.toStringAsFixed(2)}",style:const TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),),
+                         const Text("Total Gross Sale",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Colors.white),),
                         ],
                       ),
                     ),
@@ -83,22 +83,22 @@ class ViewSalesReport extends GetView<SalesController> {
                   ],
                 ),
               ),
-              SizedBox(height: 50,),
-              Padding(
+             const SizedBox(height: 50,),
+             const Padding(
                   padding: EdgeInsets.only(left: 15),
                   child: Text("Online Sales", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black),)),
               //box
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.all(10),
+                  padding:const EdgeInsets.all(10),
                   child: ListView.builder(
 
                     itemCount: singleSalesDatum.onlineSales!.length,
                     itemBuilder: (_, index){
                       var data = singleSalesDatum.onlineSales![index];
                       return Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
+                        margin:const EdgeInsets.only(bottom: 10),
+                        padding:const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
                         decoration: BoxDecoration(
                           color: AppColors.textWhite,
                           borderRadius: BorderRadius.circular(10),
@@ -121,11 +121,11 @@ class ViewSalesReport extends GetView<SalesController> {
                               borderRadius: BorderRadius.circular(100)
                             ),
                             child: Center(
-                              child: Text("${data.name![0].toUpperCase()}",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.mainColor),),
+                              child: Text("${data.name![0].toUpperCase()}",style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.mainColor),),
                             ),
                           ),
-                          title: Text("${data.name}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.black),),
-                          trailing: Text("\$${data.amount}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.black),
+                          title: Text("${data.name}",style:const TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.black),),
+                          trailing: Text("\$${data.amount}",style:const TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.black),
                         ),
                         )
                       );
@@ -153,11 +153,11 @@ class BuildBoxs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.translate(
-      offset: Offset(0, 30), // Move the container down by 50 pixels
+      offset:const Offset(0, 30), // Move the container down by 50 pixels
       child: Container(
         height: 100,
         width: Get.width*.43,
-        padding: EdgeInsets.all(10),
+        padding:const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: AppColors.textWhite,
           borderRadius: BorderRadius.circular(10),
@@ -174,10 +174,10 @@ class BuildBoxs extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("\$${value}",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Colors.black),),
+            Text("\$${value}",style:const TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Colors.black),),
 
-            SizedBox(height: 7,),
-            Text("$title",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Colors.black),),
+           const SizedBox(height: 7,),
+            Text("$title",style:const TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Colors.black),),
           ],
         ),
       ),

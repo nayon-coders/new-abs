@@ -51,7 +51,7 @@ class BusinessSetup extends GetView<AdminUpdateController> {
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(100),
-                            child: controller.selectedImage.value != null ? Image.file(controller.selectedImage.value!,height: 120,width: 120,) : controller.singelmodel.value.profilePic!.isNotEmpty
+                            child: controller.selectedImage.value != null ? Image.file(controller.selectedImage.value!,height: 120,width: 120,fit: BoxFit.cover,) : controller.singelmodel.value.profilePic!.isNotEmpty
                                 ?CachedNetworkImage(
                               imageUrl:"${AppConfig.DOMAIN}${controller.singelmodel.value.profilePic}" ,
                               height: 120,

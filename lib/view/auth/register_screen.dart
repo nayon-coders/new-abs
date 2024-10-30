@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 import '../../utility/app_color.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends GetView<AuthController> {
    RegisterScreen({super.key});
   final _userName = TextEditingController();
   final _email = TextEditingController();
@@ -19,7 +19,6 @@ class RegisterScreen extends StatelessWidget {
   final _businessAddress = TextEditingController();
  // final _conformPass = TextEditingController();
   final _key = GlobalKey<FormState>();
-  final controller = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {

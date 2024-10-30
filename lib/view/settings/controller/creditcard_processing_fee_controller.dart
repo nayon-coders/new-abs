@@ -42,9 +42,9 @@ class CreditcardProcessingFeeController extends GetxController{
     if(res.statusCode == 200){
       clearTextEditingController();
       getCreditCardFee();
-      Get.snackbar("Successful", "${jsonDecode(res.body)["message"]}");
+      Get.snackbar("Successful", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.green,colorText: Colors.white);
     }else{
-      Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}");
+      Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.red,colorText: Colors.white);
     }
     isAdding.value= false;
 

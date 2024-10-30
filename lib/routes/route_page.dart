@@ -1,3 +1,4 @@
+import 'package:abs_office_management/data/binding/auth_binding.dart';
 import 'package:abs_office_management/data/binding/costing_binding.dart';
 import 'package:abs_office_management/data/binding/employee_manage_binding.dart';
 import 'package:abs_office_management/data/binding/loss_profit_binding.dart';
@@ -5,6 +6,9 @@ import 'package:abs_office_management/data/binding/partner_management_binding.da
 import 'package:abs_office_management/data/binding/salary_manage_binding.dart';
 import 'package:abs_office_management/data/binding/sales_binding.dart';
 import 'package:abs_office_management/routes/route_name.dart';
+import 'package:abs_office_management/view/auth/forgot_password/create_password.dart';
+import 'package:abs_office_management/view/auth/forgot_password/otp_screen.dart';
+import 'package:abs_office_management/view/auth/forgot_password/success_screen.dart';
 import 'package:abs_office_management/view/auth/login_screen.dart';
 import 'package:abs_office_management/view/auth/register_screen.dart';
 import 'package:abs_office_management/view/auth/welcome_screen.dart';
@@ -20,8 +24,11 @@ import 'package:abs_office_management/view/salery_management/screen/add_paid_sal
 import 'package:abs_office_management/view/settings/screen/add_employee_position_view.dart';
 import 'package:abs_office_management/view/settings/screen/business_setup.dart';
 import 'package:abs_office_management/view/settings/screen/change_password.dart';
+import 'package:abs_office_management/view/settings/screen/contact_and_support_screen.dart';
 import 'package:abs_office_management/view/settings/screen/creditcard_processing_fee.dart';
+import 'package:abs_office_management/view/settings/screen/privacy_policy.dart';
 import 'package:abs_office_management/view/settings/screen/tax_and_state.dart';
+import 'package:abs_office_management/view/settings/screen/terms_condition.dart';
 import 'package:abs_office_management/view/settings/setting_screen.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/add_cost.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/add_food_cost.dart';
@@ -61,6 +68,18 @@ class RoutePage{
     GetPage(
       name: AppRoute.forgotEmail,
       page: ()=>  ForgotScreen(),
+      binding: AuthBinding(),
+    ),
+    GetPage(
+      name: AppRoute.otpScreen,
+      page: ()=>  OtpScreen(),
+      binding: AuthBinding(),
+    ),
+    GetPage(name: AppRoute.successScreen, page: ()=>SuccessScreen()),
+    GetPage(
+      name: AppRoute.createPassword,
+      page: ()=>  CreatePassword(),
+      binding: AuthBinding(),
     ),
     GetPage(
       name: AppRoute.dashBoard,
@@ -101,6 +120,15 @@ class RoutePage{
         page: ()=> ChangePassword(),
         binding: SettingBinding()
     ),
+
+    GetPage(name: AppRoute.privacyPolicy, page: ()=>const PrivacyPolicy()),
+    GetPage(name: AppRoute.termsAndCondition, page: ()=>const TermsCondition()),
+    GetPage(
+        name: AppRoute.support,
+        page: ()=>const ContactSupport(),
+      binding: SettingBinding(),
+    ),
+
     GetPage(
           name: AppRoute.salesManageScree,
           page: ()=> TodaySalesManagement(),

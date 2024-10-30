@@ -9,10 +9,9 @@ import 'package:abs_office_management/widgets/app_input.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ForgotScreen extends StatelessWidget {
+class ForgotScreen extends GetView<ForgotController> {
    ForgotScreen({super.key});
   final _email = TextEditingController();
-  final controller = Get.put(ForgotController());
   final _key = GlobalKey<FormState>();
 
   @override

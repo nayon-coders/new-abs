@@ -1,11 +1,9 @@
 import 'dart:convert';
-import 'package:abs_office_management/view/auth/forgot_password/success_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../app_config.dart';
 import '../../../../controller/api_controller.dart';
 import '../../../../routes/route_name.dart';
-import '../create_password.dart';
 import '../otp_screen.dart';
 
 class ForgotController extends GetxController{
@@ -46,6 +44,8 @@ class ForgotController extends GetxController{
 
   }
 
+
+
   //check otp
   Future<void> verifyOtp(String email, String otp)async{
     isLoading.value = true;
@@ -62,8 +62,8 @@ class ForgotController extends GetxController{
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
-        Get.to(
-            CreatePassword(),
+        Get.offNamed(
+          AppRoute.createPassword,
             arguments: {
               "email":email,
               "otp":otp,
@@ -97,11 +97,11 @@ class ForgotController extends GetxController{
           });
       if(res.statusCode == 200){
         print("set password success");
-        Get.snackbar("Successful", "Set new Password success");
-        Get.to(SuccessScreen());
+        Get.snackbar("Successful", "Set new Password success",backgroundColor: Colors.green,colorText: Colors.white);
+        Get.offAllNamed(AppRoute.successScreen);
       }else{
         print("Set password Failed");
-        Get.snackbar("Failed", "Set new password failed",colorText: Colors.white,backgroundColor: Colors.green);
+        Get.snackbar("Failed", "Set new password failed",colorText: Colors.white,backgroundColor: Colors.red);
       }
     }catch(e){print(e);
     }finally{
