@@ -16,9 +16,9 @@ class ForgotScreen extends GetView<ForgotController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding:const EdgeInsets.all(20),
           child: Form(
             key: _key,
@@ -56,14 +56,14 @@ class ForgotScreen extends GetView<ForgotController> {
                         onClick: ()async{
                         if(_key.currentState!.validate()){
                           await controller.sendOtp(_email.text);
-
+        
                         }
-
+        
                         }
                     );
                   }
                 ),
-
+        
               ],
             ),
           ),

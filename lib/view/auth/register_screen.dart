@@ -23,11 +23,11 @@ class RegisterScreen extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
-    return SafeArea(
-      child: Scaffold(
-       // backgroundColor: AppColors.bgColor,
+    return Scaffold(
+      backgroundColor: AppColors.bgColor,
 
-        body: SingleChildScrollView(
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding:const EdgeInsets.all(20),
           child: Form(
             key: _key,
@@ -39,17 +39,17 @@ class RegisterScreen extends GetView<AuthController> {
                   alignment: Alignment.topLeft,
                     child: LeadingButton(onClick: ()=>Get.back())
                 ),
-
+        
                const SizedBox(height: 20,),
                const TitleText(text: "Hello! Register to get started"),
                const SizedBox(height: 20,),
-
+        
                 AppInput(
                     hint: "User Name",
                     controller: _userName,
                   textType: TextInputType.name,
                 ),
-
+        
                 const SizedBox(height: 15,),
                 AppInput(
                   hint: "Business Name",
@@ -63,35 +63,35 @@ class RegisterScreen extends GetView<AuthController> {
                   textType: TextInputType.name,
                 ),
                 const SizedBox(height: 15,),
-
+        
                 AppInput(
                   hint: "Email",
                   controller: _email,
                   textType: TextInputType.emailAddress,
                 ),
-
+        
                 const SizedBox(height: 15,),
                 AppInput(
                   hint: "Phone",
                   controller: _phone,
                   textType: TextInputType.number,
                 ),
-
+        
                 const SizedBox(height: 15,),
-
+        
                 AppInput(
                     hint: "password",
                     controller: _password,
                   textType: TextInputType.visiblePassword,
                 ),
                 //const SizedBox(height: 15,),
-
+        
                 // AppInput(
                 //   hint: "Conform password",
                 //   controller: _conformPass,
                 //   textType: TextInputType.visiblePassword,
                 // ),
-
+        
                const SizedBox(height: 30,),
                 Obx((){
                     return AppButton(
@@ -109,7 +109,7 @@ class RegisterScreen extends GetView<AuthController> {
                               password: _password.text,
                           );
                         }
-
+        
                         },
                     );
                   }
@@ -133,13 +133,13 @@ class RegisterScreen extends GetView<AuthController> {
                   ),
                 ),
                 const SizedBox(height: 20,),
-
+        
               ],
             ),
           ),
         ),
-
       ),
+
     );
   }
 }
