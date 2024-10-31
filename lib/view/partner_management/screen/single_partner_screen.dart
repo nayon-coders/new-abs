@@ -29,7 +29,8 @@ class SinglePartnerScreen extends GetView<PartnerController> {
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
-        leading: IconButton(onPressed: ()=>Get.back(), icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
+        leading: IconButton(
+            onPressed: ()=>Get.back(), icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
         title: const Text("Partner Info",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: AppColors.textBlack),),
         backgroundColor: AppColors.textWhite,
         surfaceTintColor: Colors.white,

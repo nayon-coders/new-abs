@@ -1,7 +1,6 @@
 import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/utility/assetes.dart';
-import 'package:abs_office_management/view/auth/login_screen.dart';
 import 'package:abs_office_management/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
