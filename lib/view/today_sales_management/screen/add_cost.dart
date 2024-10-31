@@ -31,6 +31,7 @@ class AddCost extends GetView<CostController> {
         leading: IconButton(
           onPressed: (){
             controller.clearAll();
+            controller.allCostList();
             Get.back();
 
           },

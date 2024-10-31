@@ -110,7 +110,11 @@ class SalaryManagement extends GetView<SalaryManagementController> {
                             title:Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("${data.employeeName}",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: AppColors.textBlack),),
+                                SizedBox(
+                                  width: 150,
+                                    child: Text("${data.employeeName}",
+                                      overflow: TextOverflow.ellipsis,
+                                      style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: AppColors.textBlack),)),
                               ],
                             ),
                             subtitle: Text("${dateTimeController.dateFormat1(DateTime.parse("${data.date!}"))}",style:const TextStyle(fontWeight: FontWeight.w400,fontSize: 12,color: AppColors.textGrey),),

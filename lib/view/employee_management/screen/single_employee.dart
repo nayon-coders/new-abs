@@ -13,6 +13,7 @@ import '../../../controller/date_time_controller.dart';
 import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
 import '../../../utility/assetes.dart';
+import '../../../widgets/app_shimmer.dart';
 class SingleEmployee extends GetView<EmployeeManageController> {
    SingleEmployee({super.key});
   final tabController = Get.put(ToggleTabController());
@@ -26,7 +27,10 @@ class SingleEmployee extends GetView<EmployeeManageController> {
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
-        leading: IconButton(onPressed: ()=>Get.back(), icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
+        leading: IconButton(onPressed: (){
+          Get.back();
+          controller.allEmployeeList();
+        }, icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
         title:const Text("Single Employee",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: AppColors.textBlack),),
         backgroundColor: AppColors.textWhite,
         surfaceTintColor: Colors.transparent,
@@ -77,7 +81,7 @@ class SingleEmployee extends GetView<EmployeeManageController> {
       body: SingleChildScrollView(
         child: Obx(() {
           if(controller.isGetting.value){
-            return const Center(child: CircularProgressIndicator.adaptive(),);
+            return Center(child: CircularProgressIndicator.adaptive());
           }else if(controller.singleModel.value.employee == null){
             return const Center(child: Text("No data found"),);
 
@@ -258,4 +262,41 @@ class SingleEmployee extends GetView<EmployeeManageController> {
       ),
     );
   }
+   //loading shimmer
+   Widget _buildLoading() {
+     return Column(
+       mainAxisAlignment: MainAxisAlignment.center,
+       crossAxisAlignment: CrossAxisAlignment.center,
+       children: [
+         Center(
+           child: Column(
+             mainAxisAlignment: MainAxisAlignment.center,
+             crossAxisAlignment: CrossAxisAlignment.center,
+             children: [
+               AppShimmerPro.circularShimmer(width: 80, height: 80, borderRadius: 100),
+               Center(
+                 child: Column(
+                   children: [
+                     AppShimmerPro.TextShimmer(width: 130, maxLine: 1),
+                     AppShimmerPro.TextShimmer(width: 130, maxLine: 1),
+                     AppShimmerPro.TextShimmer(width: 130, maxLine: 1),
+                   ],
+                 ),
+               ),
+               Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                 crossAxisAlignment: CrossAxisAlignment.center,
+                 children: [
+                   AppShimmerPro.circularShimmer(width: 110, height: 80, borderRadius: 10),
+                   AppShimmerPro.circularShimmer(width: 110, height: 80, borderRadius: 10),
+                   AppShimmerPro.circularShimmer(width: 110, height: 80, borderRadius: 10),
+
+                 ],
+               )
+             ],
+           ),
+         ),
+       ],
+     );
+   }
 }

@@ -21,6 +21,13 @@ class CostController extends GetxController{
     getCostList();
   }
 
+  @override
+  void onReady(){
+    super.onReady();
+    getAllCostList(dateTimeController.month, dateTimeController.year);
+    getCostList();
+  }
+
   RxBool isCostListGetting = false.obs;
   RxBool isGetting = false.obs;
   RxBool isAddCost = false.obs;
@@ -49,6 +56,7 @@ class CostController extends GetxController{
     var res = await ApiServices.getApi(AppConfig.COST_LIST);
     if(res.statusCode == 200){
       costingListModel.value = ConstingListModel.fromJson(jsonDecode(res.body));
+     // allCostList.refresh();
     }
     isCostListGetting.value = false;
   }

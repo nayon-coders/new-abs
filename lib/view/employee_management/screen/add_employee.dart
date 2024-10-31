@@ -416,13 +416,11 @@ class AddEmployee extends GetView<EmployeeManageController> {
                       if(_key.currentState!.validate()){
                         if(controller.isForEdit.value){
                           controller.editEmployee();
-
                         }else{
                           controller.addEmployee();
                         }
 
                       }
-
                       }));
                 }
               ),

@@ -24,13 +24,13 @@ class TaxAndState extends GetView<TaxController> {
         padding: EdgeInsets.all(20),
         child: Column(
           children: [
-            SizedBox(
+           const SizedBox(
               width: 350,
                 child: Text("We are managing 100% tax. You should setup tax (%) according to the state",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color: AppColors.textBlack),)),
 
             const SizedBox(height: 10,),
             _buildCheckTaxWidget(),
-            SizedBox(height: 30,),
+            const SizedBox(height: 30,),
             //check if tax is enabled or not
             Obx((){
                 return controller.isTaxStatus.value
@@ -47,7 +47,7 @@ class TaxAndState extends GetView<TaxController> {
   Container _buildTaxSetupWidget() {
     return Container(
       width: double.infinity,
-        padding: EdgeInsets.all(20),
+        padding:const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: AppColors.textWhite,
           borderRadius: BorderRadius.circular(10)
@@ -56,11 +56,15 @@ class TaxAndState extends GetView<TaxController> {
         mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Tax Setup(%)",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: AppColors.textBlack),),
+           const Text("Tax Setup(%)",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: AppColors.textBlack),),
             const SizedBox(height: 10,),
-            AppInput(hint: "Tax", controller: controller.taxController.value),
+            AppInput(
+                hint: "Tax",
+                controller: controller.taxController.value,
+              textType: TextInputType.number,
+            ),
             const SizedBox(height: 20,),
-            Text("State",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: AppColors.textBlack),),
+           const Text("State",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: AppColors.textBlack),),
             const SizedBox(height: 10,),
             AppInput(hint: "State", controller: controller.stateController.value),
             const SizedBox(height: 30,),

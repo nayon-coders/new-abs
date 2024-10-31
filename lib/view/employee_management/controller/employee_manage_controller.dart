@@ -271,6 +271,7 @@ class EmployeeManageController extends GetxController{
     salaryRate.value.clear();
     salaryType.value.clear();
     pass.value.clear();
+    selectedImage.value = null;
     profileImage.value = "";
 
   }

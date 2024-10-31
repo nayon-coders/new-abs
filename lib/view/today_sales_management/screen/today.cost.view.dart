@@ -42,10 +42,10 @@ class TodayCostView extends GetView<CostController> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Center(child: Text("No data found")),
+                const Center(child: Text("No data found")),
                 TextButton(
                   onPressed: () => controller.getAllCostList(dateTimeController.month, dateTimeController.year),
-                  child: Text("Refresh", style: TextStyle(color: AppColors.textBlue)),
+                  child:const Text("Refresh", style: TextStyle(color: AppColors.textBlue)),
                 ),
               ],
             );
@@ -58,7 +58,7 @@ class TodayCostView extends GetView<CostController> {
                   return Container(
                     height: 60,
                     color: index.isEven ? AppColors.textWhite : AppColors.bgColor,
-                    padding: EdgeInsets.only(left: 10, right: 10),
+                    padding:const EdgeInsets.only(left: 10, right: 10),
                     child:Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,

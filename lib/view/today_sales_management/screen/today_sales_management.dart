@@ -18,6 +18,7 @@ class TodaySalesManagement extends StatelessWidget {
    TodaySalesManagement({super.key});
 
   final _key = GlobalKey<ExpandableFabState>();
+  final salesController = Get.put(CostController());
 
 
 
@@ -45,7 +46,8 @@ class TodaySalesManagement extends StatelessWidget {
             preferredSize:const Size.fromHeight(50),
             child: Container(
               color: AppColors.bgColor,
-              child:const TabBar(
+              child: TabBar(
+
                 dividerColor: Colors.transparent,
                   tabs: [
                 Tab(text: "Today Sales",),
