@@ -119,9 +119,15 @@ class TaxController extends GetxController{
   void getTaxStatus()async{
     var response = await ApiServices.getApi(AppConfig.TAX_STATUS_CHECK);
     if(response.statusCode == 200){
-      isTaxStatus.value = bool.parse(jsonDecode(response.body)["result"]["status"]);
-      //insert into global variable
-      GlobalVariables.gIsTaxStatus.value = isTaxStatus.value;
+      // check here the tax status is default or not if default then set false
+      if(jsonDecode(response.body)["result"]["status"] == "default"){
+        isTaxStatus.value = false;
+      }else{
+        isTaxStatus.value = bool.parse(jsonDecode(response.body)["result"]["status"]);
+        //insert into global variable
+        GlobalVariables.gIsTaxStatus.value = isTaxStatus.value;
+      }
+
     }else{
       isTaxStatus.value = false;
     }

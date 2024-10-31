@@ -18,11 +18,13 @@ class SingleEmployee extends GetView<EmployeeManageController> {
    SingleEmployee({super.key});
   final tabController = Get.put(ToggleTabController());
    DateTimeController dateController = Get.put(DateTimeController());
+   final employeeId = Get.arguments.toString();
 
   @override
   Widget build(BuildContext context) {
-    final employeeId = Get.arguments.toString();
-    Future.delayed(Duration.zero,()=>controller.getSingleEmployee(employeeId));
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      controller.getSingleEmployee(employeeId);
+    });
 
     return Scaffold(
       backgroundColor: AppColors.bgColor,
@@ -35,46 +37,52 @@ class SingleEmployee extends GetView<EmployeeManageController> {
         backgroundColor: AppColors.textWhite,
         surfaceTintColor: Colors.transparent,
         actions: [
-          InkWell(
-            onTap: (){
-              if(controller.isGetting.value) return;
-              controller.setEditValu(controller.singleModel.value);
+          Obx(() {
+              return  controller.isGetting.value ? Center() : InkWell(
+                onTap: (){
+                  if(controller.isGetting.value) return;
+                  controller.setEditValu(controller.singleModel.value);
 
-            },
-            child:Container(
-              height: 30,
-                width: 30,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: Colors.orange,
-                ),
-                child: const  Icon(Icons.edit,color: Colors.white,size: 18,)),
+                },
+                child:Container(
+                  height: 30,
+                    width: 30,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.orange,
+                    ),
+                    child: const  Icon(Icons.edit,color: Colors.white,size: 18,)),
+              );
+            }
           ),
           const SizedBox(width: 15,),
-          InkWell(
-            onTap: (){
-              Get.defaultDialog(
-                title: "Confirm delete",
-                middleText: "Are you sure you want to delete employee?",
-                textConfirm: "Yes",
-                textCancel: "No",
-                confirmTextColor: Colors.white,
-                onConfirm: () {
-                  controller.deleteEmployee(controller.singleModel.value.employee!.id.toString());
+          Obx((){
+              return  controller.isGetting.value ? Center() : InkWell(
+                onTap: (){
+                  Get.defaultDialog(
+                    title: "Confirm delete",
+                    middleText: "Are you sure you want to delete employee?",
+                    textConfirm: "Yes",
+                    textCancel: "No",
+                    confirmTextColor: Colors.white,
+                    onConfirm: () {
+                      controller.deleteEmployee(controller.singleModel.value.employee!.id.toString());
+                    },
+                    onCancel: () {
+                      Get.toNamed(AppRoute.singleEmployeeScreen);
+                    },
+                  );
                 },
-                onCancel: () {
-                  Get.toNamed(AppRoute.singleEmployeeScreen);
-                },
-              );
-            },
-              child:Container(
-                  height: 30,
-                  width: 30,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: Colors.red,
-                  ),
-                  child: const  Icon(Icons.delete,color: Colors.white,size: 18,))),
+                  child:Container(
+                      height: 30,
+                      width: 30,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Colors.red,
+                      ),
+                      child: const  Icon(Icons.delete,color: Colors.white,size: 18,)));
+            }
+          ),
           const SizedBox(width: 20,),
         ],
       ),
@@ -146,7 +154,7 @@ class SingleEmployee extends GetView<EmployeeManageController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          CardMenus(workingName: "Salary  Pending", number: "\$ ${controller.singleModel.value.selectedMontDueAmount}"),
+                          CardMenus(workingName: "Salary Pending", number: "\$ ${controller.singleModel.value.selectedMontDueAmount}"),
                           CardMenus(workingName: "Total Paid", number: "\$${controller.singleModel.value.selectedMonthTotalPayment}"),
                           CardMenus(workingName: "Working Hours", number: "${controller.singleModel.value.selectedMonthTotalWorkTime} h"),
 

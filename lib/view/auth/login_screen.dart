@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../utility/app_color.dart';
+import '../../widgets/branding_bottom_text.dart';
 
 class LoginScreen extends StatelessWidget {
    LoginScreen({super.key});
@@ -95,23 +96,25 @@ class LoginScreen extends StatelessWidget {
             
             
                 SizedBox(height: size.height*0.30,),
-                Center(
-                  child: InkWell(
-                    onTap: ()=>Get.toNamed(AppRoute.register),
-                    child: RichText(
-                      text:const TextSpan(
-                        text: "Don’t have an account?",
-                        style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color: AppColors.textBlack),
-                        children: [
-                          TextSpan(
-                            text: " Register Now",
-                            style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: AppColors.linkColor)
-                          )
-                        ]
-                      ),
-                    ),
-                  ),
-                ),
+                // Center(
+                //   child: InkWell(
+                //     onTap: ()=>Get.toNamed(AppRoute.register),
+                //     child: RichText(
+                //       text:const TextSpan(
+                //         text: "Don’t have an account?",
+                //         style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color: AppColors.textBlack),
+                //         children: [
+                //           TextSpan(
+                //             text: " Register Now",
+                //             style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: AppColors.linkColor)
+                //           )
+                //         ]
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                BrandingBottomText(),
+
                const SizedBox(height: 20,),
               ],
             ),

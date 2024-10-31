@@ -156,8 +156,10 @@ class FoodCostView extends GetView<FoodCostController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("Amount: \$${item.vendorAmount}"),
-                              Text("Pay By: \$${item.payBy}"),
-                              item.checkNo!.isEmpty ? Center() :  Text("Cheque Number: ${item.checkNo}"),
+                              Text("Pay By: \$${item.payBy}",
+
+                              ),
+                              item.checkNo == null || item.checkNo!.isEmpty ? Center() :  Text("Cheque Number: ${item.checkNo}"),
                             ],
                           ),
                         ),

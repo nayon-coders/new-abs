@@ -52,13 +52,13 @@ class RoutePage{
     GetPage(
         name: AppRoute.welcome,
         page: ()=>const WelcomeScreen(),
-        middlewares: [AuthMiddleware()]
+        // middlewares: [AuthMiddleware()]
     ),
 
     GetPage(
         name: AppRoute.login,
         page: ()=> LoginScreen(),
-        //middlewares: [AuthMiddleware()]
+
     ),
 
     GetPage(
@@ -84,7 +84,8 @@ class RoutePage{
     GetPage(
       name: AppRoute.dashBoard,
       page: ()=>  DashBoardScreen(),
-      bindings: [ LossProfitBinding()]
+      bindings: [ LossProfitBinding()],
+        //middlewares: [AuthMiddleware()]
     ),
 
     GetPage(

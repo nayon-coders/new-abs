@@ -1,10 +1,13 @@
 import 'package:abs_office_management/data/model/online.platform.model.dart';
+import 'package:abs_office_management/view/today_sales_management/controller/sales_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../app_config.dart';
 import '../../../data/services/api_services.dart';
 class OnlineSalesPlatformController extends GetxController {
+
+  final SalesController salesController = Get.put(SalesController());
 
   //oninit
   @override
@@ -58,10 +61,13 @@ class OnlineSalesPlatformController extends GetxController {
   //get all online sales platform
   getOnlineSalesPlatform() async {
     isGetting.value = true;
+    salesController.platformNameList.clear();
     var res = await ApiServices.getApi(AppConfig.ONLINE_SALES_PLATFORM);
     isGetting.value = false;
     if(res.statusCode == 200){
       onlineSalesPlatformModel.value = onlineSalesPlatformModelFromJson(res.body);
+      salesController.platformNameList.value = onlineSalesPlatformModel.value.data!;
+
     }
   }
 

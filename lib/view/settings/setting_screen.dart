@@ -79,11 +79,13 @@ class SettingScreen extends StatelessWidget {
               onTap: ()=> alertDialog(
                     title: "Hold On !",
                     content: "Are you sure? Do you want to Logout?",
-                    onOk: (){
-                      sharedPreferences!.clear();
-                      Get.snackbar("Successful", "Logout successful",backgroundColor: Colors.green,colorText: Colors.white
-                      );
-                      Get.offAllNamed(AppRoute.login);
+                    onOk: ()async{
+                      await sharedPreferences!.clear().then((e){
+                        Get.snackbar("Successful", "Logout successful",backgroundColor: Colors.green,colorText: Colors.white
+                        );
+                        Get.offAllNamed(AppRoute.login);
+                      });
+
 
                     },
                 ),

@@ -79,9 +79,9 @@ class CostController extends GetxController{
     isCostListDelete.value = true;
 
     var res = await ApiServices.deleteApi(AppConfig.COST_DELETE + id);
-
+    Get.back();
     if(res.statusCode == 200){
-      Get.back();
+
       getCostList();
       Get.snackbar("Success!", "Costing list deleted successfully", backgroundColor: Colors.green, colorText: Colors.white);
     }

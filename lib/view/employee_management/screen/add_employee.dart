@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/view/employee_management/controller/employee_manage_controller.dart';
 import 'package:abs_office_management/view/settings/controller/employee_position_controller.dart';
 import 'package:abs_office_management/widgets/app_button.dart';
@@ -313,13 +314,24 @@ class AddEmployee extends GetView<EmployeeManageController> {
               const SizedBox(height: 20,),
 
               //Employee Position Dropdown
-             const Text(
-                "Employee Position",
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14,
-                    color: AppColors.textBlack),
-              ),
+             Row(
+               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               children: [
+                 const Text(
+                    "Employee Position",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                        color: AppColors.textBlack),
+                  ),
+                 TextButton(
+                   onPressed: (){
+                     Get.toNamed(AppRoute.employeePosition);
+                   },
+                   child: Text("Edit"),
+                 )
+               ],
+             ),
               const SizedBox(
                 height: 10,
               ),
@@ -331,7 +343,12 @@ class AddEmployee extends GetView<EmployeeManageController> {
 
                 // Error handling or empty state
                 if (positionController.positionModel.value.data == null) {
-                  return const Text("No positions available");
+                  return Container(
+                    padding: EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                        color: Colors.white
+                      ),
+                      child: const Text("No positions available"));
                 }
                   return  CustomDropDown(
                       fillColor: AppColors.textWhite,

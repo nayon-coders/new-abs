@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../main.dart';
+import '../../widgets/branding_bottom_text.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -16,12 +17,15 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
 
+
+  bool  isLoading = false;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    // Future.delayed(const Duration(seconds: 3),()=>Get.toNamed(AppRoute.login));
-    //check user is login or not with future delay
+
+
+
 
 
   }
@@ -55,6 +59,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
              const SizedBox(height: 30,),
               AppButton(
+                isLoading: isLoading,
                   name: "Login",
                   width: 300,
                   onClick: ()=>Get.toNamed(AppRoute.login),
@@ -62,29 +67,31 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               const SizedBox(height: 10,),
 
 
-              InkWell(
-                onTap: ()=>Get.toNamed(AppRoute.register),
-                child: Container(
-                  height: 45,
-                  width: 300,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    color:Colors.white,
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child:const Center(
-                    child: Text("Register",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                          color: AppColors.textBlack,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // InkWell(
+              //   onTap: ()=>Get.toNamed(AppRoute.register),
+              //   child: Container(
+              //     height: 45,
+              //     width: 300,
+              //     decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(6),
+              //       color:Colors.white,
+              //       border: Border.all(color: Colors.grey),
+              //     ),
+              //     child: isLoading ? CircularProgressIndicator.adaptive(backgroundColor: Colors.white,)  : Center(
+              //       child: Text("Register",
+              //         style: TextStyle(
+              //           fontWeight: FontWeight.w600,
+              //           fontSize: 16,
+              //           color: AppColors.textBlack,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
 
               Spacer(),
+             BrandingBottomText(),
+             SizedBox(height: 40,),
 
              //  InkWell(
              //    onTap: ()=>Get.to(()=>DashBoardScreen()),

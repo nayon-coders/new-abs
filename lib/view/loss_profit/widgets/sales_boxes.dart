@@ -17,6 +17,8 @@ class SalesBoxes extends GetView<LossProfitController> {
       if(controller.isLoading.value){
         return LoadingLossProfitBoxsView();
       }else{
+
+        var netSale = double.parse(controller.netSales.value.toStringAsFixed(2));
         return Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(

@@ -61,7 +61,7 @@ class ManageCosting extends GetView<CostController> {
                           Get.snackbar("Error", "Cost name is required", backgroundColor: Colors.red, colorText: Colors.white);
                           return;
                         }
-                        if(controller.isEditCostListName.value){
+                        if(controller.isAddCost.value){
                           //controller.editCostingList();
                         }else{
                           controller.addCostingList();

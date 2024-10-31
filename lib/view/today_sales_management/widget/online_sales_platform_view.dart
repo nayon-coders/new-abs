@@ -18,6 +18,11 @@ class OnlinePlatformListView extends GetView<OnlineSalesPlatformController> {
 
   @override
   Widget build(BuildContext context) {
+    // WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    //   for(var i in controller.onlineSalesPlatformModel.value.data!){
+    //     salesController.platformNameList.add(TextEditingController(text: i.name));  // add platform name to the list
+    //   }
+    // });
     return Obx(() {
       if(controller.isGetting.value){
         return AppShimmerPro.circularShimmer(width: Get.width, height: 180, borderRadius: 10);
@@ -63,7 +68,6 @@ class OnlinePlatformListView extends GetView<OnlineSalesPlatformController> {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (_, index) {
-            salesController.platformNameList.add(controller.onlineSalesPlatformModel.value.data![index]!);
             salesController.amountList.add(TextEditingController());
 
             return Container(
@@ -88,7 +92,7 @@ class OnlinePlatformListView extends GetView<OnlineSalesPlatformController> {
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.green.withOpacity(0.1 ),
                      ),
-                     child: Text("${salesController.platformNameList[index].name}",
+                     child: Text("${salesController.platformNameList.value[index]!.name}",
                       style: TextStyle(fontSize: 17, fontWeight: FontWeight
                           .w600, color: AppColors.textBlack),),
                    ),

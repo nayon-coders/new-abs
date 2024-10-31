@@ -142,7 +142,7 @@ class AddEmployeePositionView extends GetView<EmployeePositionController> {
                   trailing:Obx((){
                     return InkWell(
                         onTap: ()=>controller.deletePosition(controller.positionModel.value.data![index].id.toString()),
-                        child: controller.isDeleting.value?const CircularProgressIndicator.adaptive(backgroundColor: Colors.red,) :const Text("Delete",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: AppColors.red),));
+                        child: controller.isDeleting.value?const CircularProgressIndicator.adaptive(backgroundColor: Colors.red,) :const Icon(Icons.delete, color: Colors.red,));
                   }
                   ),
                 ),

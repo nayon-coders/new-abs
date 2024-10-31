@@ -233,6 +233,7 @@ class EmployeeManageController extends GetxController{
     employeeType.value.text = data.employee!.employeeType.toString();
     employeePosition.value.text = data.employee!.employeePosition.toString();
     profileImage.value = data.employee!.profilePic.toString();
+
     Get.toNamed(AppRoute.addEmployeeScreen);
 
 
@@ -273,6 +274,7 @@ class EmployeeManageController extends GetxController{
     pass.value.clear();
     selectedImage.value = null;
     profileImage.value = "";
+    singleModel.value = SingleEmployeeModel();
 
   }
 }

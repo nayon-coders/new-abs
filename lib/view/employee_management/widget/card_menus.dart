@@ -30,7 +30,7 @@ class CardMenus extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(workingName,style:const TextStyle(fontWeight: FontWeight.w500,fontSize: 12,color:Color(0xFF4F4F4F), ),),
+          Text(workingName,style:const TextStyle(fontWeight: FontWeight.w500,fontSize: 11,color:Color(0xFF4F4F4F), ),),
          const SizedBox(height: 6,),
           Text(number,style:const TextStyle(fontWeight: FontWeight.w500,fontSize: 12,color:Color(0xFF4F4F4F), ),),
         ],

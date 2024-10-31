@@ -2,6 +2,7 @@ import 'package:abs_office_management/app_config.dart';
 import 'package:abs_office_management/view/partner_management/controller/partner_controller.dart';
 import 'package:abs_office_management/view/today_sales_management/widget/edit_button.dart';
 import 'package:abs_office_management/widgets/app_shimmer.dart';
+import 'package:abs_office_management/widgets/no_data_find.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -35,7 +36,7 @@ class PartnerManagement extends GetView<PartnerController> {
         if(controller.isGetting.value){
           return _loadingMethod();
         }else if(controller.getAllPartnerModel.value.data == null || controller.getAllPartnerModel.value.data!.isEmpty){
-          return const Center(child: Text("No partner found"),);
+          return const Center(child: NoDataFoundScreen(),);
         }else{
           return ListView.builder(
               padding:const EdgeInsets.all(10),

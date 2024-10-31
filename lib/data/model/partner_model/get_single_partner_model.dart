@@ -40,7 +40,7 @@ class PartnerInfo {
   final dynamic? percentage;
   final String? profilePic;
   final int? busnId;
-  final int? partnerProfit;
+  final dynamic? partnerProfit;
   final double? partnerLoss;
   final double? partnerNetIncome;
 

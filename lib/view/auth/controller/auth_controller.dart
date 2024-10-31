@@ -30,6 +30,7 @@ class AuthController extends GetxController{
             "password":password,
           });
       if(res.statusCode ==200){
+        ///TODO : Check account is pending or active... (Check Status)
         try{
           final data = jsonDecode(res.body);
 
@@ -44,7 +45,7 @@ class AuthController extends GetxController{
             _pref.setString("id", data["data"]["user"]["id"].toString());
             _pref.setString("business_id", data["data"]["user"]["business_id"].toString());
 
-            Get.offNamed(AppRoute.dashBoard);
+            Get.toNamed(AppRoute.dashBoard);
           }else{
             Get.snackbar("Failed", "Sorry! You are not allowed to login here.",backgroundColor: Colors.red,colorText: Colors.white);
           }

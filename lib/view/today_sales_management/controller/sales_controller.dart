@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:get/state_manager.dart';
 
 import '../../../data/model/all_sales_molde.dart';
 import '../../../data/model/online.platform.model.dart';
@@ -28,7 +29,7 @@ class SalesController extends GetxController {
   Rx<TextEditingController> totalCashCollect = TextEditingController().obs;
   RxList<OnlinePlatforms> platformNameList = <OnlinePlatforms>[].obs;
   RxList<TextEditingController> amountList = <TextEditingController>[].obs;
-  RxString shortOver = "".obs;
+  RxDouble shortOver = 0.00.obs;
   Rx<TextEditingController> dateTime = TextEditingController().obs;
   Rx<TextEditingController> additionalIncome = TextEditingController().obs;
   RxString dateTimeDatabase = "".obs;
@@ -80,7 +81,7 @@ class SalesController extends GetxController {
       "salesRegister": grossSales.value.text,
       "totalCashCollect": totalCashCollect.value.text,
       "craditeSales": creditSales.value.text,
-      "so_ov": shortOver.value,
+      "so_ov": shortOver.value.toStringAsFixed(2),
       "tax" : totalTaxAmount.value,
       "additional_income": additionalIncome.value.text.isEmpty ? 0.00 : additionalIncome.value.text,
       "onlineSales": onlineSalesData,
@@ -106,7 +107,7 @@ class SalesController extends GetxController {
       "salesRegister": grossSales.value.text,
       "totalCashCollect": totalCashCollect.value.text,
       "craditeSales": creditSales.value.text,
-      "so_ov": shortOver.value,
+      "so_ov": shortOver.value.toStringAsFixed(2),
       "tax" : totalTaxAmount.value, //tax amount
       "additional_income": additionalIncome.value.text.isEmpty ? 0.00 : additionalIncome.value.text,
       "onlineSales": onlineSalesData,
@@ -149,7 +150,7 @@ class SalesController extends GetxController {
     grossSales.value.text = data.salesRegister.toString();
     creditSales.value.text = data.craditeSales.toString();
     totalCashCollect.value.text = data.totalCashCollect.toString();
-    shortOver.value = data.soOv.toString();
+    shortOver.value = double.parse(data.soOv.toString());
     dateTime.value.text = dateTimeController.dateFormat1(data.date!);
     dateTimeDatabase.value = data.date.toString();
     totalTaxAmount.value = data.tax!.toDouble();
@@ -173,8 +174,8 @@ class SalesController extends GetxController {
     double creditSalesAmount = creditSales.value.text.isEmpty ? 0.0 : double.parse(creditSales.value.text);
     double totalCashCollectAmount = totalCashCollect.value.text.isEmpty ? 0.0 : double.parse(totalCashCollect.value.text);
     double totalRegisterSale = grossSales.value.text.isEmpty ? 0.0 : double.parse(grossSales.value.text);
-    double shortOverAmount = (totalRegisterSale - (creditSalesAmount + totalCashCollectAmount));
-    shortOver.value = shortOverAmount.toStringAsFixed(2);
+    double shortOverAmount = ((creditSalesAmount + totalCashCollectAmount) - totalRegisterSale );
+    shortOver.value = shortOverAmount;
     update();  //update the UI
   }
 
@@ -187,7 +188,7 @@ class SalesController extends GetxController {
     grossSales.value.clear();
     creditSales.value.clear();
     totalCashCollect.value.clear();
-    shortOver.value = "";
+    shortOver.value = 0.00;
     dateTime.value.clear();
     platformNameList.clear();
     amountList.clear();
@@ -203,7 +204,9 @@ class SalesController extends GetxController {
     if(tax != null){
       totalTaxAmount.value = (amount * tax)/100;
     }
-    return totalTaxAmount.value; //return tax amount
+    update();
+    return totalTaxAmount.value; //r
+    // eturn tax amount
   }
 
 

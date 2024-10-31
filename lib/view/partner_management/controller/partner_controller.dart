@@ -124,7 +124,9 @@ class PartnerController extends GetxController{
 
     if (response.statusCode == 201) {
       print("Successful update partner profile");
+      singlePartner(id); // get single Partner id
       getPartner();
+
       Get.back();
       Get.snackbar("Successful", "Profile has been updated!", backgroundColor: Colors.green);
     } else {
@@ -154,7 +156,7 @@ class PartnerController extends GetxController{
 
     //Edit Partner
   editPartner(data)async{
-    isEditing.value = true;
+    isAdding.value = true;
     final body={
       "name":name.value.text,
       "email":email.value.text,
@@ -164,14 +166,15 @@ class PartnerController extends GetxController{
     };
     final res = await ApiServices.putApi(AppConfig.EDIT_PARTNER+id.value, body);
     if(res.statusCode ==201){
-      id.value = "";
+      singlePartner(id.value);
+      getPartner();
       clearAllData();
       Get.back();
       Get.snackbar("Successful", "Partner Edit successful",backgroundColor: Colors.green,colorText: Colors.white);
     }else{
       Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}",backgroundColor: Colors.red);
     }
-    isEditing.value = false;
+    isAdding.value = false;
 
   }
 

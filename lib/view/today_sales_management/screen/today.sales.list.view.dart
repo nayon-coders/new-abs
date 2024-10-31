@@ -69,7 +69,7 @@ class TodaySalesView extends GetView<SalesController> {
                         TableBody(
                           width: 60,
                           color: double.parse(data.soOv!) < 0 ? Colors.red : Colors.green,
-                          text: "\$${data.soOv}",
+                          text: "\$${double.parse("${data.soOv}").abs()}",
                         ),
 
                         SizedBox(

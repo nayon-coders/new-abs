@@ -43,11 +43,12 @@ class EmployeePositionController extends GetxController{
 
   //add employee
   addEmployeePosition()async{
+    isAdding.value = true;
       var data ={
         "name":positionName.value.text,
       };
       final res = await ApiServices.postApi(AppConfig.CREATE_POSITION, data,);
-      isAdding.value = false;
+
       if(res.statusCode ==201){
         clearTextEditingController();
         getEmployeePosition();
@@ -58,6 +59,8 @@ class EmployeePositionController extends GetxController{
         print("failed : ${jsonDecode(res.body)["message"]}");
 
       }
+
+    isAdding.value = false;
 
   }
 

@@ -35,25 +35,31 @@ class SinglePartnerScreen extends GetView<PartnerController> {
         backgroundColor: AppColors.textWhite,
         surfaceTintColor: Colors.white,
         actions: [
-          EditButton(
-            icon: Icons.edit,
-            bgColor: Colors.yellow,
-            onClick: (){
-              controller.editValueSave(controller.singlePartnerModel.value.partnerInfo);
-              Get.toNamed(AppRoute.addPartnerScreen);
-            },
+          Obx(() {
+              return controller.isGetting.value ? Center() :   EditButton(
+                icon: Icons.edit,
+                bgColor: Colors.yellow,
+                onClick: (){
+                  controller.editValueSave(controller.singlePartnerModel.value.partnerInfo);
+                  Get.toNamed(AppRoute.addPartnerScreen);
+                },
+              );
+            }
           ),
           const SizedBox(width: 10,),
-          EditButton(
-            icon: Icons.delete,
-              bgColor: Colors.red,
-              onClick: (){
-                alertDialog(
-                    title: "Hold On!",
-                    content: "Are you sure you want to delete this partner?",
-                    onOk: ()=>controller.deletePartner(controller.singlePartnerModel.value.partnerInfo!.id.toString())
-                );
-              },
+          Obx(() {
+              return  controller.isGetting.value ? Center() :  EditButton(
+                icon: Icons.delete,
+                  bgColor: Colors.red,
+                  onClick: (){
+                    alertDialog(
+                        title: "Hold On!",
+                        content: "Are you sure you want to delete this partner?",
+                        onOk: ()=>controller.deletePartner(controller.singlePartnerModel.value.partnerInfo!.id.toString())
+                    );
+                  },
+              );
+            }
           ),
           const SizedBox(width: 20,),
         ],
@@ -75,6 +81,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
 
               }else{
                 final partnerInfo = controller.singlePartnerModel.value.partnerInfo!;
+                var partnerProfit = (double.parse("${controller.singlePartnerModel.value.wholeBusiness!.totalProfit}") / 100) * double.parse("${partnerInfo.percentage}");
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,7 +100,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text("Loss & Profit",
+                          const Text("Partner Loss & Profit",
                             style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.textBlack),
                           ),
                          const  SizedBox(height: 20,),
@@ -113,7 +120,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                                 ),
                                 child: Column(
                                   children: [
-                                    Text("\$${controller.singlePartnerModel.value.wholeBusiness!.totalProfit!.toStringAsFixed(2)}",
+                                    Text("\$${partnerProfit}",
                                       style:const TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: AppColors.mainColor),
                                     ),
                                    const Text("Total Profit",

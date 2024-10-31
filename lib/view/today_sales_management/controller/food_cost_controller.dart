@@ -144,9 +144,10 @@ class FoodCostController extends GetxController {
 
 
     isForEdit.value = true;
-    selectedDate.value.text = data.date.toString();
+    selectedDate.value.text = dateTimeController.dateFormat1(DateTime.parse(data.date.toString()));
     selectedId.value = data.id.toString();
     dateController.value.text = data.date.toString();
+
     for(var i in data.data!){
       vendorName.add(TextEditingController(text: i.vendorName));
       vendorAmount.add(TextEditingController(text: i.vendorAmount.toString()));
@@ -185,6 +186,11 @@ class FoodCostController extends GetxController {
     isEditing.value = false;
     isDeleting.value = false;
     isUpdating.value = false;
+    vendorName.clear();
+    vendorAmount.clear();
+    chequeNumber.clear();
+    payList.clear();
+
 
 
     update();

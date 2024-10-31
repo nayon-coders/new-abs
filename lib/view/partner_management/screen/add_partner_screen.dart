@@ -84,22 +84,23 @@ class AddPartnerScreen extends GetView<PartnerController> {
               ),
               const SizedBox(height: 30,),
 
-              Center(child: AppButton(
-                isLoading: controller.isAdding.value,
-                  name:controller.isEditing.value?"Update": "Save",
-                  bgColor: controller.isEditing.value?Colors.orange:AppColors.mainColor,
-                  onClick: (){
-                  if(_key.currentState!.validate()){
-                    if(controller.isEditing.value){
-                      controller.editPartner(controller.id.value);
-                      controller.singlePartner(controller.id.toString());
+              Center(child: Obx(() {
+                  return AppButton(
+                    isLoading: controller.isAdding.value,
+                      name:controller.isEditing.value?"Update": "Save",
+                      bgColor: controller.isEditing.value?Colors.orange:AppColors.mainColor,
+                      onClick: (){
+                      if(_key.currentState!.validate()){
+                        if(controller.isEditing.value){
+                          controller.editPartner(controller.id.value);
+                        }else{
+                          controller.addPartner();
+                        }
 
-                    }else{
-                      controller.addPartner();
-                    }
-
-                  }
-                  }))
+                      }
+                      });
+                }
+              ))
 
 
 

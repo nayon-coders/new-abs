@@ -38,14 +38,14 @@ class LossProfitController extends GetxController {
     var response = await ApiServices.getApi(AppConfig.LOSS_PROFIT+"?month=$month&year=$year");
     if (response.statusCode == 200) {
       lossProfitModel.value = LossProfitModel.fromJson(jsonDecode(response.body));
+      calculateAmount(lossProfitModel.value);
     }
     isLoading.value = false;
   }
 
   //calculate the tax amount
   calculateAmount(LossProfitModel model)async{
-
-    netSales.value = double.parse("${model.totalSalesRegister}") - double.parse("${model.totalTax}");
+    netSales.value = double.parse("${model.totalSalesRegister}") - (double.parse("${model.totalTax}") + double.parse("${model.shortOver}") );
   }
 
   //get online sales

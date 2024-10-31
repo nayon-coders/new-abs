@@ -43,6 +43,7 @@ class LossProfit extends GetView<LossProfitController> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
             LossProfitWidgets(dateTimeController: dateTimeController),
 
 

@@ -82,7 +82,6 @@ class AddTodaySales extends GetView<SalesController> {
                             if(v.isNotEmpty){
                               controller.calculateTax(double.parse(v!), double.parse("${taxController.taxStateModel.value.data!.tax}"));
                               controller.calculateCreditSalesAndTotalCashCollect();
-
                             }else{
                               controller.totalTaxAmount.value = 0.0;
                             }
@@ -95,7 +94,7 @@ class AddTodaySales extends GetView<SalesController> {
                     const SizedBox(height: 10,),
 
                     //Tax
-                    _buildTaxWidgets(), // Tax Widget
+                    _buildTaxWidgets(),
 
                    const SizedBox(height: 15,),
 
@@ -153,11 +152,11 @@ class AddTodaySales extends GetView<SalesController> {
               //----Online Platform----
               const SizedBox(height: 10,),
               Obx((){
-                if(controller.shortOver.isEmpty){
+                if(controller.shortOver.value == 0.0){
                   return Center();
                 }else{
-                  bool isShortOver = double.parse(controller.shortOver.value) < 0;
-                  return Text("Short Over = ${controller.shortOver.value.isEmpty ? 0.0 : controller.shortOver.value}",
+                  bool isShortOver = controller.shortOver.value < 0;
+                  return Text("Short Over = ${ controller.shortOver.value.abs().toStringAsFixed(2)}",
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 15,

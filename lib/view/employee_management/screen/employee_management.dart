@@ -2,6 +2,7 @@ import 'package:abs_office_management/app_config.dart';
 import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/assetes.dart';
 import 'package:abs_office_management/view/employee_management/controller/employee_manage_controller.dart';
+import 'package:abs_office_management/widgets/no_data_find.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -48,7 +49,7 @@ class EmployeeManagement extends GetView<EmployeeManageController> {
         if (controller.isGetting.value) {
           return _buildLoading();
         }else if (controller.employeeListModel.value.data == null || controller.employeeListModel.value.data!.isEmpty) {
-          return const Center(child: Text("No employees found."));
+          return const Center(child: NoDataFoundScreen());
         }else{
           return ListView.builder(
               padding:const EdgeInsets.all(10),
