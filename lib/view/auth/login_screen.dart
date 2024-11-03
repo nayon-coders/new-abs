@@ -12,8 +12,8 @@ import '../../widgets/branding_bottom_text.dart';
 
 class LoginScreen extends StatelessWidget {
    LoginScreen({super.key});
-  final _email = TextEditingController(text: "shakib.app.dev@gmail.com");
-  final _password = TextEditingController(text: "123456");
+  final _email = TextEditingController();
+  final _password = TextEditingController();
   final controller = Get.put(AuthController());
   final _key = GlobalKey<FormState>();
 
