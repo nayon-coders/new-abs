@@ -24,7 +24,7 @@ class EmployeeManagement extends GetView<EmployeeManageController> {
         surfaceTintColor: Colors.transparent,
         title:const Text("Employee management",
           style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: AppColors.textBlack),),
-        leading: IconButton(onPressed: ()=>Get.back(),
+        leading: IconButton(onPressed: ()=>Get.toNamed(AppRoute.dashBoard),
           icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,),
         ),
         actions: [

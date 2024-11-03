@@ -31,7 +31,7 @@ class SingleEmployee extends GetView<EmployeeManageController> {
       appBar: AppBar(
         leading: IconButton(onPressed: (){
           Get.back();
-          controller.allEmployeeList();
+
         }, icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
         title:const Text("Single Employee",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: AppColors.textBlack),),
         backgroundColor: AppColors.textWhite,

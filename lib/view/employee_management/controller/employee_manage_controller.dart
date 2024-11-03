@@ -209,6 +209,7 @@ class EmployeeManageController extends GetxController{
       if(response.statusCode == 200){
         getSingleEmployee(selectdId.value);
         clearTextEditingController();
+        allEmployeeList();
         Get.back();
 
         Get.snackbar("Successful", "Employee update successful", backgroundColor: Colors.green,colorText: Colors.white);
