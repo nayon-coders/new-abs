@@ -303,12 +303,22 @@ class AddTodaySales extends GetView<SalesController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("Tax",
-                  style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),
-                ),
+                // const Text("Tax(please enter your tax manually)",
+                //   style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),
+                // ),
+                RichText(text:const TextSpan(
+                  text: "Tax ",
+                  style:  TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),
+                  children: [
+                    TextSpan(
+                      text: "(please enter your tax manually)",
+                      style:  TextStyle(fontWeight: FontWeight.w300,fontSize: 13,color: AppColors.red),
+                    )
+                  ]
+                )),
                 InkWell(
                   onTap: ()=>Get.toNamed(AppRoute.textAndState),
-                  child: Text("Edit",
+                  child:const Text("Edit",
                     style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.linkColor),
                   ),
                 )
@@ -331,13 +341,13 @@ class AddTodaySales extends GetView<SalesController> {
             children: [
               Row(
                 children: [
-                  Text("Tax",
+                  const Text("Tax",
                     style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),
                   ),
-                  SizedBox(width: 5,),
+                  const SizedBox(width: 5,),
                   Obx(() {
                       return Text("${taxController.taxStateModel.value.data!.tax} % = ${controller.grossSales.value.text.isEmpty ? 0.00: controller.totalTaxAmount.value.toStringAsFixed(2)}",
-                        style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.red),
+                        style:const TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.red),
                       );
                     }
                   ),
@@ -345,7 +355,7 @@ class AddTodaySales extends GetView<SalesController> {
               ),
               InkWell(
                 onTap: ()=>Get.toNamed(AppRoute.textAndState),
-                child: Text("Edit",
+                child:const Text("Edit",
                   style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.linkColor),
                 ),
               )
