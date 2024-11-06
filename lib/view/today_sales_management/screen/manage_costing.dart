@@ -3,10 +3,9 @@ import 'package:abs_office_management/utility/app_const.dart';
 import 'package:abs_office_management/view/today_sales_management/controller/cost_controller.dart';
 import 'package:abs_office_management/widgets/app_input.dart';
 import 'package:abs_office_management/widgets/app_shimmer.dart';
+import 'package:abs_office_management/widgets/no_data_find.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../routes/route_name.dart';
 import '../../../widgets/app_button.dart';
 
 class ManageCosting extends GetView<CostController> {
@@ -18,7 +17,7 @@ class ManageCosting extends GetView<CostController> {
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         backgroundColor: AppColors.textWhite,
-        title: const Text("Manage Costing"),
+        title: const Text("Manage Costing",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
         leading: IconButton(
           onPressed: () => Get.back(),
           icon: const Icon(Icons.arrow_back_ios),
@@ -40,16 +39,16 @@ class ManageCosting extends GetView<CostController> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("DR platform",
+                const Text("DR platform",
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
                     color: Colors.black
                   ),
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 AppInput(hint: "Add cost name", controller: controller.costNameController.value),
-                SizedBox(height: 20,),
+               const SizedBox(height: 20,),
                 Obx((){
                     return AppButton(
                       width: 150,
@@ -79,7 +78,7 @@ class ManageCosting extends GetView<CostController> {
             ),
           ),
 
-          Padding(
+         const Padding(
             padding: EdgeInsets.all(15),
             child: Text("Costing List",
               style: TextStyle(
@@ -103,14 +102,20 @@ class ManageCosting extends GetView<CostController> {
                 ),
               );
             }else if(controller.costingListModel.value.data!.isEmpty){
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Center(child: const Text("No data found",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: AppColors.textBlack),)),
-                  const SizedBox(height: 4,),
-                  TextButton(onPressed: ()=>controller.getCostList(), child: const Text("Try again",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: AppColors.textBlue),)),
-                ],
+              return Expanded(
+                child: ListView.builder(
+                  itemCount: 1,
+                    itemBuilder: (context,index){
+                  return  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Center(child:  NoDataFoundScreen()),
+                      const SizedBox(height: 4,),
+                      TextButton(onPressed: ()=>controller.getCostList(), child: const Text("Try again",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: AppColors.textBlue),)),
+                    ],
+                  );
+                }),
               );
             } else {
               return Expanded(
@@ -118,7 +123,7 @@ class ManageCosting extends GetView<CostController> {
                   itemCount: controller.costingListModel.value.data!.length,
                   itemBuilder: (context, index) {
                     return Container(
-                      padding: EdgeInsets.only(left: 10, right: 10),
+                      padding: const EdgeInsets.only(left: 10, right: 10),
                       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -145,7 +150,7 @@ class ManageCosting extends GetView<CostController> {
                                     onOk: ()=>controller.deleteCostListName(controller.costingListModel.value.data![index].id!.toString()),
                                 );
                               },
-                              icon: controller.isCostListDelete.value ? CircularProgressIndicator.adaptive(backgroundColor: Colors.red,) : Icon(Icons.delete, color: Colors.red,),
+                              icon: controller.isCostListDelete.value ? const CircularProgressIndicator.adaptive(backgroundColor: Colors.red,) : const Icon(Icons.delete, color: Colors.red,),
                             );
                           }
                         ),

@@ -4,8 +4,6 @@ import 'package:abs_office_management/utility/assetes.dart';
 import 'package:abs_office_management/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../main.dart';
 import '../../widgets/branding_bottom_text.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -24,16 +22,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     // TODO: implement initState
     super.initState();
 
-
-
-
-
   }
 
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.sizeOf(context);
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       body: Container(
@@ -45,7 +38,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
                Image.asset(Assets.welcome2, height: Get.height*.45, width: Get.width, fit: BoxFit.cover,),
 
               Image.asset(Assets.logo,height: 150,width: 150,fit: BoxFit.contain,),

@@ -6,9 +6,11 @@ import 'package:get/get.dart';
 
 import '../../../utility/assetes.dart';
 import '../../dashboard_screen/widget/dash_box.dart';
+import '../../settings/controller/creditcard_processing_fee_controller.dart';
 
 class CostBoxsWidgets extends GetView<LossProfitController> {
-  const CostBoxsWidgets({super.key});
+   CostBoxsWidgets({super.key});
+  CreditcardProcessingFeeController creditcardController = Get.put(CreditcardProcessingFeeController());
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Cost",
+              const Text("Expense",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
@@ -31,9 +33,9 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
                 ),
               ).animate(effects: [
                 FadeEffect(duration: 200.ms, curve: Curves.bounceInOut),
-                ScaleEffect(begin: Offset(0,2), curve: Curves.easeIn)
+               const  ScaleEffect(begin: Offset(0,2), curve: Curves.easeIn)
               ]),
-              SizedBox(height: 10,),
+             const SizedBox(height: 10,),
               Row(
                 children: [
                   Expanded(
@@ -42,22 +44,22 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
                         costName: "Food Cost",
                         costAmount: "${controller.lossProfitModel.value.foodCost!.toStringAsFixed(2)}",
                         image:Assets.foodCost,
-                        bgColor: Color(0xFFFFF5D9)
+                        bgColor:const Color(0xFFFFF5D9)
                     ),
                   ),
-                  SizedBox(width: 20,),
+                  const SizedBox(width: 20,),
                   Expanded(
                     child: DashBox(
                         onClick:(){},
                         costName: "Total Salary",
                         costAmount: "${controller.lossProfitModel.value.totalSalary!.toStringAsFixed(2)}",
                         image:Assets.salery,
-                        bgColor:Color(0xFFE7EDFF)
+                        bgColor:const Color(0xFFE7EDFF)
                     ),
                   )
                 ],
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Row(
                 children: [
                   Expanded(
@@ -66,32 +68,49 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
                         costName: "Short & Over",
                         costAmount: "${controller.lossProfitModel.value.shortOver!.toStringAsFixed(2)}",
                         image:Assets.shotOver,
-                        bgColor: Color(0xffF9f3E3)
+                        bgColor:const  Color(0xffF9f3E3)
                     ),
                   ),
-                  SizedBox(width: 20,),
+                  const SizedBox(width: 20,),
                   Expanded(
                     child: DashBox(
                         onClick:(){},
                         costName: "Others Cost",
                         costAmount: "${controller.lossProfitModel.value.othersCost!.toStringAsFixed(2)}",
                         image:Assets.loss,
-                        bgColor: Color(0xFFDCFAF8)
+                        bgColor: const Color(0xFFDCFAF8)
                     ),
                   )
                 ],
               ),
-              SizedBox(height: 20,),
-              SizedBox(
-                width: 170,
-                child: DashBox(
+              const SizedBox(height: 20,),
+              Row(
+                children: [
+                  Expanded(
+                    child: DashBox(
 
-                    onClick:(){},
-                    costName: "Total Tax",
-                    costAmount: "${controller.lossProfitModel.value.totalTax!.toStringAsFixed(2)}",
-                    image:Assets.tax,
-                    bgColor: Color(0xFFDCEAF9)
-                ),
+                        onClick:(){},
+                        costName: "Total Tax",
+                        costAmount: "${controller.lossProfitModel.value.totalTax!.toStringAsFixed(2)}",
+                        image:Assets.tax,
+                        bgColor: const Color(0xFFDCEAF9)
+                    ),
+                  ),
+                  const SizedBox(width: 20,),
+
+
+                  ///TODO:Credit Card Fee add
+                  Expanded(
+                    child: DashBox(
+
+                        onClick:(){},
+                        costName: "Credit card Fee",
+                        costAmount: creditcardController.creditModel.value.data?.fee?.toStringAsFixed(2) ?? "0.0",
+                        image:Assets.expance,
+                        bgColor: const Color(0xFFDCEAF9)
+                    ),
+                  ),
+                ],
               ),
             ].animate(interval: 120.ms).fade(duration: 300.ms),
           ),

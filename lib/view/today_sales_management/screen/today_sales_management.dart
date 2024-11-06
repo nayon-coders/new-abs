@@ -10,9 +10,7 @@ import 'package:abs_office_management/view/today_sales_management/screen/today.s
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
-
 import '../../../controller/date_time_controller.dart';
-import 'add_today_sales.dart';
 
 class TodaySalesManagement extends StatelessWidget {
    TodaySalesManagement({super.key});
@@ -46,7 +44,7 @@ class TodaySalesManagement extends StatelessWidget {
             preferredSize:const Size.fromHeight(50),
             child: Container(
               color: AppColors.bgColor,
-              child: TabBar(
+              child:const TabBar(
 
                 dividerColor: Colors.transparent,
                   tabs: [
@@ -100,19 +98,19 @@ class TodaySalesManagement extends StatelessWidget {
                   print("page name: ${AppRoute.addTodaySalesScreen}");
                   Get.toNamed(AppRoute.addTodaySalesScreen);
                 },
-                label: Text("Add today sales"),
+                label:const Text("Add today sales"),
               ),
               FloatingActionButton.extended(
                 heroTag: null,
                 icon: const Icon(Icons.add),
                 onPressed: ()=> Get.toNamed(AppRoute.addCosting),
-                label: Text("Add today cost"),
+                label:const Text("Add today cost"),
               ),
               FloatingActionButton.extended(
                 heroTag: null,
                 icon: const Icon(Icons.add),
                 onPressed: ()=> Get.toNamed(AppRoute.addFoodCost),
-                label: Text("Add Food Cost"),
+                label:const Text("Add Food Cost"),
               ),
             ],
           )

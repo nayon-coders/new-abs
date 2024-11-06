@@ -15,7 +15,7 @@ import '../../../widgets/app_shimmer.dart';
 import '../../../widgets/custom_dropdown.dart';
 
 class AddEmployee extends GetView<EmployeeManageController> {
-   AddEmployee({super.key,});
+    AddEmployee({super.key,});
 
   // Employee Role
 
@@ -41,7 +41,7 @@ class AddEmployee extends GetView<EmployeeManageController> {
   ];
 
   //SalaryType
-  String? seletedSalaryType;
+   String? seletedSalaryType;
 
   final List<String> salaryType = [
     'Hourly',
@@ -328,7 +328,7 @@ class AddEmployee extends GetView<EmployeeManageController> {
                    onPressed: (){
                      Get.toNamed(AppRoute.employeePosition);
                    },
-                   child: Text("Edit"),
+                   child:const Text("Edit"),
                  )
                ],
              ),
@@ -344,11 +344,13 @@ class AddEmployee extends GetView<EmployeeManageController> {
                 // Error handling or empty state
                 if (positionController.positionModel.value.data == null) {
                   return Container(
-                    padding: EdgeInsets.all(15),
+                    width: double.infinity,
+                    padding:const EdgeInsets.all(15),
                       decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
                         color: Colors.white
                       ),
-                      child: const Text("No positions available"));
+                      child:const Text("No positions available",style: TextStyle(fontSize:14,fontWeight:FontWeight.w600,color: Colors.red ),));
                 }
                   return  CustomDropDown(
                       fillColor: AppColors.textWhite,

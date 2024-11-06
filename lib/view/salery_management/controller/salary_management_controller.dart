@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:abs_office_management/app_config.dart';
 import 'package:abs_office_management/controller/date_time_controller.dart';
 import 'package:abs_office_management/data/services/api_services.dart';
@@ -8,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
-
 import '../../../data/model/employee_model/get_all_employee_model.dart';
 import '../../../data/model/salary_list_model.dart';
 import '../../../routes/route_name.dart';

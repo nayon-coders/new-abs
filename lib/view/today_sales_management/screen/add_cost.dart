@@ -22,9 +22,9 @@ class AddCost extends GetView<CostController> {
       appBar: AppBar(
         title: Obx(() {
           if(controller.isEditCosting.value){
-            return Text("Edit Cost",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textBlack),);
+            return const Text("Edit Cost",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textBlack),);
           }else{
-            return Text("Add Cost",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textBlack),);
+            return const Text("Add Cost",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textBlack),);
           }
           }
         ),
@@ -62,7 +62,7 @@ class AddCost extends GetView<CostController> {
                       const Text("DR Platform Select",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: AppColors.textBlack),),
                       InkWell(
                           onTap: ()=>Get.toNamed(AppRoute.manageCostingList),
-                          child: Text("Edit",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: AppColors.textBlue),)),
+                          child: const Text("Edit",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: AppColors.textBlue),)),
                     ],
                   ),
                   const SizedBox(height: 10,),
@@ -74,9 +74,9 @@ class AddCost extends GetView<CostController> {
                        mainAxisAlignment: MainAxisAlignment.center,
                        crossAxisAlignment: CrossAxisAlignment.center,
                        children: [
-                         Center(child: const Text("No data found",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: AppColors.textBlack),)),
+                         const Center(child:  Text("No data found",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: AppColors.textBlack),)),
                           const SizedBox(height: 4,),
-                         TextButton(onPressed: ()=>Get.toNamed(AppRoute.manageCostingList), child: Text("Add Costing List",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: AppColors.textBlue),)),
+                         TextButton(onPressed: ()=>Get.toNamed(AppRoute.manageCostingList), child:const Text("Add Costing List",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: AppColors.textBlue),)),
                        ],
                      );
                    }else{

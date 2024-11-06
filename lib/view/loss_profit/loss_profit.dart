@@ -5,11 +5,8 @@ import 'package:abs_office_management/view/loss_profit/widgets/cost_box_widgets.
 import 'package:abs_office_management/view/loss_profit/widgets/loss_profit_view.dart';
 import 'package:abs_office_management/view/loss_profit/widgets/sales_boxes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-
 import '../../utility/assetes.dart';
-import '../dashboard_screen/widget/dash_box.dart';
 import 'widgets/onlie_sales_widgets.dart';
 
 class LossProfit extends GetView<LossProfitController> {
@@ -34,7 +31,7 @@ class LossProfit extends GetView<LossProfitController> {
                   controller.getOnlineSales(dateTimeController.month, dateTimeController.year);
               },
               child: Image.asset(Assets.calander,height: 25,width: 25,fit: BoxFit.cover,)),
-          SizedBox(width: 15,),
+          const SizedBox(width: 15,),
         ],
       ),
       body: SingleChildScrollView(

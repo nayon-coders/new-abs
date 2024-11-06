@@ -25,7 +25,7 @@ class OnlineSalesWidgets extends GetView<LossProfitController> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 15.0),
-                child: Text("Online Sales",
+                child:const Text("Online Sales",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 17,
@@ -33,11 +33,11 @@ class OnlineSalesWidgets extends GetView<LossProfitController> {
                   ),
                 ).animate(effects: [
                   FadeEffect(duration: 200.ms, curve: Curves.bounceInOut),
-                  ScaleEffect(begin: Offset(0,2), curve: Curves.easeIn)
+                  const ScaleEffect(begin: Offset(0,2), curve: Curves.easeIn)
                 ]
                 ),
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               GridView.builder(
                   shrinkWrap: true,
                   physics:const NeverScrollableScrollPhysics(),

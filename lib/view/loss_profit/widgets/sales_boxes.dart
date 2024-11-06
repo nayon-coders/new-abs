@@ -25,7 +25,7 @@ class SalesBoxes extends GetView<LossProfitController> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Sales",
+              const Text("Sales",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
@@ -33,10 +33,10 @@ class SalesBoxes extends GetView<LossProfitController> {
                 ),
               ).animate(effects: [
                 FadeEffect(duration: 140.ms, curve: Curves.bounceInOut),
-                ScaleEffect(begin: Offset(0,2), curve: Curves.easeIn)
+                const ScaleEffect(begin: Offset(0,2), curve: Curves.easeIn)
               ]
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Row(
                 children: [
                   Expanded(
@@ -45,22 +45,22 @@ class SalesBoxes extends GetView<LossProfitController> {
                         costName: "Gross sales",
                         costAmount: "${controller.lossProfitModel.value.totalSalesRegister}",
                         image:Assets.money,
-                        bgColor: Color(0xFFFFF5D9)
+                        bgColor:const Color(0xFFFFF5D9)
                     ),
                   ),
-                  SizedBox(width: 20,),
+                 const SizedBox(width: 20,),
                   Expanded(
                     child: DashBox(
                         onClick:(){},
                         costName: "Net Sales ",
                         costAmount: "${controller.netSales.value.toStringAsFixed(2)}",
                         image:Assets.income,
-                        bgColor:Color(0xFFE7EDFF)
+                        bgColor:const Color(0xFFE7EDFF)
                     ),
                   )
                 ],
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Row(
                 children: [
                   Expanded(
@@ -72,14 +72,14 @@ class SalesBoxes extends GetView<LossProfitController> {
                         bgColor: Color(0xFFFAEEDC)
                     ),
                   ),
-                  SizedBox(width: 20,),
+                 const SizedBox(width: 20,),
                   Expanded(
                     child: DashBox(
                         onClick:(){},
                         costName: "Total Sales",
                         costAmount: "${controller.lossProfitModel.value!.totalSales!.toStringAsFixed(2)}",
                         image:Assets.todaysale,
-                        bgColor: Color(0xFFDCFAF8)
+                        bgColor: const Color(0xFFDCFAF8)
                     ),
                   )
                 ],

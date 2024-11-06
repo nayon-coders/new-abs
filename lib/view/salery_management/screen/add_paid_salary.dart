@@ -63,10 +63,10 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //select employee
-                  Row(
+                 const  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [ 
-                      const Text("Select employee",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),),
+                       Text("Select employee",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),),
                       // InkWell(
                       //     onTap: ()=>Get.toNamed(AppRoute.addEmployeeScreen),
                       //     child: Text("Add New",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.green),)),
@@ -75,7 +75,7 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
                   const SizedBox(height: 10,),
                  controller.isForEdit.value
                      ? Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      padding:const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                       height: 50,
                       width: Get.width,
                       decoration: BoxDecoration(
@@ -90,6 +90,9 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
                         ),
                       ),
                      ) :  Obx(() {
+                       if (!controller.employeeList.contains(controller.selectedEmployee.value)) {
+                         controller.selectedEmployee.value;
+                       }
                       return DropdownButtonHideUnderline(
                         child: DropdownButton2<SingleEmployee>(
                           isExpanded: true,
@@ -112,9 +115,10 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
                          value: controller.selectedEmployee.value,
                           onChanged: (SingleEmployee? value) {
                             controller.selectedEmployee.value = value!;
+
                           },
                           buttonStyleData:  ButtonStyleData(
-                            padding: EdgeInsets.symmetric(horizontal: 16),
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
                             height: 50,
                             width: Get.width,
                             decoration: BoxDecoration(
@@ -171,7 +175,7 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
                         ],
                       );
                     }else{
-                      return Center();
+                      return const Center();
                     }
                   }),
 

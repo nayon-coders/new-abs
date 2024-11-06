@@ -1,12 +1,12 @@
 import 'package:abs_office_management/utility/app_const.dart';
 import 'package:abs_office_management/view/salery_management/controller/salary_management_controller.dart';
 import 'package:abs_office_management/view/salery_management/screen/salray_view.dart';
+import 'package:abs_office_management/widgets/no_data_find.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../controller/date_time_controller.dart';
-import '../../../data/model/salary_list_model.dart';
 import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
 import '../../../utility/assetes.dart';
@@ -77,13 +77,13 @@ class SalaryManagement extends GetView<SalaryManagementController> {
                 if(controller.isGetting.value){
                   return  _buildLoading();
                 }else{
-                  return const Center(child: Text("No salary data found"));
+                  return const Center(child: NoDataFoundScreen());
                 }
               }else{
                 return ListView.builder(
-                    itemCount: controller.salaryList.length ?? 0,
+                    itemCount: controller.salaryList.length??0,
                     itemBuilder: (context,index){
-                      final data = controller.salaryList![index]; 
+                      final data = controller.salaryList[index];
 
                       return Container(
                         margin: const EdgeInsets.only(bottom: 10),
@@ -91,21 +91,21 @@ class SalaryManagement extends GetView<SalaryManagementController> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(5)
                         ),
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.only(left: 15,right: 15),
                         child: ListTile(
-
+                          contentPadding:EdgeInsets.zero,
                             tileColor: AppColors.textWhite,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
                             ),
                             leading: Container(
-                              height: 50,
-                              width: 50,
+                              height: 45,
+                              width: 45,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(100),
                                 color: AppColors.red.withOpacity(0.2),
                               ),
-                              child: Center(child: Text("${data.employeeName![0].toUpperCase()}",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: AppColors.textBlack),)),
+                              child: Center(child: Text(data.employeeName![0].toUpperCase(),style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: AppColors.textBlack),)),
                             ),
                             title:Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -117,7 +117,7 @@ class SalaryManagement extends GetView<SalaryManagementController> {
                                       style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: AppColors.textBlack),)),
                               ],
                             ),
-                            subtitle: Text("${dateTimeController.dateFormat1(DateTime.parse("${data.date!}"))}",style:const TextStyle(fontWeight: FontWeight.w400,fontSize: 12,color: AppColors.textGrey),),
+                            subtitle: Text(dateTimeController.dateFormat1(DateTime.parse(data.date!)),style:const TextStyle(fontWeight: FontWeight.w400,fontSize: 12,color: AppColors.textGrey),),
                             trailing: SizedBox(
                               width: 120,
                               child: Row(
@@ -156,7 +156,7 @@ class SalaryManagement extends GetView<SalaryManagementController> {
                               ),
                             )
                         ),
-                      ).animate().fade(duration: 500.ms, curve: Curves.easeInOut);;
+                      ).animate().fade(duration: 500.ms, curve: Curves.easeInOut);
 
                     });
               }
@@ -168,6 +168,9 @@ class SalaryManagement extends GetView<SalaryManagementController> {
       ),
     );
   }
+
+
+  //App Loading
    Widget _buildLoading() {
      return ListView.builder(
        shrinkWrap: true,

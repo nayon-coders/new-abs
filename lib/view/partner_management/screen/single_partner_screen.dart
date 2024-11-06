@@ -36,7 +36,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
         surfaceTintColor: Colors.white,
         actions: [
           Obx(() {
-              return controller.isGetting.value ? Center() :   EditButton(
+              return controller.isGetting.value ? const Center() :   EditButton(
                 icon: Icons.edit,
                 bgColor: Colors.yellow,
                 onClick: (){
@@ -48,7 +48,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
           ),
           const SizedBox(width: 10,),
           Obx(() {
-              return  controller.isGetting.value ? Center() :  EditButton(
+              return  controller.isGetting.value ? const Center() :  EditButton(
                 icon: Icons.delete,
                   bgColor: Colors.red,
                   onClick: (){
@@ -86,74 +86,14 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: Get.width,
-                      height:200,
-                      decoration:const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(20),
-                            topLeft: Radius.circular(20)
-                        ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text("Partner Loss & Profit",
-                            style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.textBlack),
-                          ),
-                         const  SizedBox(height: 20,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                padding:const EdgeInsets.all(10),
-                                decoration:const BoxDecoration(
-                                  // color: Colors.red.withOpacity(0.2),
-                                    border: Border(
-                                      right: BorderSide(
-                                        color: Colors.green,
-                                        width: 1,
-                                      ),
-                                    )
-                                ),
-                                child: Column(
-                                  children: [
-                                    Text("\$${partnerProfit}",
-                                      style:const TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: AppColors.mainColor),
-                                    ),
-                                   const Text("Total Profit",
-                                      style:const TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: AppColors.mainColor),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding:const EdgeInsets.all(10),
-                                child: Column(
-                                  children: [
-                                    Text("\$${controller.singlePartnerModel.value.wholeBusiness!.totalLoss!.toStringAsFixed(2)}",
-                                      style:const TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: AppColors.red),
-                                    ),
-                                   const Text("Total Loss",
-                                      style:const TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: AppColors.red),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
+
                     Container(
                       padding:const EdgeInsets.all(10),
                       decoration:const BoxDecoration(
                         color: AppColors.mainColor,
                         borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20)
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20)
                         ),
                       ),
                       child: Row(
@@ -275,6 +215,96 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                           )
 
 
+                        ],
+                      ),
+                    ),
+
+                    //Partner Loss & Profit
+                    Container(
+                      width: Get.width,
+                      height:200,
+                      decoration:const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20)
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text("Partner Loss & Profit",
+                            style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.textBlack),
+                          ),
+                          const  SizedBox(height: 20,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+
+                              //partner profit
+                              Container(
+                                padding:const EdgeInsets.all(10),
+                                decoration:const BoxDecoration(
+                                  // color: Colors.red.withOpacity(0.2),
+                                    border: Border(
+                                      right: BorderSide(
+                                        color: Colors.green,
+                                        width: 1,
+                                      ),
+                                    )
+                                ),
+                                child: Column(
+                                  children: [
+                                    Text("\$${partnerProfit.toStringAsFixed(2)}",
+                                      style:const TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: AppColors.mainColor),
+                                    ),
+                                    const Text("Total Profit",
+                                      style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: AppColors.mainColor),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              //partner loss
+                              Container(
+                                padding:const EdgeInsets.all(10),
+                                decoration:const BoxDecoration(
+                                  // color: Colors.red.withOpacity(0.2),
+                                    border: Border(
+                                      right: BorderSide(
+                                        color: Colors.green,
+                                        width: 1,
+                                      ),
+                                    )
+                                ),
+                                child: Column(
+                                  children: [
+                                    Text("\$${partnerInfo.partnerLoss!.toStringAsFixed(2)}",
+                                      style:const TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color:Colors.deepOrange),
+                                    ),
+                                    const Text("Partner Loss",
+                                      style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: Colors.deepOrange),
+
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding:const EdgeInsets.all(10),
+                                child: Column(
+                                  children: [
+                                    Text("\$${controller.singlePartnerModel.value.wholeBusiness!.totalLoss!.toStringAsFixed(2)}",
+                                      style:const TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: AppColors.red),
+                                    ),
+                                    const Text("Total Loss",
+                                      style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: AppColors.red),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          )
                         ],
                       ),
                     ),

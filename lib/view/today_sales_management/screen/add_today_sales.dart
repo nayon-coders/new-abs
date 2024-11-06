@@ -9,8 +9,6 @@ import 'package:abs_office_management/widgets/app_input.dart';
 import 'package:abs_office_management/widgets/app_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../utility/app_const.dart';
 import '../widget/online_sales_platform_view.dart';
 
 class AddTodaySales extends GetView<SalesController> {
@@ -30,7 +28,7 @@ class AddTodaySales extends GetView<SalesController> {
       appBar: AppBar(
         title: Obx(() {
             return Text("${controller.isEdit.value ? "Edit Sales" : "Add Today Sales"}",
-              style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textindico),
+              style:const TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textindico),
             );
           }
         ),
@@ -80,7 +78,7 @@ class AddTodaySales extends GetView<SalesController> {
                           textType: TextInputType.number,
                           onChanged: (v){
                             if(v.isNotEmpty){
-                              controller.calculateTax(double.parse(v!), double.parse("${taxController.taxStateModel.value.data!.tax}"));
+                              controller.calculateTax(double.parse(v), double.parse("${taxController.taxStateModel.value.data!.tax}"));
                               controller.calculateCreditSalesAndTotalCashCollect();
                             }else{
                               controller.totalTaxAmount.value = 0.0;
@@ -153,7 +151,7 @@ class AddTodaySales extends GetView<SalesController> {
               const SizedBox(height: 10,),
               Obx((){
                 if(controller.shortOver.value == 0.0){
-                  return Center();
+                  return const Center();
                 }else{
                   bool isShortOver = controller.shortOver.value < 0;
                   return Text("Short Over = ${ controller.shortOver.value.abs().toStringAsFixed(2)}",
@@ -205,7 +203,7 @@ class AddTodaySales extends GetView<SalesController> {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Additional Income",
+                         const Text("Additional Income",
                             style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.red),
                           ),
                           Icon( controller.isOpenAdditionalBox.value? Icons.keyboard_arrow_up_outlined : Icons.keyboard_arrow_down,color: AppColors.textBlue,)  //Add Icon
@@ -303,9 +301,6 @@ class AddTodaySales extends GetView<SalesController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // const Text("Tax(please enter your tax manually)",
-                //   style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),
-                // ),
                 RichText(text:const TextSpan(
                   text: "Tax ",
                   style:  TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),
@@ -346,7 +341,8 @@ class AddTodaySales extends GetView<SalesController> {
                   ),
                   const SizedBox(width: 5,),
                   Obx(() {
-                      return Text("${taxController.taxStateModel.value.data!.tax} % = ${controller.grossSales.value.text.isEmpty ? 0.00: controller.totalTaxAmount.value.toStringAsFixed(2)}",
+                      return Text("${taxController.taxStateModel.value.data!.tax} % = ${controller.grossSales.value.text.isEmpty
+                          ? 0.00: controller.totalTaxAmount.value.toStringAsFixed(2)}",
                         style:const TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.red),
                       );
                     }

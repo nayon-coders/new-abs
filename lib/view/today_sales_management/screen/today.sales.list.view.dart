@@ -13,7 +13,7 @@ import '../widget/edit_button.dart';
 import '../widget/table/app_table.dart';
 import '../widget/table/table_body.dart';
 import '../widget/table/table_header.dart';
-import 'add_today_sales.dart';
+
 
 class TodaySalesView extends GetView<SalesController> {
    TodaySalesView({super.key});
@@ -47,8 +47,8 @@ class TodaySalesView extends GetView<SalesController> {
                   var data = controller.allSalesList.value.data![index];
                   return Container(
                     height: 60,
-                    margin: EdgeInsets.only(bottom: 10, left: 2, right: 2),
-                    padding: EdgeInsets.only(left: 10,right: 10),
+                    margin: const EdgeInsets.only(bottom: 10, left: 2, right: 2),
+                    padding: const EdgeInsets.only(left: 10,right: 10),
                     decoration: BoxDecoration(
                         color: index.isEven ? Colors.grey.shade200 : AppColors.textWhite,
 
@@ -78,7 +78,7 @@ class TodaySalesView extends GetView<SalesController> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 EditButton(
-                                  bgColor: Color(0xFF1814F3),
+                                  bgColor: const Color(0xFF1814F3),
                                   onClick: (){
                                     controller.setDataForEdit(data);
                                     Get.toNamed(AppRoute.addTodaySalesScreen);
@@ -86,14 +86,14 @@ class TodaySalesView extends GetView<SalesController> {
                                 ),
                                 EditButton(
                                     icon: Icons.remove_red_eye,
-                                    bgColor: Color(0xFF15A144),
+                                    bgColor:const Color(0xFF15A144),
                                     onClick: ()=>Get.toNamed(AppRoute.vieSalesReport, arguments: data)
                                 ),
                                 Obx(() {
                                     return EditButton(
                                       isLoading: controller.isDelete.value,
                                         icon: Icons.delete,
-                                        bgColor: Color(0xFFFE5C73),
+                                        bgColor:const Color(0xFFFE5C73),
                                         onClick: (){
                                           alertDialog(
                                               title: "Hold on!",

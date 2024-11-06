@@ -1,20 +1,17 @@
 import 'package:abs_office_management/controller/date_time_controller.dart';
 import 'package:abs_office_management/data/model/food_cost_model.dart';
-import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_const.dart';
 import 'package:abs_office_management/view/today_sales_management/controller/food_cost_controller.dart';
 import 'package:abs_office_management/view/today_sales_management/widget/table/table_body.dart';
 import 'package:abs_office_management/widgets/app_shimmer.dart';
+import 'package:abs_office_management/widgets/no_data_find.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-
 import '../../../utility/app_color.dart';
 import '../widget/edit_button.dart';
 import '../widget/table/app_table.dart';
 import '../widget/table/table_header.dart';
-import 'add_cost.dart';
-import 'add_food_cost.dart';
 
 class FoodCostView extends GetView<FoodCostController> {
    FoodCostView({super.key});
@@ -40,15 +37,19 @@ class FoodCostView extends GetView<FoodCostController> {
               },
             );
           }else if(controller.foodCostModel.value.result!.isEmpty){
-            return Column(
-              children: [
-                Center(child: Text("No data found")),
-                SizedBox(height: 10),
-                TextButton(
-                  onPressed: ()=>controller.getAllFoodCost(dateTimeController.month, dateTimeController.year),
-                  child: Text("Reload"),
-                )
-              ],
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Center(child: NoDataFoundScreen()),
+                 const  SizedBox(height: 10),
+                  TextButton(
+                    onPressed: ()=>controller.getAllFoodCost(dateTimeController.month, dateTimeController.year),
+                    child:const Text("Reload"),
+                  )
+                ],
+              ),
             );
 
           }else{
@@ -65,7 +66,7 @@ class FoodCostView extends GetView<FoodCostController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        TableBody(text: "${dateTimeController.dateFormat1(data.date!)}", width: 60),
+                        TableBody(text: dateTimeController.dateFormat1(data.date!), width: 60),
                         TableBody(text: "${data.name}", width: 130),
 
                         SizedBox(
@@ -74,7 +75,7 @@ class FoodCostView extends GetView<FoodCostController> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 EditButton(
-                                  bgColor: Color(0xFF1814F3),
+                                  bgColor:const Color(0xFF1814F3),
                                   onClick: (){
                                     controller.clearAllData();
                                     controller.setEditData(data);
@@ -89,7 +90,7 @@ class FoodCostView extends GetView<FoodCostController> {
                                 ),
                                 EditButton(
                                     icon: Icons.delete,
-                                    bgColor: Color(0xFFFE5C73),
+                                    bgColor: const Color(0xFFFE5C73),
                                     onClick: (){
                                       alertDialog(
                                           title: "Hold On!",
@@ -123,7 +124,7 @@ class FoodCostView extends GetView<FoodCostController> {
         builder: (context) {
           return  Container(
             height: Get.height,
-            padding: EdgeInsets.all(30),
+            padding: const EdgeInsets.all(30),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,13 +132,13 @@ class FoodCostView extends GetView<FoodCostController> {
               children: <Widget>[
                Center(
                  child: Text("Total Cost: \$${data.data!.map((e) => e.vendorAmount).reduce((a, b) => (double.parse("${a!}") + double.parse("${b!}")).toStringAsFixed(2))}",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
+                  style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
                ),
 
-                SizedBox(height: 10),
-                Text("Vendors",
+               const SizedBox(height: 10),
+                const Text("Vendors",
                 style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
-                SizedBox(height: 10),
+               const SizedBox(height: 10),
                 Expanded(
                   child: ListView.builder(
                     //shrinkWrap: true,
@@ -150,16 +151,14 @@ class FoodCostView extends GetView<FoodCostController> {
                   
                         ),
                         child: ListTile(
-                          title: Text(item!.vendorName!),
+                          title: Text(item.vendorName!),
                           subtitle: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("Amount: \$${item.vendorAmount}"),
-                              Text("Pay By: \$${item.payBy}",
-
-                              ),
-                              item.checkNo == null || item.checkNo!.isEmpty ? Center() :  Text("Cheque Number: ${item.checkNo}"),
+                              Text("Pay By: ${item.payBy}",),
+                              item.checkNo == null || item.checkNo!.isEmpty ? const Center() :  Text("Cheque Number: ${item.checkNo}"),
                             ],
                           ),
                         ),

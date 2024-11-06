@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
-
 import 'package:abs_office_management/app_config.dart';
 import 'package:abs_office_management/controller/date_time_controller.dart';
 import 'package:abs_office_management/data/services/api_services.dart';
@@ -194,6 +192,7 @@ class SalesController extends GetxController {
     amountList.clear();
     totalTaxAmount.value = 0.0;
     additionalIncome.value.clear();
+
   }
 
 

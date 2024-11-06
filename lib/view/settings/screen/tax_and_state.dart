@@ -21,7 +21,7 @@ class TaxAndState extends GetView<TaxController> {
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
+        padding:const EdgeInsets.all(20),
         child: Column(
           children: [
            const SizedBox(
@@ -94,7 +94,7 @@ class TaxAndState extends GetView<TaxController> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Obx(()=> controller.isLoading.value ? Center(
+                  Obx(()=> controller.isLoading.value ? const Center(
                     child: CircularProgressIndicator(),
                   ) : Switch(
                     value: controller.isTaxStatus.value,
@@ -105,15 +105,15 @@ class TaxAndState extends GetView<TaxController> {
                     activeTrackColor: Colors.green,
                     activeColor: Colors.white,
                   )),
-                  SizedBox(width: 10,),
-                  Text("Do you head 100% tax?",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: Colors.black),),
+                 const  SizedBox(width: 10,),
+                 const  Text("Do you head 100% tax?",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: Colors.black),),
                   //change tax status and show in text
                 ],
               ),
               const SizedBox(height: 10,),
               Obx(()=>Text(controller.isTaxStatus.value
                   ? "Yes!. I will give 100% tax."
-                  : "No!. I want to handle tax manually.",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 17,color: Colors.black),))
+                  : "No!. I want to handle tax manually.",style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 17,color: Colors.black),))
 
 
             ],

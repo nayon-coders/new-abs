@@ -1,7 +1,5 @@
-import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/view/settings/controller/employee_position_controller.dart';
-import 'package:abs_office_management/view/settings/setting_screen.dart';
 import 'package:abs_office_management/widgets/app_button.dart';
 import 'package:abs_office_management/widgets/app_input.dart';
 import 'package:flutter/material.dart';
@@ -116,7 +114,7 @@ class AddEmployeePositionView extends GetView<EmployeePositionController> {
         child:ListView.builder(
             itemCount: controller.positionModel.value.data!.length,
             shrinkWrap:true ,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context,index){
               return Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),

@@ -4,6 +4,7 @@ import 'package:abs_office_management/view/employee_management/screen/add_employ
 import 'package:abs_office_management/view/employee_management/widget/card_menus.dart';
 import 'package:abs_office_management/view/employee_management/widget/employee_payment_history.dart';
 import 'package:abs_office_management/view/employee_management/widget/working_hours.dart';
+import 'package:abs_office_management/widgets/no_data_find.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -89,9 +90,9 @@ class SingleEmployee extends GetView<EmployeeManageController> {
       body: SingleChildScrollView(
         child: Obx(() {
           if(controller.isGetting.value){
-            return Center(child: CircularProgressIndicator.adaptive());
+            return const Center(child: CircularProgressIndicator.adaptive());
           }else if(controller.singleModel.value.employee == null){
-            return const Center(child: Text("No data found"),);
+            return const Center(child: NoDataFoundScreen());
 
           }else{
             return Column(

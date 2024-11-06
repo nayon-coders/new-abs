@@ -35,7 +35,7 @@ class CredicardFeeModel {
 class Data {
   final int? id;
   final int? busnId;
-  final double? fee;
+  final dynamic? fee;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 

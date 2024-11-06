@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:abs_office_management/app_config.dart';
 import 'package:abs_office_management/data/model/partner_model/get_all_partner_model.dart';
 import 'package:abs_office_management/data/services/api_services.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -63,7 +62,7 @@ class PartnerController extends GetxController{
       clearAllData();
       getPartner();
       Get.back();
-      Get.snackbar("Successful", "${jsonDecode(res.body)["message"]}",backgroundColor:Colors.green);
+      Get.snackbar("Successful", "${jsonDecode(res.body)["message"]}",backgroundColor:Colors.green,colorText: Colors.white);
 
     }else{
       Get.snackbar("Failed", "${jsonDecode(res.body)["message"]}");
@@ -128,7 +127,7 @@ class PartnerController extends GetxController{
       getPartner();
 
       Get.back();
-      Get.snackbar("Successful", "Profile has been updated!", backgroundColor: Colors.green);
+      Get.snackbar("Successful", "Profile has been updated!", backgroundColor: Colors.green,colorText: Colors.white);
     } else {
       final responseBody = await response.stream.bytesToString();
       print("Failed ${jsonDecode(responseBody)}");

@@ -1,24 +1,17 @@
 import 'package:abs_office_management/main.dart';
 import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_const.dart';
-import 'package:abs_office_management/view/auth/controller/auth_controller.dart';
-import 'package:abs_office_management/view/settings/screen/add_employee_position_view.dart';
-import 'package:abs_office_management/view/settings/screen/business_setup.dart';
-import 'package:abs_office_management/view/settings/screen/change_password.dart';
 import 'package:abs_office_management/view/settings/screen/contact_and_support_screen.dart';
-import 'package:abs_office_management/view/settings/screen/creditcard_processing_fee.dart';
 import 'package:abs_office_management/view/settings/screen/privacy_policy.dart';
 import 'package:abs_office_management/view/settings/screen/terms_condition.dart';
 import 'package:abs_office_management/view/settings/widget/option_box.dart';
 import 'package:abs_office_management/view/settings/widget/setting_options.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../utility/app_color.dart';
-import 'controller/admin_password_update_controller.dart';
 
 class SettingScreen extends StatelessWidget {
-   SettingScreen({super.key});
+   const SettingScreen({super.key});
 
 
   @override

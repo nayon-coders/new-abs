@@ -1,10 +1,10 @@
 import 'package:abs_office_management/utility/app_const.dart';
 import 'package:abs_office_management/view/today_sales_management/controller/cost_controller.dart';
 import 'package:abs_office_management/view/today_sales_management/widget/table/table_body.dart';
+import 'package:abs_office_management/widgets/no_data_find.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-
 import '../../../controller/date_time_controller.dart';
 import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
@@ -12,7 +12,7 @@ import '../../../widgets/app_shimmer.dart';
 import '../widget/edit_button.dart';
 import '../widget/table/app_table.dart';
 import '../widget/table/table_header.dart';
-import 'add_cost.dart';
+
 
 class TodayCostView extends GetView<CostController> {
    TodayCostView({super.key});
@@ -42,7 +42,7 @@ class TodayCostView extends GetView<CostController> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Center(child: Text("No data found")),
+                const Center(child:NoDataFoundScreen()),
                 TextButton(
                   onPressed: () => controller.getAllCostList(dateTimeController.month, dateTimeController.year),
                   child:const Text("Refresh", style: TextStyle(color: AppColors.textBlue)),
@@ -73,7 +73,7 @@ class TodayCostView extends GetView<CostController> {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 EditButton(
-                                    bgColor: Color(0xFF1814F3),
+                                    bgColor: const Color(0xFF1814F3),
                                     onClick: (){
                                       controller.setDataForEditCostingList(data);
                                       Get.toNamed(AppRoute.addCosting);
@@ -83,7 +83,7 @@ class TodayCostView extends GetView<CostController> {
                                     return EditButton(
                                          isLoading: controller.isCostListDelete.value,
                                         icon: Icons.delete,
-                                        bgColor: Color(0xFFFE5C73),
+                                        bgColor: const Color(0xFFFE5C73),
                                         onClick: (){
                                           alertDialog(
                                               title: "Hold On!",

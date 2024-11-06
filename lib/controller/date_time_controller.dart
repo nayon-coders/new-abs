@@ -18,7 +18,7 @@ class DateTimeController extends GetxController {
     );
 
     if (picked != null && picked != date) {
-      selectedDate.value = picked!; // update the selected date
+      selectedDate.value = picked; // update the selected date
     }
     return selectedDate.value; // return the selected date
   }

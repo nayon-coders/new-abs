@@ -27,6 +27,7 @@ class EmployeeManagement extends GetView<EmployeeManageController> {
         leading: IconButton(onPressed: ()=>Get.toNamed(AppRoute.dashBoard),
           icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,),
         ),
+
         actions: [
           InkWell(
             onTap: (){
@@ -58,7 +59,7 @@ class EmployeeManagement extends GetView<EmployeeManageController> {
                 final data = controller.employeeListModel.value.data![index];
                 return Container(
                   margin: const EdgeInsets.only(bottom: 10,left: 10,right: 10),
-                  // padding: const EdgeInsets.all(5.0),
+
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),

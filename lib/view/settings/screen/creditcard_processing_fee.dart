@@ -65,12 +65,12 @@ class CreditcardProcessingFee extends GetView<CreditcardProcessingFeeController>
                 return RichText(
                   text: TextSpan(
                       text: "Credit card processing fee: ",
-                      style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color: AppColors.textBlack),
+                      style: const TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color: AppColors.textBlack),
                       children: [
 
-                        controller.isGetting.value ? TextSpan(text: "---") : TextSpan(
+                        controller.isGetting.value ? const TextSpan(text: "---") : TextSpan(
                             text: controller.creditModel.value.data!.fee.toString(),
-                            style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: AppColors.textBlack)
+                            style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: AppColors.textBlack)
                         )
                       ]
                   ),);

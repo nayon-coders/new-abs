@@ -91,7 +91,7 @@ class AddFoodCost extends GetView<FoodCostController> {
                       width: 130,
                         name: "Add More",
                         textColor: AppColors.textBlack,
-                        bgColor: Color(0xFFB7E0D1),
+                        bgColor: const Color(0xFFB7E0D1),
                         onClick: ()=>controller.addVendorName()),
                   ),
 
@@ -143,7 +143,7 @@ class AddFoodCost extends GetView<FoodCostController> {
   Container _buildVendorWidgets(index) {
     return Container(
         padding:const  EdgeInsets.all(10),
-        margin: EdgeInsets.only(bottom: 10),
+        margin:const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: AppColors.bgColor,
@@ -162,8 +162,8 @@ class AddFoodCost extends GetView<FoodCostController> {
                 ),
                 index != 0 ? IconButton(
                   onPressed: ()=>controller.removeVendorName(index),
-                  icon: Icon(Icons.delete,color: Colors.red,),
-                )  :Center()
+                  icon:const Icon(Icons.delete,color: Colors.red,),
+                )  :const Center()
               ],
             ),
            const SizedBox(height: 10,),
@@ -221,7 +221,7 @@ class AddFoodCost extends GetView<FoodCostController> {
                       textType: TextInputType.number,
                     ),
                   ],
-                ) : Center();
+                ) :const Center();
               }
             ),
            const SizedBox(height: 20,),

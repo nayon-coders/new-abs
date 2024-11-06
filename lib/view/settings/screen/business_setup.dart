@@ -12,7 +12,7 @@ import '../../../widgets/selected_picker.dart';
 import '../controller/admin_password_update_controller.dart';
 
 class BusinessSetup extends GetView<AdminUpdateController> {
-   BusinessSetup({super.key});
+   const BusinessSetup({super.key});
 
 
   @override
@@ -57,7 +57,7 @@ class BusinessSetup extends GetView<AdminUpdateController> {
                               height: 120,
                               width: 120,
                               fit: BoxFit.cover,
-                              placeholder: (context, url) => CircularProgressIndicator(),
+                              placeholder: (context, url) => const CircularProgressIndicator(),
 
                             )
                                 : Image.asset(
@@ -177,6 +177,8 @@ class BusinessSetup extends GetView<AdminUpdateController> {
     );
   }
 
+
+  //app loading
   Column _buildLoading() {
     return Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -184,15 +186,15 @@ class BusinessSetup extends GetView<AdminUpdateController> {
             children: [
               const SizedBox(height: 20,),
               AppShimmerPro.circularShimmer(width: 120, height: 120, borderRadius: 100),
-              SizedBox(height: 30,),
+              const SizedBox(height: 30,),
               AppShimmerPro.circularShimmer(width: Get.width, height: 50, borderRadius: 10),
-              SizedBox(height: 15,),
+             const  SizedBox(height: 15,),
               AppShimmerPro.circularShimmer(width: Get.width, height: 50, borderRadius: 10),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               AppShimmerPro.circularShimmer(width: Get.width, height: 50, borderRadius: 10),
-              SizedBox(height: 15,),
+             const  SizedBox(height: 15,),
               AppShimmerPro.circularShimmer(width: Get.width, height: 90, borderRadius: 10),
-              SizedBox(height: 30,),
+             const  SizedBox(height: 30,),
               AppShimmerPro.circularShimmer(width:200, height: 50, borderRadius: 10),
 
             ],

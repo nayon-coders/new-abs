@@ -113,7 +113,7 @@ class LoginScreen extends StatelessWidget {
                 //     ),
                 //   ),
                 // ),
-                BrandingBottomText(),
+                const BrandingBottomText(),
 
                const SizedBox(height: 20,),
               ],

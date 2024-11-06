@@ -207,6 +207,7 @@ class EmployeeManageController extends GetxController{
 
       print("Response --- ${response.statusCode}");
       if(response.statusCode == 200){
+
         getSingleEmployee(selectdId.value);
         clearTextEditingController();
         allEmployeeList();
@@ -276,6 +277,7 @@ class EmployeeManageController extends GetxController{
     selectedImage.value = null;
     profileImage.value = "";
     singleModel.value = SingleEmployeeModel();
+    update();
 
   }
 }

@@ -10,7 +10,7 @@ class BrandingBottomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text("All rights reserved by @ABS Office Management",style: TextStyle(
         fontSize: 11,
         fontWeight: FontWeight.w400,

@@ -1,15 +1,11 @@
 import 'dart:convert';
-
 import 'package:abs_office_management/data/services/api_services.dart';
 import 'package:abs_office_management/main.dart';
-import 'package:abs_office_management/routes/route_name.dart';
-import 'package:abs_office_management/view/settings/screen/tax_and_state.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import '../../../app_config.dart';
 import 'package:http/http.dart' as http;
-
 import '../../../data/model/taxStateModel.dart';
 import '../../../data/global_controller/global_controller.dart';
 
@@ -65,7 +61,7 @@ class TaxController extends GetxController{
       var response = await ApiServices.putApi(AppConfig.TAX_AND_STATE_UPDATE+taxStateModel.value.data!.id.toString(), data);
       if(response.statusCode == 201) {
         Get.snackbar("Success", "Tax and state updated successfully",
-            backgroundColor: Colors.green);
+            backgroundColor: Colors.green,colorText: Colors.white);
         isUpdating.value = false;
         clearAll(); //clear all text field
         getTaxAndState(); //refresh data
