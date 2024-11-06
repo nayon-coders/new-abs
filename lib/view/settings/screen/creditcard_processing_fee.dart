@@ -31,7 +31,7 @@ class CreditcardProcessingFee extends GetView<CreditcardProcessingFeeController>
             children: [
               const SizedBox(
                 width: 350,
-                child: Text("Note the percentage of credit card processing fees you deduct from your daily sales so that you can add this to your loss and trophy.",
+                child: Text("How much is your credit card processing fee? Please enter the percentage number so you can see in the sales dashboard how much will be deducted from your daily deposit.",
                 style: TextStyle(fontWeight:FontWeight.w400,fontSize: 14,color: AppColors.textBlack),),
               ),
 

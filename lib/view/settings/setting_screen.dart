@@ -31,7 +31,7 @@ class SettingScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             OptionBox(
-                title: "Account Setting",
+                title: "Setting Profile",
                 column: [
                   SettingOptions(name: "Business Setup", icon: Icons.add_business_sharp, onClick: ()=>Get.toNamed(AppRoute.businessSetup)),
                   const Divider(),

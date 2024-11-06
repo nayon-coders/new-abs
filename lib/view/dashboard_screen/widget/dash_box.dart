@@ -1,3 +1,4 @@
+import 'package:abs_office_management/controller/amount_formate.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utility/app_color.dart';
@@ -50,7 +51,7 @@ class DashBox extends StatelessWidget {
               children: [
                 Text(costName,style:const TextStyle(fontSize: 12,fontWeight: FontWeight.w500,color: AppColors.textBlue),),
                 const SizedBox(height: 6,),
-                Text("\$$costAmount",style:const TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
+                Text(FormatCurrency.formatCurrency(costAmount),style:const TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
               ],
             )
           ],

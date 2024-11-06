@@ -1,3 +1,4 @@
+import 'package:abs_office_management/controller/amount_formate.dart';
 import 'package:abs_office_management/controller/date_time_controller.dart';
 import 'package:abs_office_management/data/model/food_cost_model.dart';
 import 'package:abs_office_management/utility/app_const.dart';
@@ -130,15 +131,14 @@ class FoodCostView extends GetView<FoodCostController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-               Center(
-                 child: Text("Total Cost: \$${data.data!.map((e) => e.vendorAmount).reduce((a, b) => (double.parse("${a!}") + double.parse("${b!}")).toStringAsFixed(2))}",
-                  style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
-               ),
 
-               const SizedBox(height: 10),
                 const Text("Vendors",
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
-               const SizedBox(height: 10),
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: AppColors.textBlack),),
+
+                //select date
+                Text("Date: ${dateTimeController.dateFormat1(data.date!)}",style:const TextStyle(fontWeight: FontWeight.w500),),
+                const SizedBox(height: 10),
+
                 Expanded(
                   child: ListView.builder(
                     //shrinkWrap: true,
@@ -151,20 +151,54 @@ class FoodCostView extends GetView<FoodCostController> {
                   
                         ),
                         child: ListTile(
-                          title: Text(item.vendorName!),
+                          title: Text(item.vendorName!,style:const TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color:Colors.black),),
                           subtitle: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Amount: \$${item.vendorAmount}"),
-                              Text("Pay By: ${item.payBy}",),
-                              item.checkNo == null || item.checkNo!.isEmpty ? const Center() :  Text("Cheque Number: ${item.checkNo}"),
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text("Amount:",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color:AppColors.textBlack),),
+                                  Text(FormatCurrency.formatCurrency(item.vendorAmount.toString()),style:const TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color:AppColors.indigo),),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text("Pay By:",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color:AppColors.textBlack),),
+                                  Text("${item.payBy}",style:const TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color:AppColors.indigo),),
+                                ],
+                              ),
+                              item.checkNo == null || item.checkNo!.isEmpty ? const Center() :  Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text("Check Number:",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color:AppColors.textBlack),),
+                                  Text("${item.checkNo}",style:const TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color:AppColors.indigo),),
+                                ],
+                              ),
                             ],
                           ),
                         ),
                       ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut);
                     },
                   ),
+                ),
+
+                //total Cost
+                const SizedBox(height: 10,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text("Total Cost:",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color:AppColors.textBlack),),
+                    Text("\$${data.data!.map((e) => e.vendorAmount).reduce((a, b) => (double.parse("${a!}") + double.parse("${b!}")).toStringAsFixed(2))}",
+                      style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color:AppColors.red),),
+                  ],
                 ),
               ],
             ),

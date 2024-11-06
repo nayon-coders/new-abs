@@ -14,7 +14,7 @@ class AddFoodCost extends GetView<FoodCostController> {
      "online",
      "cash",
      "card",
-     "cheque",
+     "check",
    ];
 
    final DateTimeController dateTimeController = Get.put(DateTimeController());
@@ -204,13 +204,13 @@ class AddFoodCost extends GetView<FoodCostController> {
             ),
             Obx(() {
               print("controller.payList[index] --- ${controller.payList[index]}");
-                return controller.payList.value[index] == "cheque" ?  Column(
+                return controller.payList.value[index] == "check" ?  Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 15,),
 
-                    const Text("Cheque Number",
+                    const Text("Check Number",
                       style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),
                     ),
                     const SizedBox(height: 10,),

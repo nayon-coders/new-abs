@@ -123,7 +123,7 @@ class FoodCostController extends GetxController {
     if (response.statusCode == 200) {
       isDeleting.value = false;
       Get.back();
-      Get.snackbar("Success", "Food Cost Deleted Successfully", backgroundColor: Colors.green);
+      Get.snackbar("Success", "Food Cost Deleted Successfully", backgroundColor: Colors.green,colorText: Colors.white);
 
       getAllFoodCost(dateTimeController.month, dateTimeController.year);
 

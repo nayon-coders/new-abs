@@ -1,3 +1,4 @@
+import 'package:abs_office_management/controller/amount_formate.dart';
 import 'package:abs_office_management/utility/app_const.dart';
 import 'package:abs_office_management/view/today_sales_management/controller/cost_controller.dart';
 import 'package:abs_office_management/view/today_sales_management/widget/table/table_body.dart';
@@ -65,7 +66,7 @@ class TodayCostView extends GetView<CostController> {
                       children: [
                         TableBody(text: "${dateTimeController.dateFormat1(data.date!)}", width: 60),
                         TableBody(text: "${data.costName!}", width: 120),
-                        TableBody(text: "\$${data.amount}", width: 70),
+                        TableBody(text: FormatCurrency.formatCurrency(data.amount.toString()), width: 70),
 
                         SizedBox(
                             width: 80,

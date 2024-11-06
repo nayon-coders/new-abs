@@ -1,3 +1,4 @@
+import 'package:abs_office_management/controller/amount_formate.dart';
 import 'package:abs_office_management/utility/app_const.dart';
 import 'package:abs_office_management/view/today_sales_management/controller/sales_controller.dart';
 import 'package:abs_office_management/widgets/app_shimmer.dart';
@@ -5,6 +6,7 @@ import 'package:abs_office_management/widgets/no_data_find.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../controller/date_time_controller.dart';
 import '../../../routes/route_name.dart';
@@ -25,7 +27,7 @@ class TodaySalesView extends GetView<SalesController> {
     return   AppTable(
       headerChildren: const[
         TableHeader(width: 60, name: "Date"),
-        TableHeader(width: 90, name: "Gross Sales"),
+        TableHeader(width: 90, name: "Today Sales"),
         TableHeader(width: 60, name: "SOV"),
         TableHeader(width: 120, name: "Action"),
 
@@ -64,12 +66,15 @@ class TodaySalesView extends GetView<SalesController> {
                         ),
                         TableBody(
                           width: 90,
-                          text: "\$${data.salesRegister}",
+                          //text: "\$${NumberFormat("##,##,###").format(double.parse(data.salesRegister.toString()))}",
+                          text: FormatCurrency.formatCurrency(data.salesRegister.toString()),
+
                         ),
                         TableBody(
                           width: 60,
                           color: double.parse(data.soOv!) < 0 ? Colors.red : Colors.green,
                           text: "\$${double.parse("${data.soOv}").abs()}",
+
                         ),
 
                         SizedBox(
