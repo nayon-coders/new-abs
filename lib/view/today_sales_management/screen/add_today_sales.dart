@@ -27,7 +27,7 @@ class AddTodaySales extends GetView<SalesController> {
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         title: Obx(() {
-            return Text("${controller.isEdit.value ? "Edit Sales" : "Add Today Sales"}",
+            return Text(controller.isEdit.value ? "Edit Sales" : "Add Today Sales",
               style:const TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textindico),
             );
           }
@@ -307,7 +307,7 @@ class AddTodaySales extends GetView<SalesController> {
                   children: [
                     TextSpan(
                       text: "(please enter your tax manually)",
-                      style:  TextStyle(fontWeight: FontWeight.w300,fontSize: 13,color: AppColors.red),
+                      style:  TextStyle(fontWeight: FontWeight.w300,fontSize: 13,color:Colors.orange),
                     )
                   ]
                 )),

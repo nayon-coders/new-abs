@@ -178,7 +178,7 @@ class ViewSalesReport extends GetView<SalesController> {
                               borderRadius: BorderRadius.circular(100)
                             ),
                             child: Center(
-                              child: Text("${data.name![0].toUpperCase()}",style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.mainColor),),
+                              child: Text(data.name![0].toUpperCase(),style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.mainColor),),
                             ),
                           ),
                           title: Text("${data.name}",style:const TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.black),),
