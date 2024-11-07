@@ -24,5 +24,7 @@ class Assets{
   static const String cost = "assets/images/othercost.png";
   static const String shotOver = "assets/images/shotover.png";
   static const String foodCost = "assets/images/foodcost.png";
+  static const String year = "assets/images/year.png";
+
 
 }

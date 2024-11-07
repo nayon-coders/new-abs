@@ -1,4 +1,3 @@
-import 'package:abs_office_management/data/binding/loss_profit_binding.dart';
 import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/utility/assetes.dart';
@@ -7,7 +6,6 @@ import 'package:abs_office_management/widgets/app_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import '../../widgets/app_shimmer.dart';
 import 'widget/dash_box.dart';
 import 'widget/drawer.dart';
@@ -17,6 +15,10 @@ class DashBoardScreen extends StatelessWidget {
    DashBoardScreen({super.key});
   final _search = TextEditingController();
    final LossProfitController controller = Get.put(LossProfitController());
+
+   Future<void> _refreshData() async {
+     await controller.lossProfitModel;
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -69,76 +71,79 @@ class DashBoardScreen extends StatelessWidget {
 
 
     ),
-      body: SingleChildScrollView(
-        padding:const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Obx(() {
-              if(controller.isLoading.value){
-                return GridView.builder(
-                    shrinkWrap: true,
-                    physics:const NeverScrollableScrollPhysics(),
-                    itemCount: 4,
-                    gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 20,
-                        crossAxisSpacing: 20,
-                        childAspectRatio: 2
-                    ),
-                    itemBuilder: (context,index){
-                  return AppShimmerPro.circularShimmer(width: 150, height: 100, borderRadius: 10);
-                });
-              }else{
-                return GridView.builder(
-                    shrinkWrap: true,
-                    physics:const NeverScrollableScrollPhysics(),
-                    itemCount: dashbox.length,
-                    gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 20,
-                        crossAxisSpacing: 20,
-                        childAspectRatio: 2
-                    ), itemBuilder: (context,index){
-                  final item = dashbox[index];
-                  return DashBox(
-                    onClick:item["screen"],
-                    costName: item["costName"],
-                    costAmount: item["costAmount"].toString(),
-                    image:item["image"],
-                    bgColor:item["color"],
+      body: RefreshIndicator(
+        onRefresh:_refreshData,
+        child: SingleChildScrollView(
+          padding:const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Obx(() {
+                if(controller.isLoading.value){
+                  return GridView.builder(
+                      shrinkWrap: true,
+                      physics:const NeverScrollableScrollPhysics(),
+                      itemCount: 4,
+                      gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 20,
+                          crossAxisSpacing: 20,
+                          childAspectRatio: 2
+                      ),
+                      itemBuilder: (context,index){
+                    return AppShimmerPro.circularShimmer(width: 150, height: 100, borderRadius: 10);
+                  });
+                }else{
+                  return GridView.builder(
+                      shrinkWrap: true,
+                      physics:const NeverScrollableScrollPhysics(),
+                      itemCount: dashbox.length,
+                      gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 20,
+                          crossAxisSpacing: 20,
+                          childAspectRatio: 2
+                      ), itemBuilder: (context,index){
+                    final item = dashbox[index];
+                    return DashBox(
+                      onClick:item["screen"],
+                      costName: item["costName"],
+                      costAmount: item["costAmount"].toString(),
+                      image:item["image"],
+                      bgColor:item["color"],
+                    );
+                  }).animate().fadeIn(duration:500.ms);
+                }
+
+                }
+              ),
+              const SizedBox(height: 20,),
+
+             const Text("Menu",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textindico),
+             ),
+              const SizedBox(height: 15,),
+
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: menubox.length,
+                  gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                    mainAxisSpacing: 20,
+                    crossAxisSpacing: 20,
+                    mainAxisExtent: 150
+                  ), itemBuilder: (context,index){
+                  final data = menubox[index];
+                  return MenuBox(
+                      name: data["name"],
+                      image: data["image"],
+                      onClick:()=>Get.toNamed(data["screen"]),
                   );
-                }).animate().fadeIn(duration:500.ms);
-              }
+              })
 
-              }
-            ),
-            const SizedBox(height: 20,),
-
-           const Text("Menu",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textindico),
-           ),
-            const SizedBox(height: 15,),
-
-            GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: menubox.length,
-                gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                  mainAxisSpacing: 20,
-                  crossAxisSpacing: 20,
-                  mainAxisExtent: 150
-                ), itemBuilder: (context,index){
-                final data = menubox[index];
-                return MenuBox(
-                    name: data["name"],
-                    image: data["image"],
-                    onClick:()=>Get.toNamed(data["screen"]),
-                );
-            })
-
-          ].animate(interval: 150.ms).fade(duration: 300.ms),
+            ].animate(interval: 150.ms).fade(duration: 300.ms),
+          ),
         ),
       ),
     );
@@ -163,6 +168,7 @@ class DashBoardScreen extends StatelessWidget {
      {"name": "Employee Manage","image": Assets.employee,"screen": "${AppRoute.employeeManageScree}"},
      {"name": "Salary Manage","image": Assets.salery,"screen": "${AppRoute.salaryManagementScree}"},
      {"name": "Partner Manage","image": Assets.partner,"screen": "${AppRoute.partnerManagementScreen}"},
+     {"name": "Year & Month","image": Assets.year,"screen": "${AppRoute.yearMonth}"},
 
    ];
 }
