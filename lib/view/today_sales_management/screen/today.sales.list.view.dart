@@ -6,8 +6,6 @@ import 'package:abs_office_management/widgets/no_data_find.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-
 import '../../../controller/date_time_controller.dart';
 import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
@@ -73,7 +71,7 @@ class TodaySalesView extends GetView<SalesController> {
                         TableBody(
                           width: 60,
                           color: double.parse(data.soOv!) < 0 ? Colors.red : Colors.green,
-                          text: "\$${double.parse("${data.soOv}").abs()}",
+                          text:FormatCurrency.formatCurrency(double.parse("${data.soOv}").abs().toString()),
 
                         ),
 

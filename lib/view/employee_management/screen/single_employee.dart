@@ -1,6 +1,5 @@
 import 'package:abs_office_management/view/employee_management/controller/employee_manage_controller.dart';
 import 'package:abs_office_management/view/employee_management/controller/tab_controller.dart';
-import 'package:abs_office_management/view/employee_management/screen/add_employee.dart';
 import 'package:abs_office_management/view/employee_management/widget/card_menus.dart';
 import 'package:abs_office_management/view/employee_management/widget/employee_payment_history.dart';
 import 'package:abs_office_management/view/employee_management/widget/working_hours.dart';
@@ -23,7 +22,7 @@ class SingleEmployee extends GetView<EmployeeManageController> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.getSingleEmployee(employeeId);
     });
 
@@ -39,7 +38,7 @@ class SingleEmployee extends GetView<EmployeeManageController> {
         surfaceTintColor: Colors.transparent,
         actions: [
           Obx(() {
-              return  controller.isGetting.value ? Center() : InkWell(
+              return  controller.isGetting.value ? const Center() : InkWell(
                 onTap: (){
                   if(controller.isGetting.value) return;
                   controller.setEditValu(controller.singleModel.value);
@@ -58,7 +57,7 @@ class SingleEmployee extends GetView<EmployeeManageController> {
           ),
           const SizedBox(width: 15,),
           Obx((){
-              return  controller.isGetting.value ? Center() : InkWell(
+              return  controller.isGetting.value ? const Center() : InkWell(
                 onTap: (){
                   Get.defaultDialog(
                     title: "Confirm delete",

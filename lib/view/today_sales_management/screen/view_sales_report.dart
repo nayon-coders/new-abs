@@ -1,3 +1,4 @@
+import 'package:abs_office_management/controller/amount_formate.dart';
 import 'package:abs_office_management/data/model/all_sales_molde.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/view/today_sales_management/controller/sales_controller.dart';
@@ -64,7 +65,7 @@ class ViewSalesReport extends GetView<SalesController> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const SizedBox(height: 30,),
-                            Text("\$${netSales.toStringAsFixed(2)}",style:const TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),),
+                            Text(FormatCurrency.formatCurrency(netSales.toStringAsFixed(2).toString()),style:const TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),),
                            const Text("Total Net Sale",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Colors.white),),
                           ],
                         ),
@@ -103,16 +104,21 @@ class ViewSalesReport extends GetView<SalesController> {
                  child: Row(
                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                    children: [
-                     BuildBoxs(
-                       bgColor: Colors.green.shade100,
-                       title: "Credit Sales",
-                       value: singleSalesDatum.craditeSales.toString(),
-                     ),
+                     // BuildBoxs(
+                     //   bgColor: Colors.green.shade100,
+                     //   title: "Credit Sales",
+                     //   value: singleSalesDatum.craditeSales.toString(),
+                     // ),
 
                      BuildBoxs(
                        bgColor: Colors.green.shade100,
                        title: "Extra Income",
                        value: extraIncome.abs().toStringAsFixed(2),
+                     ),
+                     BuildBoxs(
+                       bgColor: Colors.red.shade100,
+                       title: "Short & Over",
+                       value: double.parse("${singleSalesDatum.soOv}").abs().toString(),
                      ),
 
                    ],
@@ -125,11 +131,7 @@ class ViewSalesReport extends GetView<SalesController> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      BuildBoxs(
-                        bgColor: Colors.red.shade100,
-                        title: "Short & Over",
-                        value: double.parse("${singleSalesDatum.soOv}").abs().toString(),
-                      ),
+
 
                       BuildBoxs(
                         bgColor: Colors.red.shade100,
@@ -140,6 +142,8 @@ class ViewSalesReport extends GetView<SalesController> {
                     ],
                   ),
                 ),
+
+
                 const SizedBox(height: 50,),
                const Padding(
                     padding: EdgeInsets.only(left: 15),
@@ -232,7 +236,7 @@ class BuildBoxs extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("\$${value}",style:const TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Colors.black),),
+            Text(FormatCurrency.formatCurrency(value),style:const TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Colors.black),),
 
            const SizedBox(height: 7,),
             Text("$title",style:const TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Colors.black),),

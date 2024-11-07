@@ -1,3 +1,4 @@
+import 'package:abs_office_management/controller/amount_formate.dart';
 import 'package:abs_office_management/controller/date_time_controller.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/utility/app_const.dart';
@@ -63,14 +64,14 @@ class SalrayView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("${salaryItem.employeeName!.toUpperCase()}",style:const TextStyle(fontWeight: FontWeight.w500,fontSize: 30,color: AppColors.textBlack),),
+                  Text(salaryItem.employeeName!.toUpperCase(),style:const TextStyle(fontWeight: FontWeight.w500,fontSize: 30,color: AppColors.textBlack),),
                   const SizedBox(height: 10,),
 
                  const Text("Salary Paid for",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),),
                  const SizedBox(height: 10,),
-                   Text("\$${salaryItem.amount}",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 30,color: AppColors.red),),
+                   Text(FormatCurrency.formatCurrency(salaryItem.amount.toString()),style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 30,color: AppColors.red),),
                   const SizedBox(height: 30,),
-                  Text("${dateTimeController.dateFormat1(DateTime.parse("${salaryItem.date}"))}",style:const  TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),),
+                  Text(dateTimeController.dateFormat1(DateTime.parse("${salaryItem.date}")),style:const  TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),),
                   const SizedBox(height: 5,),
                   Container(
                     width: 150,

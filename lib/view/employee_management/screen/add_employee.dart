@@ -4,7 +4,6 @@ import 'package:abs_office_management/view/employee_management/controller/employ
 import 'package:abs_office_management/view/settings/controller/employee_position_controller.dart';
 import 'package:abs_office_management/widgets/app_button.dart';
 import 'package:abs_office_management/widgets/selected_picker.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -142,14 +141,8 @@ class AddEmployee extends GetView<EmployeeManageController> {
                                   controller.singleModel.value.employee!.profilePic!.isNotEmpty)
                                       ?ClipRRect(
                                           borderRadius: BorderRadius.circular(100),
-                                        child: CachedNetworkImage(
-                                          imageUrl:"${AppConfig.DOMAIN}${controller.singleModel.value.employee!.profilePic}" ,
-                                          height: 150,
-                                          width: 150,
-                                          fit: BoxFit.cover,
-                                          placeholder: (context, url) =>const CircularProgressIndicator(),
-                                        
-                                        ),
+                                        child:Image.network("${AppConfig.DOMAIN}${controller.singleModel.value.employee!.profilePic}",height: 150,width: 150,fit: BoxFit.cover,),
+
                                       ): const Icon(
                                           Icons.person,
                                           color: Colors.grey,
