@@ -57,6 +57,11 @@ class LossProfitController extends GetxController {
     isOnlineSalesLoading.value = false;
   }
 
+  //refresh the data
+  Future<void> refreshData() async {
+    await getLossProfitData(dateTimeController.month, dateTimeController.year);
+  }
+
 
 
 

@@ -24,7 +24,7 @@ class DashBox extends StatelessWidget {
       child: Container(
         padding:const EdgeInsets.all(10),
 
-        height: 80,
+        height: 90,
         width: 300,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),

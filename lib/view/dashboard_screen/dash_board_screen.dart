@@ -1,3 +1,4 @@
+import 'package:abs_office_management/controller/date_time_controller.dart';
 import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/utility/assetes.dart';
@@ -14,11 +15,10 @@ import 'widget/menu_box.dart';
 class DashBoardScreen extends StatelessWidget {
    DashBoardScreen({super.key});
   final _search = TextEditingController();
-   final LossProfitController controller = Get.put(LossProfitController());
+  final DateTimeController dateTimeController = Get.put(DateTimeController());
+   final LossProfitController lossProfitController = Get.put(LossProfitController());
 
-   Future<void> _refreshData() async {
-     await controller.lossProfitModel;
-   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class DashBoardScreen extends StatelessWidget {
 
     ),
       body: RefreshIndicator(
-        onRefresh:_refreshData,
+        onRefresh: lossProfitController.refreshData,
         child: SingleChildScrollView(
           padding:const EdgeInsets.all(20),
           child: Column(
@@ -80,7 +80,7 @@ class DashBoardScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Obx(() {
-                if(controller.isLoading.value){
+                if(lossProfitController.isLoading.value){
                   return GridView.builder(
                       shrinkWrap: true,
                       physics:const NeverScrollableScrollPhysics(),
@@ -153,10 +153,10 @@ class DashBoardScreen extends StatelessWidget {
 
   //dashbox Menu
    List<Map<String,dynamic>> get dashbox=>[
-     {"costName": "Total Sales","costAmount":controller.lossProfitModel.value.totalSales??"", "image": Assets.money,"color":const Color(0xFFFFF5D9), "screen": (){}},
-     {"costName": "Net Income", "costAmount":controller.lossProfitModel.value.netIncome??"","image": Assets.income,"color":const Color(0xFFE7EDFF), "screen": (){}},
-     {"costName": "Expense", "costAmount":controller.lossProfitModel.value.totalDabit??"","image": Assets.expance,"color":const Color(0xFFFFE0EB), "screen": (){}},
-     {"costName": "Online Sales", "costAmount":controller.lossProfitModel.value.toatlOnlineSales??"","image": Assets.sells,"color":const Color(0xFFDCFAF8), "screen": (){}},
+     {"costName": "Total Sales","costAmount":lossProfitController.lossProfitModel.value.totalSales??"", "image": Assets.money,"color":const Color(0xFFFFF5D9), "screen": (){}},
+     {"costName": "Net Income", "costAmount":lossProfitController.lossProfitModel.value.netIncome??"","image": Assets.income,"color":const Color(0xFFE7EDFF), "screen": (){}},
+     {"costName": "Expense", "costAmount":lossProfitController.lossProfitModel.value.totalDabit ?? "","image": Assets.expance,"color":const Color(0xFFFFE0EB), "screen": (){}},
+     {"costName": "Online Sales", "costAmount":lossProfitController.lossProfitModel.value.toatlOnlineSales??"","image": Assets.sells,"color":const Color(0xFFDCFAF8), "screen": (){}},
 
    ];
 
