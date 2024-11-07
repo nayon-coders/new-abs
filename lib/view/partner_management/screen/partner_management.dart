@@ -21,7 +21,7 @@ class PartnerManagement extends GetView<PartnerController> {
       appBar: AppBar(
         backgroundColor: AppColors.textWhite,
         surfaceTintColor: Colors.transparent,
-        leading: IconButton(onPressed: ()=>Get.toNamed(AppRoute.dashBoard), icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
+        leading: IconButton(onPressed: ()=>Get.back(), icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
         title: const Text("Partner management",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
         actions: [
           EditButton(

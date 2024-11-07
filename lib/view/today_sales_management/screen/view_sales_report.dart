@@ -1,5 +1,6 @@
 import 'package:abs_office_management/controller/amount_formate.dart';
 import 'package:abs_office_management/data/model/all_sales_molde.dart';
+import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/view/today_sales_management/controller/sales_controller.dart';
 import 'package:flutter/material.dart';
@@ -7,11 +8,11 @@ import 'package:get/get.dart';
 
 class ViewSalesReport extends GetView<SalesController> {
    ViewSalesReport({super.key});
-
    SingleSalesDatum singleSalesDatum = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
+    controller.calculateAmount(singleSalesDatum);
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
@@ -20,6 +21,7 @@ class ViewSalesReport extends GetView<SalesController> {
         elevation: 0,
         leading:IconButton(
             onPressed: (){
+            //  controller.clearCalculateData();
               Get.back();
             },
             icon:const Icon(Icons.arrow_back_ios, color: Colors.white, size: 20,)),
@@ -28,9 +30,6 @@ class ViewSalesReport extends GetView<SalesController> {
 
       body: Builder(
         builder: (_){
-          var totalOnlineSales = double.parse("${singleSalesDatum.onlineSales!.map((e)=> double.parse(e.amount!.toString())).reduce((a,b)=> a+b)}");
-          var netSales = (double.parse("${singleSalesDatum.salesRegister}")) - (double.parse("${singleSalesDatum.tax}") + double.parse("${singleSalesDatum.soOv}"));
-          var extraIncome = double.parse("${singleSalesDatum.additionalIncome}");
           return SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -65,7 +64,7 @@ class ViewSalesReport extends GetView<SalesController> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const SizedBox(height: 30,),
-                            Text(FormatCurrency.formatCurrency(netSales.toStringAsFixed(2).toString()),style:const TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),),
+                            Text(FormatCurrency.formatCurrency(controller.netSales.toStringAsFixed(2).toString()),style:const TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),),
                            const Text("Total Net Sale",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Colors.white),),
                           ],
                         ),
@@ -78,7 +77,7 @@ class ViewSalesReport extends GetView<SalesController> {
                         child:  BuildBoxs(
                           bgColor: Colors.green.shade100,
                           title: "Gross Sales",
-                          value: singleSalesDatum.salesRegister.toString(),
+                          value: singleSalesDatum!.salesRegister.toString(),
                         ),
                       ),
 
@@ -87,8 +86,8 @@ class ViewSalesReport extends GetView<SalesController> {
                         right: 20,
                         child:  BuildBoxs(
                           bgColor: Colors.green.shade100,
-                          title: "Online Sales",
-                          value: totalOnlineSales.toString(),
+                          title: "Online Sales", //total online sales
+                          value: controller.totalOnlineSales.value.toStringAsFixed(2),
                         ),
                       ),
 
@@ -113,12 +112,12 @@ class ViewSalesReport extends GetView<SalesController> {
                      BuildBoxs(
                        bgColor: Colors.green.shade100,
                        title: "Extra Income",
-                       value: extraIncome.abs().toStringAsFixed(2),
+                       value: controller.extraIncome.abs().toStringAsFixed(2),
                      ),
                      BuildBoxs(
-                       bgColor: Colors.red.shade100,
+                       bgColor: double.parse("${singleSalesDatum!.soOv}") > 0 ? Colors.green.shade200 : Colors.red.shade100,
                        title: "Short & Over",
-                       value: double.parse("${singleSalesDatum.soOv}").abs().toString(),
+                       value: double.parse("${singleSalesDatum!.soOv}").toString(),
                      ),
 
                    ],
@@ -136,7 +135,7 @@ class ViewSalesReport extends GetView<SalesController> {
                       BuildBoxs(
                         bgColor: Colors.red.shade100,
                         title: "Tax",
-                        value: double.parse("${singleSalesDatum.tax}").toStringAsFixed(2),
+                        value: double.parse("${singleSalesDatum!.tax}").toStringAsFixed(2),
                       ),
 
                     ],
@@ -154,9 +153,9 @@ class ViewSalesReport extends GetView<SalesController> {
                   child: ListView.builder(
                     shrinkWrap: true,
                     physics:const NeverScrollableScrollPhysics(),
-                    itemCount: singleSalesDatum.onlineSales!.length,
+                    itemCount: singleSalesDatum!.onlineSales!.length,
                     itemBuilder: (_, index){
-                      var data = singleSalesDatum.onlineSales![index];
+                      var data = singleSalesDatum!.onlineSales![index];
                       return Container(
                         margin:const EdgeInsets.only(bottom: 10),
                         padding:const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),

@@ -1,3 +1,4 @@
+import 'package:abs_office_management/controller/role_managment_controller.dart';
 import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/utility/assetes.dart';
@@ -16,7 +17,8 @@ class TodaySalesManagement extends StatelessWidget {
    TodaySalesManagement({super.key});
 
   final _key = GlobalKey<ExpandableFabState>();
-  final salesController = Get.put(CostController());
+  // final salesController = Get.put(CostController());
+
 
 
 
@@ -129,7 +131,6 @@ class SelectMonthWidgets extends StatelessWidget {
   final SalesController salesController  = Get.find<SalesController>();
   final CostController costController  = Get.find<CostController>();
   final FoodCostController foodController  = Get.find<FoodCostController>();
-
   @override
   Widget build(BuildContext context) {
     return InkWell(

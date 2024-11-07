@@ -1,4 +1,5 @@
 import 'package:abs_office_management/controller/date_time_controller.dart';
+import 'package:abs_office_management/controller/role_managment_controller.dart';
 import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/utility/assetes.dart';
@@ -16,7 +17,8 @@ class DashBoardScreen extends StatelessWidget {
    DashBoardScreen({super.key});
   final _search = TextEditingController();
   final DateTimeController dateTimeController = Get.put(DateTimeController());
-   final LossProfitController lossProfitController = Get.put(LossProfitController());
+   final LossProfitController lossProfitController = Get.find<LossProfitController>();
+   final RoleManagmentController roleController = Get.find<RoleManagmentController>();
 
 
 
@@ -58,12 +60,23 @@ class DashBoardScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0,right: 20),
-                child: AppInput(
-                  circuler: 35,
-                    hint: "Search",
-                    controller: _search),
+              Obx(() {
+                  return Container(
+                    padding: EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                      color: roleController.isPartner.value ? Colors.indigo : AppColors.mainColor,
+                    ),
+                    child:  Center(
+                      child: Text("Welcome - ${roleController.role.value}",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                            color: Colors.white
+                        ),
+                      ),
+                    ),
+                  );
+                }
               ),
              const SizedBox(height: 20,),
             ],
@@ -153,8 +166,8 @@ class DashBoardScreen extends StatelessWidget {
 
   //dashbox Menu
    List<Map<String,dynamic>> get dashbox=>[
-     {"costName": "Total Sales","costAmount":lossProfitController.lossProfitModel.value.totalSales??"", "image": Assets.money,"color":const Color(0xFFFFF5D9), "screen": (){}},
-     {"costName": "Net Income", "costAmount":lossProfitController.lossProfitModel.value.netIncome??"","image": Assets.income,"color":const Color(0xFFE7EDFF), "screen": (){}},
+     {"costName": "Total Sales","costAmount":lossProfitController.totalSalesAmount.value??"", "image": Assets.money,"color":const Color(0xFFFFF5D9), "screen": (){}},
+     {"costName": "Net Sales", "costAmount":lossProfitController.netSales.value??"","image": Assets.income,"color":const Color(0xFFE7EDFF), "screen": (){}},
      {"costName": "Expense", "costAmount":lossProfitController.lossProfitModel.value.totalDabit ?? "","image": Assets.expance,"color":const Color(0xFFFFE0EB), "screen": (){}},
      {"costName": "Online Sales", "costAmount":lossProfitController.lossProfitModel.value.toatlOnlineSales??"","image": Assets.sells,"color":const Color(0xFFDCFAF8), "screen": (){}},
 

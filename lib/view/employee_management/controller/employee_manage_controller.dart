@@ -265,6 +265,8 @@ class EmployeeManageController extends GetxController{
 
   clearTextEditingController(){
     isForEdit.value = false;
+    selectedImage.value = null;
+    profileImage.value = "";
     name.value.clear();
     email.value.clear();
     phone.value.clear();
@@ -274,9 +276,7 @@ class EmployeeManageController extends GetxController{
     salaryRate.value.clear();
     salaryType.value.clear();
     pass.value.clear();
-    selectedImage.value = null;
-    profileImage.value = "";
-    singleModel.value = SingleEmployeeModel();
+
     update();
 
   }

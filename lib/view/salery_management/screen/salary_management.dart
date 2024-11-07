@@ -7,6 +7,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../controller/date_time_controller.dart';
+import '../../../controller/role_managment_controller.dart';
 import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
 import '../../../utility/assetes.dart';
@@ -16,6 +17,7 @@ import '../../today_sales_management/widget/edit_button.dart';
 class SalaryManagement extends GetView<SalaryManagementController> {
    SalaryManagement({super.key});
    final DateTimeController dateTimeController = Get.put(DateTimeController());
+   final RoleManagmentController roleController = Get.find<RoleManagmentController>();
 
 
   @override
@@ -29,18 +31,21 @@ class SalaryManagement extends GetView<SalaryManagementController> {
         backgroundColor: AppColors.textWhite,
         surfaceTintColor: Colors.transparent,
         actions: [
-          InkWell(
-            onTap: ()=>Get.toNamed(AppRoute.addPaidSalary),
-            child: Container(
-              height: 30,
-              width: 30,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: AppColors.green
-              ),
-              child: const Center(child: Icon(Icons.add,color: Colors.white,)),
-            ),
-          ),
+         Obx(() {
+             return roleController.isPartner.value ? Center() : InkWell(
+                onTap: ()=>Get.toNamed(AppRoute.addPaidSalary),
+                child: Container(
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: AppColors.green
+                  ),
+                  child: const Center(child: Icon(Icons.add,color: Colors.white,)),
+                ),
+              );
+           }
+         ),
          const SizedBox(width: 20,),
         ],
 
@@ -62,9 +67,8 @@ class SalaryManagement extends GetView<SalaryManagementController> {
                 Text(DateFormat("MMM, yyyy").format(dateTimeController.selectedDate.value),style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
                 InkWell(
                   onTap: ()async{
-                   await dateTimeController.pickDate(context);
-                   controller.getAllSalary(dateTimeController.month, dateTimeController.year);
-
+                    var date = await dateTimeController.pickDate(context);
+                   controller.getAllSalary(date.month, date.year);
                   },
                     child: Image.asset(Assets.calander,height: 35,width: 35,fit: BoxFit.cover,)),
               ],
@@ -120,39 +124,42 @@ class SalaryManagement extends GetView<SalaryManagementController> {
                             subtitle: Text(dateTimeController.dateFormat1(DateTime.parse(data.date!)),style:const TextStyle(fontWeight: FontWeight.w400,fontSize: 12,color: AppColors.textGrey),),
                             trailing: SizedBox(
                               width: 120,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  EditButton(
-                                      icon: Icons.edit,
-                                      bgColor: Colors.amber,
-                                      onClick: (){
-                                        controller.setSalaryData(data);
-                                      }
-                                  ),
-                                  EditButton(
-                                      icon: Icons.remove_red_eye,
-                                      bgColor: Colors.green,
-                                      onClick: (){
-                                        Get.to(()=>SalrayView(), arguments: data);
-                                       // controller.setSalaryData(data);
-                                      }
-                                  ),
-                                  EditButton(
-                                      icon: Icons.delete,
-                                      bgColor: AppColors.red,
-                                      onClick: (){
-                                        //alert
-                                        alertDialog(
-                                            title: "Hold On!",
-                                            content: "Are you sure you want to delete this salary?",
-                                            onOk: ()=> controller.deleteSalary(data.id!)
-                                        );
+                              child: Obx((){
+                                  return  Row(
+                                    mainAxisAlignment: roleController.isPartner.value ? MainAxisAlignment.end : MainAxisAlignment.spaceBetween,
+                                    children: [
+                                    roleController.isPartner.value ? SizedBox(width: 1,) :  EditButton(
+                                          icon: Icons.edit,
+                                          bgColor: Colors.amber,
+                                          onClick: (){
+                                            controller.setSalaryData(data);
+                                          }
+                                      ),
+                                      EditButton(
+                                          icon: Icons.remove_red_eye,
+                                          bgColor: Colors.green,
+                                          onClick: (){
+                                            Get.to(()=>SalrayView(), arguments: data);
+                                           // controller.setSalaryData(data);
+                                          }
+                                      ),
+                                      roleController.isPartner.value ? SizedBox(width: 1,) :  EditButton(
+                                          icon: Icons.delete,
+                                          bgColor: AppColors.red,
+                                          onClick: (){
+                                            //alert
+                                            alertDialog(
+                                                title: "Hold On!",
+                                                content: "Are you sure you want to delete this salary?",
+                                                onOk: ()=> controller.deleteSalary(data.id!)
+                                            );
 
-                                      }
-                                  ),
+                                          }
+                                      ),
 
-                                ],
+                                    ],
+                                  );
+                                }
                               ),
                             )
                         ),

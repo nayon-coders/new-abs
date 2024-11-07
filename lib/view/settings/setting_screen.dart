@@ -8,13 +8,17 @@ import 'package:abs_office_management/view/settings/widget/option_box.dart';
 import 'package:abs_office_management/view/settings/widget/setting_options.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../controller/role_managment_controller.dart';
 import '../../utility/app_color.dart';
 
 class SettingScreen extends StatelessWidget {
-   const SettingScreen({super.key});
+    SettingScreen({super.key});
 
 
-  @override
+   final RoleManagmentController roleController = Get.find<RoleManagmentController>();
+
+
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.bgColor,
@@ -31,15 +35,22 @@ class SettingScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             OptionBox(
-                title: "Setting Profile",
+                title: "Profile Setting",
                 column: [
-                  SettingOptions(name: "Business Setup", icon: Icons.add_business_sharp, onClick: ()=>Get.toNamed(AppRoute.businessSetup)),
-                  const Divider(),
+                  Obx(() {
+                      return roleController.isPartner.value ? Center() : SettingOptions(name: "Business Setup", icon: Icons.add_business_sharp, onClick: ()=>Get.toNamed(AppRoute.businessSetup));
+                    }
+                  ),
+                  Obx(() {
+                    return roleController.isPartner.value ? Center() :  const Divider();
+                  }
+                  ),
+
                   SettingOptions(name: "Change Password", icon: Icons.key, onClick: ()=>Get.toNamed(AppRoute.adminPassword)),
 
                 ]),
-            const SizedBox(height: 20,),
-            OptionBox(
+            roleController.isPartner.value ? Center() :  SizedBox(height: 20,),
+             roleController.isPartner.value ? Center() : OptionBox(
                 title: "General Setting",
                 column: [
                   SettingOptions(name: "Tax & State", icon: Icons.bar_chart, onClick: ()=>Get.toNamed(AppRoute.textAndState)),

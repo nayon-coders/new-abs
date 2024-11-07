@@ -90,7 +90,6 @@ class AddEmployee extends GetView<EmployeeManageController> {
           child: IconButton(
               onPressed: (){
                 controller.clearTextEditingController();
-
                 Get.back();
               },
               icon:const Icon(
@@ -128,7 +127,7 @@ class AddEmployee extends GetView<EmployeeManageController> {
 
                           //jodi selectImage null na hoi thahole image show korabe null hole icon show korabe
                           child:Center(
-                              child: (controller.selectedImage.value != null)
+                              child: controller.selectedImage.value != null
                                   ? ClipRRect(
                                         borderRadius: BorderRadius.circular(100),
                                         child: Image.file(
@@ -137,7 +136,7 @@ class AddEmployee extends GetView<EmployeeManageController> {
                                           width: 150,
                                           fit: BoxFit.cover,
                                         ),
-                                      ): (controller.singleModel.value.employee != null &&
+                                      ) : (controller.singleModel.value.employee != null &&
                                   controller.singleModel.value.employee!.profilePic!.isNotEmpty)
                                       ?ClipRRect(
                                           borderRadius: BorderRadius.circular(100),

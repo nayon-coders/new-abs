@@ -198,5 +198,12 @@ class FoodCostController extends GetxController {
 
 
 
+  //refresh data
+  Future<void> onRefresh()async {
+    getAllFoodCost(dateTimeController.month, dateTimeController.year);
+  }
+
+
+
 
 }

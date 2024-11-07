@@ -52,14 +52,8 @@ class LossProfitController extends GetxController {
   //calculate the tax amount
   calculateAmount(LossProfitModel model)async{
     creditCardProcessingFee.value = (double.parse("${model.totalCreditSales}")/ 100) * double.parse("${creditcardController.creditModel.value.data!.fee!}");
-
-    print("creditCardProcessingFee.value -- ${model.totalCreditSales}");
-    print("creditCardProcessingFee.value -- ${creditCardProcessingFee.value}");
-    print("creditCardProcessingFee.value -- ${creditcardController.creditModel.value.data!.fee!}");
     netSales.value = double.parse("${model.totalSalesRegister}") - ( double.parse("${model.totalTax}") + creditCardProcessingFee.value );
-
     totalSalesAmount.value = netSales.value + double.parse("${onlineSalesModel.value.totalOnlineSales}") + double.parse("${model.shortOver}");
-
     totalProfit.value = totalSalesAmount.value - double.parse("${model.totalSalary}") - double.parse("${model.othersCost}");
   }
 

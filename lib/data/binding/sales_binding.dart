@@ -2,6 +2,7 @@ import 'package:abs_office_management/view/settings/screen/creditcard_processing
 import 'package:get/get.dart';
 
 import '../../controller/date_time_controller.dart';
+import '../../controller/role_managment_controller.dart';
 import '../../view/settings/controller/creditcard_processing_fee_controller.dart';
 import '../../view/settings/controller/online.sales.platform.controller.dart';
 import '../../view/settings/controller/tax.controller.dart';
@@ -13,6 +14,8 @@ class SalesBinding extends Bindings {
     Get.lazyPut<OnlineSalesPlatformController>(() => OnlineSalesPlatformController());
     Get.lazyPut<DateTimeController>(() => DateTimeController());
     Get.lazyPut<CreditcardProcessingFeeController>(() => CreditcardProcessingFeeController());
+
+    Get.lazyPut<RoleManagmentController>(() => RoleManagmentController());
 
     //  Get.lazyPut<TaxController>(() => TaxController());
   }

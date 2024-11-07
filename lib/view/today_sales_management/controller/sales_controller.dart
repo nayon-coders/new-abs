@@ -35,6 +35,9 @@ class SalesController extends GetxController {
   List<Map<String, dynamic>> onlineSalesData = [];
 
   RxDouble totalTaxAmount = 0.0.obs;
+  RxDouble netSales = 0.0.obs;
+  RxDouble totalOnlineSales = 0.0.obs;
+  RxDouble extraIncome = 0.0.obs;
   RxString selectedId = "".obs;
 
 
@@ -62,6 +65,24 @@ class SalesController extends GetxController {
     isLoading.value = false;
   }
 
+
+  //calculate the tax amount
+  calculateAmount(SingleSalesDatum model)async{
+     totalOnlineSales.value = double.parse("${model.onlineSales!.map((e)=> double.parse(e.amount!.toString())).reduce((a,b)=> a+b)}");
+      extraIncome.value = double.parse("${model.additionalIncome}");
+      if(double.parse(model.soOv!.toString()) > 0){
+        netSales.value = (double.parse(model.salesRegister!) + totalOnlineSales.value) + double.parse(model.soOv!.toString()).abs();
+      }else{
+        netSales.value = (double.parse(model.salesRegister!) + totalOnlineSales.value) - double.parse(model.soOv!.toString()).abs();
+      }
+  }
+
+  //clear calculate data
+  clearCalculateData(){
+    totalOnlineSales.value = 0.0;
+    extraIncome.value = 0.0;
+    netSales.value = 0.0;
+  }
 
 
 
@@ -91,14 +112,14 @@ class SalesController extends GetxController {
       "date": dateTimeDatabase.value
     };
     print("data --- ${data}");
-    // var res = await ApiServices.postApi(AppConfig.TODAY_SALES_CREATE, data);
-    // if(res.statusCode == 201){
-    //   clearData(); //clear all data
-    //   getSales(dateTimeController.month, dateTimeController.year);
-    //   Get.back(); // close the dialog
-    //
-    //   Get.snackbar("Success!", "Data added successfully", backgroundColor: Colors.green, colorText: Colors.white);
-    // }
+    var res = await ApiServices.postApi(AppConfig.TODAY_SALES_CREATE, data);
+    if(res.statusCode == 201){
+      clearData(); //clear all data
+      getSales(dateTimeController.month, dateTimeController.year);
+      Get.back(); // close the dialog
+
+      Get.snackbar("Success!", "Data added successfully", backgroundColor: Colors.green, colorText: Colors.white);
+    }
     isAdd.value = false;
   }
 
@@ -219,5 +240,10 @@ class SalesController extends GetxController {
     print("taxAmount -- ${totalTaxAmount.value}");// return tax amount
   }
 
+
+  //refresh data
+  Future<void> onRefresh()async {
+    getSales(dateTimeController.month, dateTimeController.year);
+  }
 
 }

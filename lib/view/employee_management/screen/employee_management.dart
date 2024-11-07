@@ -1,4 +1,5 @@
 import 'package:abs_office_management/app_config.dart';
+import 'package:abs_office_management/data/model/employee_model/single_empolyee_model.dart';
 import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/assetes.dart';
 import 'package:abs_office_management/view/employee_management/controller/employee_manage_controller.dart';
@@ -7,11 +8,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import '../../../controller/role_managment_controller.dart';
 import '../../../utility/app_color.dart';
 import '../../../widgets/app_shimmer.dart';
 
 class EmployeeManagement extends GetView<EmployeeManageController> {
-  const EmployeeManagement({super.key});
+   EmployeeManagement({super.key});
+  final RoleManagmentController roleController = Get.find<RoleManagmentController>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,20 +32,24 @@ class EmployeeManagement extends GetView<EmployeeManageController> {
         ),
 
         actions: [
-          InkWell(
-            onTap: (){
-              Get.toNamed(AppRoute.addEmployeeScreen);
-            },
-            child: Container(
-              height: 30,
-              width: 30,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: AppColors.green,
-              ),
-              child:const Center(child: Icon(Icons.add,color: Colors.white,),),
-            ),
-          ),
+         Obx((){
+             return roleController.isPartner.value ? Center() : InkWell(
+                onTap: (){
+                  controller.singleModel.value = SingleEmployeeModel(); //  null the old value once create a new employee
+                  Get.toNamed(AppRoute.addEmployeeScreen);
+                },
+                child: Container(
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: AppColors.green,
+                  ),
+                  child:const Center(child: Icon(Icons.add,color: Colors.white,),),
+                ),
+              );
+           }
+         ),
           const SizedBox(width: 10,),
         ],
       ),
@@ -94,14 +101,17 @@ class EmployeeManagement extends GetView<EmployeeManageController> {
                     subtitle: Text(data.employeePosition.toString(),style:const TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textBlack),),
 
                     trailing: InkWell(
-                        onTap: ()=>Get.toNamed(
-                          AppRoute.singleEmployeeScreen,
-                          arguments: data.id,
-                        ),
+                        onTap: (){
+                          controller.getSingleEmployee(data.id.toString());
+                          Get.toNamed(
+                            AppRoute.singleEmployeeScreen,
+                            arguments: data.id,
+                          );
+                        },
                         child: const Text("View Details",style: TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: Color(0xFF1814F3)),)),
 
                   ),
-                ).animate().slideX(duration: 500.ms, curve: Curves.easeInOut);
+                ).animate().fade(duration: 500.ms, curve: Curves.easeInOut);
 
               });
         }

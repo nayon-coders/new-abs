@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 
 import '../../../app_config.dart';
 import '../../../controller/date_time_controller.dart';
+import '../../../controller/role_managment_controller.dart';
 import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
 import '../../../utility/assetes.dart';
@@ -18,27 +19,24 @@ class SingleEmployee extends GetView<EmployeeManageController> {
    SingleEmployee({super.key});
   final tabController = Get.put(ToggleTabController());
    DateTimeController dateController = Get.put(DateTimeController());
-   final employeeId = Get.arguments.toString();
 
-  @override
+   final RoleManagmentController roleController = Get.find<RoleManagmentController>();
+
+   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      controller.getSingleEmployee(employeeId);
-    });
 
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         leading: IconButton(onPressed: (){
           Get.back();
-
         }, icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
         title:const Text("Single Employee",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: AppColors.textBlack),),
         backgroundColor: AppColors.textWhite,
         surfaceTintColor: Colors.transparent,
         actions: [
           Obx(() {
-              return  controller.isGetting.value ? const Center() : InkWell(
+              return roleController.isPartner.value ? Center() : controller.isGetting.value ? const Center() : InkWell(
                 onTap: (){
                   if(controller.isGetting.value) return;
                   controller.setEditValu(controller.singleModel.value);
@@ -57,7 +55,7 @@ class SingleEmployee extends GetView<EmployeeManageController> {
           ),
           const SizedBox(width: 15,),
           Obx((){
-              return  controller.isGetting.value ? const Center() : InkWell(
+              return roleController.isPartner.value ? Center() :  controller.isGetting.value ? const Center() : InkWell(
                 onTap: (){
                   Get.defaultDialog(
                     title: "Confirm delete",

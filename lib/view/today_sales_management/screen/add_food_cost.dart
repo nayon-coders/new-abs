@@ -11,10 +11,10 @@ import '../../../utility/app_color.dart';
 class AddFoodCost extends GetView<FoodCostController> {
    AddFoodCost({super.key});
    final List cashItems =[
-     "online",
-     "cash",
-     "card",
-     "check",
+     "Online",
+     "Cash",
+     "Card",
+     "Cheque",
    ];
 
    final DateTimeController dateTimeController = Get.put(DateTimeController());
@@ -204,7 +204,7 @@ class AddFoodCost extends GetView<FoodCostController> {
             ),
             Obx(() {
               print("controller.payList[index] --- ${controller.payList[index]}");
-                return controller.payList.value[index] == "check" ?  Column(
+                return controller.payList.value[index].toString().contains("Cheque") ?  Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

@@ -6,6 +6,7 @@ import 'package:abs_office_management/data/services/api_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 
 import '../../../controller/date_time_controller.dart';
 import '../../../data/model/costing_list_model.dart';
@@ -45,6 +46,7 @@ class CostController extends GetxController{
    RxString costPlatform = "".obs;
     RxString costDate = "".obs;
     RxString selectedCostId = "".obs;
+    RxDouble totalCost = 0.00.obs;
 
   Rx<ConstingListModel> costingListModel = ConstingListModel().obs;
   Rx<AllCostListModel> allCostList = AllCostListModel().obs;
@@ -112,6 +114,8 @@ class CostController extends GetxController{
     var res = await ApiServices.getApi(AppConfig.COSTING+"?month=$month&year=$year");
     if(res.statusCode == 200){
       allCostList.value = AllCostListModel.fromJson(jsonDecode(res.body));
+      totalCost.value = allCostList.value.data!.fold(0, (previousValue, element) => previousValue + double.parse(element.amount!));
+
     }
     isGetting.value = false;
   }
@@ -178,6 +182,14 @@ class CostController extends GetxController{
     costDate.value = "";
     costPlatform.value = "";
     selectedDate.value.clear();
+  }
+
+
+
+  //refresh data
+  Future<void> onRefresh()async {
+    getAllCostList(dateTimeController.month, dateTimeController.year);
+    getCostList();
   }
 
 

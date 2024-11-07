@@ -9,6 +9,7 @@ import 'package:abs_office_management/widgets/no_data_find.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import '../../../controller/role_managment_controller.dart';
 import '../../../utility/app_color.dart';
 import '../widget/edit_button.dart';
 import '../widget/table/app_table.dart';
@@ -18,102 +19,109 @@ class FoodCostView extends GetView<FoodCostController> {
    FoodCostView({super.key});
 
    final DateTimeController dateTimeController = Get.put(DateTimeController());
+   final RoleManagmentController roleController = Get.find<RoleManagmentController>();
 
   @override
   Widget build(BuildContext context) {
-    return  AppTable(
-      headerChildren: const[
-        TableHeader(width: 60, name: "Date"),
-        TableHeader(width: 130, name: "Name"),
-        TableHeader(width: 120, name: "Action"),
+    return  RefreshIndicator(
+      onRefresh: controller.onRefresh,
+      child: AppTable(
+        headerChildren: const[
+          TableHeader(width: 60, name: "Date"),
+          TableHeader(width: 130, name: "Name"),
+          TableHeader(width: 120, name: "Action"),
 
-      ],
-      row: Expanded(
-        child: Obx(() {
-          if(controller.isLoading.value){
-            return ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context,index){
-                return AppShimmerPro.circularShimmer(width: Get.width, height: 50, borderRadius: 5);
-              },
-            );
-          }else if(controller.foodCostModel.value.result!.isEmpty){
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Center(child: NoDataFoundScreen()),
-                 const  SizedBox(height: 10),
-                  TextButton(
-                    onPressed: ()=>controller.getAllFoodCost(dateTimeController.month, dateTimeController.year),
-                    child:const Text("Reload"),
-                  )
-                ],
-              ),
-            );
-
-          }else{
-            return ListView.separated(
-                itemCount: controller.foodCostModel.value.result!.length,
-                separatorBuilder: (_, __) => Container(height: 1.5, color: Colors.grey[300]),
+        ],
+        row: Expanded(
+          child: Obx(() {
+            if(controller.isLoading.value){
+              return ListView.builder(
+                itemCount: 10,
                 itemBuilder: (context,index){
-                  var data = controller.foodCostModel.value.result![index];
-                  return Container(
-                    height: 60,
-                    color: index.isEven ? Colors.grey[100] : Colors.white,
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child:Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        TableBody(text: dateTimeController.dateFormat1(data.date!), width: 60),
-                        TableBody(text: "${data.name}", width: 130),
+                  return AppShimmerPro.circularShimmer(width: Get.width, height: 50, borderRadius: 5);
+                },
+              );
+            }else if(controller.foodCostModel.value.result!.isEmpty){
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Center(child: NoDataFoundScreen()),
+                   const  SizedBox(height: 10),
+                    TextButton(
+                      onPressed: ()=>controller.getAllFoodCost(dateTimeController.month, dateTimeController.year),
+                      child:const Text("Reload"),
+                    )
+                  ],
+                ),
+              );
 
-                        SizedBox(
-                            width: 120,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                EditButton(
-                                  bgColor:const Color(0xFF1814F3),
-                                  onClick: (){
-                                    controller.clearAllData();
-                                    controller.setEditData(data);
-                                  },
-                                ),
-                                EditButton(
-                                    icon: Icons.remove_red_eye,
-                                    bgColor: AppColors.green,
-                                    onClick: (){
-                                      showDetails(context, data);
-                                    }
-                                ),
-                                EditButton(
-                                    icon: Icons.delete,
-                                    bgColor: const Color(0xFFFE5C73),
-                                    onClick: (){
-                                      alertDialog(
-                                          title: "Hold On!",
-                                          content: "Are you sure you want to delete this food cost?",
-                                          onOk: (){
-                                            controller.deleteFoodCost(data.id.toString());
+            }else{
+              return ListView.separated(
+                  itemCount: controller.foodCostModel.value.result!.length,
+                  separatorBuilder: (_, __) => Container(height: 1.5, color: Colors.grey[300]),
+                  itemBuilder: (context,index){
+                    var data = controller.foodCostModel.value.result![index];
+                    return Container(
+                      height: 60,
+                      color: index.isEven ? Colors.grey[100] : Colors.white,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child:Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          TableBody(text: dateTimeController.dateFormat1(data.date!), width: 60),
+                          TableBody(text: "${data.name}", width: 130),
+
+                          SizedBox(
+                              width: 120,
+                              child: Obx(() {
+                                  return Row(
+                                    mainAxisAlignment:     roleController.isPartner.value ? MainAxisAlignment.end : MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      roleController.isPartner.value ? Center() : EditButton(
+                                        bgColor:const Color(0xFF1814F3),
+                                        onClick: (){
+                                          controller.clearAllData();
+                                          controller.setEditData(data);
+                                        },
+                                      ),
+                                      EditButton(
+                                          icon: Icons.remove_red_eye,
+                                          bgColor: AppColors.green,
+                                          onClick: (){
+                                            showDetails(context, data);
                                           }
-                                      );
-                                    }
-                                ),
+                                      ),
+                                      roleController.isPartner.value ? Center() :  EditButton(
+                                          icon: Icons.delete,
+                                          bgColor: const Color(0xFFFE5C73),
+                                          onClick: (){
+                                            alertDialog(
+                                                title: "Hold On!",
+                                                content: "Are you sure you want to delete this food cost?",
+                                                onOk: (){
+                                                  controller.deleteFoodCost(data.id.toString());
+                                                }
+                                            );
+                                          }
+                                      ),
 
-                              ],
-                            )),
+                                    ],
+                                  );
+                                }
+                              )),
 
-                      ],
-                    ),
-                  ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut);
+                        ],
+                      ),
+                    ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut);
 
-                });
-          }
+                  });
+            }
 
-          }
+            }
+          ),
         ),
       ),
     );

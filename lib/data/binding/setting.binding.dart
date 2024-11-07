@@ -6,6 +6,7 @@ import 'package:abs_office_management/view/settings/controller/online.sales.plat
 import 'package:abs_office_management/view/settings/controller/tax.controller.dart';
 import 'package:get/get.dart';
 
+import '../../controller/role_managment_controller.dart';
 import '../../view/settings/controller/contact_controller.dart';
 
 class SettingBinding extends Bindings {
@@ -17,6 +18,8 @@ class SettingBinding extends Bindings {
      Get.lazyPut<CreditcardProcessingFeeController>(()=>CreditcardProcessingFeeController());
      Get.lazyPut<AdminUpdateController>(()=>AdminUpdateController());
      Get.lazyPut<ContactController>(()=>ContactController());
+     Get.lazyPut<RoleManagmentController>(() => RoleManagmentController());
+
 
   }
 }

@@ -13,7 +13,7 @@ import '../../../data/model/employee_model/get_all_employee_model.dart';
 class AddPaidSalary extends GetView<SalaryManagementController> {
    AddPaidSalary({super.key});
 
-   List payItem =["Cash","Check","Online", "Bank Transfer"];
+   List payItem =["Cash","Cheque","Online", "Bank Transfer"];
 
    final DateTimeController dateTimeController = Get.put(DateTimeController());
 
@@ -157,17 +157,17 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
                       }
                   ),
                   Obx((){
-                    if(controller.selectedPayMethod.value == "Check"){
+                    if(controller.selectedPayMethod.value == "Cheque"){
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 20,),
-                          const Text("Check Number",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),),
+                          const Text("Cheque Number",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),),
                           const SizedBox(height: 10,),
                           AppInput(
                             fillColor: AppColors.fillColor,
-                            hint: "Check Number",
+                            hint: "Cheque Number",
                             hintColor:AppColors.textBlue ,
                             textType: TextInputType.number,
                             controller: controller.checkNo.value,
