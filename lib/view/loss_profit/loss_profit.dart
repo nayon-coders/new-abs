@@ -13,10 +13,6 @@ class LossProfit extends GetView<LossProfitController> {
    LossProfit({super.key});
 
    final DateTimeController dateTimeController = Get.put(DateTimeController());
-   Future<void> _refreshData() async {
-     await controller.lossProfitModel;
-
-   }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +35,7 @@ class LossProfit extends GetView<LossProfitController> {
         ],
       ),
       body: RefreshIndicator(
-        onRefresh: _refreshData,
+        onRefresh: controller.refreshData,
         child: SingleChildScrollView(
          // padding: EdgeInsets.only(left: 15, right: 15),
           child: Column(

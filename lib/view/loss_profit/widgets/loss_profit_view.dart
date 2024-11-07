@@ -101,7 +101,7 @@ class LossProfitWidgets extends GetView<LossProfitController> {
                     ),
                     child: Column(
                       children: [
-                        Text(FormatCurrency.formatCurrency(controller.lossProfitModel.value!.totalProfit!.toStringAsFixed(2)),
+                        Text(FormatCurrency.formatCurrency(controller.totalProfit.value.toStringAsFixed(2)), ///TODO need to calculate from backend
                           style:const TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: AppColors.mainColor),
                         ).animate().fade(begin: 0.1, duration:const Duration(milliseconds: 1000)),
                        const Text("Total Profit",

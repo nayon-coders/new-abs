@@ -18,7 +18,6 @@ class SalesBoxes extends GetView<LossProfitController> {
         return LoadingLossProfitBoxsView();
       }else{
 
-        var netSale = double.parse(controller.netSales.value.toStringAsFixed(2));
         return Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
@@ -77,7 +76,7 @@ class SalesBoxes extends GetView<LossProfitController> {
                     child: DashBox(
                         onClick:(){},
                         costName: "Total Sales",
-                        costAmount: "${controller.lossProfitModel.value!.totalSales!.toStringAsFixed(2)}",
+                        costAmount: "${controller.totalSalesAmount.toStringAsFixed(2)}",
                         image:Assets.todaysale,
                         bgColor: const Color(0xFFDCFAF8)
                     ),

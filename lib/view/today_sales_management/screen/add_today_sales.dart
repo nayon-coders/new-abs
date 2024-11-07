@@ -26,6 +26,7 @@ class AddTodaySales extends GetView<SalesController> {
    final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
@@ -79,15 +80,15 @@ class AddTodaySales extends GetView<SalesController> {
                           controller: controller.grossSales.value,
                           fillColor: AppColors.textWhite,
                           textType: TextInputType.number,
-                          onChanged: (v){
+                          onChanged: (v){ //calculate tax
                             if(v.isNotEmpty){
-                              controller.calculateTax(double.parse(v), double.parse("${taxController.taxStateModel.value.data!.tax}"));
+                              controller.calculateTax(double.parse(controller.grossSales.value.text), double.parse("${taxController.taxStateModel.value.data!.tax}"));
                               controller.calculateCreditSalesAndTotalCashCollect();
                             }else{
                               controller.totalTaxAmount.value = 0.0;
                             }
-                          },
-                        );
+                            },
+                        ); //Gross Sales
                       }
                     ),
 
@@ -377,7 +378,8 @@ class AddTodaySales extends GetView<SalesController> {
                   const SizedBox(width: 5,),
                   Obx(() {
                       return Text("${taxController.taxStateModel.value.data!.tax} % = ${controller.grossSales.value.text.isEmpty
-                          ? 0.00: controller.totalTaxAmount.value.toStringAsFixed(2)}",
+                          ? 0.00
+                          : controller.totalTaxAmount.value.toStringAsFixed(2)}",
                         style:const TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.red),
                       );
                     }

@@ -76,25 +76,29 @@ class SalesController extends GetxController {
         "amount": amountList[i].text.isEmpty ? "0.00": amountList[i].text
       });
     }
+
+    if(totalTaxAmount.value == 0.0){
+      totalTaxAmount.value = calculateTax(double.parse(grossSales.value.text), double.parse(taxEditingController.value.text));
+    }
     var data = {
       "salesRegister": grossSales.value.text,
       "totalCashCollect": totalCashCollect.value.text,
       "craditeSales": creditSales.value.text,
       "so_ov": shortOver.value.toStringAsFixed(2),
-      "tax" : totalTaxAmount.value,
+      "tax" : totalTaxAmount.value.toStringAsFixed(2),
       "additional_income": additionalIncome.value.text.isEmpty ? 0.00 : additionalIncome.value.text,
       "onlineSales": onlineSalesData,
       "date": dateTimeDatabase.value
     };
     print("data --- ${data}");
-    var res = await ApiServices.postApi(AppConfig.TODAY_SALES_CREATE, data);
-    if(res.statusCode == 201){
-      clearData(); //clear all data
-      getSales(dateTimeController.month, dateTimeController.year);
-      Get.back(); // close the dialog
-
-      Get.snackbar("Success!", "Data added successfully", backgroundColor: Colors.green, colorText: Colors.white);
-    }
+    // var res = await ApiServices.postApi(AppConfig.TODAY_SALES_CREATE, data);
+    // if(res.statusCode == 201){
+    //   clearData(); //clear all data
+    //   getSales(dateTimeController.month, dateTimeController.year);
+    //   Get.back(); // close the dialog
+    //
+    //   Get.snackbar("Success!", "Data added successfully", backgroundColor: Colors.green, colorText: Colors.white);
+    // }
     isAdd.value = false;
   }
 
@@ -102,7 +106,9 @@ class SalesController extends GetxController {
   void editSales() async {
     isAdd.value = true;
 
-    totalTaxAmount.value = taxEditingController.value.text.isEmpty ? 0.00 : double.parse("${taxEditingController.value.text}"); 
+    if(totalTaxAmount.value == 0.0){
+      totalTaxAmount.value = calculateTax(double.parse(grossSales.value.text), double.parse(taxEditingController.value.text));
+    }
     var data = {
       "salesRegister": grossSales.value.text,
       "totalCashCollect": totalCashCollect.value.text,
@@ -194,6 +200,7 @@ class SalesController extends GetxController {
     amountList.clear();
     totalTaxAmount.value = 0.0;
     additionalIncome.value.clear();
+    taxEditingController.value.clear();
 
   }
 
@@ -201,13 +208,15 @@ class SalesController extends GetxController {
 
 
   //calculate tax
-  double calculateTax(double amount, double tax){
-    if(tax != null){
-      totalTaxAmount.value = (amount * tax)/100;
+   calculateTax(double amount, double tax){
+    var taxAmount = 0.0;
+    if(tax != null){ //if tax is not null
+      taxAmount = (amount * tax)/100;
     }
-    update();
-    return totalTaxAmount.value; //r
-    // eturn tax amount
+    totalTaxAmount.value = taxAmount;
+    print("amount -- ${amount}");// return tax amount
+    print("tax -- ${tax}");// return tax amount
+    print("taxAmount -- ${totalTaxAmount.value}");// return tax amount
   }
 
 
