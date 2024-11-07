@@ -7,12 +7,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import '../../../controller/role_managment_controller.dart';
 import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
 import '../../../utility/assetes.dart';
 
 class PartnerManagement extends GetView<PartnerController> {
-  const PartnerManagement({super.key});
+   PartnerManagement({super.key});
+  final RoleManagmentController roleController = Get.find<RoleManagmentController>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,13 @@ class PartnerManagement extends GetView<PartnerController> {
         leading: IconButton(onPressed: ()=>Get.back(), icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
         title: const Text("Partner management",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
         actions: [
-          EditButton(
-            icon: Icons.add,
-              bgColor: Colors.green,
-              onClick: ()=>Get.toNamed(AppRoute.addPartnerScreen),
+          Obx(() {
+              return roleController.isPartner.value ? Center() : EditButton(
+                icon: Icons.add,
+                  bgColor: Colors.green,
+                  onClick: ()=>Get.toNamed(AppRoute.addPartnerScreen),
+              );
+            }
           ),
          const SizedBox(width: 20,),
         ],

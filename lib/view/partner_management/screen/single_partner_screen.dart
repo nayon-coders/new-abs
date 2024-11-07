@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../app_config.dart';
+import '../../../controller/role_managment_controller.dart';
 import '../../../utility/app_color.dart';
 
 class SinglePartnerScreen extends GetView<PartnerController> {
@@ -18,6 +19,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
 
   //image picker controller init
   final ImagePickerController imagePickerController = Get.put(ImagePickerController());
+   final RoleManagmentController roleController = Get.find<RoleManagmentController>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
         surfaceTintColor: Colors.white,
         actions: [
           Obx(() {
-              return controller.isGetting.value ? const Center() :   EditButton(
+              return roleController.isPartner.value ? Center() : controller.isGetting.value ? const Center() :   EditButton(
                 icon: Icons.edit,
                 bgColor: Colors.yellow,
                 onClick: (){
@@ -48,7 +50,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
           ),
           const SizedBox(width: 10,),
           Obx(() {
-              return  controller.isGetting.value ? const Center() :  EditButton(
+              return   roleController.isPartner.value ? Center() : controller.isGetting.value ? const Center() :  EditButton(
                 icon: Icons.delete,
                   bgColor: Colors.red,
                   onClick: (){
@@ -180,7 +182,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                                         ),
                                       ),
                                     ),
-                                    Positioned(
+                                    roleController.isPartner.value ? Center() :  Positioned(
                                       bottom: 3,
                                       right: 1,
                                       child: EditButton(
