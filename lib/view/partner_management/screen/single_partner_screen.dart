@@ -257,7 +257,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                                 child: Column(
                                   children: [
                                     Text("\$${partnerProfit.toStringAsFixed(2)}",
-                                      style:const TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: AppColors.mainColor),
+                                      style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.mainColor),
                                     ),
                                     const Text("Total Profit",
                                       style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: AppColors.mainColor),
@@ -281,7 +281,8 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                                 child: Column(
                                   children: [
                                     Text("\$${partnerInfo.partnerLoss!.toStringAsFixed(2)}",
-                                      style:const TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color:Colors.deepOrange),
+
+                                      style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color:Colors.deepOrange),
                                     ),
                                     const Text("Partner Loss",
                                       style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: Colors.deepOrange),
@@ -295,7 +296,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                                 child: Column(
                                   children: [
                                     Text("\$${controller.singlePartnerModel.value.wholeBusiness!.totalLoss!.toStringAsFixed(2)}",
-                                      style:const TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: AppColors.red),
+                                      style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.red),
                                     ),
                                     const Text("Total Loss",
                                       style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: AppColors.red),

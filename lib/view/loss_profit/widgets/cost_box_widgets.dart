@@ -16,7 +16,7 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
   Widget build(BuildContext context) {
     return   Obx((){
       if(controller.isLoading.value) {
-        return LoadingLossProfitBoxsView();
+        return const LoadingLossProfitBoxsView();
       }else{
         return Padding(
           padding: const EdgeInsets.all(15.0),
@@ -42,7 +42,7 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
                     child: DashBox(
                         onClick:(){},
                         costName: "Food Cost",
-                        costAmount: "${controller.lossProfitModel.value.foodCost!.toStringAsFixed(2)}",
+                        costAmount: controller.lossProfitModel.value.foodCost!.toStringAsFixed(2),
                         image:Assets.foodCost,
                         bgColor:const Color(0xFFFFF5D9)
                     ),
@@ -52,7 +52,7 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
                     child: DashBox(
                         onClick:(){},
                         costName: "Total Salary",
-                        costAmount: "${controller.lossProfitModel.value.totalSalary!.toStringAsFixed(2)}",
+                        costAmount: controller.lossProfitModel.value.totalSalary!.toStringAsFixed(2),
                         image:Assets.salery,
                         bgColor:const Color(0xFFE7EDFF)
                     ),
@@ -66,7 +66,7 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
                     child: DashBox(
                         onClick:(){},
                         costName: "Short & Over",
-                        costAmount: "${controller.lossProfitModel.value.shortOver!.toStringAsFixed(2)}",
+                        costAmount: controller.lossProfitModel.value.shortOver!.toStringAsFixed(2),
                         image:Assets.shotOver,
                         bgColor:const  Color(0xffF9f3E3)
                     ),
@@ -75,8 +75,8 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
                   Expanded(
                     child: DashBox(
                         onClick:(){},
-                        costName: "Others Cost",
-                        costAmount: "${controller.lossProfitModel.value.othersCost!.toStringAsFixed(2)}",
+                        costName: "Others Expanses",
+                        costAmount: controller.lossProfitModel.value.othersCost!.toStringAsFixed(2),
                         image:Assets.loss,
                         bgColor: const Color(0xFFDCFAF8)
                     ),
@@ -91,7 +91,7 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
 
                         onClick:(){},
                         costName: "Total Tax",
-                        costAmount: "${controller.lossProfitModel.value.totalTax!.toStringAsFixed(2)}",
+                        costAmount: controller.lossProfitModel.value.totalTax!.toStringAsFixed(2),
                         image:Assets.tax,
                         bgColor: const Color(0xFFDCEAF9)
                     ),

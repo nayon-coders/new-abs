@@ -36,6 +36,7 @@ import 'package:abs_office_management/view/today_sales_management/screen/add_tod
 import 'package:abs_office_management/view/today_sales_management/screen/manage_costing.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/today_sales_management.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/view_sales_report.dart';
+import 'package:abs_office_management/view/year%20&%20month/year_month.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -217,6 +218,13 @@ class RoutePage{
         page: ()=> AddFoodCost(),
         binding: FoodCostBinding()
     ),
+
+    GetPage(
+        name: AppRoute.yearMonth,
+        page: ()=>YearMonth()
+    ),
+
+
 
   ];
 }
