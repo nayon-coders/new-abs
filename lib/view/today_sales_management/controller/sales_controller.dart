@@ -25,6 +25,7 @@ class SalesController extends GetxController {
   Rx<TextEditingController> grossSales = TextEditingController().obs;
   Rx<TextEditingController> creditSales = TextEditingController().obs;
   Rx<TextEditingController> totalCashCollect = TextEditingController().obs;
+  Rx<TextEditingController> taxEditingController = TextEditingController().obs;
   RxList<OnlinePlatforms> platformNameList = <OnlinePlatforms>[].obs;
   RxList<TextEditingController> amountList = <TextEditingController>[].obs;
   RxDouble shortOver = 0.00.obs;
@@ -101,12 +102,13 @@ class SalesController extends GetxController {
   void editSales() async {
     isAdd.value = true;
 
+    totalTaxAmount.value = taxEditingController.value.text.isEmpty ? 0.00 : double.parse("${taxEditingController.value.text}"); 
     var data = {
       "salesRegister": grossSales.value.text,
       "totalCashCollect": totalCashCollect.value.text,
       "craditeSales": creditSales.value.text,
       "so_ov": shortOver.value.toStringAsFixed(2),
-      "tax" : totalTaxAmount.value, //tax amount
+      "tax" : totalTaxAmount.value.toStringAsFixed(2), //tax amount
       "additional_income": additionalIncome.value.text.isEmpty ? 0.00 : additionalIncome.value.text,
       "onlineSales": onlineSalesData,
       "date": dateTimeDatabase.value

@@ -116,7 +116,7 @@ class AddTodaySales extends GetView<SalesController> {
                               children: [
                                 TextSpan(
                                   text: "(Credit card processing fee = ${creditCardProcessingFee.creditModel.value.data!.fee}%)",
-                                  style:  TextStyle(fontWeight: FontWeight.w300,fontSize: 13,color:Colors.orange),
+                                  style:  TextStyle(fontWeight: FontWeight.w300,fontSize: 11,color:Colors.orange),
                                 )
                               ]
                           ));
@@ -360,7 +360,7 @@ class AddTodaySales extends GetView<SalesController> {
               hintColor: AppColors.textBlue,
               fillColor: AppColors.textWhite,
               textType: TextInputType.number,
-              controller: taxController.taxController.value,
+              controller: controller.taxEditingController.value,
             ),
             const SizedBox(height: 10,),
           ],
