@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:abs_office_management/data/services/api_services.dart';
 import 'package:abs_office_management/main.dart';
+import 'package:abs_office_management/routes/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
@@ -84,7 +85,8 @@ class TaxController extends GetxController{
       GlobalVariables.gTaxStateModel.value = taxStateModel.value;
       isLoading.value = false;
     }else{
-      Get.snackbar("Error", "Failed to get tax and state", backgroundColor: Colors.red);
+      Get.offAllNamed(AppRoute.login); //redirect to login page
+      Get.snackbar("Login Expire!", "Please login again", backgroundColor: Colors.red);
       //insert into global variable
       GlobalVariables.gTaxStateModel.value = taxStateModel.value;
       isLoading.value = false;

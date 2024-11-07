@@ -1,8 +1,10 @@
 import 'package:abs_office_management/controller/date_time_controller.dart';
 import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_color.dart';
+import 'package:abs_office_management/view/settings/controller/creditcard_processing_fee_controller.dart';
 import 'package:abs_office_management/view/settings/controller/online.sales.platform.controller.dart';
 import 'package:abs_office_management/view/settings/controller/tax.controller.dart';
+import 'package:abs_office_management/view/settings/screen/creditcard_processing_fee.dart';
 import 'package:abs_office_management/view/today_sales_management/controller/sales_controller.dart';
 import 'package:abs_office_management/widgets/app_button.dart';
 import 'package:abs_office_management/widgets/app_input.dart';
@@ -19,6 +21,7 @@ class AddTodaySales extends GetView<SalesController> {
    final TaxController taxController = Get.find<TaxController>();
    final DateTimeController dateController = Get.find<DateTimeController>();
    final OnlineSalesPlatformController onlineSalesPlatformController = Get.find<OnlineSalesPlatformController>();
+   final CreditcardProcessingFeeController creditCardProcessingFee = Get.find<CreditcardProcessingFeeController>();
 
    final _formKey = GlobalKey<FormState>();
   @override
@@ -100,20 +103,49 @@ class AddTodaySales extends GetView<SalesController> {
 
 
                     //Credit Sales
-                  const  Text("Credit Sales",
-                    style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Obx((){
+                        if(creditCardProcessingFee.isGetting.value){
+                          return AppShimmerPro.TextShimmer(width: 150, maxLine: 1);
+                        }else{
+                          return RichText(text: TextSpan(
+                              text: "Credit Sales ",
+                              style:  TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),
+                              children: [
+                                TextSpan(
+                                  text: "(Credit card processing fee = ${creditCardProcessingFee.creditModel.value.data!.fee}%)",
+                                  style:  TextStyle(fontWeight: FontWeight.w300,fontSize: 13,color:Colors.orange),
+                                )
+                              ]
+                          ));
+
+                        }
+                        }
+                      ),
+                      InkWell(
+                        onTap: ()=>Get.toNamed(AppRoute.creditCard),
+                        child: Text("Edit",
+                          style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.linkColor),
+                        ),
+                      ),
+                    ],
                   ),
                     const SizedBox(height: 10,),
                     Obx((){
+                      if(creditCardProcessingFee.isGetting.value){
+                        return AppShimmerPro.circularShimmer(width: Get.width, height: 45, borderRadius: 5);
+                      }else{
                         return AppInput(
-                            hintColor: AppColors.textBlue,
-                            hint: "0.0",
-                            textType: TextInputType.number,
-                            fillColor: AppColors.textWhite,
-                            onChanged: (v){
-                              controller.calculateCreditSalesAndTotalCashCollect();
-                            },
-                            controller: controller.creditSales.value);
+                          hint: "0.0",
+                          hintColor: AppColors.textBlue,
+                          fillColor: AppColors.textWhite,
+                          textType: TextInputType.number,
+                          controller: controller.creditSales.value,
+                        );
+                      }
+
                       }
                     ),
 
@@ -172,7 +204,10 @@ class AddTodaySales extends GetView<SalesController> {
                   const Text("Online Sales",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: AppColors.textBlack),),
                   InkWell(
                     onTap: ()=>Get.toNamed(AppRoute.onlineSellPlatform),
-                      child:const Text("Edit",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textindico),)),
+                      child:const Text("Edit",
+                        style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.linkColor),
+                      )
+                  ),
                 ],
               ),
 
