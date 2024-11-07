@@ -13,6 +13,10 @@ class LossProfit extends GetView<LossProfitController> {
    LossProfit({super.key});
 
    final DateTimeController dateTimeController = Get.put(DateTimeController());
+   Future<void> _refreshData() async {
+     await controller.lossProfitModel;
+
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -34,26 +38,29 @@ class LossProfit extends GetView<LossProfitController> {
           const SizedBox(width: 15,),
         ],
       ),
-      body: SingleChildScrollView(
-       // padding: EdgeInsets.only(left: 15, right: 15),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+      body: RefreshIndicator(
+        onRefresh: _refreshData,
+        child: SingleChildScrollView(
+         // padding: EdgeInsets.only(left: 15, right: 15),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
 
-            LossProfitWidgets(dateTimeController: dateTimeController),
-
-
-            SalesBoxes(), //imported from widgets/sales_boxes.dart
-            CostBoxsWidgets(), // imported from widgets/cost_box_widgets.dart
-
-            OnlineSalesWidgets(), // imported from widgets/online_sales_widgets.dart
+              LossProfitWidgets(dateTimeController: dateTimeController),
 
 
+              SalesBoxes(), //imported from widgets/sales_boxes.dart
+              CostBoxsWidgets(), // imported from widgets/cost_box_widgets.dart
+
+              OnlineSalesWidgets(), // imported from widgets/online_sales_widgets.dart
 
 
-        
-          ],
+
+
+
+            ],
+          ),
         ),
       ),
     );

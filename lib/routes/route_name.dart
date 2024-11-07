@@ -9,6 +9,7 @@ class AppRoute {
   static const String createPassword = "/create_password_screen";
   static const String successScreen = "/success_screen";
   static const String dashBoard = "/dash_board";
+  static const String yearMonth = "/year-month";
   static const String setting = "/setting";
   static const String profile = "/profile";
   static const String textAndState = "/tax_state";
