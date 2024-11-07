@@ -21,6 +21,7 @@ class TodaySalesManagement extends StatelessWidget {
 
 
 
+   final RoleManagmentController roleController = Get.find<RoleManagmentController>();
 
 
   @override
@@ -73,48 +74,51 @@ class TodaySalesManagement extends StatelessWidget {
 
 
           floatingActionButtonLocation: ExpandableFab.location,
-          floatingActionButton: ExpandableFab(
-            key: _key,
-            type: ExpandableFabType.up,
-            overlayStyle: ExpandableFabOverlayStyle(
-              color: Colors.black.withOpacity(0.5),
-              blur: 5,
-            ),
-            onOpen: () {
-              debugPrint('onOpen');
-            },
-            afterOpen: () {
-              debugPrint('afterOpen');
-            },
-            onClose: () {
-              debugPrint('onClose');
-            },
-            afterClose: () {
-              debugPrint('afterClose');
-            },
-            children: [
-              FloatingActionButton.extended(
-                heroTag: null,
-                icon: const Icon(Icons.add),
-                onPressed: (){
-                  print("page name: ${AppRoute.addTodaySalesScreen}");
-                  Get.toNamed(AppRoute.addTodaySalesScreen);
+          floatingActionButton: Obx((){
+              return roleController.isPartner.value ? Center() : ExpandableFab(
+                key: _key,
+                type: ExpandableFabType.up,
+                overlayStyle: ExpandableFabOverlayStyle(
+                  color: Colors.black.withOpacity(0.5),
+                  blur: 5,
+                ),
+                onOpen: () {
+                  debugPrint('onOpen');
                 },
-                label:const Text("Add today sales"),
-              ),
-              FloatingActionButton.extended(
-                heroTag: null,
-                icon: const Icon(Icons.add),
-                onPressed: ()=> Get.toNamed(AppRoute.addCosting),
-                label:const Text("Add today cost"),
-              ),
-              FloatingActionButton.extended(
-                heroTag: null,
-                icon: const Icon(Icons.add),
-                onPressed: ()=> Get.toNamed(AppRoute.addFoodCost),
-                label:const Text("Add Food Cost"),
-              ),
-            ],
+                afterOpen: () {
+                  debugPrint('afterOpen');
+                },
+                onClose: () {
+                  debugPrint('onClose');
+                },
+                afterClose: () {
+                  debugPrint('afterClose');
+                },
+                children: [
+                  FloatingActionButton.extended(
+                    heroTag: null,
+                    icon: const Icon(Icons.add),
+                    onPressed: (){
+                      print("page name: ${AppRoute.addTodaySalesScreen}");
+                      Get.toNamed(AppRoute.addTodaySalesScreen);
+                    },
+                    label:const Text("Add today sales"),
+                  ),
+                  FloatingActionButton.extended(
+                    heroTag: null,
+                    icon: const Icon(Icons.add),
+                    onPressed: ()=> Get.toNamed(AppRoute.addCosting),
+                    label:const Text("Add today cost"),
+                  ),
+                  FloatingActionButton.extended(
+                    heroTag: null,
+                    icon: const Icon(Icons.add),
+                    onPressed: ()=> Get.toNamed(AppRoute.addFoodCost),
+                    label:const Text("Add Food Cost"),
+                  ),
+                ],
+              );
+            }
           )
 
           ),
