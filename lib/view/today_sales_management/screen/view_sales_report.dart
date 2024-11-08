@@ -1,10 +1,11 @@
 import 'package:abs_office_management/controller/amount_formate.dart';
 import 'package:abs_office_management/data/model/all_sales_molde.dart';
-import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/view/today_sales_management/controller/sales_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../utility/assetes.dart';
 
 class ViewSalesReport extends GetView<SalesController> {
    ViewSalesReport({super.key});
@@ -16,7 +17,7 @@ class ViewSalesReport extends GetView<SalesController> {
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
-        backgroundColor: AppColors.mainColor,
+        backgroundColor: AppColors.bgColor,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         leading:IconButton(
@@ -24,8 +25,8 @@ class ViewSalesReport extends GetView<SalesController> {
             //  controller.clearCalculateData();
               Get.back();
             },
-            icon:const Icon(Icons.arrow_back_ios, color: Colors.white, size: 20,)),
-        title: const Text("View Sales Report",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: AppColors.textWhite),),
+            icon:const Icon(Icons.arrow_back_ios, color: Colors.black, size: 20,)),
+        title: const Text("View Sales Report",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: AppColors.textBlack),),
       ),
 
       body: Builder(
@@ -39,33 +40,19 @@ class ViewSalesReport extends GetView<SalesController> {
                 Container(
                   height: 200,
                   decoration:const BoxDecoration(
-                    color: AppColors.mainColor,
+                    color: AppColors.bgColor,
                     //  borderRadius: BorderRadius.circular(10),
                   ),
                   child:  Stack(
                     children: [
-                      // Positioned(
-                      //   top: 50,
-                      //   left: 5,
-                      //   child: Row(
-                      //     children: [
-                      //       IconButton(
-                      //           onPressed: (){
-                      //             Get.back();
-                      //           },
-                      //           icon:const Icon(Icons.arrow_back_ios, color: Colors.white, size: 20,)),
-                      //      const  Text("View Sales Report",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: AppColors.textWhite),),
-                      //     ],
-                      //   ),
-                      // ),
                       Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const SizedBox(height: 30,),
-                            Text(FormatCurrency.formatCurrency(controller.netSales.toStringAsFixed(2).toString()),style:const TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),),
-                           const Text("Total Net Sale",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Colors.white),),
+                            Text(FormatCurrency.formatCurrency(controller.netSales.toStringAsFixed(2).toString()),style:const TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.black),),
+                           const Text("Total Net Sale",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Colors.black),),
                           ],
                         ),
                       ),
@@ -75,9 +62,10 @@ class ViewSalesReport extends GetView<SalesController> {
                         bottom: 0,
                         left: 20,
                         child:  BuildBoxs(
-                          bgColor: Colors.green.shade100,
+                          image: Assets.foodCost,
+                          bgColor: AppColors.textWhite,
                           title: "Gross Sales",
-                          value: singleSalesDatum!.salesRegister.toString(),
+                          value: singleSalesDatum.salesRegister.toString(),
                         ),
                       ),
 
@@ -85,7 +73,8 @@ class ViewSalesReport extends GetView<SalesController> {
                         bottom: 0,
                         right: 20,
                         child:  BuildBoxs(
-                          bgColor: Colors.green.shade100,
+                          image: Assets.onlineSales,
+                          bgColor: AppColors.textWhite,
                           title: "Online Sales", //total online sales
                           value: controller.totalOnlineSales.value.toStringAsFixed(2),
                         ),
@@ -103,28 +92,27 @@ class ViewSalesReport extends GetView<SalesController> {
                  child: Row(
                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                    children: [
-                     // BuildBoxs(
-                     //   bgColor: Colors.green.shade100,
-                     //   title: "Credit Sales",
-                     //   value: singleSalesDatum.craditeSales.toString(),
-                     // ),
+                     BuildBoxs(
+                       image: Assets.credit,
+                       bgColor: AppColors.textWhite,
+                       title: "Credit Sales",
+                       value: singleSalesDatum.craditeSales.toString(),
+                     ),
+
 
                      BuildBoxs(
-                       bgColor: Colors.green.shade100,
-                       title: "Extra Income",
-                       value: controller.extraIncome.abs().toStringAsFixed(2),
-                     ),
-                     BuildBoxs(
-                       bgColor: double.parse("${singleSalesDatum!.soOv}") > 0 ? Colors.green.shade200 : Colors.red.shade100,
+                       image: Assets.shotOver,
+                       bgColor: double.parse("${singleSalesDatum.soOv}") > 0 ? Colors.green.shade50 : Colors.red.shade50,
                        title: "Short & Over",
-                       value: double.parse("${singleSalesDatum!.soOv}").toString(),
+                       value: double.parse("${singleSalesDatum.soOv}").toString(),
                      ),
 
                    ],
                  ),
                ),
                 const SizedBox(height: 20,),
-                //show total register sales
+
+                //show tax & extra income
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0, right: 20),
                   child: Row(
@@ -133,9 +121,45 @@ class ViewSalesReport extends GetView<SalesController> {
 
 
                       BuildBoxs(
-                        bgColor: Colors.red.shade100,
+                        image: Assets.tax,
+                        bgColor: AppColors.textWhite,
                         title: "Tax",
-                        value: double.parse("${singleSalesDatum!.tax}").toStringAsFixed(2),
+                        value: double.parse("${singleSalesDatum.tax}").toStringAsFixed(2),
+                      ),
+
+                      BuildBoxs(
+                        image: Assets.extra,
+                        bgColor: AppColors.textWhite,
+                        title: "Extra Income",
+                        value: controller.extraIncome.abs().toStringAsFixed(2),
+                      ),
+
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 20,),
+
+                //Food cost  & other expanse
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0, right: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+
+
+                      BuildBoxs(
+                        image: Assets.money,
+                        bgColor: AppColors.textWhite,
+                        title: "Food Cost",
+                        value: double.parse("${singleSalesDatum.tax}").toStringAsFixed(2),
+                      ),
+
+                      BuildBoxs(
+                        image: Assets.sells,
+                        bgColor: AppColors.textWhite,
+                        title: "Other Expanse",
+                        value: controller.extraIncome.abs().toStringAsFixed(2),
                       ),
 
                     ],
@@ -153,9 +177,9 @@ class ViewSalesReport extends GetView<SalesController> {
                   child: ListView.builder(
                     shrinkWrap: true,
                     physics:const NeverScrollableScrollPhysics(),
-                    itemCount: singleSalesDatum!.onlineSales!.length,
+                    itemCount: singleSalesDatum.onlineSales!.length,
                     itemBuilder: (_, index){
-                      var data = singleSalesDatum!.onlineSales![index];
+                      var data = singleSalesDatum.onlineSales![index];
                       return Container(
                         margin:const EdgeInsets.only(bottom: 10),
                         padding:const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
@@ -204,19 +228,20 @@ class ViewSalesReport extends GetView<SalesController> {
 
 class BuildBoxs extends StatelessWidget {
   const BuildBoxs({
-    super.key, required this.title, required this.value, this.bgColor  = AppColors.textWhite
+    super.key, required this.title, required this.value, this.bgColor  = AppColors.textWhite, required this.image
   });
 
   final String title;
   final String value;
   final  Color bgColor;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
     return Transform.translate(
       offset:const Offset(0, 30), // Move the container down by 50 pixels
       child: Container(
-        height: 100,
+        height: 90,
         width: Get.width*.43,
         padding:const EdgeInsets.all(10),
         decoration: BoxDecoration(
@@ -231,14 +256,31 @@ class BuildBoxs extends StatelessWidget {
             )
           ],
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(FormatCurrency.formatCurrency(value),style:const TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Colors.black),),
+            Container(
+              height: 50,
+              width: 50,
+              padding:const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: bgColor,
+              ),
+              child: Center(child: Image.asset(image,height: 40,width: 40,fit: BoxFit.cover,)),
+            ),
+            const SizedBox(width: 5,),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title,style:const TextStyle(fontSize: 12,fontWeight: FontWeight.w500,color: Colors.black),),
+                const SizedBox(height: 5,),
+                Text(FormatCurrency.formatCurrency(value),style:const TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
 
-           const SizedBox(height: 7,),
-            Text("$title",style:const TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Colors.black),),
+              ],
+            ),
           ],
         ),
       ),

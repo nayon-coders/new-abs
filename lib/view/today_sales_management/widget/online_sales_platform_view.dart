@@ -36,7 +36,7 @@ class OnlinePlatformListView extends GetView<OnlineSalesPlatformController> {
           ),
           child: Column(
             children: [
-              Center(
+              const Center(
                 child: Text("No online platform found", style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
@@ -49,13 +49,14 @@ class OnlinePlatformListView extends GetView<OnlineSalesPlatformController> {
                   onPressed: () {
                     Get.toNamed(AppRoute.onlineSellPlatform); // navigate add online platform
                   },
-                  child: const Text("Add Online Platform"),
+
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
+                  child:const Text("Add Online Platform"),
                 ),
               ),
             ],
@@ -72,7 +73,7 @@ class OnlinePlatformListView extends GetView<OnlineSalesPlatformController> {
 
             return Container(
               padding: const EdgeInsets.all(10),
-              margin: EdgeInsets.only(bottom: 10),
+              margin: const EdgeInsets.only(bottom: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: AppColors.bgColor,
@@ -84,16 +85,16 @@ class OnlinePlatformListView extends GetView<OnlineSalesPlatformController> {
                   const Text("Platform Name",
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight
                         .w500, color: AppColors.textBlack),),
-                   SizedBox(height: 10,),
+                   const SizedBox(height: 10,),
                    Container(
-                     padding: EdgeInsets.all(12),
+                     padding: const EdgeInsets.all(12),
                      width: Get.width,
                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.green.withOpacity(0.1 ),
                      ),
-                     child: Text("${salesController.platformNameList.value[index]!.name}",
-                      style: TextStyle(fontSize: 17, fontWeight: FontWeight
+                     child: Text("${salesController.platformNameList.value[index].name}",
+                      style: const TextStyle(fontSize: 17, fontWeight: FontWeight
                           .w600, color: AppColors.textBlack),),
                    ),
                   const SizedBox(height: 10,),

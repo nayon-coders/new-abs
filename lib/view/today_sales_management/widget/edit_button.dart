@@ -23,7 +23,7 @@ class EditButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(100),
           color: bgColor,
         ),
-        child: isLoading ? CircularProgressIndicator.adaptive(backgroundColor: Colors.white,) : Icon(icon,color: Colors.white,size: 15,),
+        child: isLoading ? const CircularProgressIndicator.adaptive(backgroundColor: Colors.white,) : Icon(icon,color: Colors.white,size: 15,),
       ),
     );
   }

@@ -4,7 +4,6 @@ import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/view/settings/controller/creditcard_processing_fee_controller.dart';
 import 'package:abs_office_management/view/settings/controller/online.sales.platform.controller.dart';
 import 'package:abs_office_management/view/settings/controller/tax.controller.dart';
-import 'package:abs_office_management/view/settings/screen/creditcard_processing_fee.dart';
 import 'package:abs_office_management/view/today_sales_management/controller/sales_controller.dart';
 import 'package:abs_office_management/widgets/app_button.dart';
 import 'package:abs_office_management/widgets/app_input.dart';
@@ -55,7 +54,6 @@ class AddTodaySales extends GetView<SalesController> {
 
               //Gross Sales ,Credit Sales ,Total Cash collect
               Container(
-                //height: MediaQuery.sizeOf(context).height*0.50,
                 width: double.infinity,
                 padding:const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
                 decoration: BoxDecoration(
@@ -113,11 +111,11 @@ class AddTodaySales extends GetView<SalesController> {
                         }else{
                           return RichText(text: TextSpan(
                               text: "Credit Sales ",
-                              style:  TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),
+                              style:const  TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),
                               children: [
                                 TextSpan(
                                   text: "(Credit card processing fee = ${creditCardProcessingFee.creditModel.value.data!.fee}%)",
-                                  style:  TextStyle(fontWeight: FontWeight.w300,fontSize: 11,color:Colors.orange),
+                                  style: const TextStyle(fontWeight: FontWeight.w300,fontSize: 11,color:Colors.orange),
                                 )
                               ]
                           ));
@@ -127,7 +125,7 @@ class AddTodaySales extends GetView<SalesController> {
                       ),
                       InkWell(
                         onTap: ()=>Get.toNamed(AppRoute.creditCard),
-                        child: Text("Edit",
+                        child: const Text("Edit",
                           style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.linkColor),
                         ),
                       ),

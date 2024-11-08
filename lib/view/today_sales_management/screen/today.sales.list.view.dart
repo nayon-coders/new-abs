@@ -88,7 +88,7 @@ class TodaySalesView extends GetView<SalesController> {
                                   return Row(
                                     mainAxisAlignment: roleController.isPartner.value ? MainAxisAlignment.end  : MainAxisAlignment.spaceBetween,
                                     children: [
-                                   roleController.isPartner.value ? Center() :   EditButton(
+                                   roleController.isPartner.value ? const Center() :   EditButton(
                                         bgColor: const Color(0xFF1814F3),
                                         onClick: (){
                                           controller.setDataForEdit(data);
@@ -101,7 +101,7 @@ class TodaySalesView extends GetView<SalesController> {
                                           onClick: ()=>Get.toNamed(AppRoute.vieSalesReport, arguments: data)
                                       ),
 
-                                     roleController.isPartner.value? Center() :  EditButton(
+                                     roleController.isPartner.value? const Center() :  EditButton(
                                             isLoading: controller.isDelete.value,
                                               icon: Icons.delete,
                                               bgColor:const Color(0xFFFE5C73),
