@@ -98,9 +98,7 @@ class SalesController extends GetxController {
       });
     }
 
-    if(taxEditingController.value.text.isEmpty){
-      totalTaxAmount.value = calculateTax(double.parse(grossSales.value.text), double.parse(taxEditingController.value.text));
-    }else{
+    if(taxEditingController.value.text.isNotEmpty){
       totalTaxAmount.value = double.parse(taxEditingController.value.text);
     }
 

@@ -37,14 +37,12 @@ class SettingScreen extends StatelessWidget {
             OptionBox(
                 title: "Profile Setting",
                 column: [
-                  Obx(() {
-                      return roleController.isPartner.value ? const Center() : SettingOptions(name: "Business Setup", icon: Icons.add_business_sharp, onClick: ()=>Get.toNamed(AppRoute.businessSetup));
-                    }
-                  ),
-                  Obx(() {
-                    return roleController.isPartner.value ? const Center() :  const Divider();
-                  }
-                  ),
+
+                      SettingOptions(name: "Business Setup", icon: Icons.add_business_sharp, onClick: ()=>Get.toNamed(AppRoute.businessSetup)),
+
+
+                 const Divider(),
+
 
                   SettingOptions(name: "Change Password", icon: Icons.key, onClick: ()=>Get.toNamed(AppRoute.adminPassword)),
 
