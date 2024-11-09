@@ -32,7 +32,7 @@ class TodaySalesView extends GetView<SalesController> {
       child: AppTable(
         headerChildren: const[
           TableHeader(width: 60, name: "Date"),
-          TableHeader(width: 90, name: "Today Sales"),
+          TableHeader(width: 90, name: "Gross Sales"),
           TableHeader(width: 60, name: "SOV"),
           TableHeader(width: 120, name: "Action"),
 
@@ -73,9 +73,9 @@ class TodaySalesView extends GetView<SalesController> {
                                ///TODO:calculation not match in total net sales
                                TableBody(
                                 width: 90,
-                               text: "${(double.parse(data.soOv!.toString()) > 0)?((double.parse(data.salesRegister!) + controller.totalOnlineSales.value) + double.parse(data.soOv!.toString()).abs()):
-                               ((double.parse(data.salesRegister!) + controller.totalOnlineSales.value) - double.parse(data.soOv!.toString()).abs())}",
-                               //text: FormatCurrency.formatCurrency(data.salesRegister.toString()),
+                               //text: "${(double.parse(data.soOv!.toString()) > 0)?((double.parse(data.salesRegister!) + controller.totalOnlineSales.value) + double.parse(data.soOv!.toString()).abs()):
+                           //    ((double.parse(data.salesRegister!)}",
+                               text: FormatCurrency.formatCurrency(data.salesRegister.toString()),
                                ),
 
 
@@ -92,7 +92,7 @@ class TodaySalesView extends GetView<SalesController> {
                                   return Row(
                                     mainAxisAlignment: roleController.isPartner.value ? MainAxisAlignment.end  : MainAxisAlignment.spaceBetween,
                                     children: [
-                                   roleController.isPartner.value ? const Center() :   EditButton(
+                                    roleController.isPartner.value ? const Center() :   EditButton(
                                         bgColor: const Color(0xFF1814F3),
                                         onClick: (){
                                           controller.setDataForEdit(data);

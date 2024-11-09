@@ -179,7 +179,7 @@ class DashBoardScreen extends StatelessWidget {
      {"name": "Employee Manage","image": Assets.employee,"screen": "${AppRoute.employeeManageScree}"},
      {"name": "Salary Manage","image": Assets.salery,"screen": "${AppRoute.salaryManagementScree}"},
      {"name": "Partner Manage","image": Assets.partner,"screen": "${AppRoute.partnerManagementScreen}"},
-     {"name": "Year & Month","image": Assets.year,"screen": "${AppRoute.yearMonth}"},
+    // {"name": "Year & Month","image": Assets.year,"screen": "${AppRoute.yearMonth}"},
 
    ];
 }

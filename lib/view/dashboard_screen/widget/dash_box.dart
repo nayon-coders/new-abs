@@ -35,8 +35,8 @@ class DashBox extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              height: 50,
-              width: 50,
+              height: 40,
+              width: 40,
               padding:const EdgeInsets.all(5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),

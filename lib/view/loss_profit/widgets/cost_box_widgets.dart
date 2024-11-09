@@ -105,7 +105,7 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
 
                         onClick:(){},
                         costName: "Credit card fee",
-                        costAmount: "${double.parse(controller.lossProfitModel.value.totalCreditSales.toString())-(double.parse(creditcardController.creditModel.value.data?.fee?.toStringAsFixed(2)) )}"?? "0.0",
+                        costAmount: "${(double.parse(creditcardController.creditModel.value.data?.fee?.toStringAsFixed(2)) )}"?? "0.0",
                         image:Assets.expance,
                         bgColor: const Color(0xFFDCEAF9)
                     ),
