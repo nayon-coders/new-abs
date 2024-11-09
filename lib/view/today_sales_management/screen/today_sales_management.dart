@@ -70,7 +70,7 @@ class TodaySalesManagement extends StatelessWidget {
 
 
             ]),
-
+ 
 
 
           floatingActionButtonLocation: ExpandableFab.location,
