@@ -80,7 +80,7 @@ class FoodCostView extends GetView<FoodCostController> {
                                   return Row(
                                     mainAxisAlignment:     roleController.isPartner.value ? MainAxisAlignment.end : MainAxisAlignment.spaceBetween,
                                     children: [
-                                      roleController.isPartner.value ? Center() : EditButton(
+                                      roleController.isPartner.value ? const Center() : EditButton(
                                         bgColor:const Color(0xFF1814F3),
                                         onClick: (){
                                           controller.clearAllData();
@@ -94,7 +94,7 @@ class FoodCostView extends GetView<FoodCostController> {
                                             showDetails(context, data);
                                           }
                                       ),
-                                      roleController.isPartner.value ? Center() :  EditButton(
+                                      roleController.isPartner.value ? const Center() :  EditButton(
                                           icon: Icons.delete,
                                           bgColor: const Color(0xFFFE5C73),
                                           onClick: (){
@@ -204,7 +204,7 @@ class FoodCostView extends GetView<FoodCostController> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Text("Total Cost:",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color:AppColors.textBlack),),
-                    Text("\$${data.data!.map((e) => e.vendorAmount).reduce((a, b) => (double.parse("${a!}") + double.parse("${b!}")).toStringAsFixed(2))}",
+                    Text("\$${data.data!.map((e) => e.vendorAmount).reduce((a, b) => (double.parse(a!) + double.parse(b!)).toStringAsFixed(2))}",
                       style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color:AppColors.red),),
                   ],
                 ),

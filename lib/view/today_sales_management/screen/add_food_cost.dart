@@ -78,7 +78,6 @@ class AddFoodCost extends GetView<FoodCostController> {
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: controller.vendorName.length,
                           itemBuilder: (context,index){
-
                             return _buildVendorWidgets(index);
                           }
                       );
@@ -199,11 +198,9 @@ class AddFoodCost extends GetView<FoodCostController> {
                 hint: "Cash", onChange: (v){
                   print(v);
                   controller.payList.insert(index, v!); //controller.payList[index] = v;
-                  print("controller.payList[index] --- ${controller.payList[index]}");
               },
             ),
             Obx(() {
-              print("controller.payList[index] --- ${controller.payList[index]}");
                 return controller.payList.value[index].toString().contains("Cheque") ?  Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,

@@ -44,16 +44,20 @@ class LossProfitController extends GetxController {
     var response = await ApiServices.getApi(AppConfig.LOSS_PROFIT+"?month=$month&year=$year");
     if (response.statusCode == 200) {
       lossProfitModel.value = LossProfitModel.fromJson(jsonDecode(response.body));
-      calculateAmount(lossProfitModel.value);
+       calculateAmount(lossProfitModel.value);
     }
     isLoading.value = false;
   }
 
   //calculate the tax amount
   calculateAmount(LossProfitModel model)async{
-    creditCardProcessingFee.value = (double.parse("${model.totalCreditSales}")/ 100) * double.parse("${creditcardController.creditModel.value.data!.fee!}");
+    if(creditcardController.creditModel.value.data != null){
+      creditCardProcessingFee.value = (double.parse("${model.totalCreditSales}")/ 100) * double.parse("${creditcardController.creditModel.value.data!.fee!}");
+    }else{
+      creditCardProcessingFee.value = 0.0;
+    }
     netSales.value = double.parse("${model.totalSalesRegister}") - ( double.parse("${model.totalTax}") + creditCardProcessingFee.value );
-    totalSalesAmount.value = netSales.value + double.parse("${onlineSalesModel.value.totalOnlineSales}") + double.parse("${model.shortOver}");
+    totalSalesAmount.value = netSales.value + double.parse("${onlineSalesModel.value.totalOnlineSales.toString()}") + double.parse("${model.shortOver}");
     totalProfit.value = totalSalesAmount.value - double.parse("${model.totalSalary}") - double.parse("${model.othersCost}");
   }
 

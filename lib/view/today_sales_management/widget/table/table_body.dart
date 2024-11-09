@@ -17,6 +17,6 @@ class TableBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         width: width,
-        child: Center(child: Text("${text}",style: TextStyle(fontSize: 12,fontWeight: fontWeight, color: color),)));
+        child: Center(child: Text(text,style: TextStyle(fontSize: 12,fontWeight: fontWeight, color: color),)));
   }
 }

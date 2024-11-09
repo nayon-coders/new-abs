@@ -6,6 +6,8 @@ class Assets{
   static const String welcome2 = "assets/images/business2.png";
   static const String employee = "assets/images/employee.png";
   static const String expance = "assets/images/expance.png";
+  static const String extra = "assets/images/extra.png";
+  static const String credit = "assets/images/credit.png";
   static const String loss = "assets/images/loss.png";
   static const String money = "assets/images/money.png";
   static const String onlineSales = "assets/images/online-sales.png";

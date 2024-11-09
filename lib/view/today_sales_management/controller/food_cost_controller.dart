@@ -19,7 +19,6 @@ class FoodCostController extends GetxController {
     vendorAmount.add(TextEditingController());
     chequeNumber.add(TextEditingController());
     payList.add("online");
-
     getAllFoodCost(dateTimeController.month, dateTimeController.year);
   }
 
@@ -163,6 +162,7 @@ class FoodCostController extends GetxController {
     vendorName.add(TextEditingController());
     vendorAmount.add(TextEditingController());
     chequeNumber.add(TextEditingController());
+    payList.value.add("");
     update();
   }
   // vendor name remove
@@ -190,9 +190,6 @@ class FoodCostController extends GetxController {
     vendorAmount.clear();
     chequeNumber.clear();
     payList.clear();
-
-
-
     update();
   }
 

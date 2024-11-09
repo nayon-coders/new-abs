@@ -30,10 +30,10 @@ class TodayCostView extends GetView<CostController> {
         onRefresh: controller.onRefresh,
         child: AppTable(
           headerChildren: [
-            TableHeader(width: 60, name: "Date"),
-            TableHeader(width: 129, name: "Name"),
-            TableHeader(width: 70, name: "Amount"),
-            roleController.isPartner.value ? Center() :  TableHeader(width: 80, name: "Action"),
+            const TableHeader(width: 60, name: "Date"),
+            const TableHeader(width: 129, name: "Name"),
+            const TableHeader(width: 70, name: "Amount"),
+            roleController.isPartner.value ? const Center() :  const TableHeader(width: 80, name: "Action"),
 
           ],
           row: Expanded(
@@ -69,11 +69,11 @@ class TodayCostView extends GetView<CostController> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            TableBody(text: "${dateTimeController.dateFormat1(data.date!)}", width: 60),
-                            TableBody(text: "${data.costName!}", width: 120),
+                            TableBody(text: dateTimeController.dateFormat1(data.date!), width: 60),
+                            TableBody(text: data.costName!, width: 120),
                             TableBody(text: FormatCurrency.formatCurrency(data.amount.toString()), width: 70),
 
-                            roleController.isPartner.value ? Center() :  SizedBox(
+                            roleController.isPartner.value ? const Center() :  SizedBox(
                                 width: 80,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -117,14 +117,14 @@ class TodayCostView extends GetView<CostController> {
       ),
       bottomNavigationBar: Container(
         height: 130,
-        decoration: BoxDecoration(
+        decoration:const BoxDecoration(
           color: AppColors.bgColor,
           boxShadow: [
             BoxShadow(
               color: Colors.grey,
               spreadRadius: 1,
               blurRadius: 2,
-              offset: const Offset(0, 1), // changes position of shadow
+              offset:  Offset(0, 1), // changes position of shadow
             ),
           ],
           borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
@@ -135,16 +135,16 @@ class TodayCostView extends GetView<CostController> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text("${dateTimeController.month}/${dateTimeController.year}",
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.textindico),
+              style:const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.textindico),
             ),
             const SizedBox(height: 5,),
-            Text("Total Cost",
+            const Text("Total Cost",
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.textindico),
             ),
             const SizedBox(height: 5,),
             Obx(() {
-              return Text("${FormatCurrency.formatCurrency(controller.totalCost.value.toStringAsFixed(2))}",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppColors.textindico),
+              return Text(FormatCurrency.formatCurrency(controller.totalCost.value.toStringAsFixed(2)),
+                style:const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppColors.textindico),
               );
             }),
           ],

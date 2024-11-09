@@ -29,7 +29,7 @@ class AppTable extends StatelessWidget {
         children: [
 
           ///----Header-----
-          Container(
+          SizedBox(
             height: height,
 
             child: Row(

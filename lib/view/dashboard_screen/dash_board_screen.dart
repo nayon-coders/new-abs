@@ -4,7 +4,6 @@ import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/utility/assetes.dart';
 import 'package:abs_office_management/view/loss_profit/controller/lossProfit_controller.dart';
-import 'package:abs_office_management/widgets/app_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
@@ -15,7 +14,6 @@ import 'widget/menu_box.dart';
 
 class DashBoardScreen extends StatelessWidget {
    DashBoardScreen({super.key});
-  final _search = TextEditingController();
   final DateTimeController dateTimeController = Get.put(DateTimeController());
    final LossProfitController lossProfitController = Get.find<LossProfitController>();
    final RoleManagmentController roleController = Get.find<RoleManagmentController>();
@@ -62,13 +60,13 @@ class DashBoardScreen extends StatelessWidget {
             children: [
               Obx(() {
                   return Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                       color: roleController.isPartner.value ? Colors.indigo : AppColors.mainColor,
                     ),
                     child:  Center(
                       child: Text("Welcome - ${roleController.role.value}",
-                        style: TextStyle(
+                        style:const TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 15,
                             color: Colors.white

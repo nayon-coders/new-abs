@@ -12,7 +12,7 @@ class TableHeader extends StatelessWidget {
       width: width,
       child: Align(
         alignment: Alignment.center,
-        child: Text("$name",
+        child: Text(name,
           textAlign: TextAlign.start,
           style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 14,color:AppColors.textindico),),
       ),

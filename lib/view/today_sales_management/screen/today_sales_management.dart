@@ -75,7 +75,7 @@ class TodaySalesManagement extends StatelessWidget {
 
           floatingActionButtonLocation: ExpandableFab.location,
           floatingActionButton: Obx((){
-              return roleController.isPartner.value ? Center() : ExpandableFab(
+              return roleController.isPartner.value ? const Center() : ExpandableFab(
                 key: _key,
                 type: ExpandableFabType.up,
                 overlayStyle: ExpandableFabOverlayStyle(
