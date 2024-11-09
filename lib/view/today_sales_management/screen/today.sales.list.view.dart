@@ -69,12 +69,16 @@ class TodaySalesView extends GetView<SalesController> {
                             width: 60,
                             text: "${dateFormat1(data.date!)}",
                           ),
-                          TableBody(
-                            width: 90,
-                            //text: "\$${NumberFormat("##,##,###").format(double.parse(data.salesRegister.toString()))}",
-                            text: FormatCurrency.formatCurrency(data.salesRegister.toString()),
 
-                          ),
+                               ///TODO:calculation not match in total net sales
+                               TableBody(
+                                width: 90,
+                               text: "${(double.parse(data.soOv!.toString()) > 0)?((double.parse(data.salesRegister!) + controller.totalOnlineSales.value) + double.parse(data.soOv!.toString()).abs()):
+                               ((double.parse(data.salesRegister!) + controller.totalOnlineSales.value) - double.parse(data.soOv!.toString()).abs())}",
+                               //text: FormatCurrency.formatCurrency(data.salesRegister.toString()),
+                               ),
+
+
                           TableBody(
                             width: 60,
                             color: double.parse(data.soOv!) < 0 ? Colors.red : Colors.green,

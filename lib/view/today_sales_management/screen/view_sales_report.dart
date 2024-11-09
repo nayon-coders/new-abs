@@ -99,13 +99,14 @@ class ViewSalesReport extends GetView<SalesController> {
                        value: singleSalesDatum.craditeSales.toString(),
                      ),
 
-
                      BuildBoxs(
-                       image: Assets.shotOver,
-                       bgColor: double.parse("${singleSalesDatum.soOv}") > 0 ? Colors.green.shade50 : Colors.red.shade50,
-                       title: "Short & Over",
-                       value: double.parse("${singleSalesDatum.soOv}").toString(),
+                       image: Assets.sells,
+                       bgColor: AppColors.textWhite,
+                       title: "TotalCashCollect",
+                       value:double.parse("${singleSalesDatum.totalCashCollect}").toStringAsFixed(2),
                      ),
+
+
 
                    ],
                  ),
@@ -128,11 +129,13 @@ class ViewSalesReport extends GetView<SalesController> {
                       ),
 
                       BuildBoxs(
-                        image: Assets.extra,
-                        bgColor: AppColors.textWhite,
-                        title: "Extra Income",
-                        value: controller.extraIncome.abs().toStringAsFixed(2),
+                        image: Assets.shotOver,
+                        bgColor: double.parse("${singleSalesDatum.soOv}") > 0 ? Colors.green.shade50 : Colors.red.shade50,
+                        title: "Short & Over",
+                        value: double.parse("${singleSalesDatum.soOv}").toString(),
                       ),
+
+
 
                     ],
                   ),
@@ -152,13 +155,13 @@ class ViewSalesReport extends GetView<SalesController> {
                         image: Assets.money,
                         bgColor: AppColors.textWhite,
                         title: "Food Cost",
-                        value: double.parse("${singleSalesDatum.tax}").toStringAsFixed(2),
+                        value: double.parse("000").toStringAsFixed(2),
                       ),
 
                       BuildBoxs(
-                        image: Assets.sells,
+                        image: Assets.extra,
                         bgColor: AppColors.textWhite,
-                        title: "Other Expanse",
+                        title: "Extra Income",
                         value: controller.extraIncome.abs().toStringAsFixed(2),
                       ),
 
