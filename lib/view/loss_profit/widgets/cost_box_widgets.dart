@@ -101,13 +101,26 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
 
                   ///TODO:Credit Card Fee add
                   Expanded(
-                    child: DashBox(
+                    child: Obx((){
+                        return DashBox(
 
-                        onClick:(){},
-                        costName: "Credit card fee",
-                        costAmount: "${(double.parse(creditcardController.creditModel.value.data?.fee?.toStringAsFixed(2)) )}"?? "0.0",
-                        image:Assets.expance,
-                        bgColor: const Color(0xFFDCEAF9)
+                            onClick:(){},
+                            costName: "Credit card fee",
+                          costAmount: (() {
+                                double? totalCreditSales = double.tryParse(controller.lossProfitModel.value.totalCreditSales?.toString() ?? '00');
+                                double? fee = double.tryParse(creditcardController.creditModel.value.data?.fee?.toStringAsFixed(2) ?? '00');
+
+                                if (totalCreditSales != null && fee != null) {
+                                return ((totalCreditSales / 100) * fee).toStringAsFixed(2);
+                                } else {
+                                return "0.00";
+                                }
+                                })(),
+                            //costAmount: "${((double.parse(controller.lossProfitModel.value.totalCreditSales.toString()))/100)*((double.parse(creditcardController.creditModel.value.data?.fee?.toStringAsFixed(2)) ))}",
+                            image:Assets.expance,
+                            bgColor: const Color(0xFFDCEAF9),
+                        );
+                      }
                     ),
                   ),
                 ],
