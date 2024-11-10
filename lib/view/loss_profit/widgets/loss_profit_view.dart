@@ -79,7 +79,7 @@ class LossProfitWidgets extends GetView<LossProfitController> {
                 style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.textBlack),
               ),
               Obx(() {
-                return Text("${dateTimeController.dateFormat1(DateTime.parse(dateTimeController.selectedDate.toString()))}",
+                return Text(dateTimeController.dateFormat1(DateTime.parse(dateTimeController.selectedDate.toString())),
                   style:const TextStyle(fontSize: 12,fontWeight: FontWeight.w400,color: AppColors.textBlack),
                 );
               }
@@ -101,7 +101,7 @@ class LossProfitWidgets extends GetView<LossProfitController> {
                     ),
                     child: Column(
                       children: [
-                        Text(FormatCurrency.formatCurrency(controller.totalProfit.value.toStringAsFixed(2)), ///TODO need to calculate from backend
+                        Text(FormatCurrency.formatCurrency(controller.lossProfitModel.value.totalProfit!.toStringAsFixed(2)), ///TODO need to calculate from backend
                           style:const TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: AppColors.mainColor),
                         ).animate().fade(begin: 0.1, duration:const Duration(milliseconds: 1000)),
                        const Text("Total Profit",
@@ -114,7 +114,7 @@ class LossProfitWidgets extends GetView<LossProfitController> {
                     padding:const EdgeInsets.all(10),
                     child: Column(
                       children: [
-                        Text("\$${controller.lossProfitModel.value!.totalLoss!.toStringAsFixed(2)}",
+                        Text("\$${controller.lossProfitModel.value.totalLoss!.toStringAsFixed(2)}",
                           style:const TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: AppColors.red),
                         ).animate().fade(begin: 0.1, duration:const Duration(milliseconds: 1000)),
                        const Text("Total Loss",

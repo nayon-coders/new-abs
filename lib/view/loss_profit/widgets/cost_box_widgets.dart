@@ -75,7 +75,7 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
                   Expanded(
                     child: DashBox(
                         onClick:(){},
-                        costName: "Others\nExpanses",
+                        costName: "Operating\nExpanses",
                         costAmount: controller.lossProfitModel.value.othersCost!.toStringAsFixed(2),
                         image:Assets.loss,
                         bgColor: const Color(0xFFDCFAF8)

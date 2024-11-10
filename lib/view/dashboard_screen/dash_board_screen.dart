@@ -164,8 +164,8 @@ class DashBoardScreen extends StatelessWidget {
 
   //dashbox Menu
    List<Map<String,dynamic>> get dashbox=>[
-     {"costName": "Total Sales","costAmount":lossProfitController.totalSalesAmount.value??"", "image": Assets.money,"color":const Color(0xFFFFF5D9), "screen": (){}},
-     {"costName": "Net Sales", "costAmount":lossProfitController.netSales.value??"","image": Assets.income,"color":const Color(0xFFE7EDFF), "screen": (){}},
+     {"costName": "Total Sales","costAmount":lossProfitController.lossProfitModel.value.lossProfitModelTotalSales??"", "image": Assets.money,"color":const Color(0xFFFFF5D9), "screen": (){}},
+     {"costName": "Net Sales", "costAmount":lossProfitController.lossProfitModel.value.netSales??"","image": Assets.income,"color":const Color(0xFFE7EDFF), "screen": (){}},
      {"costName": "Expense", "costAmount":lossProfitController.lossProfitModel.value.totalDabit ?? "","image": Assets.expance,"color":const Color(0xFFFFE0EB), "screen": (){}},
      {"costName": "Online Sales", "costAmount":lossProfitController.lossProfitModel.value.toatlOnlineSales??"","image": Assets.sells,"color":const Color(0xFFDCFAF8), "screen": (){}},
 

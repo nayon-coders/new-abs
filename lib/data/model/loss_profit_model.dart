@@ -10,24 +10,30 @@ String lossProfitModelToJson(LossProfitModel data) => json.encode(data.toJson())
 
 class LossProfitModel {
   final bool? success;
+  final int? netSales;
+  final int? lossProfitModelTotalSales;
+  final int? lossProfit;
   final int? totalSalesRegister;
   final int? totalCreditSales;
   final int? totalSales;
   final int? totalAdditionalIncome;
   final int? toatlOnlineSales;
-  final double? totalTax;
+  final int? totalTax;
   final int? totalSalary;
   final int? foodCost;
-  final double? othersCost;
+  final int? othersCost;
   final int? shortOver;
-  final double? totalDabit;
+  final int? totalDabit;
   final int? totalCradit;
   final int? totalProfit;
-  final double? totalLoss;
-  final double? netIncome;
+  final int? totalLoss;
+  final int? netIncome;
 
   LossProfitModel({
     this.success,
+    this.netSales,
+    this.lossProfitModelTotalSales,
+    this.lossProfit,
     this.totalSalesRegister,
     this.totalCreditSales,
     this.totalSales,
@@ -47,25 +53,31 @@ class LossProfitModel {
 
   factory LossProfitModel.fromJson(Map<String, dynamic> json) => LossProfitModel(
     success: json["success"],
+    netSales: json["net_sales"],
+    lossProfitModelTotalSales: json["total_sales"],
+    lossProfit: json["loss_profit"],
     totalSalesRegister: json["totalSalesRegister"],
     totalCreditSales: json["totalCreditSales"],
     totalSales: json["totalSales"],
     totalAdditionalIncome: json["totalAdditionalIncome"],
     toatlOnlineSales: json["toatlOnlineSales"],
-    totalTax: json["totalTax"]?.toDouble(),
+    totalTax: json["totalTax"],
     totalSalary: json["totalSalary"],
     foodCost: json["foodCost"],
-    othersCost: json["othersCost"]?.toDouble(),
+    othersCost: json["othersCost"],
     shortOver: json["shortOver"],
-    totalDabit: json["totalDabit"]?.toDouble(),
+    totalDabit: json["totalDabit"],
     totalCradit: json["totalCradit"],
     totalProfit: json["totalProfit"],
-    totalLoss: json["totalLoss"]?.toDouble(),
-    netIncome: json["netIncome"]?.toDouble(),
+    totalLoss: json["totalLoss"],
+    netIncome: json["netIncome"],
   );
 
   Map<String, dynamic> toJson() => {
     "success": success,
+    "net_sales": netSales,
+    "total_sales": lossProfitModelTotalSales,
+    "loss_profit": lossProfit,
     "totalSalesRegister": totalSalesRegister,
     "totalCreditSales": totalCreditSales,
     "totalSales": totalSales,

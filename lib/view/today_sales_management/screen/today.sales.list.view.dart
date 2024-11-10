@@ -32,7 +32,7 @@ class TodaySalesView extends GetView<SalesController> {
       child: AppTable(
         headerChildren: const[
           TableHeader(width: 60, name: "Date"),
-          TableHeader(width: 90, name: "Gross Sales"),
+          TableHeader(width: 90, name: "Inside Sales"),
           TableHeader(width: 60, name: "SOV"),
           TableHeader(width: 120, name: "Action"),
 

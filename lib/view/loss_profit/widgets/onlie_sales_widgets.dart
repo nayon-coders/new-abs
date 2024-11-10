@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
-import '../../../utility/assetes.dart';
-import '../../dashboard_screen/widget/dash_box.dart';
 
 class OnlineSalesWidgets extends GetView<LossProfitController> {
   const OnlineSalesWidgets({super.key});
@@ -15,7 +13,7 @@ class OnlineSalesWidgets extends GetView<LossProfitController> {
   Widget build(BuildContext context) {
     return  Obx(() {
       if(controller.isOnlineSalesLoading.value){
-        return LoadingLossProfitBoxsView();
+        return const LoadingLossProfitBoxsView();
       }else{
         return Padding(
           padding: const EdgeInsets.all(15.0),
@@ -54,7 +52,7 @@ class OnlineSalesWidgets extends GetView<LossProfitController> {
                   onClick: (){},
                   costName: data.name!,
                   costAmount: data.amount!,
-                  image: "${data.name![0]}",
+                  image: data.name![0],
                   bgColor: Colors.indigoAccent.shade100,
                 );
               }),

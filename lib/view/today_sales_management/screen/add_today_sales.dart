@@ -67,7 +67,7 @@ class AddTodaySales extends GetView<SalesController> {
 
 
                     //Gross Sales
-                    const Text("Gross Sales",
+                    const Text("Inside Sales",
                       style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textBlack),
                     ),
                    const  SizedBox(height: 10,),

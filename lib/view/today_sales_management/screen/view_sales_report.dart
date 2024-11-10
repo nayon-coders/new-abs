@@ -26,7 +26,7 @@ class ViewSalesReport extends GetView<SalesController> {
               Get.back();
             },
             icon:const Icon(Icons.arrow_back_ios, color: Colors.black, size: 20,)),
-        title: const Text("View Sales Report",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: AppColors.textBlack),),
+        title: const Text("View Today Sales Report",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: AppColors.textBlack),),
       ),
 
       body: Builder(
@@ -52,7 +52,7 @@ class ViewSalesReport extends GetView<SalesController> {
                           children: [
                             const SizedBox(height: 30,),
                             Text(FormatCurrency.formatCurrency(controller.netSales.toStringAsFixed(2).toString()),style:const TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.black),),
-                           const Text("Total Net Sale",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Colors.black),),
+                           const Text("Total Gross Sale",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Colors.black),),
                           ],
                         ),
                       ),
@@ -64,7 +64,7 @@ class ViewSalesReport extends GetView<SalesController> {
                         child:  BuildBoxs(
                           image: Assets.foodCost,
                           bgColor: AppColors.textWhite,
-                          title: "Gross Sales",
+                          title: "Inside Sales",
                           value: singleSalesDatum.salesRegister.toString(),
                         ),
                       ),

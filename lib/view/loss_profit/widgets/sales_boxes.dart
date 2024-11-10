@@ -15,7 +15,7 @@ class SalesBoxes extends GetView<LossProfitController> {
   Widget build(BuildContext context) {
     return  Obx(() {
       if(controller.isLoading.value){
-        return LoadingLossProfitBoxsView();
+        return const LoadingLossProfitBoxsView();
       }else{
 
         return Padding(
@@ -41,7 +41,7 @@ class SalesBoxes extends GetView<LossProfitController> {
                   Expanded(
                     child: DashBox(
                         onClick:(){},
-                        costName: "Gross sales",
+                        costName: "Inside sales",
                         costAmount: "${controller.lossProfitModel.value.totalSalesRegister}",
                         image:Assets.money,
                         bgColor:const Color(0xFFFFF5D9)
@@ -52,7 +52,7 @@ class SalesBoxes extends GetView<LossProfitController> {
                     child: DashBox(
                         onClick:(){},
                         costName: "Net Sales ",
-                        costAmount: "${controller.netSales.value.toStringAsFixed(2)}",
+                        costAmount: controller.lossProfitModel.value.netSales!.toStringAsFixed(2),
                         image:Assets.income,
                         bgColor:const Color(0xFFE7EDFF)
                     ),
@@ -66,7 +66,7 @@ class SalesBoxes extends GetView<LossProfitController> {
                     child: DashBox(
                         onClick:(){},
                         costName: "Online Sales",
-                        costAmount: "${controller.lossProfitModel.value.toatlOnlineSales!.toStringAsFixed(2)}",
+                        costAmount: controller.lossProfitModel.value.toatlOnlineSales!.toStringAsFixed(2),
                         image:Assets.onlineSales,
                         bgColor: Color(0xFFFAEEDC)
                     ),
@@ -76,7 +76,7 @@ class SalesBoxes extends GetView<LossProfitController> {
                     child: DashBox(
                         onClick:(){},
                         costName: "Total Sales",
-                        costAmount: "${controller.totalSalesAmount.toStringAsFixed(2)}",
+                        costAmount: controller.lossProfitModel.value.lossProfitModelTotalSales!.toStringAsFixed(2),
                         image:Assets.todaysale,
                         bgColor: const Color(0xFFDCFAF8)
                     ),
