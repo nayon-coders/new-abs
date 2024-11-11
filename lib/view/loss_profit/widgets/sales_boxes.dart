@@ -1,5 +1,4 @@
 import 'package:abs_office_management/view/loss_profit/controller/lossProfit_controller.dart';
-import 'package:abs_office_management/widgets/app_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
@@ -68,7 +67,7 @@ class SalesBoxes extends GetView<LossProfitController> {
                         costName: "Online Sales",
                         costAmount: controller.lossProfitModel.value.toatlOnlineSales!.toStringAsFixed(2),
                         image:Assets.onlineSales,
-                        bgColor: Color(0xFFFAEEDC)
+                        bgColor: const Color(0xFFFAEEDC)
                     ),
                   ),
                  const SizedBox(width: 20,),

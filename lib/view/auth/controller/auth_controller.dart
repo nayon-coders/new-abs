@@ -3,11 +3,8 @@ import 'dart:convert';
 import 'package:abs_office_management/app_config.dart';
 import 'package:abs_office_management/controller/api_controller.dart';
 import 'package:abs_office_management/routes/route_name.dart';
-import 'package:abs_office_management/view/auth/forgot_password/create_password.dart';
-import 'package:abs_office_management/view/auth/forgot_password/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../utility/app_const.dart';

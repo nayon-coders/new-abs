@@ -44,7 +44,7 @@ class LossProfitWidgets extends GetView<LossProfitController> {
                   Container(
                     padding:const EdgeInsets.all(10),
                     decoration:const BoxDecoration(
-                      // color: Colors.red.withOpacity(0.2),
+
                         border: Border(
                           right: BorderSide(
                             color: Colors.green,

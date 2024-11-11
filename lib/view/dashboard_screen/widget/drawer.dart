@@ -1,6 +1,5 @@
 import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/assetes.dart';
-import 'package:abs_office_management/view/settings/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,8 +25,6 @@ class CustomDrawer extends StatelessWidget {
           DrawerMenu(icon: Icons.person, name: "Employee Management", onClick: ()=>Get.toNamed(AppRoute.employeeManageScree)),
           DrawerMenu(icon: Icons.wallet, name: "Salary Management", onClick: ()=>Get.toNamed(AppRoute.salaryManagementScree)),
           DrawerMenu(icon: Icons.people, name: "Partner controller", onClick: ()=>Get.toNamed(AppRoute.partnerManagementScreen)),
-          //DrawerMenu(icon: Icons.miscellaneous_services, name: "Services", onClick: (){}),
-          //DrawerMenu(icon: Icons.golf_course, name: "My Privileges", onClick: (){}),
           DrawerMenu(icon: Icons.settings, name: "Setting", onClick: ()=>Get.toNamed(AppRoute.setting)),
         ],
       ),

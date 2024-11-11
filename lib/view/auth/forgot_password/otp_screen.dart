@@ -50,6 +50,7 @@ class OtpScreen extends GetView<ForgotController> {
                     if(v!.isEmpty){
                       return "Must be required";
                     }
+                    return null;
                   },
                   onChanged: (pin)=>print("OTP Entered:$pin"),
                 ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../utility/app_color.dart';
 
 class WorkingHours extends StatelessWidget {
-   WorkingHours({super.key, required this.dateTime, required this.hours, required this.onClick});
+   const WorkingHours({super.key, required this.dateTime, required this.hours, required this.onClick});
   final String dateTime;
   final String hours;
   final VoidCallback onClick;
@@ -37,7 +37,7 @@ class WorkingHours extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               color:const Color(0xFFCAF5D9),
             ),
-            child: Text("${hours} h",style:const TextStyle(fontSize: 12,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
+            child: Text("$hours h",style:const TextStyle(fontSize: 12,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
           ),
           InkWell(
               onTap:onClick,

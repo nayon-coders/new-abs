@@ -15,6 +15,7 @@ import '../../../routes/route_name.dart';
 import '../../../utility/app_color.dart';
 import '../../../utility/assetes.dart';
 import '../../../widgets/app_shimmer.dart';
+
 class SingleEmployee extends GetView<EmployeeManageController> {
    SingleEmployee({super.key});
   final tabController = Get.put(ToggleTabController());

@@ -46,10 +46,10 @@ class LossProfit extends GetView<LossProfitController> {
               LossProfitWidgets(dateTimeController: dateTimeController),
 
 
-              SalesBoxes(), //imported from widgets/sales_boxes.dart
+              const SalesBoxes(), //imported from widgets/sales_boxes.dart
               CostBoxsWidgets(), // imported from widgets/cost_box_widgets.dart
 
-              OnlineSalesWidgets(), // imported from widgets/online_sales_widgets.dart
+              const OnlineSalesWidgets(), // imported from widgets/online_sales_widgets.dart
 
 
 

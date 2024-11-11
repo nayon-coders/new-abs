@@ -174,11 +174,11 @@ class DashBoardScreen extends StatelessWidget {
    ///--------dashbox Menu --------
    ///
    List<Map<String,dynamic>> menubox=[
-     {"name": "Today Sales Manage","image": Assets.todaysale,"screen": "${AppRoute.salesManageScree}"},
-     {"name": "Loss & Profit","image": Assets.loss,"screen": "${AppRoute.lossProfit}"},
-     {"name": "Employee Manage","image": Assets.employee,"screen": "${AppRoute.employeeManageScree}"},
-     {"name": "Salary Manage","image": Assets.salery,"screen": "${AppRoute.salaryManagementScree}"},
-     {"name": "Partner Manage","image": Assets.partner,"screen": "${AppRoute.partnerManagementScreen}"},
+     {"name": "Today Sales Manage","image": Assets.todaysale,"screen": AppRoute.salesManageScree},
+     {"name": "Loss & Profit","image": Assets.loss,"screen": AppRoute.lossProfit},
+     {"name": "Employee Manage","image": Assets.employee,"screen": AppRoute.employeeManageScree},
+     {"name": "Salary Manage","image": Assets.salery,"screen": AppRoute.salaryManagementScree},
+     {"name": "Partner Manage","image": Assets.partner,"screen": AppRoute.partnerManagementScreen},
     // {"name": "Year & Month","image": Assets.year,"screen": "${AppRoute.yearMonth}"},
 
    ];

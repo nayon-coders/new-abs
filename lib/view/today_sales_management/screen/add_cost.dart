@@ -121,7 +121,7 @@ class AddCost extends GetView<CostController> {
                       return AppInput(
                         onClick: ()async{
                           var date = await dateTimeController.pickDate(context);
-                          print("date --- ${date}");
+                          print("date --- $date");
                           controller.selectedDate.value.text = dateTimeController.dateFormat1(date);
                           controller.costDate.value = dateTimeController.dateFormatDatabase(date);
                         },

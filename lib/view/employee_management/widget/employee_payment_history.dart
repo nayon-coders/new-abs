@@ -24,53 +24,53 @@ class EmployeePaymentHistory extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 20,right: 20),
+            padding: const EdgeInsets.only(left: 20,right: 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 RichText(text: TextSpan(
                     text: "Month: ",
-                    style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: AppColors.textBlack),
+                    style: const TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: AppColors.textBlack),
                     children: [
                       TextSpan(
-                        text: "$month",
-                        style: TextStyle(fontSize: 13,fontWeight: FontWeight.w600,color: AppColors.textBlack),
+                        text: month,
+                        style: const TextStyle(fontSize: 13,fontWeight: FontWeight.w600,color: AppColors.textBlack),
                       ),
                     ]
                 )),
                 RichText(text: TextSpan(
                     text: "Total Working Hours: ",
-                    style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: AppColors.textBlack),
+                    style: const TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: AppColors.textBlack),
                     children: [
                       TextSpan(
                         text: "$workingHours Hours",
-                        style: TextStyle(fontSize: 13,fontWeight: FontWeight.w600,color: AppColors.textBlack),
+                        style: const TextStyle(fontSize: 13,fontWeight: FontWeight.w600,color: AppColors.textBlack),
                       ),
                     ]
                 )),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     RichText(text: TextSpan(
                         text: "Total Paid: ",
-                        style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: AppColors.textBlack),
+                        style: const TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: AppColors.textBlack),
                         children: [
                           TextSpan(
                             text: "\$$totalPaid",
-                            style: TextStyle(fontSize: 13,fontWeight: FontWeight.w600,color: AppColors.textBlack),
+                            style: const TextStyle(fontSize: 13,fontWeight: FontWeight.w600,color: AppColors.textBlack),
                           ),
                         ]
                     )),
                     RichText(text: TextSpan(
                         text: "Total Unpaid: ",
-                        style: TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: AppColors.textBlack),
+                        style: const TextStyle(fontSize: 13,fontWeight: FontWeight.w500,color: AppColors.textBlack),
                         children: [
                           TextSpan(
                             text: "\$$totalUnPaid",
-                            style: TextStyle(fontSize: 13,fontWeight: FontWeight.w600,color: AppColors.textBlack),
+                            style: const TextStyle(fontSize: 13,fontWeight: FontWeight.w600,color: AppColors.textBlack),
                           ),
                         ]
                     )),

@@ -41,7 +41,7 @@ class OnlineSalesBox extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
                 color: bgColor,
               ),
-              child: Center(child: Text("${image}",
+              child: Center(child: Text(image,
                 style:const TextStyle(fontSize: 20,fontWeight: FontWeight.w500,color: Colors.black
                 ),
               )),

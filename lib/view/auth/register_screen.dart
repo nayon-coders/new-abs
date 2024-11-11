@@ -17,7 +17,6 @@ class RegisterScreen extends GetView<AuthController> {
   final _password = TextEditingController();
   final _businessName = TextEditingController();
   final _businessAddress = TextEditingController();
- // final _conformPass = TextEditingController();
   final _key = GlobalKey<FormState>();
 
   @override

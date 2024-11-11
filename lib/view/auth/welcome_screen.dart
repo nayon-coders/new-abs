@@ -19,7 +19,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   bool  isLoading = false;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
   }
@@ -82,9 +81,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               //   ),
               // ),
 
-              Spacer(),
-             BrandingBottomText(),
-             SizedBox(height: 40,),
+             const  Spacer(),
+            const BrandingBottomText(),
+            const SizedBox(height: 40,),
 
              //  InkWell(
              //    onTap: ()=>Get.to(()=>DashBoardScreen()),

@@ -236,8 +236,8 @@ class SalesController extends GetxController {
       taxAmount = (amount * tax)/100;
     }
     totalTaxAmount.value = taxAmount;
-    print("amount -- ${amount}");// return tax amount
-    print("tax -- ${tax}");// return tax amount
+    print("amount -- $amount");// return tax amount
+    print("tax -- $tax");// return tax amount
     print("taxAmount -- ${totalTaxAmount.value}");// return tax amount
   }
 

@@ -1,6 +1,5 @@
 import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/routes/route_page.dart';
-import 'package:abs_office_management/view/auth/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';

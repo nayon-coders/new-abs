@@ -16,7 +16,7 @@ class NoDataFoundScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
+          const Icon(
             Icons.info_outline,
             color: Colors.grey,
             size: 80,
@@ -24,7 +24,7 @@ class NoDataFoundScreen extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             message,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.grey,
               fontSize: 18,
             ),
@@ -33,10 +33,10 @@ class NoDataFoundScreen extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: onRetry,
-              child: Text('Retry'),
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               ),
+              child: const Text('Retry'),
             ),
           ],
         ],

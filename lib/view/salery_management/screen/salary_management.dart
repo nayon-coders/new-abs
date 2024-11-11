@@ -32,7 +32,7 @@ class SalaryManagement extends GetView<SalaryManagementController> {
         surfaceTintColor: Colors.transparent,
         actions: [
          Obx(() {
-             return roleController.isPartner.value ? Center() : InkWell(
+             return roleController.isPartner.value ? const Center() : InkWell(
                 onTap: ()=>Get.toNamed(AppRoute.addPaidSalary),
                 child: Container(
                   height: 30,
@@ -85,7 +85,7 @@ class SalaryManagement extends GetView<SalaryManagementController> {
                 }
               }else{
                 return ListView.builder(
-                    itemCount: controller.salaryList.length??0,
+                    itemCount: controller.salaryList.length,
                     itemBuilder: (context,index){
                       final data = controller.salaryList[index];
 
@@ -128,7 +128,7 @@ class SalaryManagement extends GetView<SalaryManagementController> {
                                   return  Row(
                                     mainAxisAlignment: roleController.isPartner.value ? MainAxisAlignment.end : MainAxisAlignment.spaceBetween,
                                     children: [
-                                    roleController.isPartner.value ? SizedBox(width: 1,) :  EditButton(
+                                    roleController.isPartner.value ? const SizedBox(width: 1,) :  EditButton(
                                           icon: Icons.edit,
                                           bgColor: Colors.amber,
                                           onClick: (){
@@ -143,7 +143,7 @@ class SalaryManagement extends GetView<SalaryManagementController> {
                                            // controller.setSalaryData(data);
                                           }
                                       ),
-                                      roleController.isPartner.value ? SizedBox(width: 1,) :  EditButton(
+                                      roleController.isPartner.value ? const SizedBox(width: 1,) :  EditButton(
                                           icon: Icons.delete,
                                           bgColor: AppColors.red,
                                           onClick: (){

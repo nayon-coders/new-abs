@@ -111,7 +111,7 @@ class SalrayView extends StatelessWidget {
                         children: [
                           Icon(Icons.print_outlined, color: Colors.white,),
                           SizedBox(width: 10,),
-                          const Text("Pay Recipe",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textWhite),),
+                           Text("Pay Recipe",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.textWhite),),
                         ],
                       ),
                     ),

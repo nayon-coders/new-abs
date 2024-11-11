@@ -1,7 +1,6 @@
 import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_color.dart';
 import 'package:abs_office_management/view/auth/forgot_password/forgot_controller/forgot_controller.dart';
-import 'package:abs_office_management/view/auth/forgot_password/otp_screen.dart';
 import 'package:abs_office_management/view/auth/widget/back_button.dart';
 import 'package:abs_office_management/view/auth/widget/title_text.dart';
 import 'package:abs_office_management/widgets/app_button.dart';

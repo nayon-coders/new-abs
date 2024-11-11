@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../utility/app_color.dart';
 
 class CustomDropDown<T> extends StatelessWidget {
-  CustomDropDown({super.key,
+  const CustomDropDown({super.key,
     required this.items,
     this.value,
     required this.hint,

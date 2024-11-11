@@ -37,13 +37,10 @@ import 'package:abs_office_management/view/today_sales_management/screen/manage_
 import 'package:abs_office_management/view/today_sales_management/screen/today_sales_management.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/view_sales_report.dart';
 import 'package:abs_office_management/view/year%20&%20month/year_month.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../data/binding/food_cost_binding.dart';
 import '../data/binding/setting.binding.dart';
 import '../data/binding/tax_binding.dart';
-import '../data/middleware/auth_middleware.dart';
 import '../view/auth/forgot_password/forgot_screen.dart';
 import '../view/dashboard_screen/dash_board_screen.dart';
 import '../view/settings/screen/online.sales.platform.dart';
@@ -76,7 +73,7 @@ class RoutePage{
       page: ()=>  OtpScreen(),
       binding: AuthBinding(),
     ),
-    GetPage(name: AppRoute.successScreen, page: ()=>SuccessScreen()),
+    GetPage(name: AppRoute.successScreen, page: ()=>const SuccessScreen()),
     GetPage(
       name: AppRoute.createPassword,
       page: ()=>  CreatePassword(),
@@ -96,13 +93,13 @@ class RoutePage{
 
     GetPage(
         name: AppRoute.textAndState,
-        page: ()=>  TaxAndState(),
+        page: ()=>  const TaxAndState(),
         binding: TaxBinding()
     ),
 
     GetPage(
       name: AppRoute.onlineSellPlatform,
-      page: ()=>  OnlineSalesPlatform(),
+      page: ()=>  const OnlineSalesPlatform(),
       binding: SettingBinding()
     ),
 
@@ -200,7 +197,7 @@ class RoutePage{
 
       GetPage(
             name: AppRoute.businessSetup,
-            page: ()=> BusinessSetup(),
+            page: ()=> const BusinessSetup(),
             binding: SettingBinding()
         ),
       GetPage(
@@ -210,7 +207,7 @@ class RoutePage{
             ),
       GetPage(
                 name: AppRoute.manageCostingList,
-                page: ()=> ManageCosting(),
+                page: ()=> const ManageCosting(),
                 binding: CostingBinding()
             ),
    GetPage(
@@ -221,7 +218,7 @@ class RoutePage{
 
     GetPage(
         name: AppRoute.yearMonth,
-        page: ()=>YearMonth()
+        page: ()=>const YearMonth()
     ),
 
 

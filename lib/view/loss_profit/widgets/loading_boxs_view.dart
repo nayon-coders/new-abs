@@ -17,7 +17,7 @@ class LoadingLossProfitBoxsView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AppShimmerPro.TextShimmer(width: 100, maxLine: 1),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             GridView.builder(
               itemCount: 4,
               gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
@@ -27,7 +27,7 @@ class LoadingLossProfitBoxsView extends StatelessWidget {
                 childAspectRatio: 2,
               ),
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (_, index){
                 return AppShimmerPro.circularShimmer(width: Get.width*.40, height: 100, borderRadius: 5);
               },

@@ -15,7 +15,7 @@ alertDialog({
 }){
   return Get.defaultDialog(
     title: title,
-    content:  Text("$content"),
+    content:  Text(content),
     actions: [
       TextButton(
         onPressed: onOk,
@@ -61,19 +61,19 @@ void chooseImageSource({ required BuildContext context, required VoidCallback on
     builder: (context) {
       return Container(
         height: 270,
-        padding: EdgeInsets.all(30),
+        padding: const EdgeInsets.all(30),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20,),
-            Text("Choose option",
+            const SizedBox(height: 20,),
+            const Text("Choose option",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             ListTile(
               leading: const Icon(Icons.camera_alt),
               title: const Text("Camera"),

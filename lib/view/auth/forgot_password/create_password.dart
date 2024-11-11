@@ -26,62 +26,65 @@ class CreatePassword extends GetView<ForgotController> {
       child: Scaffold(
         body: SingleChildScrollView(
           padding:const EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: LeadingButton(onClick: ()=>Get.offAllNamed(AppRoute.login),
+          child: Form(
+            key: _key,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: LeadingButton(onClick: ()=>Get.offAllNamed(AppRoute.login),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 30,),
-              const  TitleText(text: "Create new password"),
-              const SizedBox(height: 10,),
-              const SizedBox(
-                width: 300,
-                child: Text("Your new password must be unique from those previously used.",style: TextStyle(
-                  fontWeight: FontWeight.w400,fontSize: 14,color: AppColors.textGrey,
+                const SizedBox(height: 30,),
+                const  TitleText(text: "Create new password"),
+                const SizedBox(height: 10,),
+                const SizedBox(
+                  width: 300,
+                  child: Text("Your new password must be unique from those previously used.",style: TextStyle(
+                    fontWeight: FontWeight.w400,fontSize: 14,color: AppColors.textGrey,
+                  ),
+                  ),
                 ),
+                const SizedBox(height: 30,),
+                AppInput(
+                  hint: "New Password",
+                  controller: newPassword,
+                  textType: TextInputType.visiblePassword,
                 ),
-              ),
-              const SizedBox(height: 30,),
-              AppInput(
-                hint: "New Password",
-                controller: newPassword,
-                textType: TextInputType.visiblePassword,
-              ),
-             const SizedBox(height: 15,),
-              AppInput(
-                hint: "Conform Password",
-                controller: confPassword,
-                textType: TextInputType.visiblePassword,
-              ),
-              const SizedBox(height: 30,),
-              Obx(() {
-                  return AppButton(
-                    width:double.infinity,
-                    isLoading: controller.isLoading.value,
-                    name: "Reset Password",
-                    onClick: ()async{
+               const SizedBox(height: 15,),
+                AppInput(
+                  hint: "Conform Password",
+                  controller: confPassword,
+                  textType: TextInputType.visiblePassword,
+                ),
+                const SizedBox(height: 30,),
+                Obx(() {
+                    return AppButton(
+                      width:double.infinity,
+                      isLoading: controller.isLoading.value,
+                      name: "Reset Password",
+                      onClick: ()async{
 
-                          if(newPassword.text == confPassword.text){
-                            controller.createNewPassword(
-                              email,
-                              otp,
-                              newPassword.text,
-                            );
-                          }else{
-                            Get.snackbar("Failed", "Passwords do not match",backgroundColor: Colors.red);
-                          }
+                            if(newPassword.text == confPassword.text){
+                              controller.createNewPassword(
+                                email,
+                                otp,
+                                newPassword.text,
+                              );
+                            }else{
+                              Get.snackbar("Failed", "Passwords do not match",backgroundColor: Colors.red);
+                            }
 
 
-                    }
-                  );
-                }
-              ),
+                      }
+                    );
+                  }
+                ),
 
-            ],
+              ],
+            ),
           ),
         ),
       ),

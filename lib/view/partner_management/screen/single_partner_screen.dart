@@ -38,7 +38,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
         surfaceTintColor: Colors.white,
         actions: [
           Obx(() {
-              return roleController.isPartner.value ? Center() : controller.isGetting.value ? const Center() :   EditButton(
+              return roleController.isPartner.value ? const Center() : controller.isGetting.value ? const Center() :   EditButton(
                 icon: Icons.edit,
                 bgColor: Colors.yellow,
                 onClick: (){
@@ -50,7 +50,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
           ),
           const SizedBox(width: 10,),
           Obx(() {
-              return   roleController.isPartner.value ? Center() : controller.isGetting.value ? const Center() :  EditButton(
+              return   roleController.isPartner.value ? const Center() : controller.isGetting.value ? const Center() :  EditButton(
                 icon: Icons.delete,
                   bgColor: Colors.red,
                   onClick: (){
@@ -182,7 +182,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                                         ),
                                       ),
                                     ),
-                                    roleController.isPartner.value ? Center() :  Positioned(
+                                    roleController.isPartner.value ? const Center() :  Positioned(
                                       bottom: 3,
                                       right: 1,
                                       child: EditButton(

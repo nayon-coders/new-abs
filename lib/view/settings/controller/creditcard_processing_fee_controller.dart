@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:abs_office_management/app_config.dart';
-import 'package:abs_office_management/data/model/employee_position_model.dart';
 import 'package:abs_office_management/data/services/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -51,7 +50,7 @@ class CreditcardProcessingFeeController extends GetxController{
 
   }
 
-  //get creditcard fee
+  //get credit-card fee
 
   getCreditCardFee()async{
     isGetting.value = true;

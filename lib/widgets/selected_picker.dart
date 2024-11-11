@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -14,13 +13,13 @@ class SelectPicker {
       context: context,
       builder: (context) {
         return Container(
-          padding: EdgeInsets.all(30),
+          padding: const EdgeInsets.all(30),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Choose an option",
+              const Text("Choose an option",
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 20,
@@ -28,13 +27,13 @@ class SelectPicker {
                 ),
               ),
               ListTile(
-                  leading: new Icon(Icons.camera),
-                  title: new Text('Camera'),
+                  leading: const Icon(Icons.camera),
+                  title: const Text('Camera'),
                   onTap: onCamera
               ),
               ListTile(
-                  leading: new Icon(Icons.photo),
-                  title: new Text('Gallery'),
+                  leading: const Icon(Icons.photo),
+                  title: const Text('Gallery'),
                   onTap: onGallery
               ),
 

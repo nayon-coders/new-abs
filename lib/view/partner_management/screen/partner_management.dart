@@ -27,7 +27,7 @@ class PartnerManagement extends GetView<PartnerController> {
         title: const Text("Partner management",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
         actions: [
           Obx(() {
-              return roleController.isPartner.value ? Center() : EditButton(
+              return roleController.isPartner.value ? const Center() : EditButton(
                 icon: Icons.add,
                   bgColor: Colors.green,
                   onClick: ()=>Get.toNamed(AppRoute.addPartnerScreen),
@@ -106,7 +106,7 @@ class PartnerManagement extends GetView<PartnerController> {
                         child: const Text("View Details",style: TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: Color(0xFF1814F3)),)),
 
                   ),
-                ).animate().fade(duration: 500.ms, curve: Curves.easeInOut);;
+                ).animate().fade(duration: 500.ms, curve: Curves.easeInOut);
 
               });
         }

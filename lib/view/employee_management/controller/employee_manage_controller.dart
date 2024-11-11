@@ -42,7 +42,7 @@ class EmployeeManageController extends GetxController{
   RxString selectEmployeePosition = "".obs;
   RxString selectdId = "".obs;
   RxBool isForEdit = false.obs;
-  var selectType= null;
+  var selectType = null;
 
   //Rx bool
   RxBool isGetting = false.obs;
