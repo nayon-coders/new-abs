@@ -9,6 +9,7 @@ class AppConfig{
   //authentication
   static const String ADMIN_LOGIN = "$BASE_URL/employee/login"; //POST
   static const String ADMIN_SIGNUP = "$BASE_URL/employee/new-admin/create"; //POST
+  static const String ADMIN_DELETE_ACCOUNT = "$BASE_URL/delete-admin"; //POST
 
   //FORGOT PASSWORD
   static const String SEND_OTP ="$BASE_URL/users/forgot-password"; //POST

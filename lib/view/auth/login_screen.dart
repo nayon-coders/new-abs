@@ -94,25 +94,25 @@ class LoginScreen extends StatelessWidget {
                 ),
             
             
-            
+
                 SizedBox(height: size.height*0.30,),
-                // Center(
-                //   child: InkWell(
-                //     onTap: ()=>Get.toNamed(AppRoute.register),
-                //     child: RichText(
-                //       text:const TextSpan(
-                //         text: "Don’t have an account?",
-                //         style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color: AppColors.textBlack),
-                //         children: [
-                //           TextSpan(
-                //             text: " Register Now",
-                //             style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: AppColors.linkColor)
-                //           )
-                //         ]
-                //       ),
-                //     ),
-                //   ),
-                // ),
+                Center(
+                  child: InkWell(
+                    onTap: ()=>Get.toNamed(AppRoute.register),
+                    child: RichText(
+                      text:const TextSpan(
+                        text: "Don’t have an account?",
+                        style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color: AppColors.textBlack),
+                        children: [
+                          TextSpan(
+                            text: " Register Now",
+                            style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: AppColors.linkColor)
+                          )
+                        ]
+                      ),
+                    ),
+                  ),
+                ),
                 const BrandingBottomText(),
 
                const SizedBox(height: 20,),
