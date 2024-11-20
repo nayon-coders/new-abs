@@ -27,8 +27,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMicrophoneUsageDescription</key>
-    <string>All Business Solution (ABS) app don't need to requires access to the microphone.</string>
-
+	<string>All Business Solution (ABS) app don't need to requires access to the microphone.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>All Business Solution (ABS) app requires read and write access to the photo library.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
