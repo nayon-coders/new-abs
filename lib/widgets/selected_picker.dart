@@ -27,7 +27,7 @@ class SelectPicker {
                 ),
               ),
               ListTile(
-                  leading: const Icon(Icons.camera),
+                  leading: const Icon(Icons.camera_alt),
                   title: const Text('Camera'),
                   onTap: onCamera
               ),
