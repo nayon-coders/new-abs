@@ -10,24 +10,24 @@ String lossProfitModelToJson(LossProfitModel data) => json.encode(data.toJson())
 
 class LossProfitModel {
   final bool? success;
-  final int? netSales;
-  final int? lossProfitModelTotalSales;
-  final int? lossProfit;
-  final int? totalSalesRegister;
-  final int? totalCreditSales;
-  final int? totalSales;
-  final int? totalAdditionalIncome;
-  final int? toatlOnlineSales;
-  final int? totalTax;
-  final int? totalSalary;
-  final int? foodCost;
-  final int? othersCost;
-  final int? shortOver;
-  final int? totalDabit;
-  final int? totalCradit;
-  final int? totalProfit;
-  final int? totalLoss;
-  final int? netIncome;
+  final dynamic netSales;
+  final dynamic lossProfitModelTotalSales;
+  final dynamic lossProfit;
+  final dynamic totalSalesRegister;
+  final dynamic totalCreditSales;
+  final dynamic totalSales;
+  final dynamic totalAdditionalIncome;
+  final dynamic toatlOnlineSales;
+  final dynamic totalTax;
+  final dynamic totalSalary;
+  final dynamic foodCost;
+  final dynamic othersCost;
+  final dynamic shortOver;
+  final dynamic totalDabit;
+  final dynamic totalCradit;
+  final dynamic totalProfit;
+  final dynamic totalLoss;
+  final dynamic netIncome;
 
   LossProfitModel({
     this.success,

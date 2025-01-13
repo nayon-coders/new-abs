@@ -33,7 +33,7 @@ class EmployeeManagement extends GetView<EmployeeManageController> {
 
         actions: [
          Obx((){
-             return roleController.isPartner.value ? Center() : InkWell(
+             return roleController.isPartner.value ? const Center() : InkWell(
                 onTap: (){
                   controller.singleModel.value = SingleEmployeeModel(); //  null the old value once create a new employee
                   Get.toNamed(AppRoute.addEmployeeScreen);
