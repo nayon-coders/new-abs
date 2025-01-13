@@ -42,7 +42,7 @@ class AuthController extends GetxController{
             _pref.setString("id", data["data"]["user"]["id"].toString());
             _pref.setString("business_id", data["data"]["user"]["business_id"].toString());
 
-            Get.toNamed(AppRoute.dashBoard);
+            Get.offAllNamed(AppRoute.dashBoard);
           }else{
             Get.snackbar("Failed", "Sorry! You are not allowed to login here.",backgroundColor: Colors.red,colorText: Colors.white);
           }

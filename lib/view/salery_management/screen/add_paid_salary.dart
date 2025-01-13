@@ -137,9 +137,9 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
                   const SizedBox(height: 10,),
                   AppInput(
                     fillColor: AppColors.fillColor,
-                    textType: TextInputType.number,
                     hint: "\$ 0.000",
                     hintColor:AppColors.textBlue ,
+                    textType: TextInputType.number,
                     controller: controller.amount.value,
 
                   ),

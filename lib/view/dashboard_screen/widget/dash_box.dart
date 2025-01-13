@@ -22,9 +22,9 @@ class DashBox extends StatelessWidget {
     return InkWell(
       onTap: (){},
       child: Container(
-        padding:const EdgeInsets.all(10),
+        padding:const EdgeInsets.all(8),
 
-        height: 90,
+        height: 100,
         width: 300,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -51,7 +51,9 @@ class DashBox extends StatelessWidget {
               children: [
                 Text(costName,style:const TextStyle(fontSize: 12,fontWeight: FontWeight.w500,color: AppColors.textBlue),),
                 const SizedBox(height: 6,),
-                Text(FormatCurrency.formatCurrency(costAmount),style:const TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
+                SizedBox(
+                  width: 100,
+                    child: Text(FormatCurrency.formatCurrency(costAmount),style:const TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: AppColors.textBlack),)),
               ],
             )
           ],

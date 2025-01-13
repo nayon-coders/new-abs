@@ -11,8 +11,8 @@ String allSalesModelToJson(AllSalesModel data) => json.encode(data.toJson());
 class AllSalesModel {
   final bool? success;
   final String? message;
-  final int? totalSales;
-  final int? totalSalesAmount;
+  final dynamic totalSales;
+  final dynamic totalSalesAmount;
   final List<SingleSalesDatum>? data;
 
   AllSalesModel({

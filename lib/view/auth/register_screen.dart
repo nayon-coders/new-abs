@@ -44,7 +44,7 @@ class RegisterScreen extends GetView<AuthController> {
                const SizedBox(height: 20,),
         
                 AppInput(
-                    hint: "User Name",
+                    hint: "Name",
                     controller: _userName,
                   textType: TextInputType.name,
                 ),

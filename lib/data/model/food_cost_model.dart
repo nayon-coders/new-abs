@@ -11,8 +11,8 @@ String foodCostModelToJson(FoodCostModel data) => json.encode(data.toJson());
 class FoodCostModel {
   final bool? success;
   final String? message;
-  final int? totalFoodCost;
-  final int? totalFoodCostAmount;
+  final dynamic totalFoodCost;
+  final dynamic totalFoodCostAmount;
   final List<FoodCostResult>? result;
 
   FoodCostModel({

@@ -241,38 +241,34 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                           ),
                           const  SizedBox(height: 20,),
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
 
-                              //partner profit
-                              Container(
-                                padding:const EdgeInsets.all(10),
-                                decoration:const BoxDecoration(
-                                  // color: Colors.red.withOpacity(0.2),
-                                    border: Border(
-                                      right: BorderSide(
-                                        color: Colors.green,
-                                        width: 1,
-                                      ),
-                                    )
-                                ),
+                              //total profit
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
                                 child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text("\$${partnerProfit.toStringAsFixed(2)}",
-                                      style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.mainColor),
-                                    ),
                                     const Text("Total Profit",
                                       style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: AppColors.mainColor),
                                     ),
+                                    SizedBox(
+                                      width: 100,
+                                      child: Text("\$${partnerProfit.toStringAsFixed(2)}",
+                                        style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.mainColor),
+                                      ),
+                                    ),
+
                                   ],
                                 ),
                               ),
 
-                              //partner loss
                               Container(
-                                padding:const EdgeInsets.all(10),
+                                height: 80,
                                 decoration:const BoxDecoration(
-                                  // color: Colors.red.withOpacity(0.2),
                                     border: Border(
                                       right: BorderSide(
                                         color: Colors.green,
@@ -280,29 +276,61 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                                       ),
                                     )
                                 ),
-                                child: Column(
-                                  children: [
-                                    Text("\$${partnerInfo.partnerLoss!.toStringAsFixed(2)}",
+                              ),
 
-                                      style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color:Colors.deepOrange),
-                                    ),
+
+
+                              //partner loss
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
                                     const Text("Partner Loss",
                                       style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: Colors.deepOrange),
 
                                     ),
+                                    SizedBox(
+                                      width: 100,
+                                      child: Text("\$${partnerInfo.partnerLoss!.toStringAsFixed(2)}",
+
+                                        style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color:Colors.deepOrange),
+                                      ),
+                                    ),
+
                                   ],
                                 ),
                               ),
                               Container(
-                                padding:const EdgeInsets.all(10),
+                                height: 80,
+                                decoration:const BoxDecoration(
+                                    border: Border(
+                                      right: BorderSide(
+                                        color: Colors.green,
+                                        width: 1,
+                                      ),
+                                    )
+                                ),
+                              ),
+
+                              //total Loss
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
                                 child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text("\$${controller.singlePartnerModel.value.wholeBusiness!.totalLoss!.toStringAsFixed(2)}",
-                                      style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.red),
-                                    ),
                                     const Text("Total Loss",
                                       style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: AppColors.red),
                                     ),
+                                    SizedBox(
+                                      width: 100,
+                                      child: Text("\$${controller.singlePartnerModel.value.wholeBusiness!.totalLoss!.toStringAsFixed(2)}",
+                                        style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.red),
+                                      ),
+                                    ),
+
                                   ],
                                 ),
                               )

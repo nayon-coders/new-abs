@@ -5,6 +5,8 @@ import 'package:abs_office_management/view/today_sales_management/controller/sal
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
+import '../../../utility/app_const.dart';
 import '../../../utility/assetes.dart';
 
 class ViewSalesReport extends GetView<SalesController> {
@@ -27,6 +29,11 @@ class ViewSalesReport extends GetView<SalesController> {
             },
             icon:const Icon(Icons.arrow_back_ios, color: Colors.black, size: 20,)),
         title: const Text("View Today Sales Report",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: AppColors.textBlack),),
+        actions: [
+          Text("${dateFormat1(singleSalesDatum.date!)}",style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+          const SizedBox(width: 20,),
+
+        ],
       ),
 
       body: Builder(
@@ -37,6 +44,7 @@ class ViewSalesReport extends GetView<SalesController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //box
+
                 Container(
                   height: 200,
                   decoration:const BoxDecoration(
@@ -53,6 +61,7 @@ class ViewSalesReport extends GetView<SalesController> {
                             const SizedBox(height: 30,),
                             Text(FormatCurrency.formatCurrency(controller.netSales.toStringAsFixed(2).toString()),style:const TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.black),),
                            const Text("Total Gross Sale",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Colors.black),),
+
                           ],
                         ),
                       ),
@@ -278,9 +287,13 @@ class BuildBoxs extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title,style:const TextStyle(fontSize: 12,fontWeight: FontWeight.w500,color: Colors.black),),
+                SizedBox(
+                  width: 100,
+                    child: Text(title,style:const TextStyle(fontSize: 12,fontWeight: FontWeight.w500,color: Colors.black),)),
                 const SizedBox(height: 5,),
-                Text(FormatCurrency.formatCurrency(value),style:const TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),),
+                SizedBox(
+                  width: 100,
+                    child: Text(FormatCurrency.formatCurrency(value),style:const TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black),)),
 
               ],
             ),
