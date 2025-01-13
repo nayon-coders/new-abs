@@ -1,6 +1,7 @@
 import 'package:abs_office_management/main.dart';
 import 'package:abs_office_management/routes/route_name.dart';
 import 'package:abs_office_management/utility/app_const.dart';
+import 'package:abs_office_management/view/auth/controller/auth_controller.dart';
 import 'package:abs_office_management/view/settings/screen/contact_and_support_screen.dart';
 import 'package:abs_office_management/view/settings/screen/privacy_policy.dart';
 import 'package:abs_office_management/view/settings/screen/terms_condition.dart';
@@ -16,6 +17,7 @@ class SettingScreen extends StatelessWidget {
 
 
    final RoleManagmentController roleController = Get.find<RoleManagmentController>();
+   final AuthController authController = Get.put(AuthController());
 
 
    @override
@@ -57,6 +59,7 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   SettingOptions(name: "Employee Position", icon: Icons.people, onClick: ()=>Get.toNamed(AppRoute.employeePosition)),
 
+
                   const Divider(),
                   SettingOptions(name: "Credit card processing fee", icon: Icons.credit_card, onClick:()=>Get.toNamed(AppRoute.creditCard)),
 
@@ -93,6 +96,18 @@ class SettingScreen extends StatelessWidget {
                 ),
               leading: const Icon(Icons.logout,color: AppColors.red,),
               title:const Text("Logout",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 14,color: AppColors.red),),
+            ),
+            ListTile(
+              contentPadding:const EdgeInsets.only(left: 10),
+              onTap: ()=> alertDialog(
+                    title: "Hold On !",
+                    content: "Are you sure? Do you want to DELETE your Account? if you DELETE your account you will lose all your data",
+                    onOk: ()async{
+                      await authController.deleteAccount();
+                    },
+                ),
+              leading: const Icon(Icons.delete,color: AppColors.red,),
+              title:const Text("Delete Account",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 14,color: AppColors.red),),
             ),
           ],
         ),

@@ -98,9 +98,6 @@ class AuthController extends GetxController{
         print("Sign up successful");
 
         //save token
-        String token = body["data"]["token"];
-        _pref.setString("token", token);
-
         Get.snackbar("Successful", body["message"],backgroundColor: Colors.green,colorText: Colors.white);
 
         Get.offNamed(AppRoute.login);
@@ -115,6 +112,23 @@ class AuthController extends GetxController{
     }
 
 }
+
+//delete account
+  Future<void> deleteAccount()async{
+    SharedPreferences _pref = await SharedPreferences.getInstance();
+    final res = await ApiController.deleteApi(
+        URL: AppConfig.ADMIN_DELETE_ACCOUNT
+    );
+    if(res.statusCode == 200){
+      Get.snackbar("Success", "Account deleted successfully",backgroundColor: Colors.green,colorText: Colors.white);
+      _pref.remove("token");
+      _pref.remove("role");
+      _pref.remove("id");
+      Get.offAllNamed(AppRoute.login);
+    }else{
+      Get.snackbar("Failed", "Failed to delete account",backgroundColor: Colors.red,colorText: Colors.white);
+    }
+  }
 
 
 
