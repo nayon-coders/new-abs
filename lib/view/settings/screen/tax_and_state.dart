@@ -14,7 +14,7 @@ class TaxAndState extends GetView<TaxController> {
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
-        backgroundColor: AppColors.textWhite,
+        backgroundColor:AppColors.bgColor,
         title:const Text("Tax & State",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
         leading: IconButton(onPressed: ()=>Get.back(), icon: const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
         surfaceTintColor: Colors.transparent,

@@ -27,8 +27,8 @@ class SalaryManagement extends GetView<SalaryManagementController> {
       appBar: AppBar(
         leading: IconButton(onPressed: ()=>Get.back(),
           icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,size: 20,),),
-        title:const Text("Salary management ",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: AppColors.textBlack),),
-        backgroundColor: AppColors.textWhite,
+        title:const Text("Salary Entity ",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: AppColors.textBlack),),
+        backgroundColor:AppColors.bgColor,
         surfaceTintColor: Colors.transparent,
         actions: [
          Obx(() {

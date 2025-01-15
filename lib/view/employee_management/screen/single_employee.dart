@@ -33,7 +33,7 @@ class SingleEmployee extends GetView<EmployeeManageController> {
           Get.back();
         }, icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
         title:const Text("Single Employee",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: AppColors.textBlack),),
-        backgroundColor: AppColors.textWhite,
+        backgroundColor:AppColors.bgColor,
         surfaceTintColor: Colors.transparent,
         actions: [
           Obx(() {

@@ -39,7 +39,7 @@ class AddTodaySales extends GetView<SalesController> {
           controller.clearData();
           Get.back();
         }, icon:const Icon(Icons.arrow_back_ios,color: AppColors.textindico,)),
-        backgroundColor: AppColors.textWhite,
+        backgroundColor: AppColors.bgColor,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
       ),

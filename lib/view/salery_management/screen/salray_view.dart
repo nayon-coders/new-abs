@@ -34,7 +34,7 @@ class SalrayView extends StatelessWidget {
             color: AppColors.textBlack,
           ),
         ),
-        backgroundColor: AppColors.textWhite,
+        backgroundColor:AppColors.bgColor,
         surfaceTintColor: Colors.transparent,
       ),
 

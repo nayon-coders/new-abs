@@ -41,7 +41,7 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
           }
         ),
 
-        backgroundColor: AppColors.textWhite,
+        backgroundColor:AppColors.bgColor,
         surfaceTintColor: Colors.transparent,
       ),
 

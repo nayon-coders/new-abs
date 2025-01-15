@@ -46,34 +46,30 @@ class RegisterScreen extends GetView<AuthController> {
                 AppInput(
                     hint: "Name",
                     controller: _userName,
-                  textType: TextInputType.name,
                 ),
         
                 const SizedBox(height: 15,),
                 AppInput(
                   hint: "Business Name",
                   controller: _businessName,
-                  textType: TextInputType.name,
                 ),
                 const SizedBox(height: 15,),
                 AppInput(
                   hint: "Business Address",
                   controller: _businessAddress,
-                  textType: TextInputType.name,
                 ),
                 const SizedBox(height: 15,),
         
                 AppInput(
                   hint: "Email",
                   controller: _email,
-                  textType: TextInputType.emailAddress,
                 ),
         
                 const SizedBox(height: 15,),
                 AppInput(
                   hint: "Phone",
                   controller: _phone,
-                  textType: TextInputType.number,
+
                 ),
         
                 const SizedBox(height: 15,),
@@ -81,7 +77,6 @@ class RegisterScreen extends GetView<AuthController> {
                 AppInput(
                     hint: "password",
                     controller: _password,
-                  textType: TextInputType.visiblePassword,
                 ),
                 //const SizedBox(height: 15,),
         

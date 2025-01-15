@@ -27,7 +27,7 @@ class SettingScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(onPressed: ()=>Get.toNamed(AppRoute.dashBoard), icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
         title:const Text("Setting ",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
-        backgroundColor: AppColors.textWhite,
+        backgroundColor:AppColors.bgColor,
         surfaceTintColor:Colors.transparent ,
       ),
       body: SingleChildScrollView(
@@ -55,7 +55,7 @@ class SettingScreen extends StatelessWidget {
                 column: [
                   SettingOptions(name: "Tax & State", icon: Icons.bar_chart, onClick: ()=>Get.toNamed(AppRoute.textAndState)),
                   const Divider(),
-                  SettingOptions(name: "Online sells platform", icon: Icons.online_prediction, onClick: ()=> Get.toNamed(AppRoute.onlineSellPlatform)),
+                  SettingOptions(name: "Other sells platform", icon: Icons.online_prediction, onClick: ()=> Get.toNamed(AppRoute.onlineSellPlatform)),
                   const Divider(),
                   SettingOptions(name: "Employee Position", icon: Icons.people, onClick: ()=>Get.toNamed(AppRoute.employeePosition)),
 

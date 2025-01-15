@@ -34,7 +34,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
         leading: IconButton(
             onPressed: ()=>Get.back(), icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
         title: const Text("Partner Info",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: AppColors.textBlack),),
-        backgroundColor: AppColors.textWhite,
+        backgroundColor:AppColors.bgColor,
         surfaceTintColor: Colors.white,
         actions: [
           Obx(() {
@@ -268,14 +268,8 @@ class SinglePartnerScreen extends GetView<PartnerController> {
 
                               Container(
                                 height: 80,
-                                decoration:const BoxDecoration(
-                                    border: Border(
-                                      right: BorderSide(
-                                        color: Colors.green,
-                                        width: 1,
-                                      ),
-                                    )
-                                ),
+                                color:Colors.green,
+                                width:1,
                               ),
 
 
@@ -304,14 +298,8 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                               ),
                               Container(
                                 height: 80,
-                                decoration:const BoxDecoration(
-                                    border: Border(
-                                      right: BorderSide(
-                                        color: Colors.green,
-                                        width: 1,
-                                      ),
-                                    )
-                                ),
+                                color:Colors.green,
+                                width:1,
                               ),
 
                               //total Loss
@@ -326,6 +314,7 @@ class SinglePartnerScreen extends GetView<PartnerController> {
                                     ),
                                     SizedBox(
                                       width: 100,
+
                                       child: Text("\$${controller.singlePartnerModel.value.wholeBusiness!.totalLoss!.toStringAsFixed(2)}",
                                         style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.red),
                                       ),

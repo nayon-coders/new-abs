@@ -16,6 +16,7 @@ import 'package:abs_office_management/view/employee_management/screen/add_employ
 import 'package:abs_office_management/view/employee_management/screen/employee_management.dart';
 import 'package:abs_office_management/view/employee_management/screen/single_employee.dart';
 import 'package:abs_office_management/view/loss_profit/loss_profit.dart';
+import 'package:abs_office_management/view/order_management/order_management.dart';
 import 'package:abs_office_management/view/partner_management/screen/add_partner_screen.dart';
 import 'package:abs_office_management/view/partner_management/screen/partner_management.dart';
 import 'package:abs_office_management/view/partner_management/screen/single_partner_screen.dart';
@@ -36,7 +37,6 @@ import 'package:abs_office_management/view/today_sales_management/screen/add_tod
 import 'package:abs_office_management/view/today_sales_management/screen/manage_costing.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/today_sales_management.dart';
 import 'package:abs_office_management/view/today_sales_management/screen/view_sales_report.dart';
-import 'package:abs_office_management/view/year%20&%20month/year_month.dart';
 import 'package:get/get.dart';
 import '../data/binding/food_cost_binding.dart';
 import '../data/binding/setting.binding.dart';
@@ -218,7 +218,7 @@ class RoutePage{
 
     GetPage(
         name: AppRoute.yearMonth,
-        page: ()=>const YearMonth()
+        page: ()=> OrderManagement()
     ),
 
 

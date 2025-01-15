@@ -37,7 +37,7 @@ class AddCost extends GetView<CostController> {
           },
           icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,),
         ),
-        backgroundColor: AppColors.textWhite,
+        backgroundColor: AppColors.bgColor,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
       ),

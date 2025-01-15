@@ -27,6 +27,14 @@ class Assets{
   static const String shotOver = "assets/images/shotover.png";
   static const String foodCost = "assets/images/foodcost.png";
   static const String year = "assets/images/year.png";
+  static const String order = "assets/images/order.png";
+  static const String resDepot = "assets/images/restaurantdepot.png";
+  static const String pamir = "assets/images/pamir.png";
+  static const String usFood = "assets/images/usFood.png";
+  static const String afgan = "assets/images/afgan.png";
+  static const String hackney = "assets/images/hackney.png";
+  static const String sysco = "assets/images/sysco.png";
+
 
 
 }

@@ -13,9 +13,9 @@ class OnlineSalesPlatform extends GetView<OnlineSalesPlatformController> {
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
-        backgroundColor: AppColors.textWhite,
+        backgroundColor:AppColors.bgColor,
         leading: IconButton(onPressed: ()=>Get.back(), icon:const Icon(Icons.arrow_back_ios)),
-        title:const Text("Online Sales Platform"),
+        title:const Text("Other Sales Platform"),
       ),
 
       body: Padding(
@@ -104,10 +104,10 @@ class OnlineSalesPlatform extends GetView<OnlineSalesPlatformController> {
       children: [
 
         //text to introduce the page
-        const Text("You can manage you online sales platform. List all the online platforms you use.",style: TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textBlack),),
+        const Text("You can manage you other sales platform. List all the online platforms you use.",style: TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: AppColors.textBlack),),
         const SizedBox(height: 20,),
         //input field
-        const Text("Online Sales Platform",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
+        const Text("Other Sales Platform",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: AppColors.textBlack),),
         const SizedBox(height: 10,),
         AppInput(hint: "Platform Name", fillColor: Colors.white, controller: controller.platformName.value),
         const SizedBox(height: 20,),

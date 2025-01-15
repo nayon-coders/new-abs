@@ -16,7 +16,7 @@ class ChangePassword extends GetView<AdminUpdateController> {
       appBar: AppBar(
         leading: IconButton(onPressed: ()=>Get.back(), icon:const  Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
         title:const Text("Change Password",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: AppColors.textBlack),),
-        backgroundColor: AppColors.textWhite,
+        backgroundColor:AppColors.bgColor,
         surfaceTintColor: Colors.transparent,
       ),
 

@@ -28,7 +28,7 @@ class DashBoardScreen extends StatelessWidget {
     appBar: AppBar(
       surfaceTintColor: Colors.transparent,
       elevation: 0,
-      backgroundColor: Colors.white,
+      backgroundColor:AppColors.bgColor,
 
       title:const Text("Dashboard",
         style: TextStyle(
@@ -162,24 +162,24 @@ class DashBoardScreen extends StatelessWidget {
 
 
 
-  //dashbox Menu
+  //dashboard Menu
    List<Map<String,dynamic>> get dashbox=>[
      {"costName": "Total Sales","costAmount":lossProfitController.lossProfitModel.value.lossProfitModelTotalSales??"", "image": Assets.money,"color":const Color(0xFFFFF5D9), "screen": (){}},
      {"costName": "Net Sales", "costAmount":lossProfitController.lossProfitModel.value.netSales??"","image": Assets.income,"color":const Color(0xFFE7EDFF), "screen": (){}},
-     {"costName": "Expense", "costAmount":lossProfitController.lossProfitModel.value.totalDabit ?? "","image": Assets.expance,"color":const Color(0xFFFFE0EB), "screen": (){}},
-     {"costName": "Online Sales", "costAmount":lossProfitController.lossProfitModel.value.toatlOnlineSales??"","image": Assets.sells,"color":const Color(0xFFDCFAF8), "screen": (){}},
+     {"costName": "Total Expense", "costAmount":lossProfitController.lossProfitModel.value.totalDabit ?? "","image": Assets.expance,"color":const Color(0xFFFFE0EB), "screen": (){}},
+     {"costName": "Other Sales", "costAmount":lossProfitController.lossProfitModel.value.toatlOnlineSales??"","image": Assets.sells,"color":const Color(0xFFDCFAF8), "screen": (){}},
 
    ];
 
-   ///--------dashbox Menu --------
+   ///--------dashboard Menu --------
    ///
    List<Map<String,dynamic>> menubox=[
-     {"name": "Today Sales Manage","image": Assets.todaysale,"screen": AppRoute.salesManageScree},
+     {"name": "Today Sales Entry","image": Assets.todaysale,"screen": AppRoute.salesManageScree},
      {"name": "Loss & Profit","image": Assets.loss,"screen": AppRoute.lossProfit},
-     {"name": "Employee Manage","image": Assets.employee,"screen": AppRoute.employeeManageScree},
+     {"name": "Create Employee","image": Assets.employee,"screen": AppRoute.employeeManageScree},
      {"name": "Salary Manage","image": Assets.salery,"screen": AppRoute.salaryManagementScree},
      {"name": "Partner Manage","image": Assets.partner,"screen": AppRoute.partnerManagementScreen},
-    // {"name": "Year & Month","image": Assets.year,"screen": "${AppRoute.yearMonth}"},
+     {"name": "Order Management","image": Assets.order,"screen": "${AppRoute.yearMonth}"},
 
    ];
 }

@@ -23,7 +23,7 @@ class OnlineSalesWidgets extends GetView<LossProfitController> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 15.0),
-                child:const Text("Online Sales",
+                child:const Text("Other Sales",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 17,

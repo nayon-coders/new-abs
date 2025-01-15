@@ -22,7 +22,7 @@ class BusinessSetup extends GetView<AdminUpdateController> {
       appBar: AppBar(
         title:const  Text("Business Setup",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: AppColors.textBlack),),
         leading: IconButton(onPressed: ()=>Get.back(), icon:const Icon(Icons.arrow_back_ios,color: AppColors.textBlack,)),
-        backgroundColor: AppColors.textWhite,
+        backgroundColor:AppColors.bgColor,
         surfaceTintColor: Colors.transparent,
       ),
       body: SingleChildScrollView(

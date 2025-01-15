@@ -118,7 +118,7 @@ class PrivacyPolicy extends StatelessWidget {
       backgroundColor:AppColors.bgColor,
       appBar:  AppBar(
         surfaceTintColor: Colors.transparent,
-        backgroundColor: AppColors.textWhite,
+        backgroundColor:AppColors.bgColor,
         title:const Text("Privacy & Policy",
           style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: Colors.black,),
         ),

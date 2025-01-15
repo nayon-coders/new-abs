@@ -60,7 +60,7 @@ class AddEmployee extends GetView<EmployeeManageController> {
       backgroundColor: AppColors.bgColor,
 
       appBar: AppBar(
-        backgroundColor: AppColors.textWhite,
+        backgroundColor:AppColors.bgColor,
         surfaceTintColor: Colors.transparent,
 
         title:  Builder(

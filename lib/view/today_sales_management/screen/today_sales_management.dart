@@ -35,7 +35,7 @@ class TodaySalesManagement extends StatelessWidget {
           leading: IconButton(
               onPressed: ()=>Get.back(),
               icon: const Icon(Icons.arrow_back_ios,color: AppColors.textindico,)),
-          title:const Text("Today Sales Management",
+          title:const Text("Today Sales Entry",
             style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: AppColors.textindico),
           ),
           centerTitle: true,

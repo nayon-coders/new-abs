@@ -24,7 +24,7 @@ class AddFoodCost extends GetView<FoodCostController> {
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
-        backgroundColor: AppColors.textWhite,
+        backgroundColor: AppColors.bgColor,
         surfaceTintColor: Colors.transparent,
         leading: IconButton(onPressed: (){
           controller.clearAllData();

@@ -25,17 +25,25 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text("Expense",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                ),
-              ).animate(effects: [
-                FadeEffect(duration: 200.ms, curve: Curves.bounceInOut),
-               const  ScaleEffect(begin: Offset(0,2), curve: Curves.easeIn)
-              ]),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text("Operating Expense",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ).animate(effects: [
+                    FadeEffect(duration: 200.ms, curve: Curves.bounceInOut),
+                   const  ScaleEffect(begin: Offset(0,2), curve: Curves.easeIn)
+                  ]),
+                  Text("\$ ${controller.lossProfitModel.value.totalDabit!.toStringAsFixed(2)}",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: Colors.black),),
+                ],
+              ),
              const SizedBox(height: 10,),
+
               Row(
                 children: [
                   Expanded(
@@ -75,7 +83,8 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
                   Expanded(
                     child: DashBox(
                         onClick:(){},
-                        costName: "Operating\nExpanses",
+                        //costName: "Operating\nExpanses",
+                        costName: "General Expanses",
                         costAmount: controller.lossProfitModel.value.othersCost!.toStringAsFixed(2),
                         image:Assets.loss,
                         bgColor: const Color(0xFFDCFAF8)
@@ -90,7 +99,7 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
                     child: DashBox(
 
                         onClick:(){},
-                        costName: "Total Tax",
+                        costName: "Tax",
                         costAmount: controller.lossProfitModel.value.totalTax!.toStringAsFixed(2),
                         image:Assets.tax,
                         bgColor: const Color(0xFFDCEAF9)

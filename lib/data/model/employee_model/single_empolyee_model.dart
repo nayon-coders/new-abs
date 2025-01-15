@@ -13,8 +13,8 @@ class SingleEmployeeModel {
   final Employee? employee;
   final String? selectedMonthTotalAmount;
   final String? selectedMonthTotalWorkTime;
-  final int? selectedMonthTotalPayment;
-  final int? selectedMontDueAmount;
+  final dynamic selectedMonthTotalPayment;
+  final dynamic selectedMontDueAmount;
   final List<dynamic>? workingHistory;
   final List<dynamic>? paymentHistory;
 
