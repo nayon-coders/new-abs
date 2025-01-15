@@ -25,24 +25,19 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text("Operating Expense",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ).animate(effects: [
-                    FadeEffect(duration: 200.ms, curve: Curves.bounceInOut),
-                   const  ScaleEffect(begin: Offset(0,2), curve: Curves.easeIn)
-                  ]),
-                  Text("\$ ${controller.lossProfitModel.value.totalDabit!.toStringAsFixed(2)}",style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: Colors.black),),
-                ],
-              ),
+              const Text("Operating Expense",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                ),
+              ).animate(effects: [
+                FadeEffect(duration: 200.ms, curve: Curves.bounceInOut),
+               const  ScaleEffect(begin: Offset(0,2), curve: Curves.easeIn)
+              ]),
              const SizedBox(height: 10,),
+
+
 
               Row(
                 children: [
@@ -134,6 +129,33 @@ class CostBoxsWidgets extends GetView<LossProfitController> {
                   ),
                 ],
               ),
+              const SizedBox(height: 15,),
+
+              Container(
+                padding:const EdgeInsets.all(5),
+
+                width: Get.width,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                ),
+                child:Row(
+                  children: [
+                    Text("Operating Expense:",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(width: 10,),
+                    Text("\$ ${controller.lossProfitModel.value.totalDabit!.toStringAsFixed(2)}",
+                      style:const TextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: Colors.red),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10,),
             ].animate(interval: 120.ms).fade(duration: 300.ms),
           ),
         );
