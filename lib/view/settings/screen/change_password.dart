@@ -35,7 +35,7 @@ class ChangePassword extends GetView<AdminUpdateController> {
                   hint: "Current Password",
                   fillColor: AppColors.textWhite,
                   hintColor: AppColors.textindico,
-                  textType: TextInputType.visiblePassword,
+
                   controller: controller.oldPass.value
               ),
 
@@ -47,7 +47,7 @@ class ChangePassword extends GetView<AdminUpdateController> {
                   hint: "New Password",
                   fillColor: AppColors.textWhite,
                   hintColor: AppColors.textindico,
-                  textType: TextInputType.visiblePassword,
+
                   controller: controller.newPass.value
               ),
 
@@ -58,7 +58,7 @@ class ChangePassword extends GetView<AdminUpdateController> {
               AppInput(hint: "Confirm Password",
                   fillColor: AppColors.textWhite,
                   hintColor: AppColors.textindico,
-                textType: TextInputType.visiblePassword,
+
                   controller: controller.confirmPass.value,
               ),
 

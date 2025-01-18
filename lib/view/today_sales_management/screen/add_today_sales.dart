@@ -77,7 +77,7 @@ class AddTodaySales extends GetView<SalesController> {
                           hint: "0.00",
                           controller: controller.grossSales.value,
                           fillColor: AppColors.textWhite,
-                          textType: TextInputType.number,
+
                           onChanged: (v){ //calculate tax
                             if(v.isNotEmpty){
                               controller.calculateTax(double.parse(controller.grossSales.value.text), double.parse("${taxController.taxStateModel.value.data!.tax}"));
@@ -140,7 +140,7 @@ class AddTodaySales extends GetView<SalesController> {
                           hint: "0.0",
                           hintColor: AppColors.textBlue,
                           fillColor: AppColors.textWhite,
-                          textType: TextInputType.number,
+
                           controller: controller.creditSales.value,
                         );
                       }
@@ -163,7 +163,7 @@ class AddTodaySales extends GetView<SalesController> {
                             hint: "0.0",
                             hintColor: AppColors.textBlue,
                             fillColor: AppColors.textWhite,
-                            textType: TextInputType.number,
+
                             onChanged: (v){
                               controller.calculateCreditSalesAndTotalCashCollect();
                             },
@@ -262,7 +262,7 @@ class AddTodaySales extends GetView<SalesController> {
                           hint: "0.0",
                           hintColor: AppColors.textBlue,
                           fillColor: AppColors.textWhite,
-                          textType: TextInputType.number,
+
                           controller: controller.additionalIncome.value,
                         ),
                       ],
@@ -358,7 +358,7 @@ class AddTodaySales extends GetView<SalesController> {
               hint: "0.0",
               hintColor: AppColors.textBlue,
               fillColor: AppColors.textWhite,
-              textType: TextInputType.number,
+
               controller: controller.taxEditingController.value,
             ),
             const SizedBox(height: 10,),

@@ -104,7 +104,7 @@ class OnlinePlatformListView extends GetView<OnlineSalesPlatformController> {
                   const SizedBox(height: 10,),
                   AppInput(hint: "0.00",
                     hintColor: AppColors.textBlue,
-                    textType: TextInputType.number,
+
                     fillColor: AppColors.textWhite,
                     controller: salesController.amountList[index],
                   ),

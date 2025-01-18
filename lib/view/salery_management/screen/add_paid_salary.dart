@@ -139,7 +139,7 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
                     fillColor: AppColors.fillColor,
                     hint: "\$ 0.000",
                     hintColor:AppColors.textBlue ,
-                    textType: TextInputType.number,
+
                     controller: controller.amount.value,
 
                   ),
@@ -169,7 +169,7 @@ class AddPaidSalary extends GetView<SalaryManagementController> {
                             fillColor: AppColors.fillColor,
                             hint: "Cheque Number",
                             hintColor:AppColors.textBlue ,
-                            textType: TextInputType.number,
+
                             controller: controller.checkNo.value,
                           ),
                         ],

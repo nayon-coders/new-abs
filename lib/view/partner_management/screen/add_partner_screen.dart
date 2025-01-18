@@ -68,7 +68,6 @@ class AddPartnerScreen extends GetView<PartnerController> {
              controller.isEditing.value?Center(): AppInput(
                 hint: "Password",
                 controller: controller.password.value,
-                textType: TextInputType.visiblePassword,
                 fillColor: AppColors.textWhite,
               ),
               controller.isEditing.value?Center(): const SizedBox(height: 20,),
@@ -79,7 +78,7 @@ class AddPartnerScreen extends GetView<PartnerController> {
               AppInput(
                 hint: "0.00",
                 controller: controller.percent.value,
-                textType: TextInputType.number,
+
                 fillColor: AppColors.textWhite,
               ),
               const SizedBox(height: 30,),

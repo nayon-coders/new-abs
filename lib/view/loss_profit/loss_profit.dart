@@ -51,10 +51,6 @@ class LossProfit extends GetView<LossProfitController> {
 
               const OnlineSalesWidgets(), // imported from widgets/online_sales_widgets.dart
 
-
-
-
-
             ],
           ),
         ),

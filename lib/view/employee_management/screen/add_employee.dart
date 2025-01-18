@@ -403,8 +403,8 @@ class AddEmployee extends GetView<EmployeeManageController> {
               ),
               AppInput(
                 fillColor: AppColors.textWhite,
-                textType: TextInputType.number,
-                hint: "\$ 0.000",
+
+                hint: "\$ 0.00",
                 controller: controller.salaryRate.value,
 
               ),

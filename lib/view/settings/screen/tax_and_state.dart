@@ -61,7 +61,7 @@ class TaxAndState extends GetView<TaxController> {
             AppInput(
                 hint: "Tax",
                 controller: controller.taxController.value,
-              textType: TextInputType.number,
+
             ),
             const SizedBox(height: 20,),
            const Text("State",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: AppColors.textBlack),),

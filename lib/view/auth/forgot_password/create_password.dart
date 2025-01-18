@@ -51,13 +51,13 @@ class CreatePassword extends GetView<ForgotController> {
                 AppInput(
                   hint: "New Password",
                   controller: newPassword,
-                  textType: TextInputType.visiblePassword,
+
                 ),
                const SizedBox(height: 15,),
                 AppInput(
                   hint: "Conform Password",
                   controller: confPassword,
-                  textType: TextInputType.visiblePassword,
+
                 ),
                 const SizedBox(height: 30,),
                 Obx(() {

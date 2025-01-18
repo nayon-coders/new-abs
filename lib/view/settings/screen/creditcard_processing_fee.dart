@@ -42,7 +42,7 @@ class CreditcardProcessingFee extends GetView<CreditcardProcessingFeeController>
               AppInput(
                 hint: "0.00",
                 fillColor: AppColors.textWhite,
-                textType: TextInputType.number,
+
                 controller: controller.creditCardFee.value,
               ),
               const SizedBox(height: 20,),

@@ -183,7 +183,6 @@ class AddFoodCost extends GetView<FoodCostController> {
               hintColor: AppColors.textBlue,
               fillColor: AppColors.textWhite,
               controller: controller.vendorAmount[index],
-              textType: TextInputType.number,
             ),
 
 
@@ -215,7 +214,6 @@ class AddFoodCost extends GetView<FoodCostController> {
                       hintColor: AppColors.textBlue,
                       fillColor: AppColors.textWhite,
                       controller: controller.chequeNumber[index],
-                      textType: TextInputType.number,
                     ),
                   ],
                 ) :const Center();

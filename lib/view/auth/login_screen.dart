@@ -54,7 +54,6 @@ class LoginScreen extends StatelessWidget {
                 //Enter password
                 AppInput(
                     hint: "Enter your Password",
-                    textType: TextInputType.visiblePassword,
                     controller: _password,
                   suffixIcon:const Icon(Icons.visibility,color: AppColors.textBlack,),
                 ),

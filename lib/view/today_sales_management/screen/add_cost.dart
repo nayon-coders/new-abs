@@ -109,7 +109,6 @@ class AddCost extends GetView<CostController> {
                     hintColor: AppColors.textBlue,
                     fillColor: AppColors.fillColor,
                     controller: controller.costAmount.value,
-                    textType: TextInputType.number,
                   ),
 
                   const SizedBox(height: 20,),
